@@ -16,6 +16,25 @@ const typeDefs = gql`
     onlineStatus: String
     lastOnlineTime: String
     profileUrl: String
+    ownedGames: UserGameConnection
+    recentlyPlayedGames: UserGameConnection
+  }
+
+  type UserGameConnection {
+    edges: [UserGameEdge]
+  }
+
+  type UserGameEdge {
+    node: GameBasicInfo!
+  }
+
+  type GameBasicInfo {
+    id: ID!
+    name: String
+    playtime: Int
+    icon: String
+    logo: String
+    storeUrl: String
   }
 `;
 
