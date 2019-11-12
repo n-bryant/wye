@@ -1,6 +1,7 @@
 const { ApolloServer } = require("apollo-server");
 const SteamUsersAPI = require("./dataSources/SteamUsersAPI");
 const SteamPlayerServiceAPI = require("./dataSources/SteamPlayerServiceAPI");
+const SteamNewsAPI = require("./dataSources/SteamNewsAPI");
 const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
 
@@ -15,7 +16,8 @@ const server = new ApolloServer({
   dataSources: () => {
     return {
       steamUsersAPI: new SteamUsersAPI(),
-      steamPlayerServiceAPI: new SteamPlayerServiceAPI()
+      steamPlayerServiceAPI: new SteamPlayerServiceAPI(),
+      steamNewsAPI: new SteamNewsAPI()
     };
   }
 });

@@ -2,6 +2,9 @@ const resolvers = {
   Query: {
     user: async (_source, { userId }, { dataSources }) => {
       return dataSources.steamUsersAPI.getUserSummaryById(userId);
+    },
+    articles: async (_source, { gameId }, { dataSources }) => {
+      return dataSources.steamNewsAPI.getNewsForGameById(gameId);
     }
   },
   User: {

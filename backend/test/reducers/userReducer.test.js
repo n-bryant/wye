@@ -1,13 +1,9 @@
-const moment = require("moment");
+const getFormattedUnixTime = require("../../lib/util/unixDateFormatter");
 const {
   userReducer,
-  getUserOnlineStatus,
-  getUserLastOnlineTime
+  getUserOnlineStatus
 } = require("../../src/reducers/userReducer");
-const {
-  ONLINE_STATUS_MAP,
-  DATE_FORMAT
-} = require("../../src/reducers/constants");
+const { ONLINE_STATUS_MAP } = require("../../src/reducers/constants");
 
 describe("getUserOnlineStatus", () => {
   it("should return ONLINE_STATUS_MAP[`${status}`] if the status provided exists in the status map", () => {
@@ -22,19 +18,6 @@ describe("getUserOnlineStatus", () => {
     expect(getUserOnlineStatus(Object.keys(ONLINE_STATUS_MAP).length)).toBe(
       ONLINE_STATUS_MAP[0]
     );
-  });
-});
-
-describe("getUserLastOnlineTime", () => {
-  it(`should return a unix moment formatted with the date format: ${DATE_FORMAT}`, () => {
-    moment.unix = jest.fn();
-    moment.unix.mockReturnValue({
-      format: jest.fn()
-    });
-    const time = 11111111;
-    getUserLastOnlineTime(time);
-    expect(moment.unix).toBeCalledWith(time);
-    expect(moment.unix(time).format).toBeCalledWith(DATE_FORMAT);
   });
 });
 
@@ -64,7 +47,7 @@ describe("userReducer", () => {
 
   it("should map the provided user's lastlogoff to the lastOnlineTime property", () => {
     expect(userReducer(mockUser).lastOnlineTime).toBe(
-      getUserLastOnlineTime(mockUser.lastlogoff)
+      getFormattedUnixTime(mockUser.lastlogoff)
     );
   });
 
