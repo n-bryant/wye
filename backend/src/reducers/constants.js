@@ -9,8 +9,6 @@ const ONLINE_STATUS_MAP = {
   6: "Looking to Play"
 };
 
-const DATE_FORMAT = "MMMM Do YYYY, h:mma";
-
 // userGameReducer
 const USER_GAME_IMG_BASE_URL =
   "http://media.steampowered.com/steamcommunity/public/images/apps/";
@@ -18,7 +16,6 @@ const USER_GAME_STORE_BASE_URL = "http://store.steampowered.com/app/";
 
 module.exports = {
   ONLINE_STATUS_MAP,
-  DATE_FORMAT,
   USER_GAME_IMG_BASE_URL,
   USER_GAME_STORE_BASE_URL
 };

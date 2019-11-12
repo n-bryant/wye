@@ -1,5 +1,5 @@
-const moment = require("moment");
-const { ONLINE_STATUS_MAP, DATE_FORMAT } = require("./constants");
+const getFormattedUnixTime = require("../../lib/util/unixDateFormatter");
+const { ONLINE_STATUS_MAP } = require("./constants");
 
 /**
  * Returns a readable online status for a user
@@ -13,13 +13,6 @@ const getUserOnlineStatus = status => {
 };
 
 /**
- * Returns a formatted last online time for a user
- * @param { Int } time - A user's last logoff in unix time
- * @returns { String } - A formatted date string
- */
-const getUserLastOnlineTime = time => moment.unix(time).format(DATE_FORMAT);
-
-/**
  * Transforms a user received from Steam's user API
  * into a user object that matches the schema
  *
@@ -30,13 +23,12 @@ const userReducer = user => ({
   id: user["steamid"],
   avatarName: user["personaname"],
   onlineStatus: getUserOnlineStatus(user["personastate"]),
-  lastOnlineTime: getUserLastOnlineTime(user["lastlogoff"]),
+  lastOnlineTime: getFormattedUnixTime(user["lastlogoff"]),
   profileUrl: user["profileurl"],
   avatarImgUrl: user["avatar"]
 });
 
 module.exports = {
   userReducer,
-  getUserOnlineStatus,
-  getUserLastOnlineTime
+  getUserOnlineStatus
 };
