@@ -64,4 +64,6 @@ describe("SteamUsersAPI", () => {
       );
     });
   });
+
+  describe("getUserSummariesByIds", () => {});
 });
