@@ -1,6 +1,7 @@
 const { RESTDataSource } = require("apollo-datasource-rest");
 const get = require("lodash.get");
 require("dotenv").config({ path: "variables.env" });
+const getCommaSeparatedList = require("../../lib/util/commaSeparatedList");
 const {
   STEAM_USERS_API_BASE_URL,
   STEAM_USERS_API_USERS_ENDPOINT
@@ -30,6 +31,26 @@ class SteamUsersAPI extends RESTDataSource {
     const players = get(data, ["response", "players"], []);
     const user = players.length ? userReducer(players[0]) : {};
     return user;
+  }
+
+  /**
+   * Get information for multiple users from Steam's user API's GetPlayerSummaries endpoint
+   * @param { Array } userIds - The list of user IDs to get information for
+   * @returns { Object } users - a users object matching the schema for the UserConnection type
+   */
+  async getUserSummariesByIds(userIds) {
+    const commaSeparatedIs = getCommaSeparatedList(userIds);
+    const data = await this.get(STEAM_USERS_API_USERS_ENDPOINT, {
+      key: process.env.API_KEY,
+      steamids: commaSeparatedIs
+    });
+    const users = get(data, ["response", "players"], []);
+    const edges = users.map(user => ({
+      node: userReducer(user)
+    }));
+    return {
+      edges
+    };
   }
 }
 

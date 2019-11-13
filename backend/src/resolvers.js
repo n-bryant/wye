@@ -3,8 +3,8 @@ const resolvers = {
     user: async (_source, { userId }, { dataSources }) => {
       return dataSources.steamUsersAPI.getUserSummaryById(userId);
     },
-    articles: async (_source, { gameId }, { dataSources }) => {
-      return dataSources.steamNewsAPI.getNewsForGameById(gameId);
+    game: async (_source, { gameId }, { dataSources }) => {
+      return dataSources.steamGamesAPI.getGameByGameId(gameId);
     }
   },
   User: {
@@ -15,6 +15,14 @@ const resolvers = {
       return dataSources.steamPlayerServiceAPI.getRecentlyPlayedGamesByPlayerId(
         id
       );
+    }
+  },
+  Game: {
+    details: async (_source, { gameId }, { dataSources }) => {
+      return dataSources.steamGamesAPI.getGameByGameId(gameId);
+    },
+    articles: async (_source, { gameId }, { dataSources }) => {
+      return dataSources.steamNewsAPI.getNewsForGameById(gameId);
     }
   }
 };
