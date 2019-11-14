@@ -25,7 +25,7 @@ const userReducer = user => ({
   onlineStatus: getUserOnlineStatus(user["personastate"]),
   lastOnlineTime: getFormattedUnixTime(user["lastlogoff"]),
   profileUrl: user["profileurl"],
-  avatarImgUrl: user["avatar"]
+  avatarImageUrl: user["avatar"]
 });
 
 module.exports = {
