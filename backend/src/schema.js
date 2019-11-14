@@ -36,7 +36,7 @@ const typeDefs = gql`
     # user's avatar name
     avatarName: String
     # url to user's avatar image
-    avatarImgUrl: String
+    avatarImageUrl: String
     # a user's online status
     onlineStatus: String
     # the time the user was last online
@@ -139,13 +139,13 @@ const typeDefs = gql`
     # the game's noted genres
     genres: [Genre]
     # the header image for the game
-    headerImgUrl: String
+    headerImageUrl: String
     # the hero image for the game
     heroImageUrl: String
     # the logo image for the game
-    logoImgUrl: String
+    logoImageUrl: String
     # the steam store page's generated background image for the game
-    backgroundImgUrl: String
+    backgroundImageUrl: String
     # screenshots for the game
     screenshots: [Screenshot]
     # videos relating to the game

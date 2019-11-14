@@ -101,15 +101,22 @@ const gameReducer = game => {
     },
     categories: game["categories"],
     genres: game["genres"],
-    headerImgUrl: game["header_image"],
+    headerImageUrl: game["header_image"],
     heroImageUrl: `${GAME_IMAGES_BASE_URL}${
       game["steam_appid"]
     }/library_hero.jpg`,
-    logoImgUrl: `${GAME_IMAGES_BASE_URL}${game["steam_appid"]}/logo.png`,
-    backgroundImgUrl: game["background"],
+    logoImageUrl: `${GAME_IMAGES_BASE_URL}${game["steam_appid"]}/logo.png`,
+    backgroundImageUrl: game["background"],
     screenshots: getScreenshots(game["screenshots"]),
     videos: getVideos(game["movies"])
   };
 };
 
-module.exports = { gameReducer };
+module.exports = {
+  gameReducer,
+  getPriceDetails,
+  getHasControllerSupport,
+  getPlatforms,
+  getScreenshots,
+  getVideos
+};

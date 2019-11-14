@@ -55,7 +55,7 @@ describe("userReducer", () => {
     expect(userReducer(mockUser).profileUrl).toBe(mockUser.profileurl);
   });
 
-  it("should map the provided user's avatar to the avatarImgUrl property", () => {
-    expect(userReducer(mockUser).avatarImgUrl).toBe(mockUser.avatar);
+  it("should map the provided user's avatar to the avatarImageUrl property", () => {
+    expect(userReducer(mockUser).avatarImageUrl).toBe(mockUser.avatar);
   });
 });
