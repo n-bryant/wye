@@ -23,7 +23,8 @@ describe("gameReducer", () => {
     price_overview: {
       discount_percent: 0,
       initial_formatted: "$3.50",
-      final_formatted: "$3.50"
+      final_formatted: "$3.50",
+      final: 350
     },
     developers: ["a", "b"],
     publishers: ["a", "b"],
@@ -183,7 +184,8 @@ describe("gameReducer", () => {
         onSale: false,
         discountPercentage: priceOverview.discount_percent,
         initialFormatted: priceOverview.initial_formatted,
-        finalFormatted: priceOverview.final_formatted
+        finalFormatted: priceOverview.final_formatted,
+        finalRaw: priceOverview.final
       });
     });
 

@@ -14,14 +14,16 @@ const getPriceDetails = ({ is_free, price_overview }) => {
     const {
       discount_percent,
       initial_formatted,
-      final_formatted
+      final_formatted,
+      final
     } = price_overview;
     return {
       freeToPlay: is_free,
       onSale: discount_percent > 0,
       discountPercentage: discount_percent,
       initialFormatted: initial_formatted,
-      finalFormatted: final_formatted
+      finalFormatted: final_formatted,
+      finalRaw: final
     };
   }
   return {
