@@ -6,6 +6,12 @@ const typeDefs = gql`
     DESCENDING
   }
 
+  enum OrderByField {
+    OWNED_BY
+    RECENTLY_PLAYED_BY
+    PLAYTIME
+  }
+
   type Query {
     # query for a single user by ID
     user(userId: ID!): User!
@@ -13,6 +19,15 @@ const typeDefs = gql`
     articles(gameId: ID!): ArticleConnection
     # query for a game by ID
     game(gameId: ID!): Game
+    # query for game recommendations for a list of users with filtering
+    recommendations(
+      userIds: [ID!]!
+      filters: FilterInput
+      first: Int
+      after: Int
+      orderBy: OrderByField
+      sortOrder: OrderDirection
+    ): RecommendationConnection
   }
 
   #
@@ -161,8 +176,10 @@ const typeDefs = gql`
     discountPercentage: Int
     # a formatted initial price before a sale price
     initialFormatted: String
-    # a formatted sale price
+    # a formatted price
     finalFormatted: String
+    # raw final price
+    finalRaw: Int
   }
 
   type MetacriticInfo {
@@ -204,6 +221,46 @@ const typeDefs = gql`
     thumbnailUrl: String
     # url for the full size video
     fullsizeUrl: String
+  }
+
+  #
+  # Recommendations
+  #
+  type Recommendation {
+    # the recommended game's details
+    game(gameId: ID!): Game
+    # which users own the recommended game
+    ownedBy(userIds: ID!, gameId: ID!): [String]
+    # which users have recently played the recommended game
+    recentlyPlayedBy(userIds: [ID!]!, gameId: ID!): [String]
+    # data on hours played by user
+    playtime(userIds: [ID!]!, gameId: ID!): UserPlaytime
+  }
+
+  type RecommendationConnection {
+    pageInfo: PageInfo
+    edges: [RecommendationEdge]
+  }
+
+  type RecommendationEdge {
+    node: Recommendation!
+  }
+
+  type UserPlaytime {
+    userId: ID
+    playtime: Int
+  }
+
+  input FilterInput {
+    ownedBy: [String]
+    recentlyPlayedBy: [String]
+    genres: [String]
+    categories: [String]
+    hasControllerSupport: Boolean
+    freeToPlay: Boolean
+    onSale: Boolean
+    priceLessThan: Int
+    priceGreaterThan: Int
   }
 `;
 

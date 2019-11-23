@@ -10,6 +10,9 @@ const {
 describe("SteamPlayerServiceAPI", () => {
   process.env.API_KEY = "foo";
   const playerId = "1";
+  const playerIds = ["1", "2", "3"];
+  const gameId = "1";
+  const nonExistentGameId = "2";
   const mockedGamesResponse = {
     response: {
       games: [
@@ -102,6 +105,138 @@ describe("SteamPlayerServiceAPI", () => {
           { node: userGameReducer(mockedGamesResponse.response.games[0]) }
         ]
       });
+    });
+  });
+
+  describe("getUniqueOwnedGamesByPlayerIds", () => {
+    it("should have a getUniqueOwnedGamesByPlayerIds method", () => {
+      expect(
+        steamPlayerServiceAPI.getUniqueOwnedGamesByPlayerIds
+      ).toBeDefined();
+    });
+
+    it(`should call to ${STEAM_PLAYER_SERVICE_OWNED_GAMES_ENDPOINT} for each player ID provided`, () => {
+      steamPlayerServiceAPI.getUniqueOwnedGamesByPlayerIds(playerIds);
+      expect(steamPlayerServiceAPI.get).toHaveBeenCalledTimes(playerIds.length);
+    });
+  });
+
+  describe("getOwnsGame", () => {
+    it("should have a getOwnsGame method", () => {
+      expect(steamPlayerServiceAPI.getOwnsGame).toBeDefined();
+    });
+
+    it(`should call to ${STEAM_PLAYER_SERVICE_OWNED_GAMES_ENDPOINT} with the API key, a steamid matching the playerId, include_appinfo false, and include_played_free_games true`, () => {
+      steamPlayerServiceAPI.getOwnsGame(playerId);
+      expect(steamPlayerServiceAPI.get).toBeCalledWith(
+        STEAM_PLAYER_SERVICE_OWNED_GAMES_ENDPOINT,
+        {
+          key: process.env.API_KEY,
+          steamid: playerId,
+          include_appinfo: false,
+          include_played_free_games: true
+        }
+      );
+    });
+
+    it("should return a truthy value if the player owns the game", async () => {
+      steamPlayerServiceAPI.get.mockReturnValueOnce(mockedGamesResponse);
+      const response = await steamPlayerServiceAPI.getOwnsGame(
+        playerId,
+        gameId
+      );
+      expect(response).toBeTruthy();
+    });
+
+    it("should return a falsy value if the player owns the game", async () => {
+      steamPlayerServiceAPI.get.mockReturnValueOnce(mockedGamesResponse);
+      const response = await steamPlayerServiceAPI.getOwnsGame(
+        playerId,
+        nonExistentGameId
+      );
+      expect(response).toBeFalsy();
+    });
+  });
+
+  describe("getUserPlaytimeForGameByGameId", () => {
+    it("should have a getUserPlaytimeForGameByGameId method", () => {
+      expect(
+        steamPlayerServiceAPI.getUserPlaytimeForGameByGameId
+      ).toBeDefined();
+    });
+
+    it(`should call to ${STEAM_PLAYER_SERVICE_OWNED_GAMES_ENDPOINT} with the API key, a steamid matching the playerId, include_appinfo true, and include_played_free_games true`, () => {
+      steamPlayerServiceAPI.getUserPlaytimeForGameByGameId(playerId);
+      expect(steamPlayerServiceAPI.get).toBeCalledWith(
+        STEAM_PLAYER_SERVICE_OWNED_GAMES_ENDPOINT,
+        {
+          key: process.env.API_KEY,
+          steamid: playerId,
+          include_appinfo: true,
+          include_played_free_games: true
+        }
+      );
+    });
+
+    it("should return a 0 playtime value if the user doesn't own the provided game", async () => {
+      steamPlayerServiceAPI.get.mockReturnValueOnce(mockedGamesResponse);
+      const response = await steamPlayerServiceAPI.getUserPlaytimeForGameByGameId(
+        playerId,
+        nonExistentGameId
+      );
+      expect(response).toMatchObject({
+        userId: playerId,
+        playtime: 0
+      });
+    });
+
+    it("should map the provided game's playtime_forever value to the response if the game is owned by the user", async () => {
+      steamPlayerServiceAPI.get.mockReturnValueOnce(mockedGamesResponse);
+      const response = await steamPlayerServiceAPI.getUserPlaytimeForGameByGameId(
+        playerId,
+        gameId
+      );
+      expect(response).toMatchObject({
+        userId: playerId,
+        playtime: mockedGamesResponse.response.games[0].playtime_forever
+      });
+    });
+  });
+
+  describe("getHasRecentlyPlayedGameByGameId", () => {
+    it("should have a getHasRecentlyPlayedGameByGameId method", () => {
+      expect(
+        steamPlayerServiceAPI.getHasRecentlyPlayedGameByGameId
+      ).toBeDefined();
+    });
+
+    it(`should call ${STEAM_PLAYER_SERVICE_RECENT_GAMES_ENDPOINT} with the API key and a player ID`, () => {
+      steamPlayerServiceAPI.getHasRecentlyPlayedGameByGameId(playerId);
+      expect(steamPlayerServiceAPI.get).toBeCalledWith(
+        STEAM_PLAYER_SERVICE_RECENT_GAMES_ENDPOINT,
+        {
+          key: process.env.API_KEY,
+          steamid: playerId
+        }
+      );
+    });
+
+    it("should return a truthy value if the player has recently played the game", async () => {
+      steamPlayerServiceAPI.get.mockReturnValueOnce(mockedGamesResponse);
+      const response = await steamPlayerServiceAPI.getHasRecentlyPlayedGameByGameId(
+        playerId,
+        gameId
+      );
+      expect(response).toBeTruthy();
+    });
+
+    it("should return a falsy value if the player has not recently played the game", async () => {
+      steamPlayerServiceAPI.get.mockReturnValueOnce(mockedGamesResponse);
+      const response = await steamPlayerServiceAPI.getHasRecentlyPlayedGameByGameId(
+        playerId,
+        nonExistentGameId
+      );
+      expect(response).toBeFalsy();
     });
   });
 });

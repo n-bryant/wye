@@ -5,6 +5,31 @@ const resolvers = {
     },
     game: async (_source, { gameId }, { dataSources }) => {
       return dataSources.steamGamesAPI.getGameByGameId(gameId);
+    },
+    recommendations: async (
+      _source,
+      { userIds, filters, first, after, orderBy, sortOrder },
+      { dataSources }
+    ) => {
+      // 1. get all unique games owned by players from Steam's player service API
+      let uniqueOwnedGames = await dataSources.steamPlayerServiceAPI.getUniqueOwnedGamesForUsersByPlayerIds(
+        userIds
+      );
+
+      // 2. get details for each unique game from Wye's support service's API, applying filters, pagination, and sorting
+      const filteredUnqiueGamesDetails = await dataSources.wyeSupportServiceAPI.getGamesByGameIds(
+        uniqueOwnedGames
+      );
+      console.log(filteredUnqiueGamesDetails);
+
+      // 3. return Recommendation for each of the results of the filtered games
+      // return {
+      //   game: ...,
+      //   ownedBy: ...,
+      //   recentlyPlayedBy: ...,
+      //   playtime: ...
+      // }
+      return {};
     }
   },
   User: {
