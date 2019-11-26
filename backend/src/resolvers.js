@@ -6,6 +6,9 @@ const resolvers = {
     game: async (_source, { gameId }, { dataSources }) => {
       return dataSources.steamGamesAPI.getGameByGameId(gameId);
     },
+    articles: async (_source, { gameId }, { dataSources }) => {
+      return dataSources.steamNewsAPI.getNewsForGameById(gameId);
+    },
     recommendations: async (
       _source,
       { userIds, filters, first, after, orderBy, sortOrder },
