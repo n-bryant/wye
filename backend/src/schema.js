@@ -228,7 +228,7 @@ const typeDefs = gql`
   #
   type Recommendation {
     # the recommended game's details
-    game(gameId: ID!): Game
+    game(gameId: ID!): WyeGame
     # which users own the recommended game
     ownedBy(userIds: ID!, gameId: ID!): [String]
     # which users have recently played the recommended game
@@ -244,6 +244,24 @@ const typeDefs = gql`
 
   type RecommendationEdge {
     node: Recommendation!
+  }
+
+  type WyeGame {
+    id: ID!
+    appid: String!
+    name: String!
+    developers: String!
+    publishers: String!
+    genres: String!
+    tags: String!
+    freeToPlay: Boolean!
+    onSale: Boolean!
+    discount: Int!
+    initialPrice: Int!
+    finalPrice: Int!
+    userRating: Int!
+    logoImageUrl: String!
+    heroImageUrl: String!
   }
 
   type UserPlaytime {

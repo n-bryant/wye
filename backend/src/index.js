@@ -3,6 +3,7 @@ const SteamUsersAPI = require("./dataSources/SteamUsersAPI");
 const SteamPlayerServiceAPI = require("./dataSources/SteamPlayerServiceAPI");
 const SteamNewsAPI = require("./dataSources/SteamNewsAPI");
 const SteamGamesAPI = require("./dataSources/SteamGamesAPI");
+const WyeGamesAPI = require("./dataSources/WyeGamesAPI");
 const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
 
@@ -19,7 +20,8 @@ const server = new ApolloServer({
       steamUsersAPI: new SteamUsersAPI(),
       steamPlayerServiceAPI: new SteamPlayerServiceAPI(),
       steamNewsAPI: new SteamNewsAPI(),
-      steamGamesAPI: new SteamGamesAPI()
+      steamGamesAPI: new SteamGamesAPI(),
+      wyeGamesAPI: new WyeGamesAPI()
     };
   }
 });
