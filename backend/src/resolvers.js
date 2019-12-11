@@ -15,15 +15,16 @@ const resolvers = {
       { dataSources }
     ) => {
       // 1. get all unique games owned by players from Steam's player service API
-      let uniqueOwnedGames = await dataSources.steamPlayerServiceAPI.getUniqueOwnedGamesForUsersByPlayerIds(
+      const uniqueOwnedGames = await dataSources.steamPlayerServiceAPI.getUniqueOwnedGamesByPlayerIds(
         userIds
       );
 
       // 2. get details for each unique game from Wye's support service's API, applying filters, pagination, and sorting
-      const filteredUnqiueGamesDetails = await dataSources.wyeSupportServiceAPI.getGamesByGameIds(
-        uniqueOwnedGames
+      const uniqueOwnedGamesDetails = await dataSources.wyeGamesAPI.getGamesByGameIds(
+        // uniqueOwnedGames
+        "10,20,30"
       );
-      console.log(filteredUnqiueGamesDetails);
+      console.log(uniqueOwnedGamesDetails);
 
       // 3. return Recommendation for each of the results of the filtered games
       // return {
