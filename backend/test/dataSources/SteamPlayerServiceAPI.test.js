@@ -7,6 +7,9 @@ const {
   STEAM_PLAYER_SERVICE_RECENT_PLAYED_COUNT
 } = require("../../src/dataSources/constants");
 
+const uniq = require("lodash.uniq");
+jest.mock("lodash.uniq");
+
 describe("SteamPlayerServiceAPI", () => {
   process.env.API_KEY = "foo";
   const playerId = "1";
@@ -118,6 +121,11 @@ describe("SteamPlayerServiceAPI", () => {
     it(`should call to ${STEAM_PLAYER_SERVICE_OWNED_GAMES_ENDPOINT} for each player ID provided`, () => {
       steamPlayerServiceAPI.getUniqueOwnedGamesByPlayerIds(playerIds);
       expect(steamPlayerServiceAPI.get).toHaveBeenCalledTimes(playerIds.length);
+    });
+
+    it("should return a unique list of games", () => {
+      steamPlayerServiceAPI.getUniqueOwnedGamesByPlayerIds(playerIds);
+      expect(uniq).toHaveBeenCalled();
     });
   });
 
