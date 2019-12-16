@@ -2,14 +2,17 @@ const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   enum OrderDirection {
-    ASCENDING
-    DESCENDING
+    ASC
+    DESC
   }
 
   enum OrderByField {
-    OWNED_BY
-    RECENTLY_PLAYED_BY
-    PLAYTIME
+    name
+    freeToPlay
+    onSale
+    discount
+    finalPrice
+    userRating
   }
 
   type Query {
@@ -21,7 +24,7 @@ const typeDefs = gql`
     game(gameId: ID!): Game
     # query for game recommendations for a list of users with filtering
     recommendations(
-      userIds: [ID!]!
+      users: [String!]!
       filters: FilterInput
       first: Int
       after: Int
@@ -228,13 +231,13 @@ const typeDefs = gql`
   #
   type Recommendation {
     # the recommended game's details
-    game(gameId: ID!): WyeGame
+    game: WyeGame
     # which users own the recommended game
-    ownedBy(userIds: ID!, gameId: ID!): [String]
+    ownedBy: [String]
     # which users have recently played the recommended game
-    recentlyPlayedBy(userIds: [ID!]!, gameId: ID!): [String]
+    recentlyPlayedBy: [String]
     # data on hours played by user
-    playtime(userIds: [ID!]!, gameId: ID!): UserPlaytime
+    playtime: [UserPlaytime]
   }
 
   type RecommendationConnection {
@@ -247,38 +250,74 @@ const typeDefs = gql`
   }
 
   type WyeGame {
-    id: ID!
+    # the game's steam app id
     appid: String!
+    # the game's name
     name: String!
-    developers: String!
-    publishers: String!
-    genres: String!
-    tags: String!
+    # list of the game's developers
+    developers: [String]!
+    # list of the game's publishers
+    publishers: [String]!
+    # list of the game's genres
+    genres: [String]!
+    # list of the game's tags
+    tags: [String]!
+    # whether the game is free to play or not
     freeToPlay: Boolean!
+    # whether the game is on sale
     onSale: Boolean!
+    # the sale discount percentage
     discount: Int!
+    # the game's price before discount
     initialPrice: Int!
+    # the game's price with discount applied
     finalPrice: Int!
+    # the game's user rating percentage
     userRating: Int!
+    # location of the game's logo
     logoImageUrl: String!
+    # location of the game's hero image
     heroImageUrl: String!
   }
 
   type UserPlaytime {
-    userId: ID
-    playtime: Int
+    # the user's ID
+    id: ID!
+    # the user's total game play time
+    playtime: Int!
   }
 
   input FilterInput {
-    ownedBy: [String]
-    recentlyPlayedBy: [String]
-    genres: [String]
-    categories: [String]
-    hasControllerSupport: Boolean
+    # filters based on player info
+    playerFilters: PlayerFilters
+    # filters based on game info
+    gameFilters: GameFilters
+  }
+
+  input PlayerFilters {
+    # games owned by player(s)
+    ownedGames: [String]
+    # games recently played by player(s)
+    recentlyPlayedGames: [String]
+  }
+
+  input GameFilters {
+    # list of the genres to filter for
+    genres_in: [String]
+    # list of tags to filter for
+    tags_in: [String]
+    # filter value for free to play games
     freeToPlay: Boolean
+    # filter value for games that are on sale
     onSale: Boolean
-    priceLessThan: Int
-    priceGreaterThan: Int
+    # fitler for games with discount <= value
+    discount_lte: Int
+    # fitler for games with discount >= value
+    discount_gte: Int
+    # fitler for games with price <= value
+    finalPrice_lte: Int
+    # fitler for games with price >= value
+    finalPrice_gte: Int
   }
 `;
 

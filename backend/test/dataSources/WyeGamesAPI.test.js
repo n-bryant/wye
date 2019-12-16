@@ -7,11 +7,11 @@ describe("WyeGamesAPI", () => {
   let wyeGamesAPI;
   beforeEach(() => {
     wyeGamesAPI = new WyeGamesAPI();
-    wyeGamesAPI.get = jest.fn();
+    wyeGamesAPI.post = jest.fn();
   });
 
   afterEach(() => {
-    wyeGamesAPI.get.mockReset();
+    wyeGamesAPI.post.mockReset();
   });
 
   it(`should have a baseURL property matching: ${process.env.WYE_SUPPORT_URL}`, () => {
@@ -26,24 +26,39 @@ describe("WyeGamesAPI", () => {
     it(`should have the getGamesByGameIds method call to games/
     with a gameids parameter matching the provided gameIds`, () => {
       wyeGamesAPI.getGamesByGameIds(gameIds);
-      expect(wyeGamesAPI.get).toBeCalledWith("games/", {
+      expect(wyeGamesAPI.post).toBeCalledWith("games/", {
         gameids: gameIds
       });
     });
 
     it("should have the getGamesByGameIds method return an empty array if no game data is available", async () => {
-      wyeGamesAPI.get.mockReturnValueOnce({});
+      wyeGamesAPI.post.mockReturnValueOnce({});
       const data = await wyeGamesAPI.getGamesByGameIds(gameIds);
       expect(data).toEqual([]);
     });
 
     it("should have the getGamesByGameIds method return a games list when game data is available", async () => {
       const mockedGamesResponse = {
-        games: [{ foo: "bar" }, { bar: "foo" }]
+        games: [
+          {
+            developers: "1,2",
+            publishers: "1,2",
+            genres: "1,2",
+            tags: "1,2"
+          }
+        ]
       };
-      wyeGamesAPI.get.mockReturnValueOnce(mockedGamesResponse);
+      const exprectedResult = [
+        {
+          developers: ["1", "2"],
+          publishers: ["1", "2"],
+          genres: ["1", "2"],
+          tags: ["1", "2"]
+        }
+      ];
+      wyeGamesAPI.post.mockReturnValueOnce(mockedGamesResponse);
       const data = await wyeGamesAPI.getGamesByGameIds(gameIds);
-      expect(data).toBe(mockedGamesResponse.games);
+      expect(data).toEqual(exprectedResult);
     });
   });
 });

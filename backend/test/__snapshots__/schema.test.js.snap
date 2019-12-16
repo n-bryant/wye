@@ -18,7 +18,7 @@ Object {
           "kind": "EnumValueDefinition",
           "name": Object {
             "kind": "Name",
-            "value": "ASCENDING",
+            "value": "ASC",
           },
         },
         Object {
@@ -27,7 +27,7 @@ Object {
           "kind": "EnumValueDefinition",
           "name": Object {
             "kind": "Name",
-            "value": "DESCENDING",
+            "value": "DESC",
           },
         },
       ],
@@ -47,7 +47,7 @@ Object {
           "kind": "EnumValueDefinition",
           "name": Object {
             "kind": "Name",
-            "value": "OWNED_BY",
+            "value": "name",
           },
         },
         Object {
@@ -56,7 +56,7 @@ Object {
           "kind": "EnumValueDefinition",
           "name": Object {
             "kind": "Name",
-            "value": "RECENTLY_PLAYED_BY",
+            "value": "freeToPlay",
           },
         },
         Object {
@@ -65,7 +65,34 @@ Object {
           "kind": "EnumValueDefinition",
           "name": Object {
             "kind": "Name",
-            "value": "PLAYTIME",
+            "value": "onSale",
+          },
+        },
+        Object {
+          "description": undefined,
+          "directives": Array [],
+          "kind": "EnumValueDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "discount",
+          },
+        },
+        Object {
+          "description": undefined,
+          "directives": Array [],
+          "kind": "EnumValueDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "finalPrice",
+          },
+        },
+        Object {
+          "description": undefined,
+          "directives": Array [],
+          "kind": "EnumValueDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "userRating",
           },
         },
       ],
@@ -200,7 +227,7 @@ Object {
               "kind": "InputValueDefinition",
               "name": Object {
                 "kind": "Name",
-                "value": "userIds",
+                "value": "users",
               },
               "type": Object {
                 "kind": "NonNullType",
@@ -212,7 +239,7 @@ Object {
                       "kind": "NamedType",
                       "name": Object {
                         "kind": "Name",
-                        "value": "ID",
+                        "value": "String",
                       },
                     },
                   },
@@ -1788,28 +1815,7 @@ Object {
       "directives": Array [],
       "fields": Array [
         Object {
-          "arguments": Array [
-            Object {
-              "defaultValue": undefined,
-              "description": undefined,
-              "directives": Array [],
-              "kind": "InputValueDefinition",
-              "name": Object {
-                "kind": "Name",
-                "value": "gameId",
-              },
-              "type": Object {
-                "kind": "NonNullType",
-                "type": Object {
-                  "kind": "NamedType",
-                  "name": Object {
-                    "kind": "Name",
-                    "value": "ID",
-                  },
-                },
-              },
-            },
-          ],
+          "arguments": Array [],
           "description": undefined,
           "directives": Array [],
           "kind": "FieldDefinition",
@@ -1826,48 +1832,7 @@ Object {
           },
         },
         Object {
-          "arguments": Array [
-            Object {
-              "defaultValue": undefined,
-              "description": undefined,
-              "directives": Array [],
-              "kind": "InputValueDefinition",
-              "name": Object {
-                "kind": "Name",
-                "value": "userIds",
-              },
-              "type": Object {
-                "kind": "NonNullType",
-                "type": Object {
-                  "kind": "NamedType",
-                  "name": Object {
-                    "kind": "Name",
-                    "value": "ID",
-                  },
-                },
-              },
-            },
-            Object {
-              "defaultValue": undefined,
-              "description": undefined,
-              "directives": Array [],
-              "kind": "InputValueDefinition",
-              "name": Object {
-                "kind": "Name",
-                "value": "gameId",
-              },
-              "type": Object {
-                "kind": "NonNullType",
-                "type": Object {
-                  "kind": "NamedType",
-                  "name": Object {
-                    "kind": "Name",
-                    "value": "ID",
-                  },
-                },
-              },
-            },
-          ],
+          "arguments": Array [],
           "description": undefined,
           "directives": Array [],
           "kind": "FieldDefinition",
@@ -1887,54 +1852,7 @@ Object {
           },
         },
         Object {
-          "arguments": Array [
-            Object {
-              "defaultValue": undefined,
-              "description": undefined,
-              "directives": Array [],
-              "kind": "InputValueDefinition",
-              "name": Object {
-                "kind": "Name",
-                "value": "userIds",
-              },
-              "type": Object {
-                "kind": "NonNullType",
-                "type": Object {
-                  "kind": "ListType",
-                  "type": Object {
-                    "kind": "NonNullType",
-                    "type": Object {
-                      "kind": "NamedType",
-                      "name": Object {
-                        "kind": "Name",
-                        "value": "ID",
-                      },
-                    },
-                  },
-                },
-              },
-            },
-            Object {
-              "defaultValue": undefined,
-              "description": undefined,
-              "directives": Array [],
-              "kind": "InputValueDefinition",
-              "name": Object {
-                "kind": "Name",
-                "value": "gameId",
-              },
-              "type": Object {
-                "kind": "NonNullType",
-                "type": Object {
-                  "kind": "NamedType",
-                  "name": Object {
-                    "kind": "Name",
-                    "value": "ID",
-                  },
-                },
-              },
-            },
-          ],
+          "arguments": Array [],
           "description": undefined,
           "directives": Array [],
           "kind": "FieldDefinition",
@@ -1954,54 +1872,7 @@ Object {
           },
         },
         Object {
-          "arguments": Array [
-            Object {
-              "defaultValue": undefined,
-              "description": undefined,
-              "directives": Array [],
-              "kind": "InputValueDefinition",
-              "name": Object {
-                "kind": "Name",
-                "value": "userIds",
-              },
-              "type": Object {
-                "kind": "NonNullType",
-                "type": Object {
-                  "kind": "ListType",
-                  "type": Object {
-                    "kind": "NonNullType",
-                    "type": Object {
-                      "kind": "NamedType",
-                      "name": Object {
-                        "kind": "Name",
-                        "value": "ID",
-                      },
-                    },
-                  },
-                },
-              },
-            },
-            Object {
-              "defaultValue": undefined,
-              "description": undefined,
-              "directives": Array [],
-              "kind": "InputValueDefinition",
-              "name": Object {
-                "kind": "Name",
-                "value": "gameId",
-              },
-              "type": Object {
-                "kind": "NonNullType",
-                "type": Object {
-                  "kind": "NamedType",
-                  "name": Object {
-                    "kind": "Name",
-                    "value": "ID",
-                  },
-                },
-              },
-            },
-          ],
+          "arguments": Array [],
           "description": undefined,
           "directives": Array [],
           "kind": "FieldDefinition",
@@ -2010,10 +1881,13 @@ Object {
             "value": "playtime",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "UserPlaytime",
+            "kind": "ListType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "UserPlaytime",
+              },
             },
           },
         },
@@ -2117,26 +1991,6 @@ Object {
           "kind": "FieldDefinition",
           "name": Object {
             "kind": "Name",
-            "value": "id",
-          },
-          "type": Object {
-            "kind": "NonNullType",
-            "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "ID",
-              },
-            },
-          },
-        },
-        Object {
-          "arguments": Array [],
-          "description": undefined,
-          "directives": Array [],
-          "kind": "FieldDefinition",
-          "name": Object {
-            "kind": "Name",
             "value": "appid",
           },
           "type": Object {
@@ -2182,10 +2036,13 @@ Object {
           "type": Object {
             "kind": "NonNullType",
             "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "String",
+              "kind": "ListType",
+              "type": Object {
+                "kind": "NamedType",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "String",
+                },
               },
             },
           },
@@ -2202,10 +2059,13 @@ Object {
           "type": Object {
             "kind": "NonNullType",
             "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "String",
+              "kind": "ListType",
+              "type": Object {
+                "kind": "NamedType",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "String",
+                },
               },
             },
           },
@@ -2222,10 +2082,13 @@ Object {
           "type": Object {
             "kind": "NonNullType",
             "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "String",
+              "kind": "ListType",
+              "type": Object {
+                "kind": "NamedType",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "String",
+                },
               },
             },
           },
@@ -2242,10 +2105,13 @@ Object {
           "type": Object {
             "kind": "NonNullType",
             "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "String",
+              "kind": "ListType",
+              "type": Object {
+                "kind": "NamedType",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "String",
+                },
               },
             },
           },
@@ -2429,13 +2295,16 @@ Object {
           "kind": "FieldDefinition",
           "name": Object {
             "kind": "Name",
-            "value": "userId",
+            "value": "id",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "ID",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "ID",
+              },
             },
           },
         },
@@ -2449,10 +2318,13 @@ Object {
             "value": "playtime",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "Int",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "Int",
+              },
             },
           },
         },
@@ -2475,93 +2347,132 @@ Object {
           "kind": "InputValueDefinition",
           "name": Object {
             "kind": "Name",
-            "value": "ownedBy",
-          },
-          "type": Object {
-            "kind": "ListType",
-            "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "String",
-              },
-            },
-          },
-        },
-        Object {
-          "defaultValue": undefined,
-          "description": undefined,
-          "directives": Array [],
-          "kind": "InputValueDefinition",
-          "name": Object {
-            "kind": "Name",
-            "value": "recentlyPlayedBy",
-          },
-          "type": Object {
-            "kind": "ListType",
-            "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "String",
-              },
-            },
-          },
-        },
-        Object {
-          "defaultValue": undefined,
-          "description": undefined,
-          "directives": Array [],
-          "kind": "InputValueDefinition",
-          "name": Object {
-            "kind": "Name",
-            "value": "genres",
-          },
-          "type": Object {
-            "kind": "ListType",
-            "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "String",
-              },
-            },
-          },
-        },
-        Object {
-          "defaultValue": undefined,
-          "description": undefined,
-          "directives": Array [],
-          "kind": "InputValueDefinition",
-          "name": Object {
-            "kind": "Name",
-            "value": "categories",
-          },
-          "type": Object {
-            "kind": "ListType",
-            "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "String",
-              },
-            },
-          },
-        },
-        Object {
-          "defaultValue": undefined,
-          "description": undefined,
-          "directives": Array [],
-          "kind": "InputValueDefinition",
-          "name": Object {
-            "kind": "Name",
-            "value": "hasControllerSupport",
+            "value": "playerFilters",
           },
           "type": Object {
             "kind": "NamedType",
             "name": Object {
               "kind": "Name",
-              "value": "Boolean",
+              "value": "PlayerFilters",
+            },
+          },
+        },
+        Object {
+          "defaultValue": undefined,
+          "description": undefined,
+          "directives": Array [],
+          "kind": "InputValueDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "gameFilters",
+          },
+          "type": Object {
+            "kind": "NamedType",
+            "name": Object {
+              "kind": "Name",
+              "value": "GameFilters",
+            },
+          },
+        },
+      ],
+      "kind": "InputObjectTypeDefinition",
+      "name": Object {
+        "kind": "Name",
+        "value": "FilterInput",
+      },
+    },
+    Object {
+      "description": undefined,
+      "directives": Array [],
+      "fields": Array [
+        Object {
+          "defaultValue": undefined,
+          "description": undefined,
+          "directives": Array [],
+          "kind": "InputValueDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "ownedGames",
+          },
+          "type": Object {
+            "kind": "ListType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
+            },
+          },
+        },
+        Object {
+          "defaultValue": undefined,
+          "description": undefined,
+          "directives": Array [],
+          "kind": "InputValueDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "recentlyPlayedGames",
+          },
+          "type": Object {
+            "kind": "ListType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
+            },
+          },
+        },
+      ],
+      "kind": "InputObjectTypeDefinition",
+      "name": Object {
+        "kind": "Name",
+        "value": "PlayerFilters",
+      },
+    },
+    Object {
+      "description": undefined,
+      "directives": Array [],
+      "fields": Array [
+        Object {
+          "defaultValue": undefined,
+          "description": undefined,
+          "directives": Array [],
+          "kind": "InputValueDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "genres_in",
+          },
+          "type": Object {
+            "kind": "ListType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
+            },
+          },
+        },
+        Object {
+          "defaultValue": undefined,
+          "description": undefined,
+          "directives": Array [],
+          "kind": "InputValueDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "tags_in",
+          },
+          "type": Object {
+            "kind": "ListType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
             },
           },
         },
@@ -2606,7 +2517,7 @@ Object {
           "kind": "InputValueDefinition",
           "name": Object {
             "kind": "Name",
-            "value": "priceLessThan",
+            "value": "discount_lte",
           },
           "type": Object {
             "kind": "NamedType",
@@ -2623,7 +2534,41 @@ Object {
           "kind": "InputValueDefinition",
           "name": Object {
             "kind": "Name",
-            "value": "priceGreaterThan",
+            "value": "discount_gte",
+          },
+          "type": Object {
+            "kind": "NamedType",
+            "name": Object {
+              "kind": "Name",
+              "value": "Int",
+            },
+          },
+        },
+        Object {
+          "defaultValue": undefined,
+          "description": undefined,
+          "directives": Array [],
+          "kind": "InputValueDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "finalPrice_lte",
+          },
+          "type": Object {
+            "kind": "NamedType",
+            "name": Object {
+              "kind": "Name",
+              "value": "Int",
+            },
+          },
+        },
+        Object {
+          "defaultValue": undefined,
+          "description": undefined,
+          "directives": Array [],
+          "kind": "InputValueDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "finalPrice_gte",
           },
           "type": Object {
             "kind": "NamedType",
@@ -2637,13 +2582,13 @@ Object {
       "kind": "InputObjectTypeDefinition",
       "name": Object {
         "kind": "Name",
-        "value": "FilterInput",
+        "value": "GameFilters",
       },
     },
   ],
   "kind": "Document",
   "loc": Object {
-    "end": 6112,
+    "end": 7195,
     "start": 0,
   },
 }

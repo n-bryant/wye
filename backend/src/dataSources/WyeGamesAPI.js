@@ -12,14 +12,29 @@ class WyeGamesAPI extends RESTDataSource {
 
   /**
    * Gets information for a list of games from Wye Support Service's games endpoint
-   * @param {Array} gameIds - The game's ID to get information for
+   * @param {Array} gameids
+   * @param {Object} filters
+   * @param {Int} first
+   * @param {Int} after
+   * @param {String} orderBy
    * @returns {Array}
    */
-  async getGamesByGameIds(gameIds) {
-    const data = await this.get("games/", {
-      gameids: gameIds
+  async getGamesByGameIds(gameids, filters, first, after, orderBy) {
+    const data = await this.post("games/", {
+      gameids,
+      filters,
+      first,
+      after,
+      orderBy
     });
-    return get(data, "games", []);
+    const games = get(data, "games", []).map(game => ({
+      ...game,
+      developers: game.developers.split(","),
+      publishers: game.publishers.split(","),
+      genres: game.genres.split(","),
+      tags: game.tags.split(",")
+    }));
+    return games;
   }
 }
 

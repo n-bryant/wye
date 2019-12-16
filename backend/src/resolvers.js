@@ -1,3 +1,6 @@
+const uniq = require("lodash.uniq");
+const applyPlayerFilterToGamesList = require("../lib/util/appyPlayerFiltersToGameList");
+
 const resolvers = {
   Query: {
     user: async (_source, { userId }, { dataSources }) => {
@@ -11,29 +14,101 @@ const resolvers = {
     },
     recommendations: async (
       _source,
-      { userIds, filters, first, after, orderBy, sortOrder },
+      {
+        users,
+        filters: { playerFilters = {}, gameFilters = {} } = {},
+        first,
+        after,
+        orderBy,
+        sortOrder
+      },
       { dataSources }
     ) => {
       // 1. get all unique games owned by players from Steam's player service API
-      const uniqueOwnedGames = await dataSources.steamPlayerServiceAPI.getUniqueOwnedGamesByPlayerIds(
-        userIds
+      const userOwnedGames = await dataSources.steamPlayerServiceAPI.getOwnedGamesByPlayerIds(
+        users
+      );
+      let uniqueOwnedGames = [];
+      Object.keys(userOwnedGames).forEach(user => {
+        uniqueOwnedGames = uniqueOwnedGames.concat(
+          userOwnedGames[user]["games"].map(game => game.id)
+        );
+      });
+      uniqueOwnedGames = uniq(uniqueOwnedGames);
+
+      // 2. get recently played games by players from Steam's player service API
+      const userRecentlyPlayedGames = await dataSources.steamPlayerServiceAPI.getRecentlyPlayedGamesByPlayerIds(
+        users
       );
 
-      // 2. get details for each unique game from Wye's support service's API, applying filters, pagination, and sorting
+      // 3. apply player filters to the list of unique owned games
+      let uniqueOwnedGamesWithPlayerFiltersApplied = uniqueOwnedGames;
+      Object.keys(playerFilters).forEach(key => {
+        playerFilters[key] = playerFilters[key].filter(value =>
+          users.some(user => user.id === value)
+        );
+        if (playerFilters[key].length) {
+          uniqueOwnedGamesWithPlayerFiltersApplied = applyPlayerFilterToGamesList(
+            playerFilters[key],
+            uniqueOwnedGames
+          );
+        }
+      });
+
+      // 4. get details for each unique game from Wye's support service's API, applying filters, pagination, and sorting
+      let orderByParam;
+      if (orderBy && sortOrder) {
+        orderByParam = `${orderBy}_${sortOrder}`;
+      }
       const uniqueOwnedGamesDetails = await dataSources.wyeGamesAPI.getGamesByGameIds(
-        // uniqueOwnedGames
-        "10,20,30"
+        uniqueOwnedGamesWithPlayerFiltersApplied,
+        gameFilters,
+        first,
+        after,
+        orderByParam
       );
-      console.log(uniqueOwnedGamesDetails);
 
-      // 3. return Recommendation for each of the results of the filtered games
-      // return {
-      //   game: ...,
-      //   ownedBy: ...,
-      //   recentlyPlayedBy: ...,
-      //   playtime: ...
-      // }
-      return {};
+      // 5. return Recommendation for each of the results of the filtered games
+      const edges = uniqueOwnedGamesDetails.map(game => ({
+        node: {
+          game,
+          ownedBy: Object.keys(userOwnedGames).filter(user =>
+            userOwnedGames[user]["games"].some(
+              userGame => userGame.id === game.appid
+            )
+          ),
+          recentlyPlayedBy: Object.keys(userRecentlyPlayedGames).filter(user =>
+            userRecentlyPlayedGames[user]["games"].some(
+              gameId => gameId === game.appid
+            )
+          ),
+          playtime: Object.keys(userOwnedGames).map(user => {
+            if (
+              userOwnedGames[user]["games"].some(
+                userGame => userGame.id === game.appid
+              )
+            ) {
+              return {
+                id: user,
+                playtime: userOwnedGames[user]["games"].filter(
+                  userGame => userGame.id === game.appid
+                )[0].hoursPlayed
+              };
+            } else {
+              return {
+                id: user,
+                playtime: 0
+              };
+            }
+          })
+        }
+      }));
+      return {
+        pageInfo: {
+          totalCount: uniqueOwnedGamesDetails.length
+        },
+        edges
+      };
     }
   },
   User: {
