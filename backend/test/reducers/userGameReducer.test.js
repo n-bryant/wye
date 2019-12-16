@@ -1,8 +1,5 @@
 const { userGameReducer } = require("../../src/reducers/userGameReducer");
-const {
-  USER_GAME_IMG_BASE_URL,
-  USER_GAME_STORE_BASE_URL
-} = require("../../src/reducers/constants");
+const { USER_GAME_IMG_BASE_URL } = require("../../src/reducers/constants");
 
 describe("userGameReducer", () => {
   const mockGame = {

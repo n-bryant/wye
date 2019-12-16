@@ -1,6 +1,5 @@
 const { RESTDataSource } = require("apollo-datasource-rest");
 const get = require("lodash.get");
-const uniq = require("lodash.uniq");
 require("dotenv").config({ path: "variables.env" });
 const { userGameReducer } = require("../reducers/userGameReducer");
 const {
@@ -63,26 +62,35 @@ class SteamPlayerServiceAPI extends RESTDataSource {
   }
 
   /**
-   * Returns a list of unique games owned by a group of users
+   * Returns a list of games owned by a group of users and the users' playtime for each game
    * @param { Array } playerIds - The users to get owned games for
-   * @returns { Array } games - The list of unique game ids for the provided users
+   * @returns { Object } playerGames - The list of users' games and playtimes
    */
-  async getUniqueOwnedGamesByPlayerIds(playerIds) {
-    let games = [];
-    playerIds.forEach(async playerId => {
+  async getOwnedGamesByPlayerIds(playerIds) {
+    let playerGames = {};
+    for (const playerId of playerIds) {
+      // collect user owned game data
       const data = await this.get(STEAM_PLAYER_SERVICE_OWNED_GAMES_ENDPOINT, {
         key: process.env.API_KEY,
         steamid: playerId,
-        include_appinfo: false,
+        include_appinfo: true,
         include_played_free_games: true
       });
 
+      // set user game and playtime for the player ID
+      playerGames[playerId] = {
+        games: []
+      };
       const playerOwnedGames = get(data, ["response", "games"], []);
-      playerOwnedGames.forEach(game => {
-        games.push(game["appid"].toString());
-      });
-    });
-    return uniq(games);
+      for (const game of playerOwnedGames) {
+        playerGames[playerId]["games"].push({
+          id: game["appid"].toString(),
+          hoursPlayed: game["playtime_forever"]
+        });
+      }
+    }
+
+    return playerGames;
   }
 
   /**
@@ -156,6 +164,33 @@ class SteamPlayerServiceAPI extends RESTDataSource {
     return {
       edges
     };
+  }
+
+  /**
+   * Gets recently played games from Steam's player service API's GetRecentlyPlayedGames endpoint for a list of players
+   * @param { Arra } playerIds - The list of players to get games for
+   * @returns { Object } returns list of recently played games by player
+   */
+  async getRecentlyPlayedGamesByPlayerIds(playerIds) {
+    let playerGames = {};
+    for (const playerId of playerIds) {
+      // collect user recently played game data
+      const data = await this.get(STEAM_PLAYER_SERVICE_RECENT_GAMES_ENDPOINT, {
+        key: process.env.API_KEY,
+        steamid: playerId,
+        count: STEAM_PLAYER_SERVICE_RECENT_PLAYED_COUNT
+      });
+
+      // set user games for the player ID
+      playerGames[playerId] = {
+        games: []
+      };
+      const playerOwnedGames = get(data, ["response", "games"], []);
+      for (const game of playerOwnedGames) {
+        playerGames[playerId]["games"].push(game["appid"].toString());
+      }
+    }
+    return playerGames;
   }
 }
 

@@ -7,9 +7,6 @@ const {
   STEAM_PLAYER_SERVICE_RECENT_PLAYED_COUNT
 } = require("../../src/dataSources/constants");
 
-const uniq = require("lodash.uniq");
-jest.mock("lodash.uniq");
-
 describe("SteamPlayerServiceAPI", () => {
   process.env.API_KEY = "foo";
   const playerId = "1";
@@ -111,21 +108,44 @@ describe("SteamPlayerServiceAPI", () => {
     });
   });
 
-  describe("getUniqueOwnedGamesByPlayerIds", () => {
-    it("should have a getUniqueOwnedGamesByPlayerIds method", () => {
-      expect(
-        steamPlayerServiceAPI.getUniqueOwnedGamesByPlayerIds
-      ).toBeDefined();
+  describe("getOwnedGamesByPlayerIds", () => {
+    it("should have a getOwnedGamesByPlayerIds method", () => {
+      expect(steamPlayerServiceAPI.getOwnedGamesByPlayerIds).toBeDefined();
     });
 
-    it(`should call to ${STEAM_PLAYER_SERVICE_OWNED_GAMES_ENDPOINT} for each player ID provided`, () => {
-      steamPlayerServiceAPI.getUniqueOwnedGamesByPlayerIds(playerIds);
-      expect(steamPlayerServiceAPI.get).toHaveBeenCalledTimes(playerIds.length);
+    it(`should call to ${STEAM_PLAYER_SERVICE_OWNED_GAMES_ENDPOINT} to retrieve player data`, async () => {
+      await steamPlayerServiceAPI.getOwnedGamesByPlayerIds(playerIds);
+      expect(steamPlayerServiceAPI.get).toHaveBeenCalledTimes(3);
     });
 
-    it("should return a unique list of games", () => {
-      steamPlayerServiceAPI.getUniqueOwnedGamesByPlayerIds(playerIds);
-      expect(uniq).toHaveBeenCalled();
+    it("should return a games by player ID that includes the game ID and playtime", async () => {
+      const mockGamesList = [
+        {
+          appid: 10,
+          playtime_forever: 42
+        }
+      ];
+      steamPlayerServiceAPI.get.mockImplementationOnce(() =>
+        Promise.resolve({
+          response: {
+            games: mockGamesList
+          }
+        })
+      );
+      const expectedResult = {
+        [playerId]: {
+          games: [
+            {
+              id: mockGamesList[0].appid.toString(),
+              hoursPlayed: mockGamesList[0].playtime_forever
+            }
+          ]
+        }
+      };
+      const result = await steamPlayerServiceAPI.getOwnedGamesByPlayerIds([
+        playerId
+      ]);
+      expect(result).toEqual(expectedResult);
     });
   });
 
@@ -245,6 +265,38 @@ describe("SteamPlayerServiceAPI", () => {
         nonExistentGameId
       );
       expect(response).toBeFalsy();
+    });
+  });
+
+  describe("getRecentlyPlayedGamesByPlayerIds", () => {
+    it("should have a getRecentlyPlayedGamesByPlayerIds method", () => {
+      expect(
+        steamPlayerServiceAPI.getRecentlyPlayedGamesByPlayerIds
+      ).toBeDefined();
+    });
+
+    it(`should call to ${STEAM_PLAYER_SERVICE_RECENT_GAMES_ENDPOINT} to retrieve player data`, async () => {
+      await steamPlayerServiceAPI.getRecentlyPlayedGamesByPlayerIds(playerIds);
+      expect(steamPlayerServiceAPI.get).toHaveBeenCalledTimes(3);
+    });
+
+    it("should return a list of recently played games by player ID", async () => {
+      steamPlayerServiceAPI.get.mockImplementationOnce(() =>
+        Promise.resolve({
+          response: {
+            games: [{ appid: 1 }]
+          }
+        })
+      );
+      const expectedResult = {
+        [playerId]: {
+          games: ["1"]
+        }
+      };
+      const result = await steamPlayerServiceAPI.getRecentlyPlayedGamesByPlayerIds(
+        [playerId]
+      );
+      expect(result).toEqual(expectedResult);
     });
   });
 });
