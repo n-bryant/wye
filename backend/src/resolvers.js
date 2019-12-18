@@ -1,5 +1,5 @@
 const uniq = require("lodash.uniq");
-const applyPlayerFilterToGamesList = require("../lib/util/appyPlayerFiltersToGameList");
+const applyPlayerFilterToGamesList = require("../lib/util/applyPlayerFiltersToGameList");
 
 const resolvers = {
   Query: {
