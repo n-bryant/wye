@@ -1,6 +1,5 @@
 {
   "extends": ["react-app", "plugin:prettier/recommended"],
-  "plugins": ["json", "react"],
   "rules": {
     "react/prop-types": ["error"],
     "react/no-unused-prop-types": ["error"]
