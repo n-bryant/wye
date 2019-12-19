@@ -14,5 +14,9 @@ jobs:
           cd ./backend
           yarn install
           yarn test
+          cd ..
+          cd ./frontend
+          yarn install
+          yarn test
         env:
           CI: true

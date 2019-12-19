@@ -1,4 +1,5 @@
 const { ApolloServer } = require("apollo-server");
+require("dotenv").config({ path: "variables.env" });
 const SteamUsersAPI = require("./dataSources/SteamUsersAPI");
 const SteamPlayerServiceAPI = require("./dataSources/SteamPlayerServiceAPI");
 const SteamNewsAPI = require("./dataSources/SteamNewsAPI");
@@ -13,6 +14,10 @@ const resolvers = require("./resolvers");
  * # https://www.apollographql.com/docs/apollo-server/data/data-sources/
  */
 const server = new ApolloServer({
+  cors: {
+    origin: process.env.FRONTEND_URL,
+    credentials: true
+  },
   typeDefs,
   resolvers,
   dataSources: () => {

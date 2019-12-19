@@ -3,8 +3,8 @@ import ApolloClient from "apollo-boost";
 
 // https://dunglas.fr/2019/05/using-next-js-and-material-ui/
 
-function createClient({ headers }) {
-  return new ApolloClient({
+export const createClient = ({ headers }) =>
+  new ApolloClient({
     uri:
       process.env.NODE_ENV === "development"
         ? process.env.endpoint
@@ -18,6 +18,5 @@ function createClient({ headers }) {
       });
     }
   });
-}
 
 export default withApollo(createClient);

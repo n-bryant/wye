@@ -39,4 +39,5 @@ export class WyeApp extends App {
   }
 }
 
+// app with apollo client
 export default withData(WyeApp);
