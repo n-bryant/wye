@@ -5,6 +5,8 @@ import Page from "../src/components/Page";
 import { ApolloProvider } from "react-apollo";
 import withData from "../lib/withData";
 
+import CssBaseline from "@material-ui/core/CssBaseline";
+
 export class WyeApp extends App {
   componentDidMount() {
     // Remove the server-side injected CSS.
@@ -29,6 +31,7 @@ export class WyeApp extends App {
 
     return (
       <React.Fragment>
+        <CssBaseline />
         <ApolloProvider client={apollo}>
           <Page>
             <Component {...pageProps} />

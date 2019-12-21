@@ -6,7 +6,7 @@ import theme from "../lib/theme";
 export default class MyDocument extends Document {
   render() {
     return (
-      <html lang="en">
+      <html lang="en" style={{ height: "100%" }}>
         <Head>
           <meta charSet="utf-8" />
           <meta
@@ -19,8 +19,13 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
+          <style>
+            {`
+            #__next { height: 100% }
+          `}
+          </style>
         </Head>
-        <body>
+        <body style={{ height: "100%" }}>
           <Main />
           <NextScript />
         </body>

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index should render successfully 1`] = `
+<div
+  className="wye-Index root"
+>
+  <WithStyles(ForwardRef(Container))
+    className="wye-Index__container container"
+    disableGutters={true}
+    maxWidth={false}
+  >
+    <WithStyles(ForwardRef(AppBar))
+      className="wye-Index__appBar appBar"
+      position="static"
+    >
+      <WithStyles(ForwardRef(Toolbar))
+        className="wye-Index__toolBar toolBar"
+      >
+        <WithStyles(ForwardRef(Typography))
+          variant="h1"
+        >
+          Wye
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(Toolbar))>
+    </WithStyles(ForwardRef(AppBar))>
+    <div
+      className="wye-Index__main main"
+    >
+      <div
+        className="wye-Index__contentContainer contentContainer"
+      >
+        <div
+          className="wye-Index__content content"
+        />
+      </div>
+    </div>
+  </WithStyles(ForwardRef(Container))>
+  <WithStyles(IndexPageBackground)
+    classes={Object {}}
+  />
+</div>
+`;

@@ -3,6 +3,8 @@ const styles = theme => ({
     position: "relative",
     height: "100%"
   },
-  innerContent: {}
+  innerContent: {
+    height: "100%"
+  }
 });
 export default styles;

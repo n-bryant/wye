@@ -62,17 +62,9 @@ const typeDefs = gql`
     # url to the user's steam profile page
     profileUrl: String
     # a user's owned games
-    ownedGames: UserGameConnection
+    ownedGames: [GameBasicInfo]!
     # a user's recently played games
-    recentlyPlayedGames: UserGameConnection
-  }
-
-  type UserGameConnection {
-    edges: [UserGameEdge]
-  }
-
-  type UserGameEdge {
-    node: GameBasicInfo!
+    recentlyPlayedGames: [GameBasicInfo]!
   }
 
   type GameBasicInfo {
