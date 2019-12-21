@@ -1,35 +1,59 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import MuiLink from "@material-ui/core/Link";
-import ProTip from "../src/components/ProTip";
-import Link from "../src/components/Link";
+import PropTypes from "prop-types";
 
-export const Copyright = () => (
-  <Typography variant="body2" color="textSecondary" align="center">
-    {"Copyright © "}
-    <MuiLink color="inherit" href="https://material-ui.com/">
-      Your Website
-    </MuiLink>{" "}
-    {new Date().getFullYear()}
-    {"."}
-  </Typography>
-);
+import { withStyles } from "@material-ui/core/styles";
+import createClassNameHelper from "@n_bryant/classnames-helper";
+import JSS_CLASS_NAME_PREFIX from "../lib/classNamePrefix";
 
-export const Index = () => (
-  <Container maxWidth="sm">
-    <Box my={4}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Next.js example
-      </Typography>
-      <Link href="/about" color="secondary">
-        Go to the about page
-      </Link>
-      <ProTip />
-      <Copyright />
-    </Box>
-  </Container>
-);
+import { AppBar, Container, Toolbar, Typography } from "@material-ui/core";
 
-export default Index;
+import IndexPageBackground from "../src/components/ScrollingBackground/IndexPageBackground";
+import styles from "./index.styles";
+
+/**
+ * renders the index page's content
+ */
+export const Index = props => {
+  const classnames = Index.classnames(props);
+
+  return (
+    <div className={classnames.root()}>
+      <Container
+        className={classnames.element("container")}
+        maxWidth={false}
+        disableGutters
+      >
+        <AppBar position="static" className={classnames.element("appBar")}>
+          <Toolbar className={classnames.element("toolBar")}>
+            <Typography variant="h1">Wye</Typography>
+          </Toolbar>
+        </AppBar>
+        <div className={classnames.element("main")}>
+          {/* welcome copy with faq link / recommendations table goes here */}
+          <div className={classnames.element("contentContainer")}>
+            <div className={classnames.element("content")}></div>
+          </div>
+        </div>
+      </Container>
+      <IndexPageBackground />
+    </div>
+  );
+};
+Index.classnames = createClassNameHelper(`${JSS_CLASS_NAME_PREFIX}Index`);
+Index.propTypes = {
+  // styles applied
+  classes: PropTypes.shape({
+    root: PropTypes.string,
+    container: PropTypes.string,
+    appBar: PropTypes.string,
+    toolBar: PropTypes.string,
+    main: PropTypes.string,
+    contentContainer: PropTypes.string,
+    content: PropTypes.string
+  })
+};
+Index.defaultProps = {
+  classes: {}
+};
+
+export default withStyles(styles)(Index);

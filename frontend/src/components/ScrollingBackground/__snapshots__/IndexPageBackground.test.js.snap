@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IndexPageBackground should render successfully 1`] = `
+<div
+  className="wye-IndexPageBackground root"
+>
+  <div
+    className="wye-IndexPageBackground__panel panel"
+  >
+    <div
+      className="wye-IndexPageBackground__scrollContainer scrollContainer"
+    >
+      <div
+        className="wye-IndexPageBackground__scrollForward scrollForward"
+      />
+    </div>
+    <div
+      className="wye-IndexPageBackground__scrollContainer scrollContainer"
+    >
+      <div
+        className="wye-IndexPageBackground__scrollBackward scrollBackward"
+      />
+    </div>
+    <div
+      className="wye-IndexPageBackground__scrollContainer scrollContainer"
+    >
+      <div
+        className="wye-IndexPageBackground__scrollForward scrollForward"
+      />
+    </div>
+    <div
+      className="wye-IndexPageBackground__scrollContainer scrollContainer"
+    >
+      <div
+        className="wye-IndexPageBackground__scrollBackward scrollBackward"
+      />
+    </div>
+  </div>
+</div>
+`;

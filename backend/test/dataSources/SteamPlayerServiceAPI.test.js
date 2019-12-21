@@ -62,16 +62,14 @@ describe("SteamPlayerServiceAPI", () => {
       );
     });
 
-    it("should build edges for the returned games object by using the userGameReducer", async () => {
+    it("should return a list of games matching the schema for GameBasicInfo", async () => {
       steamPlayerServiceAPI.get.mockReturnValueOnce(mockedGamesResponse);
       const data = await steamPlayerServiceAPI.getOwnedGamesByPlayerId(
         playerId
       );
-      expect(data).toMatchObject({
-        edges: [
-          { node: userGameReducer(mockedGamesResponse.response.games[0]) }
-        ]
-      });
+      expect(data).toEqual([
+        userGameReducer(mockedGamesResponse.response.games[0])
+      ]);
     });
   });
 
@@ -95,16 +93,14 @@ describe("SteamPlayerServiceAPI", () => {
       );
     });
 
-    it("should build edges for the returned games object by using the userGameReducer", async () => {
+    it("should return a list of games matching the schema for GameBasicInfo", async () => {
       steamPlayerServiceAPI.get.mockReturnValueOnce(mockedGamesResponse);
       const data = await steamPlayerServiceAPI.getRecentlyPlayedGamesByPlayerId(
         playerId
       );
-      expect(data).toMatchObject({
-        edges: [
-          { node: userGameReducer(mockedGamesResponse.response.games[0]) }
-        ]
-      });
+      expect(data).toEqual([
+        userGameReducer(mockedGamesResponse.response.games[0])
+      ]);
     });
   });
 

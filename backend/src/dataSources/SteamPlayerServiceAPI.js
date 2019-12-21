@@ -41,7 +41,7 @@ class SteamPlayerServiceAPI extends RESTDataSource {
   /**
    * Gets a player's owned games from Steam's player service API's GetOwnedGames endpoint
    * @param { String } playerId - The player's ID to get games for
-   * @returns { Object } returns object containing data matching the UserConnection type
+   * @returns { Array }
    */
   async getOwnedGamesByPlayerId(playerId) {
     const data = await this.get(STEAM_PLAYER_SERVICE_OWNED_GAMES_ENDPOINT, {
@@ -52,13 +52,7 @@ class SteamPlayerServiceAPI extends RESTDataSource {
     });
 
     const ownedGames = get(data, ["response", "games"], []);
-    const edges = ownedGames.map(game => ({
-      node: userGameReducer(game)
-    }));
-
-    return {
-      edges
-    };
+    return ownedGames.map(game => userGameReducer(game));
   }
 
   /**
@@ -147,7 +141,7 @@ class SteamPlayerServiceAPI extends RESTDataSource {
   /**
    * Gets a player's recently played games from Steam's player service API's GetRecentlyPlayedGames endpoint
    * @param { String } playerId - The player's ID to get games for
-   * @returns { Object } returns object containing data matching the UserConnection type
+   * @returns { Array }
    */
   async getRecentlyPlayedGamesByPlayerId(playerId) {
     const data = await this.get(STEAM_PLAYER_SERVICE_RECENT_GAMES_ENDPOINT, {
@@ -157,13 +151,7 @@ class SteamPlayerServiceAPI extends RESTDataSource {
     });
 
     const recentlyPlayedGames = get(data, ["response", "games"], []);
-    const edges = recentlyPlayedGames.map(game => ({
-      node: userGameReducer(game)
-    }));
-
-    return {
-      edges
-    };
+    return recentlyPlayedGames.map(game => userGameReducer(game));
   }
 
   /**
