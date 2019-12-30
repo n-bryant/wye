@@ -22,7 +22,7 @@ const palette = {
     disabled: oc.gray5
   },
   text: {
-    primary: oc.gray9,
+    primary: "#FFFFFF",
     secondary: oc.gray9
   }
 };

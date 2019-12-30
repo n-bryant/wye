@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionButton should render successfully 1`] = `
+<div
+  className="wye-ActionButton root"
+>
+  <WithStyles(ForwardRef(Button))
+    className="wye-ActionButton__button button"
+    disabled={false}
+    onClick={[MockFunction]}
+  >
+    <svg
+      className="wye-ActionButton__buttonBorder buttonBorder"
+      height="60px"
+      viewBox="0 0 180 60"
+      width="180px"
+    >
+      <polyline
+        points="179,1 179,59 1,59 1,1 179,1"
+      />
+      <polyline
+        points="179,1 179,59 1,59 1,1 179,1"
+      />
+    </svg>
+    <WithStyles(ForwardRef(Typography))
+      variant="body1"
+    >
+      foo
+    </WithStyles(ForwardRef(Typography))>
+  </WithStyles(ForwardRef(Button))>
+</div>
+`;

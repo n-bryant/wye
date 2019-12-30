@@ -7,6 +7,7 @@ describe("IndexPageBackground", () => {
       root: "root",
       panel: "panel",
       scrollContainer: "scrollContainer",
+      scrollContainerStaggered: "scrollContainerStaggered",
       scrollForward: "scrollForward",
       scrollBackward: "scrollBackward"
     }

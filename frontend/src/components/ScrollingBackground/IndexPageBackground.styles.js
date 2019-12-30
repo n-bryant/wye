@@ -1,9 +1,15 @@
-import { ThemeProvider } from "react-jss";
+const scrollContainer = {
+  margin: "1rem",
+  // position: "absolute",
+  // top: "-530px",
+  // bottom: "0",
+  height: "calc(5968px + 100vh)"
+};
 
 const scroll = {
   backgroundRepeatY: "repeat",
   backgroundSize: "100%",
-  height: "5967px",
+  height: "calc(100% + 200vh)",
   width: "462px",
   zIndex: "0"
 };
@@ -29,34 +35,36 @@ const styles = theme => ({
     transform: "rotate(-45deg)"
   },
   scrollContainer: {
-    margin: "1rem"
+    ...scrollContainer
+  },
+  scrollContainerStaggered: {
+    ...scrollContainer,
+    marginTop: "227px"
   },
   scrollForward: {
     ...scroll,
-    backgroundImage:
-      "url('https://res.cloudinary.com/dehqb0rqc/image/upload/v1576901683/Wye/Wye_Background1.png')",
-    animation: "$scrollForward 50s linear infinite"
+    backgroundImage: "url('/Wye_Background1.png')"
+    // animation: "$scrollForward 50s linear infinite"
   },
   scrollBackward: {
     ...scroll,
-    backgroundImage:
-      "url('https://res.cloudinary.com/dehqb0rqc/image/upload/v1576901673/Wye/Wye_Background2.png')",
-    animation: "$scrollBackward 50s linear infinite"
+    backgroundImage: "url('/Wye_Background2.png')"
+    // animation: "$scrollBackward 50s linear infinite"
   },
   "@keyframes scrollForward": {
     "0%": {
-      backgroundPosition: "0 0"
+      transform: "translate3d(0,0,0)"
     },
     "100%": {
-      backgroundPosition: "0 -5968px"
+      transform: "translate3d(0,-5968px,0)"
     }
   },
   "@keyframes scrollBackward": {
     "0%": {
-      backgroundPosition: "0 -5968px"
+      transform: "translate3d(0,-5968px,0)"
     },
     "100%": {
-      backgroundPosition: "0 0"
+      transform: "translate3d(0,0,0)"
     }
   }
 });

@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WelcomeEmptyState should render successfully 1`] = `
+<div
+  className="wye-WelcomeEmptyState root"
+>
+  <div
+    className="wye-WelcomeEmptyState__welcomeMessageContainer welcomeMessageContainer"
+  >
+    <WithStyles(ForwardRef(Typography))
+      className="wye-WelcomeEmptyState__title title"
+      variant="h1"
+    >
+      Welcome!
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      className="wye-WelcomeEmptyState__message message"
+      variant="body1"
+    >
+      A wye is a plumbing component used to join together multiple branches of piping. Similarly, Wye is a third party tool that seeks to bring friends together by answering that age old question...
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      variant="h2"
+    >
+      What should we play together?
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+  <div
+    className="wye-WelcomeEmptyState__instructionsContainer instructionsContainer"
+  >
+    <WithStyles(ForwardRef(Typography))
+      className="wye-WelcomeEmptyState__message message"
+      variant="body1"
+    >
+      Wye uses your
+       
+      <Link
+        href="/faq/#steamid"
+      >
+        <a
+          className="wye-WelcomeEmptyState__link link"
+        >
+          SteamID
+        </a>
+      </Link>
+       
+      and Steam's public
+       
+      <Link
+        href="https://developer.valvesoftware.com/wiki/Steam_Web_API"
+        prefetch={false}
+      >
+        <a
+          className="wye-WelcomeEmptyState__link link"
+          target="_blank"
+        >
+          API
+        </a>
+      </Link>
+       
+      to recommend games for you and your friends to play based on your Steam libraries. To get started, make sure you have your SteamIDs handy and your Steam profiles set to public. Then, click the "
+      Get Started
+      " button below!
+    </WithStyles(ForwardRef(Typography))>
+    <Link
+      href="/faq/#profile"
+    >
+      <a
+        className="wye-WelcomeEmptyState__link link"
+      >
+        Why do our Steam profiles need to be set to public?
+      </a>
+    </Link>
+    <WithStyles(ActionButton)
+      classes={Object {}}
+      label="Get Started"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;

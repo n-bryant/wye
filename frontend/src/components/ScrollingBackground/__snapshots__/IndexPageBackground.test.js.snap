@@ -15,7 +15,7 @@ exports[`IndexPageBackground should render successfully 1`] = `
       />
     </div>
     <div
-      className="wye-IndexPageBackground__scrollContainer scrollContainer"
+      className="wye-IndexPageBackground__scrollContainer wye-IndexPageBackground__scrollContainer--staggered scrollContainer scrollContainerStaggered"
     >
       <div
         className="wye-IndexPageBackground__scrollBackward scrollBackward"
@@ -29,7 +29,7 @@ exports[`IndexPageBackground should render successfully 1`] = `
       />
     </div>
     <div
-      className="wye-IndexPageBackground__scrollContainer scrollContainer"
+      className="wye-IndexPageBackground__scrollContainer wye-IndexPageBackground__scrollContainer--staggered scrollContainer scrollContainerStaggered"
     >
       <div
         className="wye-IndexPageBackground__scrollBackward scrollBackward"
