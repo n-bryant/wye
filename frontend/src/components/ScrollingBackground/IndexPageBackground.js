@@ -19,13 +19,21 @@ export const IndexPageBackground = props => {
         <div className={classnames.element("scrollContainer")}>
           <div className={classnames.element("scrollForward")}></div>
         </div>
-        <div className={classnames.element("scrollContainer")}>
+        <div
+          className={classnames.element("scrollContainer", {
+            staggered: true
+          })}
+        >
           <div className={classnames.element("scrollBackward")}></div>
         </div>
         <div className={classnames.element("scrollContainer")}>
           <div className={classnames.element("scrollForward")}></div>
         </div>
-        <div className={classnames.element("scrollContainer")}>
+        <div
+          className={classnames.element("scrollContainer", {
+            staggered: true
+          })}
+        >
           <div className={classnames.element("scrollBackward")}></div>
         </div>
       </div>
@@ -41,6 +49,7 @@ IndexPageBackground.propTypes = {
     root: PropTypes.string,
     panel: PropTypes.string,
     scrollContainer: PropTypes.string,
+    scrollContainerStaggered: PropTypes.string,
     scrollForward: PropTypes.string,
     scrollBackward: PropTypes.string
   })
