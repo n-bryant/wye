@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UsersField should render its child component successfully 1`] = `
+exports[`UsersField should render successfully 1`] = `
 <div
   className="wye-UsersField root"
 >
@@ -9,6 +9,7 @@ exports[`UsersField should render its child component successfully 1`] = `
   >
     <WithStyles(ForwardRef(TextField))
       className="wye-UsersField__addUserField addUserField"
+      disabled={false}
       label="Add a SteamID:"
       onChange={[Function]}
       onKeyPress={[Function]}
@@ -42,12 +43,4 @@ exports[`UsersField should render its child component successfully 1`] = `
     </WithStyles(ForwardRef(Typography))>
   </div>
 </div>
-`;
-
-exports[`UsersField should render successfully 1`] = `
-<Field
-  name="users"
->
-  <Component />
-</Field>
 `;

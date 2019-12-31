@@ -1,10 +1,4 @@
-import { Formik } from "formik";
-import {
-  RecommendationsFormWithContext,
-  RecommendationsFormWithFormik,
-  RECOMMENDATIONS_FORM_INITIAL_VALUES,
-  RecommendationsForm
-} from "./index";
+import { RecommendationsFormWithContext, RecommendationsForm } from "./index";
 import { ACTIONS, CONTENT_OPTIONS } from "../../../pages";
 
 describe("RecommendationsFormWithContext", () => {
@@ -27,38 +21,6 @@ describe("RecommendationsFormWithContext", () => {
   });
 });
 
-describe("RecommendationsFormWithFormik", () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = shallow(<RecommendationsFormWithFormik />);
-  });
-
-  it("should render a Formik and pass it initialValues from props or a default initialValues prop matching RECOMMENDATIONS_FORM_INITIAL_VALUES", () => {
-    expect(wrapper.find(Formik).prop("initialValues")).toMatchObject(
-      RECOMMENDATIONS_FORM_INITIAL_VALUES
-    );
-
-    const newProps = {
-      initialValues: {
-        users: ["foo", "bar"]
-      }
-    };
-    wrapper.setProps(newProps);
-    wrapper.update();
-    expect(wrapper.find(Formik).prop("initialValues")).toMatchObject(
-      newProps.initialValues
-    );
-  });
-
-  it("should pass a dispatch prop to its rendered child", () => {
-    const props = {
-      dispatch: jest.fn()
-    };
-    wrapper.setProps(props);
-    expect(wrapper.prop("children")().props.dispatch).toBe(props.dispatch);
-  });
-});
-
 describe("RecommendationsForm", () => {
   const props = {
     classes: {
@@ -70,13 +32,12 @@ describe("RecommendationsForm", () => {
       submitButton: "submitButton"
     },
     dispatch: jest.fn(),
-    values: {
-      users: []
-    }
+    users: []
   };
 
   let wrapper;
   beforeEach(() => {
+    jest.clearAllMocks();
     wrapper = shallow(<RecommendationsForm {...props} />);
   });
 
@@ -94,7 +55,7 @@ describe("RecommendationsForm", () => {
     });
   });
 
-  it("should set the disabled value of the ActionButton based on whether the users value of the values prop is defined and has length", () => {
+  it("should set the disabled value of the ActionButton based on whether the usersValue state value has length", () => {
     // without users length
     expect(
       wrapper
@@ -102,28 +63,36 @@ describe("RecommendationsForm", () => {
         .prop("disabled")
     ).toBeTruthy();
 
-    // undefined users
-    wrapper.setProps({
-      values: {}
-    });
-    wrapper.update();
+    // usersValue defined and with length
+    const usersValue = ["a"];
+    const setUsersValue = jest.fn();
+    const useStateSpy = jest.spyOn(React, "useState");
+    useStateSpy.mockImplementationOnce(() => [usersValue, setUsersValue]);
+    const wrapperWithState = shallow(<RecommendationsForm {...props} />);
     expect(
-      wrapper
-        .findWhere(n => n.hasClass(props.classes.submitButton))
-        .prop("disabled")
-    ).toBeTruthy();
-
-    // users defined and with length
-    wrapper.setProps({
-      values: {
-        users: ["foo"]
-      }
-    });
-    wrapper.update();
-    expect(
-      wrapper
+      wrapperWithState
         .findWhere(n => n.hasClass(props.classes.submitButton))
         .prop("disabled")
     ).toBeFalsy();
+  });
+
+  it("should call the dispatch prop to update the context's users value and set the content to recommendations when the ActionButton is clicked", () => {
+    const usersValue = ["a"];
+    const setUsersValue = jest.fn();
+    const useStateSpy = jest.spyOn(React, "useState");
+    useStateSpy.mockImplementationOnce(() => [usersValue, setUsersValue]);
+    const wrapperWithState = shallow(<RecommendationsForm {...props} />);
+    wrapperWithState
+      .findWhere(n => n.hasClass(props.classes.submitButton))
+      .prop("onClick")();
+    expect(props.dispatch).toHaveBeenCalledTimes(2);
+    expect(props.dispatch.mock.calls[0][0]).toEqual({
+      type: ACTIONS.SET_USERS,
+      value: usersValue
+    });
+    expect(props.dispatch.mock.calls[1][0]).toEqual({
+      type: ACTIONS.SET_CONTENT,
+      value: CONTENT_OPTIONS.RECOMMENDATIONS
+    });
   });
 });
