@@ -1,5 +1,6 @@
 import { MockedProvider } from "@apollo/react-testing";
 
+import LoadingState from "./LoadingState";
 import RecommendationsGridWithContext, {
   RecommendationsGrid,
   GET_RECOMMENDATIONS_QUERY
@@ -62,12 +63,13 @@ describe("RecommendationsGrid", () => {
   ];
 
   it("should render successfully", () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
         <RecommendationsGrid {...props} />
       </MockedProvider>
-    ).find(RecommendationsGrid);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    );
+    expect(toJson(wrapper.find(RecommendationsGrid))).toMatchSnapshot();
+    expect(wrapper.find(LoadingState).length).toBe(1);
   });
 });
 

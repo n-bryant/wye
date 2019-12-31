@@ -12,5 +12,21 @@ exports[`RecommendationsGrid should render successfully 1`] = `
       "foo",
     ]
   }
-/>
+>
+  <WithStyles(LoadingState)
+    classes={Object {}}
+  >
+    <LoadingState
+      classes={
+        Object {
+          "root": "LoadingState-root-1",
+        }
+      }
+    >
+      <div
+        className="wye-LoadingState LoadingState-root-1"
+      />
+    </LoadingState>
+  </WithStyles(LoadingState)>
+</RecommendationsGrid>
 `;
