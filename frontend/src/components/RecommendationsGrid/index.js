@@ -10,6 +10,7 @@ import JSS_CLASS_NAME_PREFIX from "../../../lib/classNamePrefix";
 import { withStyles } from "@material-ui/core/styles";
 
 import { AppContextConsumer } from "../../../pages/index";
+import LoadingState from "./LoadingState";
 import styles from "./index.styles";
 
 // recommendations query
@@ -60,7 +61,11 @@ export const RecommendationsGrid = props => {
   const { loading, error, data } = useQuery(GET_RECOMMENDATIONS_QUERY, {
     variables: { users }
   });
-  console.log(data);
+  // console.log(data);
+
+  if (loading) {
+    return <LoadingState />;
+  }
 
   return <div className={classnames.root()}>grid placeholder</div>;
 };
