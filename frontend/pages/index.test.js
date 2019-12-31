@@ -1,5 +1,11 @@
-import { Index, reducer, INITIAL_STATE } from "./index";
-import RecommendationsForm from "../src/components/RecommendationsForm/RecommendationsForm";
+import {
+  Index,
+  reducer,
+  INITIAL_STATE,
+  CONTENT_OPTIONS,
+  ACTIONS
+} from "./index";
+import RecommendationsForm from "../src/components/RecommendationsForm";
 
 describe("index", () => {
   const props = {
@@ -28,10 +34,10 @@ describe("index", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it("should render the recommendations form if the showForm state value is truthy", () => {
+  it("should render the recommendations form if the content state value is set to the form content option", () => {
     // set up useReducer hook mocking
     const state = {
-      showForm: true,
+      content: CONTENT_OPTIONS.FORM,
       users: []
     };
     const dispatch = jest.fn();
@@ -47,23 +53,21 @@ describe("reducer", () => {
   it("should throw an Error by default", () => {
     expect(reducer).toThrow();
   });
-
-  it("should set the showForm state value to the passed action's value when the action type is setShowForm", () => {
+  it("should set the content state value to the passed action's value when the action type is setContent", () => {
     expect(
       reducer(INITIAL_STATE, {
-        type: "setShowForm",
-        value: true
+        type: ACTIONS.SET_CONTENT,
+        value: CONTENT_OPTIONS.WELCOME
       })
     ).toEqual({
       ...INITIAL_STATE,
-      showForm: true
+      content: CONTENT_OPTIONS.WELCOME
     });
   });
-
   it("should set the users state value to the passed action's value when the action type is setUsers", () => {
     expect(
       reducer(INITIAL_STATE, {
-        type: "setUsers",
+        type: ACTIONS.SET_USERS,
         value: ["a"]
       })
     ).toEqual({

@@ -1,3 +1,4 @@
+import { ACTIONS, CONTENT_OPTIONS } from "../../pages/index";
 import ActionButton from "./ActionButton";
 import WelcomeEmptyStateWithContext, {
   WelcomeEmptyState
@@ -45,11 +46,11 @@ describe("WelcomeEmptyState", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it("should call the dispatch prop to set the form display to true when the ActionButton is clicked", () => {
+  it("should call the dispatch prop to set the content to the form when the ActionButton is clicked", () => {
     wrapper.find(ActionButton).simulate("click");
     expect(props.dispatch).toHaveBeenCalledWith({
-      type: "setShowForm",
-      value: true
+      type: ACTIONS.SET_CONTENT,
+      value: CONTENT_OPTIONS.FORM
     });
   });
 });

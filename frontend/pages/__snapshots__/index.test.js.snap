@@ -6,7 +6,7 @@ exports[`index should render successfully 1`] = `
     Object {
       "dispatch": [Function],
       "state": Object {
-        "showForm": false,
+        "content": "WELCOME",
         "users": Array [],
       },
     }

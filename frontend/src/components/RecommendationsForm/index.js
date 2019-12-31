@@ -12,10 +12,14 @@ import { mdiClose } from "@mdi/js";
 import { Formik, Form } from "formik";
 import { Typography } from "@material-ui/core";
 
-import { AppContextConsumer } from "../../../pages/index";
+import {
+  AppContextConsumer,
+  ACTIONS,
+  CONTENT_OPTIONS
+} from "../../../pages/index";
 import UsersField from "./UsersField";
 import ActionButton from "../ActionButton";
-import styles from "./RecommendationsForm.styles";
+import styles from "./index.styles";
 
 export const RECOMMENDATIONS_FORM_INITIAL_VALUES = {
   users: []
@@ -47,7 +51,12 @@ export const RecommendationsForm = props => {
         <Icon
           className={classnames.element("closeButton")}
           path={mdiClose}
-          onClick={() => dispatch({ type: "setShowForm", value: false })}
+          onClick={() =>
+            dispatch({
+              type: ACTIONS.SET_CONTENT,
+              value: CONTENT_OPTIONS.WELCOME
+            })
+          }
         />
         <div className={classnames.element("formInstructions")}>
           <Typography className={classnames.element("title")} variant="h1">
@@ -65,6 +74,13 @@ export const RecommendationsForm = props => {
         <ActionButton
           className={classnames.element("submitButton")}
           disabled={submitDisabled}
+          onClick={() => {
+            dispatch({ type: ACTIONS.SET_USERS, value: users });
+            dispatch({
+              type: ACTIONS.SET_CONTENT,
+              value: CONTENT_OPTIONS.RECOMMENDATIONS
+            });
+          }}
         />
       </RecommendationsFormContextProvider>
     </Form>

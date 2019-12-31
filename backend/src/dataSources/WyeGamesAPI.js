@@ -29,10 +29,10 @@ class WyeGamesAPI extends RESTDataSource {
     });
     const games = get(data, "games", []).map(game => ({
       ...game,
-      developers: game.developers.split(","),
-      publishers: game.publishers.split(","),
-      genres: game.genres.split(","),
-      tags: game.tags.split(",")
+      developers: game.developers.split(", "),
+      publishers: game.publishers.split(", "),
+      genres: game.genres.split(", "),
+      tags: game.tags.split(", ")
     }));
     return games;
   }
