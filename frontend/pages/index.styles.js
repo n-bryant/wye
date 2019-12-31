@@ -39,9 +39,6 @@ const styles = theme => ({
     fill: theme.palette.common.white,
     height: "2rem"
   },
-  form: {
-    width: "80%"
-  },
   main: {
     height: "calc(100vh - 56px)",
     overflow: "auto"

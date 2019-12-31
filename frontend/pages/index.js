@@ -74,7 +74,7 @@ export const Index = props => {
       case CONTENT_OPTIONS.WELCOME:
         return <WelcomeEmptyState />;
       case CONTENT_OPTIONS.FORM:
-        return <RecommendationsForm className={classnames.element("form")} />;
+        return <RecommendationsForm />;
       case CONTENT_OPTIONS.RECOMMENDATIONS:
         return <RecommendationsGrid />;
       default:
@@ -140,7 +140,6 @@ Index.propTypes = {
     linksContainer: PropTypes.string,
     link: PropTypes.string,
     githubIcon: PropTypes.string,
-    form: PropTypes.string,
     main: PropTypes.string,
     contentContainer: PropTypes.string,
     content: PropTypes.string

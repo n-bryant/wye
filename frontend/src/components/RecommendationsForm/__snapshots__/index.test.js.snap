@@ -1,65 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RecommendationsForm should render successfully 1`] = `
-<Form
+<div
   className="wye-RecommendationsForm root"
 >
-  <ContextProvider
-    value={
-      Object {
-        "classes": Object {
-          "closeButton": "closeButton",
-          "formInstructions": "formInstructions",
-          "root": "root",
-          "submitButton": "submitButton",
-          "title": "title",
-          "userFieldContainer": "userFieldContainer",
-        },
-        "dispatch": [MockFunction],
-        "values": Object {
-          "users": Array [],
-        },
-      }
-    }
+  <Icon
+    className="wye-RecommendationsForm__closeButton closeButton"
+    color={null}
+    horizontal={false}
+    onClick={[Function]}
+    path="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+    rotate={0}
+    size={null}
+    spin={false}
+    vertical={false}
+  />
+  <div
+    className="wye-RecommendationsForm__formInstructions formInstructions"
   >
-    <Icon
-      className="wye-RecommendationsForm__closeButton closeButton"
-      color={null}
-      horizontal={false}
-      onClick={[Function]}
-      path="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
-      rotate={0}
-      size={null}
-      spin={false}
-      vertical={false}
-    />
-    <div
-      className="wye-RecommendationsForm__formInstructions formInstructions"
+    <WithStyles(ForwardRef(Typography))
+      className="wye-RecommendationsForm__title title"
+      variant="h1"
     >
-      <WithStyles(ForwardRef(Typography))
-        className="wye-RecommendationsForm__title title"
-        variant="h1"
-      >
-        Getting Your Recommendations:
-      </WithStyles(ForwardRef(Typography))>
-      <WithStyles(ForwardRef(Typography))
-        variant="body1"
-      >
-        Wye will compare the libraries of each provided SteamID to generate multiplayer game recommendations. Use the field below to add up to six SteamIDs, then click "Go!".
-      </WithStyles(ForwardRef(Typography))>
-    </div>
-    <div
-      className="wye-RecommendationsForm__userFieldContainer userFieldContainer"
+      Getting Your Recommendations:
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      variant="body1"
     >
-      <UsersFieldWithContext />
-    </div>
-    <WithStyles(ActionButton)
-      className="wye-RecommendationsForm__submitButton submitButton"
+      Wye will compare the libraries of each provided SteamID to generate multiplayer game recommendations. Use the field below to add up to six SteamIDs, then click "Go!".
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+  <div
+    className="wye-RecommendationsForm__userFieldContainer userFieldContainer"
+  >
+    <WithStyles(UsersField)
       classes={Object {}}
-      disabled={true}
-      label="Go!"
-      onClick={[Function]}
+      setUsersValue={[Function]}
+      usersValue={Array []}
     />
-  </ContextProvider>
-</Form>
+  </div>
+  <WithStyles(ActionButton)
+    className="wye-RecommendationsForm__submitButton submitButton"
+    classes={Object {}}
+    disabled={true}
+    label="Go!"
+    onClick={[Function]}
+  />
+</div>
 `;
