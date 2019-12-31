@@ -4,7 +4,8 @@ import {
   RecommendationsFormWithFormik,
   RECOMMENDATIONS_FORM_INITIAL_VALUES,
   RecommendationsForm
-} from "./RecommendationsForm";
+} from "./index";
+import { ACTIONS, CONTENT_OPTIONS } from "../../../pages";
 
 describe("RecommendationsFormWithContext", () => {
   it("should provide a dispatch function from context and pass any additional props to its rendered child", () => {
@@ -83,13 +84,13 @@ describe("RecommendationsForm", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it("should call the dispatch prop to set the form display to false when the close button is clicked", () => {
+  it("should call the dispatch prop to show the welcome content when the close button is clicked", () => {
     wrapper
       .findWhere(n => n.hasClass(props.classes.closeButton))
       .simulate("click");
     expect(props.dispatch).toHaveBeenCalledWith({
-      type: "setShowForm",
-      value: false
+      type: ACTIONS.SET_CONTENT,
+      value: CONTENT_OPTIONS.WELCOME
     });
   });
 

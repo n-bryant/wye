@@ -41,10 +41,10 @@ describe("WyeGamesAPI", () => {
       const mockedGamesResponse = {
         games: [
           {
-            developers: "1,2",
-            publishers: "1,2",
-            genres: "1,2",
-            tags: "1,2"
+            developers: "1, 2",
+            publishers: "1, 2",
+            genres: "1, 2",
+            tags: "1, 2"
           }
         ]
       };

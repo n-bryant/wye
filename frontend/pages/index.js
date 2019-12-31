@@ -11,8 +11,9 @@ import { AppBar, Container, Toolbar, Typography } from "@material-ui/core";
 
 import Link from "next/link";
 import WelcomeEmptyState from "../src/components/WelcomeEmptyState";
-import RecommendationsForm from "../src/components/RecommendationsForm/RecommendationsForm";
+import RecommendationsForm from "../src/components/RecommendationsForm";
 import IndexPageBackground from "../src/components/ScrollingBackground/IndexPageBackground";
+import RecommendationsGrid from "../src/components/RecommendationsGrid";
 import styles from "./index.styles";
 
 // set up a context provider
@@ -20,11 +21,23 @@ const AppContext = React.createContext({});
 export const AppContextProvider = AppContext.Provider;
 export const AppContextConsumer = AppContext.Consumer;
 
+// reducer action and content options
+export const ACTIONS = {
+  SET_USERS: "setUsers",
+  SET_CONTENT: "setContent"
+};
+export const CONTENT_OPTIONS = {
+  WELCOME: "WELCOME",
+  FORM: "FORM",
+  RECOMMENDATIONS: "RECOMMENDATIONS"
+};
+
 // initial state values
 export const INITIAL_STATE = {
-  showForm: false,
+  content: CONTENT_OPTIONS["WELCOME"],
   users: []
 };
+
 /**
  * reducer for updating state values
  * @param {Object} state
@@ -33,15 +46,15 @@ export const INITIAL_STATE = {
  */
 export const reducer = (state, action) => {
   switch (action.type) {
-    case "setShowForm":
-      return {
-        ...state,
-        showForm: action.value
-      };
-    case "setUsers":
+    case ACTIONS.SET_USERS:
       return {
         ...state,
         users: action.value
+      };
+    case ACTIONS.SET_CONTENT:
+      return {
+        ...state,
+        content: action.value
       };
     default:
       throw new Error();
@@ -55,6 +68,19 @@ export const reducer = (state, action) => {
 export const Index = props => {
   const classnames = Index.classnames(props);
   const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE);
+
+  const getContent = () => {
+    switch (state.content) {
+      case CONTENT_OPTIONS.WELCOME:
+        return <WelcomeEmptyState />;
+      case CONTENT_OPTIONS.FORM:
+        return <RecommendationsForm className={classnames.element("form")} />;
+      case CONTENT_OPTIONS.RECOMMENDATIONS:
+        return <RecommendationsGrid />;
+      default:
+        return <WelcomeEmptyState />;
+    }
+  };
 
   return (
     <AppContextProvider
@@ -92,11 +118,7 @@ export const Index = props => {
           <div className={classnames.element("main")}>
             <div className={classnames.element("contentContainer")}>
               <div className={classnames.element("content")}>
-                {state.showForm ? (
-                  <RecommendationsForm className={classnames.element("form")} />
-                ) : (
-                  <WelcomeEmptyState />
-                )}
+                {getContent()}
               </div>
             </div>
           </div>

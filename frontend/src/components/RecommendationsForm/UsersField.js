@@ -11,7 +11,7 @@ import Icon from "@mdi/react";
 import { mdiAccountPlus, mdiAccountPlusOutline } from "@mdi/js";
 import Chip from "@material-ui/core/Chip";
 
-import { RecommendationsFormContextConsumer } from "./RecommendationsForm";
+import { RecommendationsFormContextConsumer } from "./index";
 import styles from "./UsersField.styles";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";

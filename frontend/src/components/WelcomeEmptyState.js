@@ -10,7 +10,11 @@ import JSS_CLASS_NAME_PREFIX from "../../lib/classNamePrefix";
 import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 
-import { AppContextConsumer } from "../../pages/index";
+import {
+  AppContextConsumer,
+  ACTIONS,
+  CONTENT_OPTIONS
+} from "../../pages/index";
 import ActionButton from "./ActionButton";
 import styles from "./WelcomeEmptyState.styles";
 
@@ -64,7 +68,10 @@ export const WelcomeEmptyState = props => {
         <ActionButton
           label={buttonLabel}
           onClick={() => {
-            dispatch({ type: "setShowForm", value: true });
+            dispatch({
+              type: ACTIONS.SET_CONTENT,
+              value: CONTENT_OPTIONS.FORM
+            });
           }}
         />
       </div>
