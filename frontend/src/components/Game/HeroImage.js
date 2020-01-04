@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import { withStyles } from "@material-ui/core/styles";
@@ -7,14 +7,16 @@ import JSS_CLASS_NAME_PREFIX from "../../../lib/classNamePrefix";
 
 import styles from "./HeroImage.styles";
 
+export const PLACEHOLDER_PATH = "/steamHeroPlaceholder.jpg";
+
 /**
  * renders a hero image with a placeholder src value
  */
 export const HeroImage = props => {
   const classnames = HeroImage.classnames(props);
-  const { gameId, imageSrc } = props;
-  const [hasBrokenSrc, setHasBrokenSrc] = useState(false);
-  const [loaded, setLoaded] = useState(false);
+  const { altText, imageSrc } = props;
+  const [hasBrokenSrc, setHasBrokenSrc] = React.useState(false);
+  const [loaded, setLoaded] = React.useState(false);
 
   const onLoad = () => {
     setLoaded(true);
@@ -24,26 +26,24 @@ export const HeroImage = props => {
   };
 
   return (
-    <div className={classnames.root()}>
+    <React.Fragment>
       <img
         className={classnames.element("image", {
           hidden: !loaded
         })}
-        src={hasBrokenSrc ? "/steamHeroPlaceholder.jpg" : imageSrc}
-        alt={`Steam hero image for Game with ID: ${gameId}`}
-        title={`Steam hero image for Game with ID: ${gameId}`}
         onError={onError}
         onLoad={onLoad}
+        src={hasBrokenSrc ? PLACEHOLDER_PATH : imageSrc}
+        alt={altText}
       />
       <img
         className={classnames.element("placeholder", {
           hidden: loaded
         })}
-        src="/steamHeroPlaceholder.jpg"
-        alt={`Steam hero image for Game with ID: ${gameId}`}
-        title={`Steam hero image for Game with ID: ${gameId}`}
+        src={PLACEHOLDER_PATH}
+        alt={altText}
       />
-    </div>
+    </React.Fragment>
   );
 };
 HeroImage.classnames = createClassNameHelper(
@@ -52,16 +52,19 @@ HeroImage.classnames = createClassNameHelper(
 HeroImage.propTypes = {
   // styles to apply
   classes: PropTypes.shape({
-    root: PropTypes.string
+    image: PropTypes.string,
+    imageHidden: PropTypes.string,
+    placeholder: PropTypes.string,
+    placeholderHidden: PropTypes.string
   }),
-  // game id the image belongs to
-  gameId: PropTypes.string,
+  // alt text for the image
+  altText: PropTypes.string,
   // the location of the image to render
   imageSrc: PropTypes.string
 };
 HeroImage.defaultProps = {
   classes: {},
-  gameId: "",
+  altText: "",
   imageSrc: ""
 };
 

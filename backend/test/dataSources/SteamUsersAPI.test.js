@@ -1,3 +1,4 @@
+const getCommaSeparatedList = require("../../lib/util/commaSeparatedList");
 const SteamUsersAPI = require("../../src/dataSources/SteamUsersAPI");
 const { userReducer } = require("../../src/reducers/userReducer");
 const {
@@ -8,6 +9,7 @@ const {
 describe("SteamUsersAPI", () => {
   process.env.API_KEY = "foo";
   const userId = "1";
+  const userIds = ["1", "2", "3"];
   let steamUsersAPI;
   beforeEach(() => {
     steamUsersAPI = new SteamUsersAPI();
@@ -65,5 +67,56 @@ describe("SteamUsersAPI", () => {
     });
   });
 
-  describe("getUserSummariesByIds", () => {});
+  describe("getUserSummariesByIds", () => {
+    it("should have a getUserSummariesByIds method", () => {
+      expect(steamUsersAPI.getUserSummariesByIds).toBeDefined();
+    });
+
+    it(`should have the getUserSummariesByIds method call to ${STEAM_USERS_API_USERS_ENDPOINT}
+    with a key query paramater of process.env.API_KEY and a steamids parameter matching a comma separated list of the provided userIds`, () => {
+      steamUsersAPI.getUserSummariesByIds(userIds);
+      expect(steamUsersAPI.get).toBeCalledWith(STEAM_USERS_API_USERS_ENDPOINT, {
+        key: process.env.API_KEY,
+        steamids: getCommaSeparatedList(userIds)
+      });
+    });
+
+    it("should have the getUserSummariesByIds method return a list of reduced user data", async () => {
+      const mockedUserResponse = {
+        response: {
+          players: [
+            {
+              steamid: "1",
+              personaname: "foo",
+              personastate: 0,
+              lastlogoff: 11111111,
+              profileurl: "bar",
+              avatar: "foobar"
+            },
+            {
+              steamid: "2",
+              personaname: "bar",
+              personastate: 0,
+              lastlogoff: 11111111,
+              profileurl: "bar",
+              avatar: "foobar"
+            },
+            {
+              steamid: "3",
+              personaname: "fizz",
+              personastate: 0,
+              lastlogoff: 11111111,
+              profileurl: "bar",
+              avatar: "foobar"
+            }
+          ]
+        }
+      };
+      steamUsersAPI.get.mockReturnValueOnce(mockedUserResponse);
+      const data = await steamUsersAPI.getUserSummariesByIds(userIds);
+      expect(data).toEqual(
+        mockedUserResponse.response.players.map(player => userReducer(player))
+      );
+    });
+  });
 });

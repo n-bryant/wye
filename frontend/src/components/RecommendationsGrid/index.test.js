@@ -24,39 +24,51 @@ describe("RecommendationsGrid", () => {
       },
       result: {
         data: {
-          pageInfo: {
-            totalCount: 1
-          },
-          edges: [
-            {
-              node: {
-                game: {
-                  appid: "1",
-                  name: "game",
-                  developers: ["Valve"],
-                  publishers: ["Valve"],
-                  genres: ["Action"],
-                  tags: ["Multiplayer"],
-                  freeToPlay: false,
-                  onSale: false,
-                  discount: 0,
-                  initialPrice: 350,
-                  finalPrice: 350,
-                  userRating: 93,
-                  logoImageUrl: "logo",
-                  heroImageUrl: "hero"
-                },
-                ownedBy: ["foo"],
-                recentlyPlayedBy: ["foo"],
-                playtime: [
-                  {
-                    id: "foo",
-                    playtime: 20
-                  }
-                ]
+          recommendations: {
+            pageInfo: {
+              totalCount: 1
+            },
+            userDetails: [
+              {
+                id: "foo",
+                profileUrl: "url",
+                avatarName: "name",
+                avatarImageUrl: "imagePath",
+                onlineStatus: "offline",
+                lastOnlineTime: "time"
               }
-            }
-          ]
+            ],
+            edges: [
+              {
+                node: {
+                  game: {
+                    appid: "1",
+                    name: "game",
+                    developers: ["Valve"],
+                    publishers: ["Valve"],
+                    genres: ["Action"],
+                    tags: ["Multiplayer"],
+                    freeToPlay: false,
+                    onSale: false,
+                    discount: 0,
+                    initialPrice: 350,
+                    finalPrice: 350,
+                    userRating: 93,
+                    logoImageUrl: "logo",
+                    heroImageUrl: "hero"
+                  },
+                  ownedBy: ["foo"],
+                  recentlyPlayedBy: ["foo"],
+                  playtime: [
+                    {
+                      id: "foo",
+                      hoursPlayed: 20
+                    }
+                  ]
+                }
+              }
+            ]
+          }
         }
       }
     }

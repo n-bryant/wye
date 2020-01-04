@@ -6,7 +6,7 @@ const SteamNewsAPI = require("./dataSources/SteamNewsAPI");
 const SteamGamesAPI = require("./dataSources/SteamGamesAPI");
 const WyeGamesAPI = require("./dataSources/WyeGamesAPI");
 const typeDefs = require("./schema");
-const resolvers = require("./resolvers");
+const { resolvers } = require("./resolvers");
 
 /**
  * Setup up server configuration, feeding it schema and resolver definitions,

@@ -21,7 +21,9 @@ const styles = theme => ({
     alignItems: "center",
     justifyContent: "space-between"
   },
-  title: {},
+  title: {
+    cursor: "pointer"
+  },
   linksContainer: {
     display: "flex",
     justifyContent: "flex-end",

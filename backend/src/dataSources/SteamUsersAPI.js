@@ -36,21 +36,16 @@ class SteamUsersAPI extends RESTDataSource {
   /**
    * Get information for multiple users from Steam's user API's GetPlayerSummaries endpoint
    * @param { Array } userIds - The list of user IDs to get information for
-   * @returns { Object } users - a users object matching the schema for the UserConnection type
+   * @returns { Array }
    */
   async getUserSummariesByIds(userIds) {
-    const commaSeparatedIs = getCommaSeparatedList(userIds);
+    const commaSeparatedIds = getCommaSeparatedList(userIds);
     const data = await this.get(STEAM_USERS_API_USERS_ENDPOINT, {
       key: process.env.API_KEY,
-      steamids: commaSeparatedIs
+      steamids: commaSeparatedIds
     });
     const users = get(data, ["response", "players"], []);
-    const edges = users.map(user => ({
-      node: userReducer(user)
-    }));
-    return {
-      edges
-    };
+    return users.map(user => userReducer(user));
   }
 }
 

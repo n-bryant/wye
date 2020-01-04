@@ -35,6 +35,23 @@ describe("index", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
+  it("should render the welcome content if the app title in the toolbar is clicked", () => {
+    // set up useReducer hook mocking
+    const state = {
+      content: CONTENT_OPTIONS.FORM,
+      users: []
+    };
+    const dispatch = jest.fn();
+    const useReducerSpy = jest.spyOn(React, "useReducer");
+    useReducerSpy.mockImplementation(() => [state, dispatch]);
+    const wrapper = shallow(<Index {...props} />);
+    wrapper.findWhere(n => n.hasClass(props.classes.title)).prop("onClick")();
+    expect(dispatch).toHaveBeenCalledWith({
+      type: ACTIONS.SET_CONTENT,
+      value: CONTENT_OPTIONS.WELCOME
+    });
+  });
+
   it("should render the recommendations form if the content state value is set to the form content option", () => {
     // set up useReducer hook mocking
     const state = {

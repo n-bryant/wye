@@ -9,16 +9,29 @@ import createClassNameHelper from "@n_bryant/classnames-helper";
 import JSS_CLASS_NAME_PREFIX from "../../../lib/classNamePrefix";
 import { withStyles } from "@material-ui/core/styles";
 
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+
 import { AppContextConsumer } from "../../../pages/index";
 import LoadingState from "./LoadingState";
+import UserAvatar from "./UserAvatar";
+import Item from "./Item";
 import styles from "./index.styles";
 
 // recommendations query
 export const GET_RECOMMENDATIONS_QUERY = gql`
-  query GET_RECOMMENDATIONS_QUERY($users: [String!]!) {
+  query GET_RECOMMENDATIONS_QUERY($users: [ID!]!) {
     recommendations(users: $users) {
       pageInfo {
         totalCount
+      }
+      userDetails {
+        id
+        profileUrl
+        avatarName
+        avatarImageUrl
+        onlineStatus
+        lastOnlineTime
       }
       edges {
         node {
@@ -42,7 +55,7 @@ export const GET_RECOMMENDATIONS_QUERY = gql`
           recentlyPlayedBy
           playtime {
             id
-            playtime
+            hoursPlayed
           }
         }
       }
@@ -62,12 +75,79 @@ export const RecommendationsGrid = props => {
     variables: { users }
   });
   // console.log(data);
+  const edges = get(data, ["recommendations", "edges"], []);
+  const userDetails = get(data, ["recommendations", "userDetails"], []);
 
+  // loading state
   if (loading) {
     return <LoadingState />;
   }
 
-  return <div className={classnames.root()}>grid placeholder</div>;
+  // error state
+  if (error) {
+    return <div>error placeholder</div>;
+  }
+
+  return (
+    <Grid className={classnames.root()} container spacing={2}>
+      <Grid
+        className={classnames.element("subGrid", {
+          withDivider: true
+        })}
+        container
+        spacing={3}
+      >
+        <Grid item xs={12}>
+          <Typography
+            className={classnames.element("subGridTitle")}
+            variant="h1"
+          >
+            Showing Recommendations For:
+          </Typography>
+        </Grid>
+        <Grid
+          className={classnames.element("avatarContainer")}
+          container
+          item
+          xs={12}
+          spacing={2}
+        >
+          {userDetails.map((data, index) => (
+            <UserAvatar key={index} data={data} />
+          ))}
+        </Grid>
+      </Grid>
+      <Grid className={classnames.element("subGrid")} container spacing={3}>
+        <Grid item xs={12}>
+          <Typography
+            className={classnames.element("subGridTitle")}
+            variant="h3"
+          >
+            Top Recommendation:
+          </Typography>
+        </Grid>
+        <Item featured={true} userDetails={userDetails} data={edges[0].node} />
+      </Grid>
+      <Grid className={classnames.element("subGrid")} container spacing={3}>
+        <Grid item xs={12}>
+          <Typography
+            className={classnames.element("subGridTitle")}
+            variant="h3"
+          >
+            Other Recommendations:
+          </Typography>
+        </Grid>
+        {edges.slice(1, 11).map((item, index) => (
+          <Item
+            key={index}
+            featured={false}
+            userDetails={userDetails}
+            data={item.node}
+          />
+        ))}
+      </Grid>
+    </Grid>
+  );
 };
 RecommendationsGrid.classnames = createClassNameHelper(
   `${JSS_CLASS_NAME_PREFIX}RecommendationsGrid`
@@ -75,7 +155,11 @@ RecommendationsGrid.classnames = createClassNameHelper(
 RecommendationsGrid.propTypes = {
   // styles to apply
   classes: PropTypes.shape({
-    root: PropTypes.string
+    root: PropTypes.string,
+    subGrid: PropTypes.string,
+    subGridWithDivider: PropTypes.string,
+    avatarContainer: PropTypes.string,
+    subGridTitle: PropTypes.string
   }),
   // users to get recommendations for
   users: PropTypes.array

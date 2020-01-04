@@ -8,6 +8,7 @@ exports[`UsersField should render successfully 1`] = `
     className="wye-UsersField__addUserfieldContainer addUserfieldContainer"
   >
     <WithStyles(ForwardRef(TextField))
+      autoFocus={true}
       className="wye-UsersField__addUserField addUserField"
       disabled={false}
       label="Add a SteamID:"
