@@ -97,7 +97,16 @@ export const Index = props => {
         >
           <AppBar position="static" className={classnames.element("appBar")}>
             <Toolbar className={classnames.element("toolBar")}>
-              <Typography className={classnames.element("title")} variant="h1">
+              <Typography
+                className={classnames.element("title")}
+                variant="h1"
+                onClick={() =>
+                  dispatch({
+                    type: ACTIONS.SET_CONTENT,
+                    value: CONTENT_OPTIONS.WELCOME
+                  })
+                }
+              >
                 Wye
               </Typography>
               <div className={classnames.element("linksContainer")}>

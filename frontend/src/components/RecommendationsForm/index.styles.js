@@ -32,7 +32,8 @@ const styles = theme => ({
     }
   },
   title: {
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
+    color: theme.palette.common.blue6
   },
   userFieldContainer: {
     width: "100%",

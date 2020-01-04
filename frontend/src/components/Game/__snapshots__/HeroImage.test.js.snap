@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeroImage should render successfully 1`] = `
+<Fragment>
+  <img
+    alt="alt"
+    className="wye-HeroImage__image wye-HeroImage__image--hidden image imageHidden"
+    onError={[Function]}
+    onLoad={[Function]}
+    src=""
+  />
+  <img
+    alt="alt"
+    className="wye-HeroImage__placeholder placeholder"
+    src="/steamHeroPlaceholder.jpg"
+  />
+</Fragment>
+`;

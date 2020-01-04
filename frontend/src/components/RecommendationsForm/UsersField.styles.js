@@ -19,7 +19,7 @@ const styles = theme => ({
   },
   chip: {
     color: theme.palette.common.white,
-    border: `1px solid ${theme.palette.common.white}`,
+    border: `1px solid ${theme.palette.common.blue6}`,
     margin: `0 ${theme.spacing(1)}px ${theme.spacing(1)}px 0`,
     maxWidth: "175px",
     justifyContent: "space-between"

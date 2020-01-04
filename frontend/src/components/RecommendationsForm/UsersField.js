@@ -56,6 +56,7 @@ export const UsersField = props => {
           className={classnames.element("addUserField")}
           label="Add a SteamID:"
           placeholder="e.g. - 76561197975995523"
+          autoFocus={true}
           disabled={textFieldDisabled}
           value={textFieldValue}
           onChange={event => {

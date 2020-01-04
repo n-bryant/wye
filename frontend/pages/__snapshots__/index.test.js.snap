@@ -29,6 +29,7 @@ exports[`index should render successfully 1`] = `
         >
           <WithStyles(ForwardRef(Typography))
             className="wye-Index__title title"
+            onClick={[Function]}
             variant="h1"
           >
             Wye

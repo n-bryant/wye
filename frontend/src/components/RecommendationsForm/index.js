@@ -49,8 +49,10 @@ export const RecommendationsForm = props => {
         </Typography>
         <Typography variant="body1">
           Wye will compare the libraries of each provided SteamID to generate
-          multiplayer game recommendations. Use the field below to add up to six
-          SteamIDs, then click "Go!".
+          your recommendations. By default, Wye will recommend the top rated
+          multiplayer game owned by the majority of the entered SteamIDs, but
+          additional filters will become available after the initial search. Use
+          the field below to add up to six SteamIDs, then click "Go!".
         </Typography>
       </div>
       <div className={classnames.element("userFieldContainer")}>

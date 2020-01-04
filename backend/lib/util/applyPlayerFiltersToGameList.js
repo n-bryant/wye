@@ -1,27 +1,26 @@
 /**
  * returns a list of games for users, filtered by the specified filter
- * @param {String} filterValue
- * @param {Array} userList
+ * @param {Array} filterValue
  * @param {Array} gameList
+ * @param {Object} gamesByUser
  * @returns {Array}
  */
 const applyPlayerFiltersToGameList = (
-  filterValue,
-  userList = [],
-  gameList = []
+  filterValue = [],
+  gameList = [],
+  gamesByUser = {}
 ) => {
-  let filteredGameList = gameList;
-  filteredGameList = filteredGameList.filter(game => {
-    let criteriaMet = true;
-    for (let i = 0; i < userList.length; i++) {
-      if (!userList[filterValue].some(userGame => userGame.id === game)) {
-        criteriaMet = false;
+  return gameList.filter(game => {
+    let criteriaMet = false;
+    for (let i = 0; i < filterValue.length; i++) {
+      const user = gamesByUser[filterValue[i]];
+      if (user && user["games"] && user["games"].indexOf(game) !== -1) {
+        criteriaMet = true;
         break;
       }
     }
     return criteriaMet;
   });
-  return filteredGameList;
 };
 
 module.exports = applyPlayerFiltersToGameList;

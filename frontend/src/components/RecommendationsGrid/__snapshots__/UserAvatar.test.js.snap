@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserAvatar should render successfully 1`] = `
+<WithStyles(ForwardRef(Grid))
+  className="wye-UserAvatar root"
+  item={true}
+  xs={3}
+>
+  <WithStyles(ForwardRef(Tooltip))
+    classes={
+      Object {
+        "tooltip": "tooltip",
+      }
+    }
+    interactive={true}
+    title={<TooltipContent />}
+  >
+    <div
+      className="wye-UserAvatar__avatarContainer avatarContainer"
+    >
+      <WithStyles(ForwardRef(Avatar))
+        alt="avatarName"
+        className="wye-UserAvatar__image image"
+        src="avatarImageUrl"
+      />
+      <WithStyles(ForwardRef(Typography))
+        variant="body1"
+      >
+        avatarName
+      </WithStyles(ForwardRef(Typography))>
+    </div>
+  </WithStyles(ForwardRef(Tooltip))>
+</WithStyles(ForwardRef(Grid))>
+`;

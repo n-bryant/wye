@@ -7,12 +7,15 @@ const typeDefs = gql`
   }
 
   enum OrderByField {
-    name
-    freeToPlay
-    onSale
-    discount
-    finalPrice
-    userRating
+    NAME
+    FREE_TO_PLAY
+    ON_SALE
+    DISCOUNT
+    FINAL_PRICE
+    USER_RATING
+    OWNED_BY
+    RECENTLY_PLAYED_BY
+    HOURS_PLAYED
   }
 
   type Query {
@@ -24,10 +27,8 @@ const typeDefs = gql`
     game(gameId: ID!): Game
     # query for game recommendations for a list of users with filtering
     recommendations(
-      users: [String!]!
+      users: [ID!]!
       filters: FilterInput
-      first: Int
-      after: Int
       orderBy: OrderByField
       sortOrder: OrderDirection
     ): RecommendationConnection
@@ -37,10 +38,6 @@ const typeDefs = gql`
   # Pagination
   #
   type PageInfo {
-    # when paginating forwards, the cursor to continue
-    endCursor: String
-    # when paginating forwards, are there more items?
-    hasNextPage: Boolean
     # total count of nodes
     totalCount: Int
   }
@@ -232,9 +229,27 @@ const typeDefs = gql`
     playtime: [UserPlaytime]
   }
 
+  type RecommendationsUser {
+    # user's steam ID
+    id: ID!
+    # user's avatar name
+    avatarName: String
+    # url to user's avatar image
+    avatarImageUrl: String
+    # a user's online status
+    onlineStatus: String
+    # the time the user was last online
+    lastOnlineTime: String
+    # url to the user's steam profile page
+    profileUrl: String
+  }
+
   type RecommendationConnection {
     pageInfo: PageInfo
-    edges: [RecommendationEdge]
+    # details for the users the recommendations are for
+    userDetails: [RecommendationsUser]!
+    # list of recommendations
+    edges: [RecommendationEdge]!
   }
 
   type RecommendationEdge {
@@ -275,8 +290,8 @@ const typeDefs = gql`
   type UserPlaytime {
     # the user's ID
     id: ID!
-    # the user's total game play time
-    playtime: Int!
+    # the user's total game play time in hours
+    hoursPlayed: Int!
   }
 
   input FilterInput {
@@ -288,12 +303,14 @@ const typeDefs = gql`
 
   input PlayerFilters {
     # games owned by player(s)
-    ownedGames: [String]
+    ownedBy: [String]
     # games recently played by player(s)
-    recentlyPlayedGames: [String]
+    recentlyPlayedBy: [String]
   }
 
   input GameFilters {
+    # list of game IDs to filter for
+    appid_in: [String]
     # list of the genres to filter for
     genres_in: [String]
     # list of tags to filter for

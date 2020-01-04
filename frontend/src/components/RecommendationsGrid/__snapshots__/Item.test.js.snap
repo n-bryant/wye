@@ -1,0 +1,199 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Item should render successfully 1`] = `
+<WithStyles(ForwardRef(Grid))
+  className="wye-Item root"
+  item={true}
+  md={12}
+  xs={12}
+>
+  <Link
+    as="/game/1"
+    href="/game/[id]"
+  >
+    <a
+      className="wye-Item__gamePageLink gamePageLink"
+    >
+      <WithStyles(ForwardRef(Paper))
+        className="wye-Item__paper paper"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <WithStyles(HeroImage)
+          altText="foo"
+          classes={Object {}}
+          imageSrc="http://steamcdn-a.akamaihd.net/steam/apps/1/header.jpg"
+        />
+        <div
+          className="wye-Item__titleBar titleBar"
+        >
+          <WithStyles(ForwardRef(Typography))
+            variant="h1"
+          >
+            foo
+          </WithStyles(ForwardRef(Typography))>
+        </div>
+        <div
+          className="wye-Item__paperOverlayContainer wye-Item__paperOverlayContainer--hidden paperOverlayContainer paperOverlayContainerHidden"
+        >
+          <WithStyles(ForwardRef(Typography))
+            className="wye-Item__gameTitle gameTitle"
+            variant="h3"
+          >
+            foo
+          </WithStyles(ForwardRef(Typography))>
+          <div
+            className="wye-Item__userReviewContainer userReviewContainer"
+          >
+            <WithStyles(ForwardRef(Typography))
+              variant="body2"
+            >
+              User Rating:
+            </WithStyles(ForwardRef(Typography))>
+            <Icon
+              className="wye-Item__userReviewIcon userReviewIcon"
+              color={null}
+              horizontal={false}
+              path="M5,9V21H1V9H5M9,21A2,2 0 0,1 7,19V9C7,8.45 7.22,7.95 7.59,7.59L14.17,1L15.23,2.06C15.5,2.33 15.67,2.7 15.67,3.11L15.64,3.43L14.69,8H21C22.11,8 23,8.9 23,10V12C23,12.26 22.95,12.5 22.86,12.73L19.84,19.78C19.54,20.5 18.83,21 18,21H9M9,19H18.03L21,12V10H12.21L13.34,4.68L9,9.03V19Z"
+              rotate={0}
+              size={null}
+              spin={false}
+              vertical={false}
+            />
+            <WithStyles(ForwardRef(Typography))
+              variant="body2"
+            >
+              100
+              %
+            </WithStyles(ForwardRef(Typography))>
+          </div>
+          <WithStyles(ForwardRef(Typography))
+            variant="body2"
+          >
+            <span
+              className="wye-Item__categoryTitle categoryTitle"
+            >
+              Developers:
+               
+            </span>
+            dev1
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            variant="body2"
+          >
+            <span
+              className="wye-Item__categoryTitle categoryTitle"
+            >
+              Publishers:
+               
+            </span>
+            pub1, pub2
+          </WithStyles(ForwardRef(Typography))>
+          <div
+            className="wye-Item__playerContainer playerContainer"
+          >
+            <div
+              className="wye-Item__playerInfo playerInfo"
+            >
+              <WithStyles(ForwardRef(Typography))
+                className="wye-Item__playerInfoType playerInfoType"
+                variant="body2"
+              >
+                Owned By:
+                 
+              </WithStyles(ForwardRef(Typography))>
+              <img
+                alt="1"
+                className="wye-Item__avatar avatar"
+                key="1"
+                src="avatarUrl"
+              />
+            </div>
+            <div
+              className="wye-Item__playerInfo playerInfo"
+            >
+              <WithStyles(ForwardRef(Typography))
+                className="wye-Item__playerInfoType playerInfoType"
+                variant="body2"
+              >
+                Recently Played By:
+                 
+              </WithStyles(ForwardRef(Typography))>
+              <img
+                alt="1"
+                className="wye-Item__avatar avatar"
+                key="1"
+                src="avatarUrl"
+              />
+            </div>
+          </div>
+          <div
+            className="wye-Item__categoriesContainer categoriesContainer"
+          >
+            <WithStyles(ForwardRef(Typography))
+              variant="body2"
+            >
+              <span
+                className="wye-Item__categoryTitle categoryTitle"
+              >
+                Genres:
+                 
+              </span>
+              genre1, genre2, genre3
+            </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Typography))
+              variant="body2"
+            >
+              <span
+                className="wye-Item__categoryTitle categoryTitle"
+              >
+                Tags:
+                 
+              </span>
+              tag1, tag2
+            </WithStyles(ForwardRef(Typography))>
+          </div>
+        </div>
+      </WithStyles(ForwardRef(Paper))>
+    </a>
+  </Link>
+  <div
+    className="wye-Item__priceContainer priceContainer"
+  >
+    <div
+      className="wye-Item__discountPercent discountPercent"
+    >
+      <WithStyles(ForwardRef(Typography))
+        variant="h2"
+      >
+        -
+        25
+        %
+      </WithStyles(ForwardRef(Typography))>
+    </div>
+    <div
+      className="wye-Item__prices prices"
+    >
+      <div
+        className="wye-Item__initialPrice initialPrice"
+      >
+        <WithStyles(ForwardRef(Typography))
+          color="inherit"
+          variant="body2"
+        >
+          $10.00
+        </WithStyles(ForwardRef(Typography))>
+      </div>
+      <div
+        className="wye-Item__finalPrice finalPrice"
+      >
+        <WithStyles(ForwardRef(Typography))
+          variant="body2"
+        >
+          $75.00
+        </WithStyles(ForwardRef(Typography))>
+      </div>
+    </div>
+  </div>
+</WithStyles(ForwardRef(Grid))>
+`;
