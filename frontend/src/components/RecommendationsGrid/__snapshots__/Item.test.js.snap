@@ -4,6 +4,7 @@ exports[`Item should render successfully 1`] = `
 <WithStyles(ForwardRef(Grid))
   className="wye-Item root"
   item={true}
+  lg={8}
   md={12}
   xs={12}
 >
