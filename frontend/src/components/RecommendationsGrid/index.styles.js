@@ -21,6 +21,30 @@ const styles = theme => ({
   },
   subGridTitle: {
     color: theme.palette.common.blue6
+  },
+  subGridTitleCenteredWhenLg: {
+    [theme.breakpoints.up("lg")]: {
+      textAlign: "center"
+    }
+  },
+  editButton: {
+    border: "1px solid transparent",
+    minWidth: "175px",
+    textTransform: "none",
+    transition: "all .25s ease-in-out",
+    "&:hover": {
+      background: "rgba(0,0,0,.5)",
+      border: "1px solid hsla(0,0%,100%,0.2)",
+      transition: "all .25s ease-in-out"
+    },
+    "&:active": {
+      border: `1px solid ${theme.palette.common.blue6}`
+    }
+  },
+  editIcon: {
+    height: "1rem",
+    fill: "white",
+    marginRight: "0.5rem"
   }
 });
 export default styles;

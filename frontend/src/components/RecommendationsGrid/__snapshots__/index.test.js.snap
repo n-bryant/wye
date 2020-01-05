@@ -4,9 +4,17 @@ exports[`RecommendationsGrid should render successfully 1`] = `
 <RecommendationsGrid
   classes={
     Object {
+      "avatarContainer": "avatarContainer",
+      "editButton": "editButton",
+      "editIcon": "editIcon",
       "root": "root",
+      "subGrid": "subGrid",
+      "subGridTitle": "subGridTitle",
+      "subGridTitleCenteredWhenLg": "subGridTitleCenteredWhenLg",
+      "subGridWithDivider": "subGridWithDivider",
     }
   }
+  dispatch={[MockFunction]}
   users={
     Array [
       "foo",

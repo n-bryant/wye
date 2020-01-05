@@ -53,7 +53,13 @@ export const Item = props => {
   };
 
   return (
-    <Grid className={classnames.root()} item xs={12} md={featured ? 12 : 6}>
+    <Grid
+      className={classnames.root()}
+      item
+      xs={12}
+      md={featured ? 12 : 6}
+      lg={featured ? 8 : 6}
+    >
       <Link href="/game/[id]" as={`/game/${game.appid}`}>
         <a className={classnames.element("gamePageLink")}>
           <Paper

@@ -9,9 +9,17 @@ import RecommendationsGridWithContext, {
 describe("RecommendationsGrid", () => {
   const props = {
     classes: {
-      root: "root"
+      root: "root",
+      subGrid: "subGrid",
+      editButton: "editButton",
+      editIcon: "editIcon",
+      subGridWithDivider: "subGridWithDivider",
+      avatarContainer: "avatarContainer",
+      subGridTitle: "subGridTitle",
+      subGridTitleCenteredWhenLg: "subGridTitleCenteredWhenLg"
     },
-    users: ["foo"]
+    users: ["foo"],
+    dispatch: jest.fn()
   };
 
   const mocks = [
