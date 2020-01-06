@@ -54,17 +54,14 @@ describe("SteamNewsAPI", () => {
       );
     });
 
-    it("should build edges for the returned articles object by using the articleReducer", async () => {
+    it("should build a list of articles to return by using the articleReducer", async () => {
       steamNewsAPI.get.mockReturnValueOnce(mockedArticlesResponse);
       const data = await steamNewsAPI.getNewsForGameById(gameId);
-      const mockedEdges = mockedArticlesResponse.appnews.newsitems.map(
-        article => ({
-          node: articleReducer(article)
-        })
+      expect(data).toEqual(
+        mockedArticlesResponse.appnews.newsitems.map(article =>
+          articleReducer(article)
+        )
       );
-      expect(data).toMatchObject({
-        edges: mockedEdges
-      });
     });
   });
 });

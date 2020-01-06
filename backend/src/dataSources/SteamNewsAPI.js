@@ -20,7 +20,7 @@ class SteamNewsAPI extends RESTDataSource {
   /**
    * Gets a game's news information from Steam's news API's GetNewsForApp endpoint
    * @param { String } gameId - The game's ID to get articles for
-   * @returns { Object } articles - Object containing Article object edges matching the schema for the Article type
+   * @returns { Array }
    */
   async getNewsForGameById(gameId) {
     const data = await this.get(STEAM_NEWS_API_ARTICLES_ENDPOINT, {
@@ -28,12 +28,7 @@ class SteamNewsAPI extends RESTDataSource {
       count: STEAM_NEWS_API_ARTICLE_COUNT
     });
     const articles = get(data, ["appnews", "newsitems"], []);
-    const edges = articles.map(article => ({
-      node: articleReducer(article)
-    }));
-    return {
-      edges
-    };
+    return articles.map(article => articleReducer(article));
   }
 }
 

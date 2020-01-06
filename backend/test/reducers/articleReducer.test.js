@@ -6,6 +6,7 @@ describe("articleReducer", () => {
     gid: "1",
     appid: "2",
     date: 11111111,
+    author: "author",
     title: "foo",
     url: "bar",
     contents: "foobar"
@@ -24,6 +25,10 @@ describe("articleReducer", () => {
     expect(reducedArticle.printDate).toBe(
       getFormattedUnixTime(mockedArticle.date)
     );
+  });
+
+  it("should map the provided author to the title property", () => {
+    expect(reducedArticle.author).toBe(mockedArticle.author);
   });
 
   it("should map the provided title to the title property", () => {

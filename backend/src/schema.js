@@ -22,7 +22,7 @@ const typeDefs = gql`
     # query for a single user by ID
     user(userId: ID!): User!
     # query for articles by game ID
-    articles(gameId: ID!): ArticleConnection
+    articles(gameId: ID!): [Article]
     # query for a game by ID
     game(gameId: ID!): Game
     # query for game recommendations for a list of users with filtering
@@ -89,21 +89,14 @@ const typeDefs = gql`
     appId: Int
     # the date the article was released
     printDate: String
+    # the article's author
+    author: String
     # the title of the article
     title: String
     # the url to the article's source
     url: String
     # the html contents of the article
     contents: String
-  }
-
-  type ArticleConnection {
-    pageInfo: PageInfo
-    edges: [ArticleEdge]
-  }
-
-  type ArticleEdge {
-    node: Article!
   }
 
   #
@@ -113,11 +106,7 @@ const typeDefs = gql`
     # detailed data for the game
     details(gameId: ID!): GameDetails
     # articles relating to the game
-    articles(
-      gameId: ID!
-      first: Int!
-      orderBy: OrderDirection
-    ): ArticleConnection
+    articles(gameId: ID!): [Article]
   }
 
   type GameDetails {
