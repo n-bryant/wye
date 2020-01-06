@@ -11,6 +11,7 @@ const articleReducer = article => ({
   id: article["gid"],
   appId: article["appid"],
   printDate: getFormattedUnixTime(article["date"]),
+  author: article["author"],
   title: article["title"],
   url: article["url"],
   contents: article["contents"]

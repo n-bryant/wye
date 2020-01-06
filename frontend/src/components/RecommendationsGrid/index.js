@@ -82,7 +82,7 @@ export const RecommendationsGrid = props => {
   const { loading, error, data } = useQuery(GET_RECOMMENDATIONS_QUERY, {
     variables: { users }
   });
-  // console.log(data);
+
   const edges = get(data, ["recommendations", "edges"], []);
   const userDetails = get(data, ["recommendations", "userDetails"], []);
 

@@ -97,16 +97,19 @@ const gameReducer = game => {
     publishers: game["publishers"],
     website: game["website"],
     platforms: getPlatforms(game["platforms"]),
-    metacritic: {
-      score: game["metacritic"]["score"],
-      reviewsPageUrl: game["metacritic"]["url"]
-    },
+    metacritic: game["metacritic"]
+      ? {
+          score: game["metacritic"]["score"],
+          reviewsPageUrl: game["metacritic"]["url"]
+        }
+      : {
+          score: 0,
+          reviewsPageUrl: ""
+        },
     categories: game["categories"],
     genres: game["genres"],
     headerImageUrl: game["header_image"],
-    heroImageUrl: `${GAME_IMAGES_BASE_URL}${
-      game["steam_appid"]
-    }/library_hero.jpg`,
+    heroImageUrl: `${GAME_IMAGES_BASE_URL}${game["steam_appid"]}/library_hero.jpg`,
     logoImageUrl: `${GAME_IMAGES_BASE_URL}${game["steam_appid"]}/logo.png`,
     backgroundImageUrl: game["background"],
     screenshots: getScreenshots(game["screenshots"]),

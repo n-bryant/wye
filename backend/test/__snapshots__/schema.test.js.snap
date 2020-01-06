@@ -200,10 +200,13 @@ Object {
             "value": "articles",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "ArticleConnection",
+            "kind": "ListType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "Article",
+              },
             },
           },
         },
@@ -722,6 +725,23 @@ Object {
           "kind": "FieldDefinition",
           "name": Object {
             "kind": "Name",
+            "value": "author",
+          },
+          "type": Object {
+            "kind": "NamedType",
+            "name": Object {
+              "kind": "Name",
+              "value": "String",
+            },
+          },
+        },
+        Object {
+          "arguments": Array [],
+          "description": undefined,
+          "directives": Array [],
+          "kind": "FieldDefinition",
+          "name": Object {
+            "kind": "Name",
             "value": "title",
           },
           "type": Object {
@@ -772,87 +792,6 @@ Object {
       "name": Object {
         "kind": "Name",
         "value": "Article",
-      },
-    },
-    Object {
-      "description": undefined,
-      "directives": Array [],
-      "fields": Array [
-        Object {
-          "arguments": Array [],
-          "description": undefined,
-          "directives": Array [],
-          "kind": "FieldDefinition",
-          "name": Object {
-            "kind": "Name",
-            "value": "pageInfo",
-          },
-          "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "PageInfo",
-            },
-          },
-        },
-        Object {
-          "arguments": Array [],
-          "description": undefined,
-          "directives": Array [],
-          "kind": "FieldDefinition",
-          "name": Object {
-            "kind": "Name",
-            "value": "edges",
-          },
-          "type": Object {
-            "kind": "ListType",
-            "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "ArticleEdge",
-              },
-            },
-          },
-        },
-      ],
-      "interfaces": Array [],
-      "kind": "ObjectTypeDefinition",
-      "name": Object {
-        "kind": "Name",
-        "value": "ArticleConnection",
-      },
-    },
-    Object {
-      "description": undefined,
-      "directives": Array [],
-      "fields": Array [
-        Object {
-          "arguments": Array [],
-          "description": undefined,
-          "directives": Array [],
-          "kind": "FieldDefinition",
-          "name": Object {
-            "kind": "Name",
-            "value": "node",
-          },
-          "type": Object {
-            "kind": "NonNullType",
-            "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "Article",
-              },
-            },
-          },
-        },
-      ],
-      "interfaces": Array [],
-      "kind": "ObjectTypeDefinition",
-      "name": Object {
-        "kind": "Name",
-        "value": "ArticleEdge",
       },
     },
     Object {
@@ -919,43 +858,6 @@ Object {
                 },
               },
             },
-            Object {
-              "defaultValue": undefined,
-              "description": undefined,
-              "directives": Array [],
-              "kind": "InputValueDefinition",
-              "name": Object {
-                "kind": "Name",
-                "value": "first",
-              },
-              "type": Object {
-                "kind": "NonNullType",
-                "type": Object {
-                  "kind": "NamedType",
-                  "name": Object {
-                    "kind": "Name",
-                    "value": "Int",
-                  },
-                },
-              },
-            },
-            Object {
-              "defaultValue": undefined,
-              "description": undefined,
-              "directives": Array [],
-              "kind": "InputValueDefinition",
-              "name": Object {
-                "kind": "Name",
-                "value": "orderBy",
-              },
-              "type": Object {
-                "kind": "NamedType",
-                "name": Object {
-                  "kind": "Name",
-                  "value": "OrderDirection",
-                },
-              },
-            },
           ],
           "description": undefined,
           "directives": Array [],
@@ -965,10 +867,13 @@ Object {
             "value": "articles",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "ArticleConnection",
+            "kind": "ListType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "Article",
+              },
             },
           },
         },
@@ -2658,7 +2563,7 @@ Object {
   ],
   "kind": "Document",
   "loc": Object {
-    "end": 7500,
+    "end": 7345,
     "start": 0,
   },
 }

@@ -1,6 +1,4 @@
 const styles = theme => ({
-  root: {
-    height: "100%"
-  }
+  root: {}
 });
 export default styles;
