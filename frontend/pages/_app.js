@@ -7,6 +7,51 @@ import withData from "../lib/withData";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+// set up a context provider
+const AppContext = React.createContext({});
+export const AppContextProvider = AppContext.Provider;
+export const AppContextConsumer = AppContext.Consumer;
+
+// reducer action and content options
+export const ACTIONS = {
+  SET_USERS: "setUsers",
+  SET_CONTENT: "setContent"
+};
+export const CONTENT_OPTIONS = {
+  WELCOME: "WELCOME",
+  FORM: "FORM",
+  RECOMMENDATIONS: "RECOMMENDATIONS"
+};
+
+// initial state values
+export const INITIAL_STATE = {
+  content: CONTENT_OPTIONS.WELCOME,
+  users: []
+};
+
+/**
+ * reducer for updating state values
+ * @param {Object} state
+ * @param {Object} action
+ * @returns {Object}
+ */
+export const reducer = (state, action) => {
+  switch (action.type) {
+    case ACTIONS.SET_USERS:
+      return {
+        ...state,
+        users: action.value
+      };
+    case ACTIONS.SET_CONTENT:
+      return {
+        ...state,
+        content: action.value
+      };
+    default:
+      throw new Error();
+  }
+};
+
 export class WyeApp extends App {
   componentDidMount() {
     // Remove the server-side injected CSS.
@@ -27,20 +72,35 @@ export class WyeApp extends App {
   }
 
   render() {
-    const { Component, apollo, pageProps } = this.props;
-
-    return (
-      <React.Fragment>
-        <CssBaseline />
-        <ApolloProvider client={apollo}>
-          <Page>
-            <Component {...pageProps} />
-          </Page>
-        </ApolloProvider>
-      </React.Fragment>
-    );
+    return <WyeWithState {...this.props} />;
   }
 }
 
+// app with state
+export const WyeWithState = props => {
+  const { Component, apollo, pageProps } = props;
+  const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE);
+
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <ApolloProvider client={apollo}>
+        <AppContextProvider
+          value={{
+            state,
+            dispatch
+          }}
+        >
+          <Page>
+            <Component {...pageProps} />
+          </Page>
+        </AppContextProvider>
+      </ApolloProvider>
+    </React.Fragment>
+  );
+};
+
 // app with apollo client
-export default withData(WyeApp);
+export const WyeWithData = withData(WyeApp);
+
+export default WyeWithData;

@@ -20,7 +20,7 @@ import {
   AppContextConsumer,
   ACTIONS,
   CONTENT_OPTIONS
-} from "../../../pages/index";
+} from "../../../pages/_app";
 import LoadingState from "./LoadingState";
 import UserAvatar from "./UserAvatar";
 import Item from "./Item";
@@ -230,7 +230,7 @@ export const StyledRecommendationsGrid = withStyles(styles)(
 );
 
 /**
- * Renders a StyledRecommendationsGrid with context from the index page
+ * Renders a StyledRecommendationsGrid with app context
  */
 export const RecommendationsGridWithContext = props => (
   <AppContextConsumer>

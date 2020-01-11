@@ -11,7 +11,6 @@ import createClassNameHelper from "@n_bryant/classnames-helper";
 import JSS_CLASS_NAME_PREFIX from "../../lib/classNamePrefix";
 
 import GameDetails from "../../src/components/Game/GameDetails";
-import GameArticles from "../../src/components/Game/GameArticles";
 
 import styles from "./[id].styles";
 
@@ -21,11 +20,14 @@ export const GET_GAME_QUERY = gql`
     game(gameId: $gameId) {
       details(gameId: $gameId) {
         id
+        name
         releaseDate
         shortDescription
         headerImageUrl
         backgroundImageUrl
         price {
+          freeToPlay
+          onSale
           discountPercentage
           initialFormatted
           finalFormatted
@@ -45,11 +47,19 @@ export const GET_GAME_QUERY = gql`
         genres {
           description
         }
+        highlightedVideos {
+          id
+          title
+          thumbnailUrl
+          fullsizeUrl
+        }
         screenshots {
+          id
           thumbnailUrl
           fullsizeUrl
         }
         videos {
+          id
           title
           thumbnailUrl
           fullsizeUrl
@@ -78,9 +88,8 @@ export const Game = props => {
       gameId: router.query.id
     }
   });
-  // console.log(data);
-  const details = get(data, ["game", "details"], {});
-  const articles = get(data, ["game", "articles"], []);
+  const details = get(data, ["game", "details"]);
+  const articles = get(data, ["game", "articles"]);
 
   if (loading) {
     // game query loading state
@@ -92,8 +101,7 @@ export const Game = props => {
 
   return (
     <div className={classnames.root()}>
-      <GameDetails data={details} />
-      <GameArticles data={articles} />
+      {details && articles && <GameDetails data={{ details, articles }} />}
     </div>
   );
 };

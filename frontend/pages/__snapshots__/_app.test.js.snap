@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WyeApp should render successfully 1`] = `<WyeWithState />`;
+
+exports[`WyeWithState should render successfully 1`] = `
+<Fragment>
+  <CssBaseline />
+  <ApolloProvider
+    client={[MockFunction]}
+  >
+    <ContextProvider
+      value={
+        Object {
+          "dispatch": [Function],
+          "state": Object {
+            "content": "WELCOME",
+            "users": Array [],
+          },
+        }
+      }
+    >
+      <WithStyles(Page)
+        classes={Object {}}
+      >
+        <Component />
+      </WithStyles(Page)>
+    </ContextProvider>
+  </ApolloProvider>
+</Fragment>
+`;

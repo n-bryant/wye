@@ -15,6 +15,7 @@ const {
 describe("gameReducer", () => {
   const mockedGame = {
     stam_appid: "1",
+    name: "foo",
     is_free: false,
     release_date: {
       date: 1111111
@@ -65,13 +66,18 @@ describe("gameReducer", () => {
         thumbnail: "foo",
         webm: {
           max: "foo"
-        }
+        },
+        highlight: false
       }
     ]
   };
 
   it("should map the provided game's steam_appid to the id property", () => {
     expect(gameReducer(mockedGame).id).toBe(mockedGame.steam_appid);
+  });
+
+  it("should map the provided game's name to the name property", () => {
+    expect(gameReducer(mockedGame).name).toBe(mockedGame.name);
   });
 
   it("should map the provided game's release_date date value to the releaseDate property", () => {
@@ -162,7 +168,7 @@ describe("gameReducer", () => {
   });
 
   it("should call getVideos to get the game's videos data", () => {
-    expect(gameReducer(mockedGame).screenshots).toEqual(
+    expect(gameReducer(mockedGame).videos).toEqual(
       getVideos(mockedGame.movies)
     );
   });
@@ -241,7 +247,6 @@ describe("gameReducer", () => {
     it("should format the provided screenshot data into a shape that matches the schema", () => {
       expect(getScreenshots(mockedGame.screenshots)).toEqual[
         {
-          id: mockedGame.screenshots[0].id,
           thumbnailUrl: mockedGame.screenshots[0].path_thumbnail,
           fullsizeUrl: mockedGame.screenshots[0].path_full
         }
@@ -253,7 +258,6 @@ describe("gameReducer", () => {
     it("should format the provided videos data into a shape that matches the schema", () => {
       expect(getVideos(mockedGame.movies)).toEqual[
         {
-          id: mockedGame.screenshots[0].id,
           title: mockedGame.screenshots[0].title,
           thumbnailUrl: mockedGame.movies[0].thumbnail,
           fullsizeUrl: mockedGame.movies[0].webm.max

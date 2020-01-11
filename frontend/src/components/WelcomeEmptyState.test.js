@@ -1,4 +1,4 @@
-import { ACTIONS, CONTENT_OPTIONS } from "../../pages/index";
+import { ACTIONS, CONTENT_OPTIONS } from "../../pages/_app";
 import ActionButton from "./ActionButton";
 import WelcomeEmptyStateWithContext, {
   WelcomeEmptyState

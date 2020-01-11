@@ -10,11 +10,7 @@ import JSS_CLASS_NAME_PREFIX from "../../lib/classNamePrefix";
 import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 
-import {
-  AppContextConsumer,
-  ACTIONS,
-  CONTENT_OPTIONS
-} from "../../pages/index";
+import { AppContextConsumer, ACTIONS, CONTENT_OPTIONS } from "../../pages/_app";
 import ActionButton from "./ActionButton";
 import styles from "./WelcomeEmptyState.styles";
 
@@ -101,7 +97,7 @@ WelcomeEmptyState.defaultProps = {
 export const StyledWelcomeEmptyState = withStyles(styles)(WelcomeEmptyState);
 
 /**
- * Renders a StyledWelcomeEmptyState with context from the index page
+ * Renders a StyledWelcomeEmptyState with app context
  */
 export const WelcomeEmptyStateWithContext = props => (
   <AppContextConsumer>

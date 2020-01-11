@@ -15,7 +15,7 @@ import {
   AppContextConsumer,
   ACTIONS,
   CONTENT_OPTIONS
-} from "../../../pages/index";
+} from "../../../pages/_app";
 import UsersField from "./UsersField";
 import ActionButton from "../ActionButton";
 import styles from "./index.styles";
@@ -100,7 +100,7 @@ export const StyledRecommendationsForm = withStyles(styles)(
 );
 
 /**
- * Renders a StyledRecommendationsForm with context from the index page
+ * Renders a StyledRecommendationsForm with app context
  */
 export const RecommendationsFormWithContext = props => (
   <AppContextConsumer>

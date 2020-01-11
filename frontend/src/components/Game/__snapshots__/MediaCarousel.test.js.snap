@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MediaCarousel should render successfully 1`] = `
+<WithStyles(ForwardRef(Grid))
+  className="wye-MediaCarousel root"
+  container={true}
+  item={true}
+  md={7}
+  spacing={1}
+  xs={12}
+>
+  <WithStyles(ForwardRef(Grid))
+    className="wye-MediaCarousel__featuredItemContainer featuredItemContainer"
+    item={true}
+    xs={12}
+  >
+    <div
+      className="wye-MediaCarousel__featuredItemWrapper featuredItemWrapper"
+    >
+      <img
+        className="wye-MediaCarousel__featuredItemSpacer featuredItemSpacer"
+        src="/featuredItemSpacer.png"
+      />
+      <Feature />
+    </div>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    className="wye-MediaCarousel__thumbnailsContainer thumbnailsContainer"
+    container={true}
+    item={true}
+    spacing={1}
+    wrap="nowrap"
+    xs={12}
+  >
+    <WithStyles(ForwardRef(Grid))
+      className="wye-MediaCarousel__setFeaturedButtonContainer setFeaturedButtonContainer"
+      item={true}
+      key="1"
+    >
+      <WithStyles(ForwardRef(Button))
+        className="wye-MediaCarousel__setFeaturedButton setFeaturedButton"
+        onClick={[Function]}
+      >
+        <img
+          alt="1"
+          className="wye-MediaCarousel__thumbnail thumbnail"
+          src="thumb1"
+        />
+        <div
+          className="wye-MediaCarousel__playIconContainer playIconContainer"
+        >
+          <Icon
+            className="wye-MediaCarousel__playIcon playIcon"
+            color={null}
+            horizontal={false}
+            path="M8,5.14V19.14L19,12.14L8,5.14Z"
+            rotate={0}
+            size={null}
+            spin={false}
+            vertical={false}
+          />
+        </div>
+      </WithStyles(ForwardRef(Button))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      className="wye-MediaCarousel__setFeaturedButtonContainer setFeaturedButtonContainer"
+      item={true}
+      key="2"
+    >
+      <WithStyles(ForwardRef(Button))
+        className="wye-MediaCarousel__setFeaturedButton setFeaturedButton"
+        onClick={[Function]}
+      >
+        <img
+          alt="2"
+          className="wye-MediaCarousel__thumbnail thumbnail"
+          src="thumb2"
+        />
+      </WithStyles(ForwardRef(Button))>
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Grid))>
+`;

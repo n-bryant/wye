@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import get from "lodash.get";
+
 import { withStyles } from "@material-ui/core/styles";
 import createClassNameHelper from "@n_bryant/classnames-helper";
 import JSS_CLASS_NAME_PREFIX from "../lib/classNamePrefix";
@@ -16,50 +18,7 @@ import IndexPageBackground from "../src/components/ScrollingBackground/IndexPage
 import RecommendationsGrid from "../src/components/RecommendationsGrid";
 import styles from "./index.styles";
 
-// set up a context provider
-const AppContext = React.createContext({});
-export const AppContextProvider = AppContext.Provider;
-export const AppContextConsumer = AppContext.Consumer;
-
-// reducer action and content options
-export const ACTIONS = {
-  SET_USERS: "setUsers",
-  SET_CONTENT: "setContent"
-};
-export const CONTENT_OPTIONS = {
-  WELCOME: "WELCOME",
-  FORM: "FORM",
-  RECOMMENDATIONS: "RECOMMENDATIONS"
-};
-
-// initial state values
-export const INITIAL_STATE = {
-  content: CONTENT_OPTIONS["WELCOME"],
-  users: []
-};
-
-/**
- * reducer for updating state values
- * @param {Object} state
- * @param {Object} action
- * @returns {Object}
- */
-export const reducer = (state, action) => {
-  switch (action.type) {
-    case ACTIONS.SET_USERS:
-      return {
-        ...state,
-        users: action.value
-      };
-    case ACTIONS.SET_CONTENT:
-      return {
-        ...state,
-        content: action.value
-      };
-    default:
-      throw new Error();
-  }
-};
+import { AppContextConsumer, ACTIONS, CONTENT_OPTIONS } from "./_app";
 
 /**
  * renders the index page's content,
@@ -67,10 +26,10 @@ export const reducer = (state, action) => {
  */
 export const Index = props => {
   const classnames = Index.classnames(props);
-  const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE);
+  const { content, dispatch } = props;
 
   const getContent = () => {
-    switch (state.content) {
+    switch (content) {
       case CONTENT_OPTIONS.WELCOME:
         return <WelcomeEmptyState />;
       case CONTENT_OPTIONS.FORM:
@@ -83,58 +42,49 @@ export const Index = props => {
   };
 
   return (
-    <AppContextProvider
-      value={{
-        state,
-        dispatch
-      }}
-    >
-      <div className={classnames.root()}>
-        <Container
-          className={classnames.element("container")}
-          maxWidth={false}
-          disableGutters
-        >
-          <AppBar position="static" className={classnames.element("appBar")}>
-            <Toolbar className={classnames.element("toolBar")}>
-              <Typography
-                className={classnames.element("title")}
-                variant="h1"
-                onClick={() =>
-                  dispatch({
-                    type: ACTIONS.SET_CONTENT,
-                    value: CONTENT_OPTIONS.WELCOME
-                  })
-                }
-              >
-                Wye
-              </Typography>
-              <div className={classnames.element("linksContainer")}>
-                <Link href="/faq">
-                  <a className={classnames.element("link")}>faq</a>
-                </Link>
-                <Link href="https://github.com/n-bryant/wye" prefetch={false}>
-                  <a className={classnames.element("link")} target="_blank">
-                    <Icon
-                      className={classnames.element("githubIcon")}
-                      path={mdiGithubCircle}
-                    />
-                  </a>
-                </Link>
-              </div>
-            </Toolbar>
-          </AppBar>
-          <div className={classnames.element("main")}>
-            <div className={classnames.element("contentContainer")}>
-              <div className={classnames.element("content")}>
-                {getContent()}
-              </div>
+    <div className={classnames.root()}>
+      <Container
+        className={classnames.element("container")}
+        maxWidth={false}
+        disableGutters
+      >
+        <AppBar position="static" className={classnames.element("appBar")}>
+          <Toolbar className={classnames.element("toolBar")}>
+            <Typography
+              className={classnames.element("title")}
+              variant="h1"
+              onClick={() =>
+                dispatch({
+                  type: ACTIONS.SET_CONTENT,
+                  value: CONTENT_OPTIONS.WELCOME
+                })
+              }
+            >
+              Wye
+            </Typography>
+            <div className={classnames.element("linksContainer")}>
+              <Link href="/faq">
+                <a className={classnames.element("link")}>faq</a>
+              </Link>
+              <Link href="https://github.com/n-bryant/wye" prefetch={false}>
+                <a className={classnames.element("link")} target="_blank">
+                  <Icon
+                    className={classnames.element("githubIcon")}
+                    path={mdiGithubCircle}
+                  />
+                </a>
+              </Link>
             </div>
+          </Toolbar>
+        </AppBar>
+        <div className={classnames.element("main")}>
+          <div className={classnames.element("contentContainer")}>
+            <div className={classnames.element("content")}>{getContent()}</div>
           </div>
-        </Container>
-        <IndexPageBackground />
-      </div>
-    </AppContextProvider>
+        </div>
+      </Container>
+      <IndexPageBackground />
+    </div>
   );
 };
 Index.classnames = createClassNameHelper(`${JSS_CLASS_NAME_PREFIX}Index`);
@@ -158,4 +108,20 @@ Index.defaultProps = {
   classes: {}
 };
 
-export default withStyles(styles)(Index);
+// apply styles
+export const StyledIndex = withStyles(styles)(Index);
+
+/**
+ * Renders a StyledRecommendationsForm with app context
+ */
+export const IndexWithContext = props => (
+  <AppContextConsumer>
+    {context => {
+      const dispatch = get(context, "dispatch", () => {});
+      const content = get(context, ["state", "content"], []);
+      return <StyledIndex dispatch={dispatch} content={content} {...props} />;
+    }}
+  </AppContextConsumer>
+);
+
+export default IndexWithContext;
