@@ -200,12 +200,15 @@ Object {
             "value": "articles",
           },
           "type": Object {
-            "kind": "ListType",
+            "kind": "NonNullType",
             "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "Article",
+              "kind": "ListType",
+              "type": Object {
+                "kind": "NamedType",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "Article",
+                },
               },
             },
           },
@@ -241,10 +244,13 @@ Object {
             "value": "game",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "Game",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "Game",
+              },
             },
           },
         },
@@ -336,10 +342,13 @@ Object {
             "value": "recommendations",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "RecommendationConnection",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "RecommendationConnection",
+              },
             },
           },
         },
@@ -829,10 +838,13 @@ Object {
             "value": "details",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "GameDetails",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "GameDetails",
+              },
             },
           },
         },
@@ -867,12 +879,15 @@ Object {
             "value": "articles",
           },
           "type": Object {
-            "kind": "ListType",
+            "kind": "NonNullType",
             "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "Article",
+              "kind": "ListType",
+              "type": Object {
+                "kind": "NamedType",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "Article",
+                },
               },
             },
           },
@@ -916,13 +931,36 @@ Object {
           "kind": "FieldDefinition",
           "name": Object {
             "kind": "Name",
+            "value": "name",
+          },
+          "type": Object {
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
+            },
+          },
+        },
+        Object {
+          "arguments": Array [],
+          "description": undefined,
+          "directives": Array [],
+          "kind": "FieldDefinition",
+          "name": Object {
+            "kind": "Name",
             "value": "releaseDate",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "String",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
             },
           },
         },
@@ -936,10 +974,13 @@ Object {
             "value": "shortDescription",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "String",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
             },
           },
         },
@@ -953,10 +994,13 @@ Object {
             "value": "price",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "Price",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "Price",
+              },
             },
           },
         },
@@ -970,10 +1014,13 @@ Object {
             "value": "controllerSupport",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "Boolean",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "Boolean",
+              },
             },
           },
         },
@@ -987,12 +1034,15 @@ Object {
             "value": "developers",
           },
           "type": Object {
-            "kind": "ListType",
+            "kind": "NonNullType",
             "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "String",
+              "kind": "ListType",
+              "type": Object {
+                "kind": "NamedType",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "String",
+                },
               },
             },
           },
@@ -1007,12 +1057,15 @@ Object {
             "value": "publishers",
           },
           "type": Object {
-            "kind": "ListType",
+            "kind": "NonNullType",
             "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "String",
+              "kind": "ListType",
+              "type": Object {
+                "kind": "NamedType",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "String",
+                },
               },
             },
           },
@@ -1027,24 +1080,7 @@ Object {
             "value": "website",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "String",
-            },
-          },
-        },
-        Object {
-          "arguments": Array [],
-          "description": undefined,
-          "directives": Array [],
-          "kind": "FieldDefinition",
-          "name": Object {
-            "kind": "Name",
-            "value": "platforms",
-          },
-          "type": Object {
-            "kind": "ListType",
+            "kind": "NonNullType",
             "type": Object {
               "kind": "NamedType",
               "name": Object {
@@ -1061,13 +1097,39 @@ Object {
           "kind": "FieldDefinition",
           "name": Object {
             "kind": "Name",
+            "value": "platforms",
+          },
+          "type": Object {
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "ListType",
+              "type": Object {
+                "kind": "NamedType",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "String",
+                },
+              },
+            },
+          },
+        },
+        Object {
+          "arguments": Array [],
+          "description": undefined,
+          "directives": Array [],
+          "kind": "FieldDefinition",
+          "name": Object {
+            "kind": "Name",
             "value": "metacritic",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "MetacriticInfo",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "MetacriticInfo",
+              },
             },
           },
         },
@@ -1081,12 +1143,15 @@ Object {
             "value": "categories",
           },
           "type": Object {
-            "kind": "ListType",
+            "kind": "NonNullType",
             "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "Category",
+              "kind": "ListType",
+              "type": Object {
+                "kind": "NamedType",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "Category",
+                },
               },
             },
           },
@@ -1101,12 +1166,15 @@ Object {
             "value": "genres",
           },
           "type": Object {
-            "kind": "ListType",
+            "kind": "NonNullType",
             "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "Genre",
+              "kind": "ListType",
+              "type": Object {
+                "kind": "NamedType",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "Genre",
+                },
               },
             },
           },
@@ -1121,10 +1189,13 @@ Object {
             "value": "headerImageUrl",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "String",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
             },
           },
         },
@@ -1138,10 +1209,13 @@ Object {
             "value": "heroImageUrl",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "String",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
             },
           },
         },
@@ -1155,10 +1229,13 @@ Object {
             "value": "logoImageUrl",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "String",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
             },
           },
         },
@@ -1172,10 +1249,36 @@ Object {
             "value": "backgroundImageUrl",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "String",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
+            },
+          },
+        },
+        Object {
+          "arguments": Array [],
+          "description": undefined,
+          "directives": Array [],
+          "kind": "FieldDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "highlightedVideos",
+          },
+          "type": Object {
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "ListType",
+              "type": Object {
+                "kind": "NamedType",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "Video",
+                },
+              },
             },
           },
         },
@@ -1189,12 +1292,15 @@ Object {
             "value": "screenshots",
           },
           "type": Object {
-            "kind": "ListType",
+            "kind": "NonNullType",
             "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "Screenshot",
+              "kind": "ListType",
+              "type": Object {
+                "kind": "NamedType",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "Screenshot",
+                },
               },
             },
           },
@@ -1209,12 +1315,15 @@ Object {
             "value": "videos",
           },
           "type": Object {
-            "kind": "ListType",
+            "kind": "NonNullType",
             "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "Video",
+              "kind": "ListType",
+              "type": Object {
+                "kind": "NamedType",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "Video",
+                },
               },
             },
           },
@@ -1313,6 +1422,23 @@ Object {
             "name": Object {
               "kind": "Name",
               "value": "String",
+            },
+          },
+        },
+        Object {
+          "arguments": Array [],
+          "description": undefined,
+          "directives": Array [],
+          "kind": "FieldDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "initialRaw",
+          },
+          "type": Object {
+            "kind": "NamedType",
+            "name": Object {
+              "kind": "Name",
+              "value": "Int",
             },
           },
         },
@@ -1493,10 +1619,13 @@ Object {
             "value": "id",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "ID",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "ID",
+              },
             },
           },
         },
@@ -1556,10 +1685,13 @@ Object {
             "value": "id",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "ID",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "ID",
+              },
             },
           },
         },
@@ -1573,10 +1705,13 @@ Object {
             "value": "title",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "String",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
             },
           },
         },
@@ -1590,10 +1725,13 @@ Object {
             "value": "thumbnailUrl",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "String",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
             },
           },
         },
@@ -1607,10 +1745,13 @@ Object {
             "value": "fullsizeUrl",
           },
           "type": Object {
-            "kind": "NamedType",
-            "name": Object {
-              "kind": "Name",
-              "value": "String",
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
             },
           },
         },
@@ -2563,7 +2704,7 @@ Object {
   ],
   "kind": "Document",
   "loc": Object {
-    "end": 7345,
+    "end": 7522,
     "start": 0,
   },
 }

@@ -15,6 +15,7 @@ const getPriceDetails = ({ is_free, price_overview }) => {
       discount_percent,
       initial_formatted,
       final_formatted,
+      initial,
       final
     } = price_overview;
     return {
@@ -23,6 +24,7 @@ const getPriceDetails = ({ is_free, price_overview }) => {
       discountPercentage: discount_percent,
       initialFormatted: initial_formatted,
       finalFormatted: final_formatted,
+      initialRaw: initial,
       finalRaw: final
     };
   }
@@ -89,6 +91,7 @@ const getVideos = videos =>
 const gameReducer = game => {
   return {
     id: game["steam_appid"],
+    name: game["name"],
     releaseDate: game["release_date"]["date"],
     shortDescription: game["short_description"],
     price: getPriceDetails(game),
@@ -112,8 +115,11 @@ const gameReducer = game => {
     heroImageUrl: `${GAME_IMAGES_BASE_URL}${game["steam_appid"]}/library_hero.jpg`,
     logoImageUrl: `${GAME_IMAGES_BASE_URL}${game["steam_appid"]}/logo.png`,
     backgroundImageUrl: game["background"],
+    highlightedVideos: getVideos(
+      game["movies"].filter(video => video.highlight)
+    ),
     screenshots: getScreenshots(game["screenshots"]),
-    videos: getVideos(game["movies"])
+    videos: getVideos(game["movies"].filter(video => !video.highlight))
   };
 };
 

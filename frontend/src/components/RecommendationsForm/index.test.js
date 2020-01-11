@@ -1,5 +1,5 @@
 import { RecommendationsFormWithContext, RecommendationsForm } from "./index";
-import { ACTIONS, CONTENT_OPTIONS } from "../../../pages";
+import { ACTIONS, CONTENT_OPTIONS } from "../../../pages/_app";
 
 describe("RecommendationsFormWithContext", () => {
   it("should provide a dispatch function from context and pass any additional props to its rendered child", () => {

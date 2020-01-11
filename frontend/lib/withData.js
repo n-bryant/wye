@@ -1,8 +1,6 @@
 import withApollo from "next-with-apollo";
 import ApolloClient from "apollo-boost";
 
-// https://dunglas.fr/2019/05/using-next-js-and-material-ui/
-
 export const createClient = ({ headers }) =>
   new ApolloClient({
     uri:
@@ -19,4 +17,5 @@ export const createClient = ({ headers }) =>
     }
   });
 
-export default withApollo(createClient);
+// # https://www.apollographql.com/docs/react/performance/server-side-rendering/#using-getdatafromtree
+export default withApollo(createClient, { getDataFromTree: "ssr" });

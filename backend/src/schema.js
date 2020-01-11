@@ -22,16 +22,16 @@ const typeDefs = gql`
     # query for a single user by ID
     user(userId: ID!): User!
     # query for articles by game ID
-    articles(gameId: ID!): [Article]
+    articles(gameId: ID!): [Article]!
     # query for a game by ID
-    game(gameId: ID!): Game
+    game(gameId: ID!): Game!
     # query for game recommendations for a list of users with filtering
     recommendations(
       users: [ID!]!
       filters: FilterInput
       orderBy: OrderByField
       sortOrder: OrderDirection
-    ): RecommendationConnection
+    ): RecommendationConnection!
   }
 
   #
@@ -104,48 +104,52 @@ const typeDefs = gql`
   #
   type Game {
     # detailed data for the game
-    details(gameId: ID!): GameDetails
+    details(gameId: ID!): GameDetails!
     # articles relating to the game
-    articles(gameId: ID!): [Article]
+    articles(gameId: ID!): [Article]!
   }
 
   type GameDetails {
     # the game's ID
     id: ID!
+    # the game's name
+    name: String!
     # the date the game was released
-    releaseDate: String
+    releaseDate: String!
     # a brief description of the game
-    shortDescription: String
+    shortDescription: String!
     # information on pricing and current sale details for the game
-    price: Price
+    price: Price!
     # whether the game has controller support
-    controllerSupport: Boolean
+    controllerSupport: Boolean!
     # the game's developers
-    developers: [String]
+    developers: [String]!
     # the game's publishers
-    publishers: [String]
+    publishers: [String]!
     # the game's website
-    website: String
+    website: String!
     # the platforms the game can run on
-    platforms: [String]
+    platforms: [String]!
     # the game's metacritic rating and review page location
-    metacritic: MetacriticInfo
+    metacritic: MetacriticInfo!
     # the categories the game fits into
-    categories: [Category]
+    categories: [Category]!
     # the game's noted genres
-    genres: [Genre]
+    genres: [Genre]!
     # the header image for the game
-    headerImageUrl: String
+    headerImageUrl: String!
     # the hero image for the game
-    heroImageUrl: String
+    heroImageUrl: String!
     # the logo image for the game
-    logoImageUrl: String
+    logoImageUrl: String!
     # the steam store page's generated background image for the game
-    backgroundImageUrl: String
+    backgroundImageUrl: String!
+    # a game's highlighted videos
+    highlightedVideos: [Video]!
     # screenshots for the game
-    screenshots: [Screenshot]
+    screenshots: [Screenshot]!
     # videos relating to the game
-    videos: [Video]
+    videos: [Video]!
   }
 
   type Price {
@@ -159,6 +163,8 @@ const typeDefs = gql`
     initialFormatted: String
     # a formatted price
     finalFormatted: String
+    # raw initial price
+    initialRaw: Int
     # raw final price
     finalRaw: Int
   }
@@ -186,7 +192,7 @@ const typeDefs = gql`
 
   type Screenshot {
     # the screenshot's ID
-    id: ID
+    id: ID!
     # url for the screenshot's thumbnail
     thumbnailUrl: String
     # url for the fullsize screenshot
@@ -195,13 +201,13 @@ const typeDefs = gql`
 
   type Video {
     # the video's ID
-    id: ID
+    id: ID!
     # the video's title
-    title: String
+    title: String!
     # url for the video's thumbnail
-    thumbnailUrl: String
+    thumbnailUrl: String!
     # url for the full size video
-    fullsizeUrl: String
+    fullsizeUrl: String!
   }
 
   #

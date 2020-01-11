@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Game should render successfully 1`] = `
+<Game
+  classes={
+    Object {
+      "root": "root",
+    }
+  }
+>
+  <div
+    className="wye-Game root"
+  />
+</Game>
+`;
