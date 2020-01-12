@@ -22,7 +22,8 @@ import {
   AppContextConsumer
 } from "../../../pages/_app";
 import MediaCarousel from "./MediaCarousel";
-import InfoBlock from "./ReleaseInfoBlock";
+import ReleaseInfoBlock from "./ReleaseInfoBlock";
+import PriceInfoBlock from "./PriceInfoBlock";
 import GameArticles from "./GameArticles";
 
 const useStyles = makeStyles({
@@ -55,16 +56,24 @@ const useStyles = makeStyles({
   },
   detailsInnerContainer: {
     height: "100%",
+    paddingLeft: "2px !important",
     background:
-      "linear-gradient(to right,  rgba(0,0,0,0) 50%,rgba(0,0,0,0.4) 100%)"
+      "linear-gradient(to right,  rgba(0,0,0,0) 50%,rgba(0,0,0,0.5) 100%)"
   },
   detailsInnerContainerWithMaxWidth: {
     background:
-      "linear-gradient(to bottom,  rgba(0,0,0,0) 50%,rgba(0,0,0,0.4) 100%)"
+      "linear-gradient(to bottom,  rgba(0,0,0,0) 50%,rgba(0,0,0,0.5) 100%)"
   },
   detailsContainerWithMaxWidth: {
     maxWidth: "80%",
     margin: "0 auto"
+  },
+  priceContainer: {
+    margin: "12px 4px 12px 6px",
+    width: "100%"
+  },
+  priceContainerWithSmWidth: {
+    marginLeft: "-4px"
   },
   recommendationsButton: {
     padding: "0",
@@ -96,7 +105,7 @@ export const GameDetails = props => {
   const classnames = GameDetails.classnames({ classes });
 
   console.log(details);
-  const { highlightedVideos, screenshots, videos } = details;
+  const { highlightedVideos, screenshots, videos, price, metacritic } = details;
   const hasMedia =
     highlightedVideos.length || screenshots.length || videos.length;
 
@@ -170,8 +179,15 @@ export const GameDetails = props => {
               media={[...highlightedVideos, ...screenshots, ...videos]}
             />
           )}
-          <InfoBlock data={details} mdWidth={hasMedia ? 5 : 12} />
+          <ReleaseInfoBlock data={details} mdWidth={hasMedia ? 5 : 12} />
         </Grid>
+        <div
+          className={classnames.element("priceContainer", {
+            withSmWidth: ["xs", "sm"].some(val => val === width)
+          })}
+        >
+          <PriceInfoBlock data={{ price, metacritic }} />
+        </div>
       </Grid>
       <GameArticles articles={articles} />
     </div>
@@ -191,6 +207,8 @@ GameDetails.propTypes = {
     detailsInnerContainerWithMaxWidth: PropTypes.string,
     detailsContainerWithMdWidth: PropTypes.string,
     detailsContainerWithMaxWidth: PropTypes.string,
+    priceContainer: PropTypes.string,
+    priceContainerWithSmWidth: PropTypes.string,
     recommendationsButton: PropTypes.string,
     icon: PropTypes.string
   }),

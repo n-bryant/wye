@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PriceInfoBlock should render a link with the metacritic score and way to navigate to the reviews page if the metacritic score is above 0 1`] = `
+<WithStyles(ForwardRef(Typography))
+  className="wye-PriceInfoBlock__metacriticScore metacriticScore"
+  variant="body1"
+>
+  <a
+    className="wye-PriceInfoBlock__link link"
+    target="_blank"
+  >
+    99%
+  </a>
+</WithStyles(ForwardRef(Typography))>
+`;
+
+exports[`PriceInfoBlock should render a price details container with sale details if the game is on sale 1`] = `
+<div
+  className="wye-PriceInfoBlock__priceDetailsContainer wye-PriceInfoBlock__priceDetailsContainer--withDiscount priceDetailsContainer priceDetailsContainerWithDiscount"
+>
+  <WithStyles(ForwardRef(Typography))
+    className="wye-PriceInfoBlock__discountPercent discountPercent"
+    variant="h1"
+  >
+    -
+    50
+    %
+  </WithStyles(ForwardRef(Typography))>
+  <div
+    className="wye-PriceInfoBlock__priceDetails priceDetails"
+  >
+    <WithStyles(ForwardRef(Typography))
+      className="wye-PriceInfoBlock__initialPrice initialPrice"
+      variant="body2"
+    >
+      $10.00
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      variant="body1"
+    >
+      $5.00
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+</div>
+`;
+
+exports[`PriceInfoBlock should render a price details container with the sole final price value if the game is not on sale 1`] = `
+<div
+  className="wye-PriceInfoBlock__priceDetailsContainer priceDetailsContainer"
+>
+  <WithStyles(ForwardRef(Typography))
+    variant="body1"
+  >
+    Price:
+  </WithStyles(ForwardRef(Typography))>
+  <WithStyles(ForwardRef(Typography))
+    className="wye-PriceInfoBlock__finalPrice finalPrice"
+    variant="body1"
+  >
+    $5.00
+  </WithStyles(ForwardRef(Typography))>
+</div>
+`;
+
+exports[`PriceInfoBlock should render successfully 1`] = `
+<div
+  className="wye-PriceInfoBlock root"
+>
+  <div
+    className="wye-PriceInfoBlock__priceContainer priceContainer"
+  >
+    <WithStyles(ForwardRef(Typography))
+      className="wye-PriceInfoBlock__priceFree priceFree"
+      variant="h2"
+    >
+      Free to Play
+    </WithStyles(ForwardRef(Typography))>
+    <a
+      className="wye-PriceInfoBlock__link link"
+      href="https://store.steampowered.com/app/1"
+      target="_blank"
+    >
+      <WithStyles(ForwardRef(Button))
+        className="wye-PriceInfoBlock__storeButton storeButton"
+      >
+        <WithStyles(ForwardRef(Typography))
+          variant="body1"
+        >
+          Visit Store Page
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(Button))>
+    </a>
+  </div>
+  <div
+    className="wye-PriceInfoBlock__metacriticContainer metacriticContainer"
+  >
+    <div
+      className="wye-PriceInfoBlock__metacriticTitle metacriticTitle"
+    >
+      <Icon
+        className="wye-PriceInfoBlock__icon icon"
+        color={null}
+        horizontal={false}
+        path="M11,4V9H6V11H11V16H13V11H18V9H13V4H11M6,18V20H18V18H6Z"
+        rotate={0}
+        size={null}
+        spin={false}
+        vertical={false}
+      />
+      <WithStyles(ForwardRef(Typography))
+        variant="h1"
+      >
+        Metacritic Score: 
+      </WithStyles(ForwardRef(Typography))>
+    </div>
+    <div>
+      <WithStyles(ForwardRef(Typography))
+        className="wye-PriceInfoBlock__metacriticScore wye-PriceInfoBlock__metacriticScore--negative metacriticScore metacriticScoreNegative"
+        variant="body1"
+      >
+        n/a
+      </WithStyles(ForwardRef(Typography))>
+    </div>
+  </div>
+</div>
+`;
