@@ -3,6 +3,16 @@ const media = {
   display: "block"
 };
 
+const triangle = {
+  content: "close-quote",
+  borderStyle: "solid",
+  borderWidth: "8px",
+  position: "absolute",
+  top: "-20px",
+  opacity: "1",
+  transition: "opacity 0.25s ease-in-out"
+};
+
 const styles = theme => ({
   root: {
     height: "100%",
@@ -42,11 +52,14 @@ const styles = theme => ({
   thumbnailsContainer: {
     overflowX: "auto",
     marginLeft: "0",
-    paddingLeft: "0 !important"
+    padding: "12px 0 0 !important"
   },
   setFeaturedButtonContainer: {
     "&:first-of-type": {
       paddingLeft: "0"
+    },
+    "&:last-of-type": {
+      paddingRight: "0"
     }
   },
   setFeaturedButton: {
@@ -55,12 +68,18 @@ const styles = theme => ({
     border: `4px solid rgba(0,0,0,.5)`,
     borderRadius: "0",
     transition: "border 0.25s ease-in-out",
-    "&:hover": {
-      border: "4px solid hsla(0,0%,100%,0.2)",
-      transition: "border 0.25s ease-in-out"
+    "&:after": {
+      content: "close-quote",
+      opacity: "0",
+      transition: "opacity 0.25s ease-in-out"
     },
-    "&:active": {
-      border: `4px solid ${theme.palette.common.white}`
+    "&:hover,&:active": {
+      border: `4px solid ${theme.palette.common.blue6}`,
+      transition: "border 0.25s ease-in-out",
+      "&:after": {
+        ...triangle,
+        borderColor: `transparent transparent ${theme.palette.common.blue6} transparent`
+      }
     }
   },
   thumbnail: {
@@ -76,7 +95,7 @@ const styles = theme => ({
   },
   playIcon: {
     height: "3rem",
-    fill: "rgba(0,0,0,.75)"
+    fill: theme.palette.common.blue6
   }
 });
 export default styles;

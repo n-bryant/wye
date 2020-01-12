@@ -9,7 +9,7 @@ exports[`GameDetails should render successfully 1`] = `
     onLoad={[Function]}
   />
   <WithStyles(ForwardRef(Grid))
-    className="wye-GameDetails__detailsContainer makeStyles-detailsContainer-4"
+    className="wye-GameDetails__detailsContainer wye-GameDetails__detailsContainer--withMdWidth makeStyles-detailsContainer-4 makeStyles-detailsContainerWithMdWidth-5"
     container={true}
     spacing={1}
   >
@@ -19,11 +19,11 @@ exports[`GameDetails should render successfully 1`] = `
       xs={12}
     >
       <WithStyles(ForwardRef(Button))
-        className="wye-GameDetails__recommendationsButton makeStyles-recommendationsButton-6"
+        className="wye-GameDetails__recommendationsButton makeStyles-recommendationsButton-9"
         onClick={[Function]}
       >
         <Icon
-          className="wye-GameDetails__icon makeStyles-icon-7"
+          className="wye-GameDetails__icon makeStyles-icon-10"
           color={null}
           horizontal={false}
           path="M20,9V15H12V19.84L4.16,12L12,4.16V9H20Z"
@@ -47,14 +47,35 @@ exports[`GameDetails should render successfully 1`] = `
         variant="h1"
       />
     </WithStyles(ForwardRef(Grid))>
-    <WithStyles(MediaCarousel)
-      classes={Object {}}
-      media={
-        Array [
-          Object {},
-        ]
-      }
-    />
+    <WithStyles(ForwardRef(Grid))
+      className="wye-GameDetails__detailsInnerContainer makeStyles-detailsInnerContainer-6"
+      container={true}
+      item={true}
+      justify="space-evenly"
+      spacing={1}
+      xs={12}
+    >
+      <WithStyles(MediaCarousel)
+        classes={Object {}}
+        media={
+          Array [
+            Object {},
+          ]
+        }
+      />
+      <WithWidth(WithStyles(ReleaseInfoBlock))
+        data={
+          Object {
+            "highlightedVideos": Array [
+              Object {},
+            ],
+            "screenshots": Array [],
+            "videos": Array [],
+          }
+        }
+        mdWidth={5}
+      />
+    </WithStyles(ForwardRef(Grid))>
   </WithStyles(ForwardRef(Grid))>
   <WithStyles(GameArticles)
     articles={Array []}

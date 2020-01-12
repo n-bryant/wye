@@ -10,11 +10,7 @@ import createClassNameHelper from "@n_bryant/classnames-helper";
 import JSS_CLASS_NAME_PREFIX from "../../../lib/classNamePrefix";
 
 import Icon from "@mdi/react";
-import {
-  mdiArrowLeftBold,
-  mdiGoogleController,
-  mdiGoogleControllerOff
-} from "@mdi/js";
+import { mdiArrowLeftBold } from "@mdi/js";
 
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -26,6 +22,7 @@ import {
   AppContextConsumer
 } from "../../../pages/_app";
 import MediaCarousel from "./MediaCarousel";
+import InfoBlock from "./ReleaseInfoBlock";
 import GameArticles from "./GameArticles";
 
 const useStyles = makeStyles({
@@ -52,6 +49,18 @@ const useStyles = makeStyles({
   },
   detailsContainer: {
     margin: "0"
+  },
+  detailsContainerWithMdWidth: {
+    width: "100%"
+  },
+  detailsInnerContainer: {
+    height: "100%",
+    background:
+      "linear-gradient(to right,  rgba(0,0,0,0) 50%,rgba(0,0,0,0.4) 100%)"
+  },
+  detailsInnerContainerWithMaxWidth: {
+    background:
+      "linear-gradient(to bottom,  rgba(0,0,0,0) 50%,rgba(0,0,0,0.4) 100%)"
   },
   detailsContainerWithMaxWidth: {
     maxWidth: "80%",
@@ -86,7 +95,7 @@ export const GameDetails = props => {
   const classes = useStyles(details);
   const classnames = GameDetails.classnames({ classes });
 
-  // console.log(details);
+  console.log(details);
   const { highlightedVideos, screenshots, videos } = details;
   const hasMedia =
     highlightedVideos.length || screenshots.length || videos.length;
@@ -112,7 +121,8 @@ export const GameDetails = props => {
       )}
       <Grid
         className={classnames.element("detailsContainer", {
-          withMaxWidth: width === "lg"
+          withMaxWidth: width === "lg",
+          withMdWidth: width === "md"
         })}
         container
         spacing={1}
@@ -145,11 +155,23 @@ export const GameDetails = props => {
         <Grid item xs={12}>
           <Typography variant="h1">{details.name}</Typography>
         </Grid>
-        {hasMedia && (
-          <MediaCarousel
-            media={[...highlightedVideos, ...screenshots, ...videos]}
-          />
-        )}
+        <Grid
+          className={classnames.element("detailsInnerContainer", {
+            withMaxWidth: ["xs", "sm"].some(val => val === width)
+          })}
+          container
+          item
+          justify={"space-evenly"}
+          spacing={1}
+          xs={12}
+        >
+          {hasMedia && (
+            <MediaCarousel
+              media={[...highlightedVideos, ...screenshots, ...videos]}
+            />
+          )}
+          <InfoBlock data={details} mdWidth={hasMedia ? 5 : 12} />
+        </Grid>
       </Grid>
       <GameArticles articles={articles} />
     </div>
@@ -165,6 +187,9 @@ GameDetails.propTypes = {
     loaded: PropTypes.string,
     backgroundPlaceholder: PropTypes.string,
     detailsContainer: PropTypes.string,
+    detailsInnerContainer: PropTypes.string,
+    detailsInnerContainerWithMaxWidth: PropTypes.string,
+    detailsContainerWithMdWidth: PropTypes.string,
     detailsContainerWithMaxWidth: PropTypes.string,
     recommendationsButton: PropTypes.string,
     icon: PropTypes.string
