@@ -19,11 +19,11 @@ exports[`GameDetails should render successfully 1`] = `
       xs={12}
     >
       <WithStyles(ForwardRef(Button))
-        className="wye-GameDetails__recommendationsButton makeStyles-recommendationsButton-9"
+        className="wye-GameDetails__recommendationsButton makeStyles-recommendationsButton-11"
         onClick={[Function]}
       >
         <Icon
-          className="wye-GameDetails__icon makeStyles-icon-10"
+          className="wye-GameDetails__icon makeStyles-icon-12"
           color={null}
           horizontal={false}
           path="M20,9V15H12V19.84L4.16,12L12,4.16V9H20Z"
@@ -76,6 +76,18 @@ exports[`GameDetails should render successfully 1`] = `
         mdWidth={5}
       />
     </WithStyles(ForwardRef(Grid))>
+    <div
+      className="wye-GameDetails__priceContainer makeStyles-priceContainer-9"
+    >
+      <WithWidth(WithStyles(PriceInfoBlock))
+        data={
+          Object {
+            "metacritic": undefined,
+            "price": undefined,
+          }
+        }
+      />
+    </div>
   </WithStyles(ForwardRef(Grid))>
   <WithStyles(GameArticles)
     articles={Array []}
