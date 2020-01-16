@@ -10,7 +10,7 @@ exports[`RecommendationsGrid should render successfully 1`] = `
       "root": "root",
       "subGrid": "subGrid",
       "subGridTitle": "subGridTitle",
-      "subGridTitleCenteredWhenLg": "subGridTitleCenteredWhenLg",
+      "subGridTitleCenteredWhenMd": "subGridTitleCenteredWhenMd",
       "subGridWithDivider": "subGridWithDivider",
     }
   }
