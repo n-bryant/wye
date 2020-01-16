@@ -24,6 +24,7 @@ import {
 import LoadingState from "./LoadingState";
 import UserAvatar from "./UserAvatar";
 import Item from "./Item";
+import PaginationWidget from "./PaginationWidget";
 import styles from "./index.styles";
 
 // recommendations query
@@ -71,20 +72,20 @@ export const GET_RECOMMENDATIONS_QUERY = gql`
   }
 `;
 
+export const PER_PAGE = 25;
+
 /**
  * renders a grid of recommendations for the provided users
  */
 export const RecommendationsGrid = props => {
   const classnames = RecommendationsGrid.classnames(props);
   const { users, dispatch } = props;
+  const [currentPage, setCurrentPage] = React.useState(1);
 
   // with query
   const { loading, error, data } = useQuery(GET_RECOMMENDATIONS_QUERY, {
     variables: { users }
   });
-
-  const edges = get(data, ["recommendations", "edges"], []);
-  const userDetails = get(data, ["recommendations", "userDetails"], []);
 
   // loading state
   if (loading) {
@@ -96,8 +97,21 @@ export const RecommendationsGrid = props => {
     return <div>error placeholder</div>;
   }
 
+  const edges = get(data, ["recommendations", "edges"], []);
+  const userDetails = get(data, ["recommendations", "userDetails"], []);
+  const totalRecommendations = get(
+    data,
+    ["recommendations", "pageInfo", "totalCount"],
+    1
+  );
+  const pages = Math.ceil(totalRecommendations / PER_PAGE);
+  const topRecommendation = edges[0];
+  const otherRecommendations = edges.slice(1);
+  const endIndex = PER_PAGE * currentPage + 1;
+  const startIndex = endIndex - PER_PAGE;
+
   return (
-    <Grid className={classnames.root()} container spacing={2}>
+    <Grid className={classnames.root()} justify="center" container spacing={2}>
       <Grid
         className={classnames.element("subGrid", {
           withDivider: true
@@ -163,20 +177,27 @@ export const RecommendationsGrid = props => {
         <Grid item xs={12}>
           <Typography
             className={classnames.element("subGridTitle", {
-              centeredWhenLg: true
+              centeredWhenMd: true
             })}
             variant="h3"
           >
             Top Recommendation:
           </Typography>
         </Grid>
-        <Item featured={true} userDetails={userDetails} data={edges[0].node} />
+        <Item
+          featured={true}
+          userDetails={userDetails}
+          data={topRecommendation.node}
+        />
       </Grid>
       <Grid
         className={classnames.element("subGrid")}
         justify="center"
         container
+        item
         spacing={3}
+        xs={12}
+        lg={10}
       >
         <Grid item xs={12}>
           <Typography
@@ -186,7 +207,16 @@ export const RecommendationsGrid = props => {
             Other Recommendations:
           </Typography>
         </Grid>
-        {edges.slice(1, 11).map((item, index) => (
+        {pages > 1 && (
+          <Grid item xs={12}>
+            <PaginationWidget
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              totalPages={pages}
+            />
+          </Grid>
+        )}
+        {otherRecommendations.slice(startIndex, endIndex).map((item, index) => (
           <Item
             key={index}
             featured={false}
@@ -194,6 +224,15 @@ export const RecommendationsGrid = props => {
             data={item.node}
           />
         ))}
+        {pages > 1 && (
+          <Grid item xs={12}>
+            <PaginationWidget
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              totalPages={pages}
+            />
+          </Grid>
+        )}
       </Grid>
     </Grid>
   );
@@ -211,7 +250,7 @@ RecommendationsGrid.propTypes = {
     subGridWithDivider: PropTypes.string,
     avatarContainer: PropTypes.string,
     subGridTitle: PropTypes.string,
-    subGridTitleCenteredWhenLg: PropTypes.string
+    subGridTitleCenteredWhenMd: PropTypes.string
   }),
   // users to get recommendations for
   users: PropTypes.array,

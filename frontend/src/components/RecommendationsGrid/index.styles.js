@@ -19,11 +19,9 @@ const styles = theme => ({
     margin: "0",
     justifyContent: "center"
   },
-  subGridTitle: {
-    color: theme.palette.common.blue6
-  },
-  subGridTitleCenteredWhenLg: {
-    [theme.breakpoints.up("lg")]: {
+  subGridTitle: {},
+  subGridTitleCenteredWhenMd: {
+    [theme.breakpoints.up("md")]: {
       textAlign: "center"
     }
   },

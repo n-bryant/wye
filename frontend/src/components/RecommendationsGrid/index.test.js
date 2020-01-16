@@ -16,7 +16,7 @@ describe("RecommendationsGrid", () => {
       subGridWithDivider: "subGridWithDivider",
       avatarContainer: "avatarContainer",
       subGridTitle: "subGridTitle",
-      subGridTitleCenteredWhenLg: "subGridTitleCenteredWhenLg"
+      subGridTitleCenteredWhenMd: "subGridTitleCenteredWhenMd"
     },
     users: ["foo"],
     dispatch: jest.fn()

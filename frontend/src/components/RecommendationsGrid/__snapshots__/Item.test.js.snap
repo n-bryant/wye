@@ -5,7 +5,7 @@ exports[`Item should render successfully 1`] = `
   className="wye-Item root"
   item={true}
   lg={8}
-  md={12}
+  md={10}
   xs={12}
 >
   <Link

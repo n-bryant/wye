@@ -57,7 +57,7 @@ export const Item = props => {
       className={classnames.root()}
       item
       xs={12}
-      md={featured ? 12 : 6}
+      md={featured ? 10 : 6}
       lg={featured ? 8 : 6}
     >
       <Link href="/game/[id]" as={`/game/${game.appid}`}>

@@ -67,7 +67,7 @@ describe("Item", () => {
         .find(Grid)
         .at(0)
         .prop("md")
-    ).toBe(12);
+    ).toBe(10);
 
     wrapper.setProps({
       ...props,
