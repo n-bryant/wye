@@ -3,5 +3,9 @@
 exports[`LoadingState should render successfully 1`] = `
 <div
   className="wye-LoadingState root"
-/>
+>
+  <WithStyles(ForwardRef(CircularProgress))
+    className="wye-LoadingState__progressIndicator progressIndicator"
+  />
+</div>
 `;

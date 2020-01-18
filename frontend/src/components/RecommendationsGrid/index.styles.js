@@ -19,7 +19,9 @@ const styles = theme => ({
     margin: "0",
     justifyContent: "center"
   },
-  subGridTitle: {},
+  subGridTitle: {
+    fontWeight: "300"
+  },
   subGridTitleCenteredWhenMd: {
     [theme.breakpoints.up("md")]: {
       textAlign: "center"

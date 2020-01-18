@@ -7,6 +7,8 @@ import withData from "../lib/withData";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+import NextNProgress from "../src/components/NextNProgress";
+
 // set up a context provider
 const AppContext = React.createContext({});
 export const AppContextProvider = AppContext.Provider;
@@ -84,6 +86,7 @@ export const WyeWithState = props => {
   return (
     <React.Fragment>
       <CssBaseline />
+      <NextNProgress />
       <ApolloProvider client={apollo}>
         <AppContextProvider
           value={{

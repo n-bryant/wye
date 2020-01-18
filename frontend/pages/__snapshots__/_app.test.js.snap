@@ -5,6 +5,12 @@ exports[`WyeApp should render successfully 1`] = `<WyeWithState />`;
 exports[`WyeWithState should render successfully 1`] = `
 <Fragment>
   <CssBaseline />
+  <NextNProgress
+    color="#fff"
+    height={3}
+    startPosition={0.3}
+    stopDelayMs={200}
+  />
   <ApolloProvider
     client={[MockFunction]}
   >

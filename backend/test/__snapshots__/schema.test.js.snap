@@ -1080,13 +1080,10 @@ Object {
             "value": "website",
           },
           "type": Object {
-            "kind": "NonNullType",
-            "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "String",
-              },
+            "kind": "NamedType",
+            "name": Object {
+              "kind": "Name",
+              "value": "String",
             },
           },
         },
@@ -2704,7 +2701,7 @@ Object {
   ],
   "kind": "Document",
   "loc": Object {
-    "end": 7522,
+    "end": 7521,
     "start": 0,
   },
 }

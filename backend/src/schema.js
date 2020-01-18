@@ -127,7 +127,7 @@ const typeDefs = gql`
     # the game's publishers
     publishers: [String]!
     # the game's website
-    website: String!
+    website: String
     # the platforms the game can run on
     platforms: [String]!
     # the game's metacritic rating and review page location
