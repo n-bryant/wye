@@ -35,7 +35,7 @@ exports[`WelcomeEmptyState should render successfully 1`] = `
       Wye uses your
        
       <Link
-        href="/faq/#steamid"
+        href="/faq#steamid"
       >
         <a
           className="wye-WelcomeEmptyState__link link"
@@ -63,7 +63,7 @@ exports[`WelcomeEmptyState should render successfully 1`] = `
       " button below!
     </WithStyles(ForwardRef(Typography))>
     <Link
-      href="/faq/#profile"
+      href="/faq#profile"
     >
       <a
         className="wye-WelcomeEmptyState__link link"

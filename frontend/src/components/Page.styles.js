@@ -4,7 +4,7 @@ const styles = theme => ({
     height: "100%"
   },
   innerContent: {
-    height: "100%"
+    height: "calc(100% - 56px)"
   }
 });
 export default styles;

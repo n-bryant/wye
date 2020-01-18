@@ -1,0 +1,618 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FaqAccordion should render successfully 1`] = `
+<div
+  className="wye-FaqAccordion root"
+>
+  <div
+    className="wye-FaqAccordion__titleContainer titleContainer"
+  >
+    <WithStyles(ForwardRef(Typography))
+      className="wye-FaqAccordion__title title"
+    >
+      Frequently Asked Questions
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Button))
+      className="wye-FaqAccordion__expandAllButton expandAllButton"
+      onClick={[Function]}
+    >
+      expand all
+    </WithStyles(ForwardRef(Button))>
+  </div>
+  <div
+    className="wye-FaqAccordion__faqContainer faqContainer"
+  >
+    <WithStyles(ForwardRef(ExpansionPanel))
+      className="wye-FaqAccordion__panel panel"
+      expanded={false}
+      onChange={[Function]}
+    >
+      <WithStyles(ForwardRef(ExpansionPanelSummary))
+        aria-controls="panel1bh-content"
+        className="wye-FaqAccordion__panelSummary panelSummary"
+        expandIcon={
+          <ForwardRef
+            className="wye-FaqAccordion__expandIcon expandIcon"
+            color={null}
+            horizontal={false}
+            path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+            rotate={0}
+            size={null}
+            spin={false}
+            vertical={false}
+          />
+        }
+        id="panel1bh-header"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <WithStyles(ForwardRef(Typography))
+          className="wye-FaqAccordion__panelSummaryText panelSummaryText"
+          variant="h3"
+        >
+          Attribution
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelSummary))>
+      <WithStyles(ForwardRef(ExpansionPanelDetails))
+        className="wye-FaqAccordion__panelDetails panelDetails"
+      >
+        <WithStyles(ForwardRef(Typography))
+          gutterBottom={true}
+          variant="body1"
+        >
+          Wye uses popular libraries which include:
+           
+          <Link
+            href="https://reactjs.org/"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+              target="_blank"
+            >
+              React
+            </a>
+          </Link>
+          ,
+           
+          <Link
+            href="https://material-ui.com/"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+              target="_blank"
+            >
+              Material-UI
+            </a>
+          </Link>
+          ,
+           
+          <Link
+            href="https://nextjs.org/"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+              target="_blank"
+            >
+              NextJs
+            </a>
+          </Link>
+          ,
+           
+          <Link
+            href="https://www.apollographql.com/"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+              target="_blank"
+            >
+              Apollo GraphQL
+            </a>
+          </Link>
+          ,
+           
+          <Link
+            href="https://nodejs.org/en/"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+              target="_blank"
+            >
+              Node.js
+            </a>
+          </Link>
+          , and
+           
+          <Link
+            href="https://momentjs.com/"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+              target="_blank"
+            >
+              Moment.js
+            </a>
+          </Link>
+          .
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          gutterBottom={true}
+          variant="body1"
+        >
+          Wye uses
+           
+          <Link
+            href="https://www.prisma.io/"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+              target="_blank"
+            >
+              Prisma
+            </a>
+          </Link>
+           
+          as a data management solution.
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          gutterBottom={true}
+          variant="body1"
+        >
+          Wye uses
+           
+          <Link
+            href="https://steamspy.com/"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+              target="_blank"
+            >
+              SteamSpy
+            </a>
+          </Link>
+           
+          for some game data.
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          gutterBottom={true}
+          variant="body1"
+        >
+          Wye uses
+           
+          <Link
+            href="https://airbnb.io/enzyme/"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+              target="_blank"
+            >
+              Enzyme
+            </a>
+          </Link>
+           
+          and
+           
+          <Link
+            href="https://jestjs.io/"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+              target="_blank"
+            >
+              Jest
+            </a>
+          </Link>
+           
+          for testing.
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelDetails))>
+    </WithStyles(ForwardRef(ExpansionPanel))>
+    <WithStyles(ForwardRef(ExpansionPanel))
+      className="wye-FaqAccordion__panel panel"
+      expanded={false}
+      onChange={[Function]}
+    >
+      <WithStyles(ForwardRef(ExpansionPanelSummary))
+        aria-controls="panel2bh-content"
+        className="wye-FaqAccordion__panelSummary panelSummary"
+        expandIcon={
+          <ForwardRef
+            className="wye-FaqAccordion__expandIcon expandIcon"
+            color={null}
+            horizontal={false}
+            path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+            rotate={0}
+            size={null}
+            spin={false}
+            vertical={false}
+          />
+        }
+        id="panel2bh-header"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <WithStyles(ForwardRef(Typography))
+          className="wye-FaqAccordion__panelSummaryText panelSummaryText"
+          variant="h3"
+        >
+          How to contact you?
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelSummary))>
+      <WithStyles(ForwardRef(ExpansionPanelDetails))
+        className="wye-FaqAccordion__panelDetails panelDetails"
+      >
+        <WithStyles(ForwardRef(Typography))
+          gutterBottom={true}
+          variant="body1"
+        >
+          Wye is not affiliated with Valve or Steam! If you want to contact Valve
+           
+          <Link
+            href="http://www.valvesoftware.com/contact/"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+            >
+              visit their contact page
+            </a>
+          </Link>
+          .
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          variant="body1"
+        >
+          You can reach me at
+           
+          <Link
+            href="mailto:wye.app.dev@gmail.com"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+            >
+              wye.app.dev@gmail.com
+            </a>
+          </Link>
+          .
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelDetails))>
+    </WithStyles(ForwardRef(ExpansionPanel))>
+    <WithStyles(ForwardRef(ExpansionPanel))
+      className="wye-FaqAccordion__panel panel"
+      expanded={false}
+      onChange={[Function]}
+    >
+      <WithStyles(ForwardRef(ExpansionPanelSummary))
+        aria-controls="panel3bh-content"
+        className="wye-FaqAccordion__panelSummary panelSummary"
+        expandIcon={
+          <ForwardRef
+            className="wye-FaqAccordion__expandIcon expandIcon"
+            color={null}
+            horizontal={false}
+            path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+            rotate={0}
+            size={null}
+            spin={false}
+            vertical={false}
+          />
+        }
+        id="panel3bh-header"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <WithStyles(ForwardRef(Typography))
+          className="wye-FaqAccordion__panelSummaryText panelSummaryText"
+          variant="h3"
+        >
+          Why did you decide to make Wye?
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelSummary))>
+      <WithStyles(ForwardRef(ExpansionPanelDetails))
+        className="wye-FaqAccordion__panelDetails panelDetails"
+      >
+        <WithStyles(ForwardRef(Typography))
+          variant="body1"
+        >
+          Wye was created to help friends figure out what to play together more easily. Wye allows you and your friends to easily see what multiplayer games you already have, how much you have played those games, and can recommend new multiplayer games for you to play based on what you have played in the past.
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelDetails))>
+    </WithStyles(ForwardRef(ExpansionPanel))>
+    <WithStyles(ForwardRef(ExpansionPanel))
+      className="wye-FaqAccordion__panel panel"
+      expanded={false}
+      name="profile"
+      onChange={[Function]}
+    >
+      <WithStyles(ForwardRef(ExpansionPanelSummary))
+        aria-controls="panel4bh-content"
+        className="wye-FaqAccordion__panelSummary panelSummary"
+        expandIcon={
+          <ForwardRef
+            className="wye-FaqAccordion__expandIcon expandIcon"
+            color={null}
+            horizontal={false}
+            path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+            rotate={0}
+            size={null}
+            spin={false}
+            vertical={false}
+          />
+        }
+        id="panel4bh-header"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <WithStyles(ForwardRef(Typography))
+          className="wye-FaqAccordion__panelSummaryText panelSummaryText"
+          variant="h3"
+        >
+          How are you getting this information?
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelSummary))>
+      <WithStyles(ForwardRef(ExpansionPanelDetails))
+        className="wye-FaqAccordion__panelDetails panelDetails"
+      >
+        <WithStyles(ForwardRef(Typography))
+          variant="body1"
+        >
+          Wye makes use of Steam's public
+           
+          <Link
+            href="https://developer.valvesoftware.com/wiki/Steam_Web_API"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+              target="_blank"
+            >
+              API
+            </a>
+          </Link>
+           
+          for game and user profile data in combination with data from
+           
+          <Link
+            href="https://steamspy.com/api.php"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+              target="_blank"
+            >
+              SteamSpy
+            </a>
+          </Link>
+           
+          for building recommendations.
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelDetails))>
+    </WithStyles(ForwardRef(ExpansionPanel))>
+    <WithStyles(ForwardRef(ExpansionPanel))
+      className="wye-FaqAccordion__panel panel"
+      expanded={false}
+      onChange={[Function]}
+    >
+      <WithStyles(ForwardRef(ExpansionPanelSummary))
+        aria-controls="panel5bh-content"
+        className="wye-FaqAccordion__panelSummary panelSummary"
+        expandIcon={
+          <ForwardRef
+            className="wye-FaqAccordion__expandIcon expandIcon"
+            color={null}
+            horizontal={false}
+            path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+            rotate={0}
+            size={null}
+            spin={false}
+            vertical={false}
+          />
+        }
+        id="panel5bh-header"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <WithStyles(ForwardRef(Typography))
+          className="wye-FaqAccordion__panelSummaryText panelSummaryText"
+          variant="h3"
+        >
+          Why does my Steam profile need to be set to public?
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelSummary))>
+      <WithStyles(ForwardRef(ExpansionPanelDetails))
+        className="wye-FaqAccordion__panelDetails panelDetails"
+      >
+        <WithStyles(ForwardRef(Typography))
+          gutterBottom={true}
+          variant="body1"
+        >
+          Wye relies on Steam's public API to get information about your online status, owned and recently played games, and avatar image. Some of this data is restricted if a profile is not set to public. Wye does not store profile data.
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          variant="body1"
+        >
+          You can read more about Steam Profile Privacy
+           
+          <Link
+            href="https://support.steampowered.com/kb_article.php?ref=4113-YUDH-6401"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+              id="profile"
+              target="_blank"
+            >
+              here
+            </a>
+          </Link>
+          .
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelDetails))>
+    </WithStyles(ForwardRef(ExpansionPanel))>
+    <WithStyles(ForwardRef(ExpansionPanel))
+      className="wye-FaqAccordion__panel panel"
+      expanded={false}
+      onChange={[Function]}
+    >
+      <WithStyles(ForwardRef(ExpansionPanelSummary))
+        aria-controls="panel6bh-content"
+        className="wye-FaqAccordion__panelSummary panelSummary"
+        expandIcon={
+          <ForwardRef
+            className="wye-FaqAccordion__expandIcon expandIcon"
+            color={null}
+            horizontal={false}
+            path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+            rotate={0}
+            size={null}
+            spin={false}
+            vertical={false}
+          />
+        }
+        id="panel6bh-header"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <WithStyles(ForwardRef(Typography))
+          className="wye-FaqAccordion__panelSummaryText panelSummaryText"
+          variant="h3"
+        >
+          How do I find my SteamID?
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelSummary))>
+      <WithStyles(ForwardRef(ExpansionPanelDetails))
+        className="wye-FaqAccordion__panelDetails panelDetails"
+      >
+        <WithStyles(ForwardRef(Typography))
+          variant="body1"
+        >
+          You can locate your SteamID by following the steps listed in the support article about it
+           
+          <Link
+            href="https://support.steampowered.com/kb_article.php?ref=1558-QYAX-1965"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+              id="steamid"
+              target="_blank"
+            >
+              here
+            </a>
+          </Link>
+          .
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelDetails))>
+    </WithStyles(ForwardRef(ExpansionPanel))>
+    <WithStyles(ForwardRef(ExpansionPanel))
+      className="wye-FaqAccordion__panel panel"
+      expanded={false}
+      onChange={[Function]}
+    >
+      <WithStyles(ForwardRef(ExpansionPanelSummary))
+        aria-controls="panel7bh-content"
+        className="wye-FaqAccordion__panelSummary panelSummary"
+        expandIcon={
+          <ForwardRef
+            className="wye-FaqAccordion__expandIcon expandIcon"
+            color={null}
+            horizontal={false}
+            path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+            rotate={0}
+            size={null}
+            spin={false}
+            vertical={false}
+          />
+        }
+        id="panel7bh-header"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <WithStyles(ForwardRef(Typography))
+          className="wye-FaqAccordion__panelSummaryText panelSummaryText"
+          variant="h3"
+        >
+          How do I report a bug?
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelSummary))>
+      <WithStyles(ForwardRef(ExpansionPanelDetails))
+        className="wye-FaqAccordion__panelDetails panelDetails"
+      >
+        <WithStyles(ForwardRef(Typography))
+          variant="body1"
+        >
+          Wye has a
+           
+          <Link
+            href="https://github.com/n-bryant/wye/issues?state=open"
+            prefetch={false}
+          >
+            <a
+              className="wye-FaqAccordion__link link"
+              target="_blank"
+            >
+              GitHub issue tracker
+            </a>
+          </Link>
+           
+          where you can report bugs or request features.
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelDetails))>
+    </WithStyles(ForwardRef(ExpansionPanel))>
+    <WithStyles(ForwardRef(ExpansionPanel))
+      className="wye-FaqAccordion__panel panel"
+      expanded={false}
+      onChange={[Function]}
+    >
+      <WithStyles(ForwardRef(ExpansionPanelSummary))
+        aria-controls="panel8bh-content"
+        className="wye-FaqAccordion__panelSummary panelSummary"
+        expandIcon={
+          <ForwardRef
+            className="wye-FaqAccordion__expandIcon expandIcon"
+            color={null}
+            horizontal={false}
+            path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+            rotate={0}
+            size={null}
+            spin={false}
+            vertical={false}
+          />
+        }
+        id="panel8bh-header"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <WithStyles(ForwardRef(Typography))
+          className="wye-FaqAccordion__panelSummaryText panelSummaryText"
+          variant="h3"
+        >
+          Why is a game's information different on Wye than on the Steam store page?
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelSummary))>
+      <WithStyles(ForwardRef(ExpansionPanelDetails))
+        className="wye-FaqAccordion__panelDetails panelDetails"
+      >
+        <WithStyles(ForwardRef(Typography))
+          variant="body1"
+        >
+          Wye utilizes user review data from SteamSpy to determine a user rating for a game. This rating is a percentage of positive vs negative reviews from SteamSpy's data for the game, and may not match the rating found on Steam. Additionally, price information is aggregated on a daily basis, so it's possible that the game's information is slightly behind.
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(ExpansionPanelDetails))>
+    </WithStyles(ForwardRef(ExpansionPanel))>
+  </div>
+  <WithStyles(IndexPageBackground)
+    classes={Object {}}
+  />
+</div>
+`;

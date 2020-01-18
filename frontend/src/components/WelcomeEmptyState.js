@@ -39,7 +39,7 @@ export const WelcomeEmptyState = props => {
       <div className={classnames.element("instructionsContainer")}>
         <Typography variant="body1" className={classnames.element("message")}>
           Wye uses your{" "}
-          <Link href="/faq/#steamid">
+          <Link href="/faq#steamid">
             <a className={classnames.element("link")}>SteamID</a>
           </Link>{" "}
           and Steam's public{" "}
@@ -56,7 +56,7 @@ export const WelcomeEmptyState = props => {
           handy and your Steam profiles set to public. Then, click the "
           {buttonLabel}" button below!
         </Typography>
-        <Link href="/faq/#profile">
+        <Link href="/faq#profile">
           <a className={classnames.element("link")}>
             Why do our Steam profiles need to be set to public?
           </a>

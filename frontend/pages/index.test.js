@@ -8,19 +8,12 @@ describe("index", () => {
     classes: {
       root: "root",
       container: "container",
-      appBar: "appBar",
-      toolBar: "toolBar",
-      title: "title",
-      linksContainer: "linksContainer",
-      link: "link",
-      githubIcon: "githubIcon",
       form: "form",
       main: "main",
       contentContainer: "contentContainer",
       content: "content"
     },
-    content: CONTENT_OPTIONS.WELCOME,
-    dispatch: jest.fn()
+    content: CONTENT_OPTIONS.WELCOME
   };
 
   beforeEach(() => {
@@ -30,15 +23,6 @@ describe("index", () => {
   it("should render successfully", () => {
     const wrapper = shallow(<Index {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
-  });
-
-  it("should render the welcome content if the app title in the toolbar is clicked", () => {
-    const wrapper = shallow(<Index {...props} />);
-    wrapper.findWhere(n => n.hasClass(props.classes.title)).prop("onClick")();
-    expect(props.dispatch).toHaveBeenCalledWith({
-      type: ACTIONS.SET_CONTENT,
-      value: CONTENT_OPTIONS.WELCOME
-    });
   });
 
   it("should render the recommendations form if the content state value is set to the form content option", () => {

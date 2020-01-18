@@ -95,4 +95,52 @@ describe("PaginationWidget", () => {
         .hasClass(props.classes.paddleIconDisabled)
     ).toBeTruthy();
   });
+
+  it("should set the current page to the first page when the first page button is clicked", () => {
+    wrapper.setProps({
+      currentPage: 2
+    });
+    wrapper.update();
+    wrapper
+      .findWhere(n => n.hasClass(props.classes.paddle))
+      .at(0)
+      .prop("onClick")();
+    expect(props.setCurrentPage).toHaveBeenCalledWith(1);
+  });
+
+  it("should set the current page to the previous page when the prev page button is clicked", () => {
+    wrapper.setProps({
+      currentPage: 2
+    });
+    wrapper.update();
+    wrapper
+      .findWhere(n => n.hasClass(props.classes.paddle))
+      .at(1)
+      .prop("onClick")();
+    expect(props.setCurrentPage).toHaveBeenCalledWith(1);
+  });
+
+  it("should set the current page to the last page when the last page button is clicked", () => {
+    wrapper.setProps({
+      currentPage: 2
+    });
+    wrapper.update();
+    wrapper
+      .findWhere(n => n.hasClass(props.classes.paddle))
+      .at(3)
+      .prop("onClick")();
+    expect(props.setCurrentPage).toHaveBeenCalledWith(3);
+  });
+
+  it("should set the current page to the next page when the next page button is clicked", () => {
+    wrapper.setProps({
+      currentPage: 2
+    });
+    wrapper.update();
+    wrapper
+      .findWhere(n => n.hasClass(props.classes.paddle))
+      .at(2)
+      .prop("onClick")();
+    expect(props.setCurrentPage).toHaveBeenCalledWith(3);
+  });
 });
