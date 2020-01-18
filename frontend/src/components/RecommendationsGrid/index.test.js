@@ -1,6 +1,6 @@
 import { MockedProvider } from "@apollo/react-testing";
 
-import LoadingState from "./LoadingState";
+import LoadingState from "../LoadingState";
 import RecommendationsGridWithContext, {
   RecommendationsGrid,
   GET_RECOMMENDATIONS_QUERY

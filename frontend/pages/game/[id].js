@@ -10,6 +10,7 @@ import { withStyles } from "@material-ui/core/styles";
 import createClassNameHelper from "@n_bryant/classnames-helper";
 import JSS_CLASS_NAME_PREFIX from "../../lib/classNamePrefix";
 
+import LoadingState from "../../src/components/LoadingState";
 import GameDetails from "../../src/components/Game/GameDetails";
 
 import styles from "./[id].styles";
@@ -93,6 +94,11 @@ export const Game = props => {
 
   if (loading) {
     // game query loading state
+    return (
+      <div className={classnames.root()}>
+        <LoadingState />
+      </div>
+    );
   }
 
   if (error) {

@@ -21,7 +21,7 @@ import {
   ACTIONS,
   CONTENT_OPTIONS
 } from "../../../pages/_app";
-import LoadingState from "./LoadingState";
+import LoadingState from "../LoadingState";
 import UserAvatar from "./UserAvatar";
 import Item from "./Item";
 import PaginationWidget from "./PaginationWidget";

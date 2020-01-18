@@ -134,11 +134,15 @@ export const ReleaseInfoBlock = props => {
           </Typography>
           <Typography variant="body2">
             <span className={classnames.element("infoType")}>Website: </span>
-            <Link href={data.website} prefetch={false}>
-              <a className={classnames.element("link")} target="_blank">
-                {data.website}
-              </a>
-            </Link>
+            {data.website ? (
+              <Link href={data.website} prefetch={false}>
+                <a className={classnames.element("link")} target="_blank">
+                  {data.website}
+                </a>
+              </Link>
+            ) : (
+              "n/a"
+            )}
           </Typography>
         </div>
       </Grid>

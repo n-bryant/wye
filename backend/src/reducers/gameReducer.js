@@ -115,11 +115,13 @@ const gameReducer = game => {
     heroImageUrl: `${GAME_IMAGES_BASE_URL}${game["steam_appid"]}/library_hero.jpg`,
     logoImageUrl: `${GAME_IMAGES_BASE_URL}${game["steam_appid"]}/logo.png`,
     backgroundImageUrl: game["background"],
-    highlightedVideos: getVideos(
-      game["movies"].filter(video => video.highlight)
-    ),
-    screenshots: getScreenshots(game["screenshots"]),
-    videos: getVideos(game["movies"].filter(video => !video.highlight))
+    highlightedVideos: game["movies"]
+      ? getVideos(game["movies"].filter(video => video.highlight))
+      : [],
+    screenshots: getScreenshots(game["screenshots"] || []),
+    videos: game["movies"]
+      ? getVideos(game["movies"].filter(video => !video.highlight))
+      : []
   };
 };
 
