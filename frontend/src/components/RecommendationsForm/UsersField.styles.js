@@ -6,7 +6,7 @@ const styles = theme => ({
     alignItems: "center"
   },
   fieldItemsContainer: {
-    width: "50%",
+    width: "80%",
     marginBottom: theme.spacing(4),
     textAlign: "center"
   },

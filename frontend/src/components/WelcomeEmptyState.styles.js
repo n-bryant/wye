@@ -30,7 +30,7 @@ const styles = theme => ({
   message: {
     marginBottom: theme.spacing(3),
     width: "80%",
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("xs")]: {
       width: "100%"
     }
   },

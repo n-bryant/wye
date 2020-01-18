@@ -9,6 +9,7 @@ import JSS_CLASS_NAME_PREFIX from "../../lib/classNamePrefix";
 import theme from "../../lib/theme";
 
 import Meta from "./Meta";
+import Header from "./Header";
 
 import styles from "./Page.styles";
 
@@ -23,6 +24,7 @@ export const Page = props => {
       <CssBaseline>
         <Meta />
         <div className={classnames.root()}>
+          <Header />
           <div className={classnames.element("innerContent")}>
             {props.children}
           </div>
