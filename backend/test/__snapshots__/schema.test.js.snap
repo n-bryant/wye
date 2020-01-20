@@ -2556,6 +2556,46 @@ Object {
           "kind": "InputValueDefinition",
           "name": Object {
             "kind": "Name",
+            "value": "publishers_in",
+          },
+          "type": Object {
+            "kind": "ListType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
+            },
+          },
+        },
+        Object {
+          "defaultValue": undefined,
+          "description": undefined,
+          "directives": Array [],
+          "kind": "InputValueDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "developers_in",
+          },
+          "type": Object {
+            "kind": "ListType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
+            },
+          },
+        },
+        Object {
+          "defaultValue": undefined,
+          "description": undefined,
+          "directives": Array [],
+          "kind": "InputValueDefinition",
+          "name": Object {
+            "kind": "Name",
             "value": "genres_in",
           },
           "type": Object {
@@ -2701,7 +2741,7 @@ Object {
   ],
   "kind": "Document",
   "loc": Object {
-    "end": 7521,
+    "end": 7659,
     "start": 0,
   },
 }
