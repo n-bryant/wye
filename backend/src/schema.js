@@ -306,6 +306,10 @@ const typeDefs = gql`
   input GameFilters {
     # list of game IDs to filter for
     appid_in: [String]
+    # list of the publishers to filter for
+    publishers_in: [String]
+    # list of developers to filter for
+    developers_in: [String]
     # list of the genres to filter for
     genres_in: [String]
     # list of tags to filter for
