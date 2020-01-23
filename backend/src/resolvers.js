@@ -17,6 +17,9 @@ const SORT_BY_MAP = {
   DISCOUNT: "node.game.discount",
   FINAL_PRICE: "node.game.finalPrice",
   USER_RATING: "node.game.userRating",
+  PLAYTIME_RECENT: "node.game.playtime2Weeks",
+  PLAYTIME_FOREVER: "node.game.playtimeForever",
+  OWNER_COUNT: "node.game.owners.max",
   OWNED_BY: "node.ownedBy.length",
   RECENTLY_PLAYED_BY: "node.recentlyPlayedBy.length",
   HOURS_PLAYED: "node.playtime"
@@ -43,44 +46,51 @@ const resolvers = {
       },
       { dataSources }
     ) => {
-      // 1. get all unique games owned by players from Steam's player service API
-      const userOwnedGames = await dataSources.steamPlayerServiceAPI.getOwnedGamesByPlayerIds(
-        users
-      );
-      let uniqueOwnedGames = [];
-      Object.keys(userOwnedGames).forEach(user => {
-        uniqueOwnedGames = uniqueOwnedGames.concat(
-          userOwnedGames[user]["games"].map(game => game.id)
+      let uniqueOwnedGamesWithPlayerFiltersApplied = [];
+      let userOwnedGames,
+        userRecentlyPlayedGames = {};
+      if (users) {
+        // 1. get all unique games owned by players from Steam's player service API
+        userOwnedGames = await dataSources.steamPlayerServiceAPI.getOwnedGamesByPlayerIds(
+          users
         );
-      });
-      uniqueOwnedGames = uniq(uniqueOwnedGames);
-
-      // 2. get recently played games by players from Steam's player service API
-      const userRecentlyPlayedGames = await dataSources.steamPlayerServiceAPI.getRecentlyPlayedGamesByPlayerIds(
-        users
-      );
-
-      // 3. apply player filters to the list of unique owned games
-      let uniqueOwnedGamesWithPlayerFiltersApplied = uniqueOwnedGames;
-      Object.keys(playerFilters).forEach(key => {
-        if (key === PLAYER_FILTERS_KEYS.OWNED_BY) {
-          uniqueOwnedGamesWithPlayerFiltersApplied = applyPlayerFilterToGamesList(
-            playerFilters[key],
-            uniqueOwnedGamesWithPlayerFiltersApplied,
-            userOwnedGames
+        let uniqueOwnedGames = [];
+        Object.keys(userOwnedGames).forEach(user => {
+          uniqueOwnedGames = uniqueOwnedGames.concat(
+            userOwnedGames[user]["games"].map(game => game.id)
           );
-        } else if (key === PLAYER_FILTERS_KEYS.RECENTLY_PLAYED_BY) {
-          uniqueOwnedGamesWithPlayerFiltersApplied = applyPlayerFilterToGamesList(
-            playerFilters[key],
-            uniqueOwnedGamesWithPlayerFiltersApplied,
-            userRecentlyPlayedGames
-          );
-        }
-      });
+        });
+        uniqueOwnedGames = uniq(uniqueOwnedGames);
 
-      // 4. get details for each unique game from Wye's support service's API, applying filters, pagination
-      const uniqueOwnedGamesDetails = await dataSources.wyeGamesAPI.getGamesByGameIds(
-        uniqueOwnedGamesWithPlayerFiltersApplied,
+        // 2. get recently played games by players from Steam's player service API
+        userRecentlyPlayedGames = await dataSources.steamPlayerServiceAPI.getRecentlyPlayedGamesByPlayerIds(
+          users
+        );
+
+        // 3. apply player filters to the list of unique owned games
+        uniqueOwnedGamesWithPlayerFiltersApplied = uniqueOwnedGames;
+        Object.keys(playerFilters).forEach(key => {
+          if (key === PLAYER_FILTERS_KEYS.OWNED_BY) {
+            uniqueOwnedGamesWithPlayerFiltersApplied = applyPlayerFilterToGamesList(
+              playerFilters[key],
+              uniqueOwnedGamesWithPlayerFiltersApplied,
+              userOwnedGames
+            );
+          } else if (key === PLAYER_FILTERS_KEYS.RECENTLY_PLAYED_BY) {
+            uniqueOwnedGamesWithPlayerFiltersApplied = applyPlayerFilterToGamesList(
+              playerFilters[key],
+              uniqueOwnedGamesWithPlayerFiltersApplied,
+              userRecentlyPlayedGames
+            );
+          }
+        });
+      }
+
+      // 4. get details for each unique game from Wye's support service's API and apply filters
+      const uniqueGameDetails = await dataSources.wyeGamesAPI.getGamesByGameIds(
+        uniqueOwnedGamesWithPlayerFiltersApplied.length
+          ? uniqueOwnedGamesWithPlayerFiltersApplied
+          : undefined,
         gameFilters
       );
 
@@ -90,43 +100,47 @@ const resolvers = {
       );
 
       // 6. build edges for each of the results of the filtered games
-      let edges = uniqueOwnedGamesDetails.map(game => {
+      let edges = uniqueGameDetails.map(game => {
         // who owns the game
-        const ownedBy = Object.keys(userOwnedGames).filter(user =>
-          userOwnedGames[user]["games"].some(
-            userGame => userGame.id === game.appid
-          )
-        );
+        const ownedBy = !users
+          ? null
+          : Object.keys(userOwnedGames).filter(user =>
+              userOwnedGames[user]["games"].some(
+                userGame => userGame.id === game.appid
+              )
+            );
 
         // who has recently played the game
-        const recentlyPlayedBy = Object.keys(
-          userRecentlyPlayedGames
-        ).filter(user =>
-          userRecentlyPlayedGames[user]["games"].some(
-            gameId => gameId === game.appid
-          )
-        );
+        const recentlyPlayedBy = !users
+          ? null
+          : Object.keys(userRecentlyPlayedGames).filter(user =>
+              userRecentlyPlayedGames[user]["games"].some(
+                gameId => gameId === game.appid
+              )
+            );
 
         // what is each user's playtime for the game
-        const playtime = Object.keys(userOwnedGames).map(user => {
-          if (
-            userOwnedGames[user]["games"].some(
-              userGame => userGame.id === game.appid
-            )
-          ) {
-            return {
-              id: user,
-              hoursPlayed: userOwnedGames[user]["games"].filter(
-                userGame => userGame.id === game.appid
-              )[0].hoursPlayed
-            };
-          } else {
-            return {
-              id: user,
-              hoursPlayed: 0
-            };
-          }
-        });
+        const playtime = !users
+          ? null
+          : Object.keys(userOwnedGames).map(user => {
+              if (
+                userOwnedGames[user]["games"].some(
+                  userGame => userGame.id === game.appid
+                )
+              ) {
+                return {
+                  id: user,
+                  hoursPlayed: userOwnedGames[user]["games"].filter(
+                    userGame => userGame.id === game.appid
+                  )[0].hoursPlayed
+                };
+              } else {
+                return {
+                  id: user,
+                  hoursPlayed: 0
+                };
+              }
+            });
 
         return {
           node: {
@@ -173,7 +187,7 @@ const resolvers = {
       // return compiled recommendations
       return {
         pageInfo: {
-          totalCount: uniqueOwnedGamesDetails.length
+          totalCount: uniqueGameDetails.length
         },
         userDetails,
         edges

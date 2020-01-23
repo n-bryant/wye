@@ -1,16 +1,11 @@
 const {
   gameReducer,
   getPriceDetails,
-  getHasControllerSupport,
   getPlatforms,
   getScreenshots,
   getVideos
 } = require("../../src/reducers/gameReducer");
-const {
-  GAME_IMAGES_BASE_URL,
-  GAME_PARTIAL_CONTROLLER_SUPPORT,
-  GAME_FULL_CONTROLLER_SUPPORT
-} = require("../../src/reducers/constants");
+const { GAME_IMAGES_BASE_URL } = require("../../src/reducers/constants");
 
 describe("gameReducer", () => {
   const mockedGame = {
@@ -27,6 +22,7 @@ describe("gameReducer", () => {
       final_formatted: "$3.50",
       final: 350
     },
+    controller_support: "full",
     developers: ["a", "b"],
     publishers: ["a", "b"],
     website: "https://foo.com",
@@ -34,6 +30,11 @@ describe("gameReducer", () => {
       windows: true,
       macOs: false
     },
+    pc_requirements: {
+      minimum: "min requirements",
+      recommended: "recommended requirements"
+    },
+    legal_notice: "legal notice",
     metacritic: {
       score: 100,
       url: "https://foo.com"
@@ -92,15 +93,25 @@ describe("gameReducer", () => {
     );
   });
 
-  it("should call getPriceDetails to retrieve the price details for the game", () => {
-    expect(gameReducer(mockedGame).price).toMatchObject(
-      getPriceDetails(mockedGame)
+  it("should map the provided game's controller_support to the controllerSupport property", () => {
+    expect(gameReducer(mockedGame).controllerSupport).toBe(
+      mockedGame.controller_support
     );
   });
 
-  it("should call getHasControllerSupport to retrieve whether the game has controller support or not", () => {
-    expect(gameReducer(mockedGame).controllerSupport).toBe(
-      getHasControllerSupport(mockedGame.categories)
+  it("should map the provided game's pc_requirements to the requirements property", () => {
+    expect(gameReducer(mockedGame).requirements).toBe(
+      mockedGame.pc_requirements
+    );
+  });
+
+  it("should map the provided game's legal_notice to the legalNotice property", () => {
+    expect(gameReducer(mockedGame).legalNotice).toBe(mockedGame.legal_notice);
+  });
+
+  it("should call getPriceDetails to retrieve the price details for the game", () => {
+    expect(gameReducer(mockedGame).price).toMatchObject(
+      getPriceDetails(mockedGame)
     );
   });
 
@@ -205,32 +216,6 @@ describe("gameReducer", () => {
         }
       };
       expect(getPriceDetails(mockedPriceOverview).onSale).toBeTruthy();
-    });
-  });
-
-  describe("getHasControllerSupport", () => {
-    it("should return a truthy value if the game has partial or full controller support", () => {
-      const partialControllerGame = [
-        {
-          description: GAME_PARTIAL_CONTROLLER_SUPPORT
-        }
-      ];
-      const fullControllerGame = [
-        {
-          description: GAME_FULL_CONTROLLER_SUPPORT
-        }
-      ];
-      expect(getHasControllerSupport(partialControllerGame)).toBeTruthy();
-      expect(getHasControllerSupport(fullControllerGame)).toBeTruthy();
-    });
-
-    it("should return a falsy value if the game does not have controller support", () => {
-      const nonControllerGame = [
-        {
-          description: "no controller support"
-        }
-      ];
-      expect(getHasControllerSupport(nonControllerGame)).toBeFalsy();
     });
   });
 

@@ -142,7 +142,7 @@ exports[`ReleaseInfoBlock should render successfully 1`] = `
            
         </span>
         <WithStyles(ForwardRef(Tooltip))
-          title="false"
+          title="no support"
         >
           <Icon
             className="wye-ReleaseInfoBlock__icon icon"

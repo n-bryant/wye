@@ -121,7 +121,11 @@ export const ReleaseInfoBlock = props => {
             <span className={classnames.element("infoType")}>
               Controller Support:{" "}
             </span>
-            <Tooltip title={data.controllerSupport.toString()}>
+            <Tooltip
+              title={
+                data.controllerSupport ? data.controllerSupport : "no support"
+              }
+            >
               <Icon
                 className={classnames.element("icon")}
                 path={

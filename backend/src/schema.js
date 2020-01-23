@@ -16,6 +16,9 @@ const typeDefs = gql`
     OWNED_BY
     RECENTLY_PLAYED_BY
     HOURS_PLAYED
+    PLAYTIME_RECENT
+    PLAYTIME_FOREVER
+    OWNER_COUNT
   }
 
   type Query {
@@ -27,7 +30,7 @@ const typeDefs = gql`
     game(gameId: ID!): Game!
     # query for game recommendations for a list of users with filtering
     recommendations(
-      users: [ID!]!
+      users: [ID]
       filters: FilterInput
       orderBy: OrderByField
       sortOrder: OrderDirection
@@ -121,7 +124,7 @@ const typeDefs = gql`
     # information on pricing and current sale details for the game
     price: Price!
     # whether the game has controller support
-    controllerSupport: Boolean!
+    controllerSupport: String
     # the game's developers
     developers: [String]!
     # the game's publishers
@@ -130,6 +133,10 @@ const typeDefs = gql`
     website: String
     # the platforms the game can run on
     platforms: [String]!
+    # requirements details
+    requirements: Requirements
+    # legal notice for the game
+    legalNotice: String
     # the game's metacritic rating and review page location
     metacritic: MetacriticInfo!
     # the categories the game fits into
@@ -150,6 +157,11 @@ const typeDefs = gql`
     screenshots: [Screenshot]!
     # videos relating to the game
     videos: [Video]!
+  }
+
+  type Requirements {
+    minimum: String
+    recommended: String
   }
 
   type Price {
@@ -215,7 +227,7 @@ const typeDefs = gql`
   #
   type Recommendation {
     # the recommended game's details
-    game: WyeGame
+    game: WyeGame!
     # which users own the recommended game
     ownedBy: [String]
     # which users have recently played the recommended game
@@ -276,10 +288,38 @@ const typeDefs = gql`
     finalPrice: Int!
     # the game's user rating percentage
     userRating: Int!
+    # average playtime in the last 2 weeks in minutes
+    playtime2Weeks: Int!
+    # playtime since March 2009 in minutes
+    playtimeForever: Int!
+    # range of owner count
+    owners: OwnerCount!
+    # location of the game's header image
+    headerImage: String!
+    # game page background image location
+    backgroundImage: String!
+    # left broadcast image panel location
+    broadcastLeftImage: String
+    # right broadcast image panel location
+    broadcastRightImage: String
+    # location of small capsule
+    capsuleSm: String!
+    # location of med capsule
+    capsuleMd: String!
+    # location of lg capsule
+    capsuleLg: String!
     # location of the game's logo
-    logoImageUrl: String!
-    # location of the game's hero image
-    heroImageUrl: String!
+    logo: String!
+    # location of the game's library capsule image
+    libraryCapsule: String!
+    # location of the game's library hero image
+    libraryHero: String!
+  }
+
+  type OwnerCount {
+    min: Int!
+    max: Int!
+    formatted: String!
   }
 
   type UserPlaytime {
@@ -306,6 +346,8 @@ const typeDefs = gql`
   input GameFilters {
     # list of game IDs to filter for
     appid_in: [String]
+    # name contains filter criteria
+    name_contains: String
     # list of the publishers to filter for
     publishers_in: [String]
     # list of developers to filter for

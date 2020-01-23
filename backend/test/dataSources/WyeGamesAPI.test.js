@@ -37,14 +37,16 @@ describe("WyeGamesAPI", () => {
         developers: "foo",
         publishers: "",
         genres: "",
-        tags: ""
+        tags: "",
+        owners: "5,000 .. 10,000"
       };
       const game2 = {
         name: "2",
         developers: "bar",
         publishers: "",
         genres: "",
-        tags: ""
+        tags: "",
+        owners: "5,000 .. 10,000"
       };
       wyeGamesAPI.post.mockReturnValueOnce({
         games: [game1, game2]
@@ -59,7 +61,12 @@ describe("WyeGamesAPI", () => {
           developers: [game1.developers],
           publishers: [game1.publishers],
           genres: [game1.genres],
-          tags: [game1.tags]
+          tags: [game1.tags],
+          owners: {
+            formatted: "5,000 .. 10,000",
+            min: 5000,
+            max: 10000
+          }
         }
       ]);
     });
@@ -77,7 +84,8 @@ describe("WyeGamesAPI", () => {
             developers: "1, 2",
             publishers: "1, 2",
             genres: "1, 2",
-            tags: "1, 2"
+            tags: "1, 2",
+            owners: "5,000 .. 10,000"
           }
         ]
       };
@@ -86,7 +94,12 @@ describe("WyeGamesAPI", () => {
           developers: ["1", "2"],
           publishers: ["1", "2"],
           genres: ["1", "2"],
-          tags: ["1", "2"]
+          tags: ["1", "2"],
+          owners: {
+            formatted: "5,000 .. 10,000",
+            min: 5000,
+            max: 10000
+          }
         }
       ];
       wyeGamesAPI.post.mockReturnValueOnce(mockedGamesResponse);
@@ -160,21 +173,24 @@ describe("WyeGamesAPI", () => {
           genres: ["genre1"],
           tags: ["tag1"],
           publishers: ["pub1"],
-          developers: ["dev1"]
+          developers: ["dev1"],
+          owners: "5,000 .. 10,000"
         },
         {
           name: "2",
           genres: ["genre1", "genre2"],
           tags: ["tag1"],
           publishers: ["pub2"],
-          developers: ["dev2"]
+          developers: ["dev2"],
+          owners: "5,000 .. 10,000"
         },
         {
           name: "3",
           genres: ["genre3"],
           tags: ["tag1", "tag2"],
           publishers: ["pub1"],
-          developers: ["dev1"]
+          developers: ["dev1"],
+          owners: "5,000 .. 10,000"
         }
       ];
       const expectedResult = [
@@ -183,7 +199,8 @@ describe("WyeGamesAPI", () => {
           genres: ["genre1"],
           name: "1",
           publishers: ["pub1"],
-          tags: ["tag1"]
+          tags: ["tag1"],
+          owners: "5,000 .. 10,000"
         }
       ];
       expect(

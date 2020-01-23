@@ -1,8 +1,4 @@
-const {
-  GAME_IMAGES_BASE_URL,
-  GAME_PARTIAL_CONTROLLER_SUPPORT,
-  GAME_FULL_CONTROLLER_SUPPORT
-} = require("./constants");
+const { GAME_IMAGES_BASE_URL } = require("./constants");
 
 /**
  * Shapes the price data received into an object that matches the schema
@@ -31,21 +27,6 @@ const getPriceDetails = ({ is_free, price_overview }) => {
   return {
     freeToPlay: true
   };
-};
-
-/**
- * Searches a game's categories to determine if it has controller support
- * @param { Array } categories - An object containing details about what categories the game fits into
- * @returns { Boolean } controllerSupport - Whether the game has controller support
- */
-const getHasControllerSupport = categories => {
-  return (
-    categories.filter(
-      category =>
-        category.description === GAME_PARTIAL_CONTROLLER_SUPPORT ||
-        category.description === GAME_FULL_CONTROLLER_SUPPORT
-    ).length > 0
-  );
 };
 
 /**
@@ -95,11 +76,15 @@ const gameReducer = game => {
     releaseDate: game["release_date"]["date"],
     shortDescription: game["short_description"],
     price: getPriceDetails(game),
-    controllerSupport: getHasControllerSupport(game["categories"]),
+    controllerSupport: game["controller_support"]
+      ? game["controller_support"]
+      : null,
     developers: game["developers"],
     publishers: game["publishers"],
     website: game["website"],
     platforms: getPlatforms(game["platforms"]),
+    requirements: game["pc_requirements"],
+    legalNotice: game["legal_notice"] || "",
     metacritic: game["metacritic"]
       ? {
           score: game["metacritic"]["score"],
@@ -128,7 +113,6 @@ const gameReducer = game => {
 module.exports = {
   gameReducer,
   getPriceDetails,
-  getHasControllerSupport,
   getPlatforms,
   getScreenshots,
   getVideos
