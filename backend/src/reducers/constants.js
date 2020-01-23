@@ -16,14 +16,10 @@ const USER_GAME_STORE_BASE_URL = "http://store.steampowered.com/app/";
 
 // gameReducer
 const GAME_IMAGES_BASE_URL = "http://steamcdn-a.akamaihd.net/steam/apps/";
-const GAME_PARTIAL_CONTROLLER_SUPPORT = "Partial Controller Support";
-const GAME_FULL_CONTROLLER_SUPPORT = "Full Controller Support";
 
 module.exports = {
   ONLINE_STATUS_MAP,
   USER_GAME_IMG_BASE_URL,
   USER_GAME_STORE_BASE_URL,
-  GAME_IMAGES_BASE_URL,
-  GAME_PARTIAL_CONTROLLER_SUPPORT,
-  GAME_FULL_CONTROLLER_SUPPORT
+  GAME_IMAGES_BASE_URL
 };
