@@ -16,7 +16,7 @@ const scroll = {
 
 const styles = theme => ({
   root: {
-    backgroundColor: theme.palette.common.blue0,
+    backgroundColor: theme.palette.common.black,
     overflow: "hidden",
     position: "absolute",
     zIndex: "-1",

@@ -21,6 +21,7 @@ import {
   CONTENT_OPTIONS,
   AppContextConsumer
 } from "../../../pages/_app";
+import BackgroundProvider from "../BackgroundProvider";
 import MediaCarousel from "./MediaCarousel";
 import ReleaseInfoBlock from "./ReleaseInfoBlock";
 import PriceInfoBlock from "./PriceInfoBlock";
@@ -30,23 +31,8 @@ const useStyles = makeStyles({
   root: {
     height: "100%",
     padding: "1rem",
-    background: "black",
     overflow: "auto",
     position: "relative"
-  },
-  loaded: props => ({
-    backgroundImage: `url(${props.backgroundImageUrl})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center"
-  }),
-  backgroundPlaceholder: {
-    width: "0",
-    height: "0",
-    position: "absolute",
-    top: "0",
-    right: "0",
-    bottom: "0",
-    left: "0"
   },
   detailsContainer: {
     margin: "0"
@@ -105,92 +91,84 @@ export const GameDetails = props => {
   const classnames = GameDetails.classnames({ classes });
 
   console.log(details);
-  const { highlightedVideos, screenshots, videos, price, metacritic } = details;
+  const {
+    highlightedVideos,
+    backgroundImageUrl,
+    screenshots,
+    videos,
+    price,
+    metacritic
+  } = details;
   const hasMedia =
     highlightedVideos.length || screenshots.length || videos.length;
 
-  const [loaded, setLoaded] = React.useState(false);
-
-  const onLoad = () => {
-    setLoaded(true);
-  };
-
   return (
-    <div
-      className={classnames.root({
-        loaded
-      })}
-    >
-      {!loaded && (
-        <img
-          className={classnames.element("backgroundPlaceholder")}
-          onLoad={onLoad}
-          src={details.backgroundImageUrl}
-        />
-      )}
-      <Grid
-        className={classnames.element("detailsContainer", {
-          withMaxWidth: width === "lg",
-          withMdWidth: width === "md"
-        })}
-        container
-        spacing={1}
-      >
-        <Grid item xs={12} lg={8}>
-          <Button
-            className={classnames.element("recommendationsButton")}
-            onClick={() => {
-              if (users && users.length > 0) {
-                dispatch({
-                  type: ACTIONS.SET_CONTENT,
-                  value: CONTENT_OPTIONS.RECOMMENDATIONS
-                });
-              } else {
-                dispatch({
-                  type: ACTIONS.SET_CONTENT,
-                  value: CONTENT_OPTIONS.FORM
-                });
-              }
-              router.push("/");
-            }}
-          >
-            <Icon
-              className={classnames.element("icon")}
-              path={mdiArrowLeftBold}
-            />
-            <Typography variant="body2">recommendations</Typography>
-          </Button>
-        </Grid>
-        <Grid item xs={12}>
-          <Typography variant="h1">{details.name}</Typography>
-        </Grid>
+    <BackgroundProvider src={backgroundImageUrl}>
+      <div className={classnames.root()}>
         <Grid
-          className={classnames.element("detailsInnerContainer", {
-            withMaxWidth: ["xs", "sm"].some(val => val === width)
+          className={classnames.element("detailsContainer", {
+            withMaxWidth: width === "lg",
+            withMdWidth: width === "md"
           })}
           container
-          item
-          justify={"space-evenly"}
           spacing={1}
-          xs={12}
         >
-          {hasMedia && (
-            <MediaCarousel
-              media={[...highlightedVideos, ...screenshots, ...videos]}
-            />
-          )}
-          <ReleaseInfoBlock data={details} mdWidth={hasMedia ? 5 : 12} />
+          <Grid item xs={12} lg={8}>
+            <Button
+              className={classnames.element("recommendationsButton")}
+              onClick={() => {
+                if (users && users.length > 0) {
+                  dispatch({
+                    type: ACTIONS.SET_CONTENT,
+                    value: CONTENT_OPTIONS.RECOMMENDATIONS
+                  });
+                } else {
+                  dispatch({
+                    type: ACTIONS.SET_CONTENT,
+                    value: CONTENT_OPTIONS.FORM
+                  });
+                }
+                router.push("/");
+              }}
+            >
+              <Icon
+                className={classnames.element("icon")}
+                path={mdiArrowLeftBold}
+              />
+              <Typography variant="body2">recommendations</Typography>
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="h1">{details.name}</Typography>
+          </Grid>
+          <Grid
+            className={classnames.element("detailsInnerContainer", {
+              withMaxWidth: ["xs", "sm"].some(val => val === width)
+            })}
+            container
+            item
+            justify={"space-evenly"}
+            spacing={1}
+            xs={12}
+          >
+            {hasMedia && (
+              <MediaCarousel
+                media={[...highlightedVideos, ...screenshots, ...videos]}
+              />
+            )}
+            <ReleaseInfoBlock data={details} mdWidth={hasMedia ? 5 : 12} />
+          </Grid>
+          <div
+            className={classnames.element("priceContainer", {
+              withSmWidth: ["xs", "sm"].some(val => val === width)
+            })}
+          >
+            <PriceInfoBlock data={{ price, metacritic }} />
+          </div>
         </Grid>
-        <div
-          className={classnames.element("priceContainer", {
-            withSmWidth: ["xs", "sm"].some(val => val === width)
-          })}
-        >
-          <PriceInfoBlock data={{ price, metacritic }} />
-        </div>
-      </Grid>
-      <GameArticles articles={articles} />
-    </div>
+        <GameArticles articles={articles} />
+      </div>
+    </BackgroundProvider>
   );
 };
 GameDetails.classnames = createClassNameHelper(
@@ -200,8 +178,6 @@ GameDetails.propTypes = {
   // styles to apply
   classes: PropTypes.shape({
     root: PropTypes.string,
-    loaded: PropTypes.string,
-    backgroundPlaceholder: PropTypes.string,
     detailsContainer: PropTypes.string,
     detailsInnerContainer: PropTypes.string,
     detailsInnerContainerWithMaxWidth: PropTypes.string,

@@ -23,7 +23,7 @@ describe("ReleaseInfoBlock", () => {
       headerImageUrl: "headerImageUrl",
       shortDescription: "shortDescription",
       platforms: ["windows", "mac", "linux", "fake"],
-      controllerSupport: false,
+      controllerSupport: "full",
       developers: ["developer1", "developer2"],
       publishers: ["publishers"],
       releaseDate: "releaseDate",
@@ -67,19 +67,19 @@ describe("ReleaseInfoBlock", () => {
   });
 
   it("should set the controller icon based on the controllerSupport value of the data prop", () => {
-    // false
+    // "full"
     expect(
       wrapper
         .find(Icon)
         .at(4)
         .prop("path")
-    ).toBe(mdiGoogleControllerOff);
+    ).toBe(mdiGoogleController);
 
-    // true
+    // "partial"
     wrapper.setProps({
       data: {
         ...props.data,
-        controllerSupport: true
+        controllerSupport: "partial"
       }
     });
     wrapper.update();
@@ -89,5 +89,20 @@ describe("ReleaseInfoBlock", () => {
         .at(4)
         .prop("path")
     ).toBe(mdiGoogleController);
+
+    // undefined
+    wrapper.setProps({
+      data: {
+        ...props.data,
+        controllerSupport: undefined
+      }
+    });
+    wrapper.update();
+    expect(
+      wrapper
+        .find(Icon)
+        .at(4)
+        .prop("path")
+    ).toBe(mdiGoogleControllerOff);
   });
 });

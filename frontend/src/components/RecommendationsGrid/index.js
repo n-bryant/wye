@@ -57,8 +57,21 @@ export const GET_RECOMMENDATIONS_QUERY = gql`
             initialPrice
             finalPrice
             userRating
-            logoImageUrl
-            heroImageUrl
+            owners {
+              max
+              formatted
+            }
+            playtime2Weeks
+            playtimeForever
+            headerImage
+            backgroundImage
+            capsuleSm
+            capsuleMd
+            capsuleLg
+            broadcastLeftImage
+            broadcastRightImage
+            libraryCapsule
+            libraryHero
           }
           ownedBy
           recentlyPlayedBy

@@ -66,40 +66,6 @@ describe("GameDetails", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it("should adjust root level styles once the background image has loaded", () => {
-    // not loaded
-    const wrapper = shallow(<GameDetails {...props} />);
-    expect(
-      wrapper.findWhere(n =>
-        n.hasClass(`wye-GameDetails__${props.classes.backgroundPlaceholder}`)
-      ).length
-    ).toBe(1);
-    expect(
-      wrapper
-        .find("div")
-        .at(0)
-        .hasClass(`wye-GameDetails--${props.classes.loaded}`)
-    ).toBeFalsy();
-  });
-
-  // loaded
-  const loaded = true;
-  const setLoaded = jest.fn();
-  const useStateSpy = jest.spyOn(React, "useState");
-  useStateSpy.mockImplementationOnce(() => [loaded, setLoaded]);
-  const wrapperWithState = shallow(<GameDetails {...props} />);
-  expect(
-    wrapperWithState.findWhere(n =>
-      n.hasClass(`wye-GameDetails__${props.classes.backgroundPlaceholder}`)
-    ).length
-  ).toBe(0);
-  expect(
-    wrapperWithState
-      .find("div")
-      .at(0)
-      .hasClass(`wye-GameDetails--${props.classes.loaded}`)
-  ).toBeTruthy();
-
   it("should set the content to the form when the recommendations button is clicked if there are no users", () => {
     const wrapper = shallow(<GameDetails {...props} />);
     wrapper

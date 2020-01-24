@@ -23,7 +23,7 @@ exports[`Item should render successfully 1`] = `
         <WithStyles(HeroImage)
           altText="foo"
           classes={Object {}}
-          imageSrc="http://steamcdn-a.akamaihd.net/steam/apps/1/header.jpg"
+          imageSrc=""
         />
         <div
           className="wye-Item__titleBar titleBar"

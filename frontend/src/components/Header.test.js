@@ -29,7 +29,9 @@ describe("Header", () => {
       linksContainer: "linksContainer",
       link: "link",
       linkWithNoHoverDecoration: "linkWithNoHoverDecoration",
-      githubIcon: "githubIcon"
+      githubIcon: "githubIcon",
+      mainNav: "mainNav",
+      browseLink: "browseLink"
     },
     dispatch: jest.fn()
   };
