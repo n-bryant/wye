@@ -178,7 +178,7 @@ ReleaseInfoBlock.propTypes = {
     headerImageUrl: PropTypes.string,
     shortDescription: PropTypes.string,
     platforms: PropTypes.array,
-    controllerSupport: PropTypes.bool,
+    controllerSupport: PropTypes.string,
     developers: PropTypes.array,
     publishers: PropTypes.array,
     releaseDate: PropTypes.string,

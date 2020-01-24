@@ -23,26 +23,42 @@ export const Header = props => {
   return (
     <AppBar position="static" className={classnames.root()}>
       <Toolbar className={classnames.element("toolBar")}>
-        <Link href="/">
-          <a
-            className={classnames.element("link", {
-              withNoHoverDecoration: true
-            })}
-          >
-            <Typography
-              className={classnames.element("title")}
-              variant="h1"
-              onClick={() =>
-                dispatch({
-                  type: ACTIONS.SET_CONTENT,
-                  value: CONTENT_OPTIONS.WELCOME
-                })
-              }
+        <div className={classnames.element("mainNav")}>
+          <Link href="/">
+            <a
+              className={classnames.element("link", {
+                withNoHoverDecoration: true
+              })}
             >
-              Wye
-            </Typography>
-          </a>
-        </Link>
+              <Typography
+                className={classnames.element("title")}
+                variant="h1"
+                onClick={() =>
+                  dispatch({
+                    type: ACTIONS.SET_CONTENT,
+                    value: CONTENT_OPTIONS.WELCOME
+                  })
+                }
+              >
+                Wye
+              </Typography>
+            </a>
+          </Link>
+          <Link href="/browse">
+            <a
+              className={classnames.element("link", {
+                withNoHoverDecoration: true
+              })}
+            >
+              <Typography
+                className={classnames.element("browseLink")}
+                variant="h3"
+              >
+                Browse
+              </Typography>
+            </a>
+          </Link>
+        </div>
         <div className={classnames.element("linksContainer")}>
           <Link href="/faq">
             <a className={classnames.element("link")}>faq</a>
@@ -66,6 +82,8 @@ Header.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
     toolBar: PropTypes.string,
+    mainNav: PropTypes.string,
+    browseLink: PropTypes.string,
     title: PropTypes.string,
     linksContainer: PropTypes.string,
     link: PropTypes.string,

@@ -28,12 +28,15 @@ const typeDefs = gql`
     articles(gameId: ID!): [Article]!
     # query for a game by ID
     game(gameId: ID!): Game!
+    # query for the background image of the most popular game
+    mostPopularBackgroundSrc: String!
     # query for game recommendations for a list of users with filtering
     recommendations(
       users: [ID]
       filters: FilterInput
       orderBy: OrderByField
       sortOrder: OrderDirection
+      first: Int
     ): RecommendationConnection!
   }
 

@@ -132,6 +132,32 @@ describe("WyeGamesAPI", () => {
     });
   });
 
+  describe("getMostPopularBackground", () => {
+    it("should have a getMostPopularBackground method", () => {
+      expect(wyeGamesAPI.getMostPopularBackground).toBeDefined();
+    });
+
+    it("should return the backgroundImage value of the response's game value", async () => {
+      const mockedGamesResponse = {
+        games: [
+          {
+            backgroundImage: "foo"
+          }
+        ]
+      };
+      wyeGamesAPI.post.mockReturnValueOnce(mockedGamesResponse);
+      const result = await wyeGamesAPI.getMostPopularBackground();
+      expect(result).toBe(mockedGamesResponse.games[0].backgroundImage);
+    });
+
+    it("should return an empty string if the response does not include a game's details", async () => {
+      const mockedGamesResponse = {};
+      wyeGamesAPI.post.mockReturnValueOnce(mockedGamesResponse);
+      const result = await wyeGamesAPI.getMostPopularBackground();
+      expect(result).toBe("");
+    });
+  });
+
   describe("applyStringArrayIncludesFilters", () => {
     it("should have a applyStringArrayIncludesFilters method", () => {
       expect(wyeGamesAPI.applyStringArrayIncludesFilters).toBeDefined();

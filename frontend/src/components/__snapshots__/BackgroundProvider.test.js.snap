@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackgroundProvider should render successfully 1`] = `
+<div
+  className="wye-BackgroundProvider makeStyles-root-1 root"
+>
+  <img
+    className="wye-BackgroundProvider__backgroundPlaceholder makeStyles-backgroundPlaceholder-3 backgroundPlaceholder"
+    onLoad={[Function]}
+    src="foo"
+  />
+  bar
+</div>
+`;
+
+exports[`BackgroundQuery should render a BackgroundProvider once the query has loaded 1`] = `
+<BackgroundQuery>
+  <Query
+    query={
+      Object {
+        "definitions": Array [
+          Object {
+            "directives": Array [],
+            "kind": "OperationDefinition",
+            "name": Object {
+              "kind": "Name",
+              "value": "GET_MOST_POPULAR_BACKGROUND_QUERY",
+            },
+            "operation": "query",
+            "selectionSet": Object {
+              "kind": "SelectionSet",
+              "selections": Array [
+                Object {
+                  "alias": undefined,
+                  "arguments": Array [],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "mostPopularBackgroundSrc",
+                  },
+                  "selectionSet": undefined,
+                },
+              ],
+            },
+            "variableDefinitions": Array [],
+          },
+        ],
+        "kind": "Document",
+        "loc": Object {
+          "end": 78,
+          "start": 0,
+        },
+      }
+    }
+  >
+    <BackgroundProvider
+      backgroundUrl="foo"
+      classes={Object {}}
+    >
+      <div
+        className="wye-BackgroundProvider wye-BackgroundProvider--loaded makeStyles-root-1 makeStyles-loaded-2 makeStyles-loaded-21"
+      />
+    </BackgroundProvider>
+  </Query>
+</BackgroundQuery>
+`;
+
+exports[`BackgroundQuery should render successfully 1`] = `
+<BackgroundQuery>
+  <Query
+    query={
+      Object {
+        "definitions": Array [
+          Object {
+            "directives": Array [],
+            "kind": "OperationDefinition",
+            "name": Object {
+              "kind": "Name",
+              "value": "GET_MOST_POPULAR_BACKGROUND_QUERY",
+            },
+            "operation": "query",
+            "selectionSet": Object {
+              "kind": "SelectionSet",
+              "selections": Array [
+                Object {
+                  "alias": undefined,
+                  "arguments": Array [],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "mostPopularBackgroundSrc",
+                  },
+                  "selectionSet": undefined,
+                },
+              ],
+            },
+            "variableDefinitions": Array [],
+          },
+        ],
+        "kind": "Document",
+        "loc": Object {
+          "end": 78,
+          "start": 0,
+        },
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "background": "black",
+          "height": "100%",
+        }
+      }
+    >
+      <WithStyles(LoadingState)
+        classes={Object {}}
+      >
+        <LoadingState
+          classes={
+            Object {
+              "progressIndicator": "LoadingState-progressIndicator-7",
+              "root": "LoadingState-root-6",
+            }
+          }
+        >
+          <div
+            className="wye-LoadingState LoadingState-root-6"
+          >
+            <WithStyles(ForwardRef(CircularProgress))
+              className="wye-LoadingState__progressIndicator LoadingState-progressIndicator-7"
+            >
+              <ForwardRef(CircularProgress)
+                className="wye-LoadingState__progressIndicator LoadingState-progressIndicator-7"
+                classes={
+                  Object {
+                    "circle": "MuiCircularProgress-circle",
+                    "circleDisableShrink": "MuiCircularProgress-circleDisableShrink",
+                    "circleIndeterminate": "MuiCircularProgress-circleIndeterminate",
+                    "circleStatic": "MuiCircularProgress-circleStatic",
+                    "colorPrimary": "MuiCircularProgress-colorPrimary",
+                    "colorSecondary": "MuiCircularProgress-colorSecondary",
+                    "indeterminate": "MuiCircularProgress-indeterminate",
+                    "root": "MuiCircularProgress-root",
+                    "static": "MuiCircularProgress-static",
+                    "svg": "MuiCircularProgress-svg",
+                  }
+                }
+              >
+                <div
+                  className="MuiCircularProgress-root wye-LoadingState__progressIndicator LoadingState-progressIndicator-7 MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+                  role="progressbar"
+                  style={
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    }
+                  }
+                >
+                  <svg
+                    className="MuiCircularProgress-svg"
+                    viewBox="22 22 44 44"
+                  >
+                    <circle
+                      className="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+                      cx={44}
+                      cy={44}
+                      fill="none"
+                      r={20.2}
+                      strokeWidth={3.6}
+                      style={Object {}}
+                    />
+                  </svg>
+                </div>
+              </ForwardRef(CircularProgress)>
+            </WithStyles(ForwardRef(CircularProgress))>
+          </div>
+        </LoadingState>
+      </WithStyles(LoadingState)>
+    </div>
+  </Query>
+</BackgroundQuery>
+`;

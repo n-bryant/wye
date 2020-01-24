@@ -17,6 +17,19 @@ class WyeGamesAPI extends RESTDataSource {
   }
 
   /**
+   * Retrieves the path for the most popular game's background image
+   */
+  async getMostPopularBackground() {
+    // fetch game data
+    const data = await this.post("games/", {
+      orderBy: "playtime2Weeks_DESC",
+      first: 1
+    });
+    const games = get(data, "games");
+    return games && games.length ? get(data, "games")[0].backgroundImage : "";
+  }
+
+  /**
    * Gets information for a list of games from Wye Support Service's games endpoint
    * @param {Array} gameids
    * @param {Object} filters
@@ -53,18 +66,28 @@ class WyeGamesAPI extends RESTDataSource {
 
     // shape data to fit schema
     if (games.length) {
-      games = games.map(game => ({
-        ...game,
-        developers: game.developers.split(", "),
-        publishers: game.publishers.split(", "),
-        genres: game.genres.split(", "),
-        tags: game.tags.split(", "),
-        owners: {
-          min: parseInt(game.owners.split(" .. ")[0].replace(/,/g, "")) || 0,
-          max: parseInt(game.owners.split(" .. ")[1].replace(/,/g, "")) || 0,
-          formatted: game.owners
-        }
-      }));
+      games = games.map(game => {
+        return {
+          ...game,
+          developers: game.developers.split(", "),
+          publishers: game.publishers.split(", "),
+          genres: game.genres.split(", "),
+          tags: game.tags.split(", "),
+          owners: game.owners
+            ? {
+                min:
+                  parseInt(game.owners.split(" .. ")[0].replace(/,/g, "")) || 0,
+                max:
+                  parseInt(game.owners.split(" .. ")[1].replace(/,/g, "")) || 0,
+                formatted: game.owners
+              }
+            : {
+                min: 0,
+                max: 0,
+                formatted: "n/a"
+              }
+        };
+      });
 
       if (filters) {
         // apply any additional string array includes filters

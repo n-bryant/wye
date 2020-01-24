@@ -8,21 +8,39 @@ exports[`Header should render successfully 1`] = `
   <WithStyles(ForwardRef(Toolbar))
     className="wye-Header__toolBar toolBar"
   >
-    <Link
-      href="/"
+    <div
+      className="wye-Header__mainNav mainNav"
     >
-      <a
-        className="wye-Header__link wye-Header__link--withNoHoverDecoration link linkWithNoHoverDecoration"
+      <Link
+        href="/"
       >
-        <WithStyles(ForwardRef(Typography))
-          className="wye-Header__title title"
-          onClick={[Function]}
-          variant="h1"
+        <a
+          className="wye-Header__link wye-Header__link--withNoHoverDecoration link linkWithNoHoverDecoration"
         >
-          Wye
-        </WithStyles(ForwardRef(Typography))>
-      </a>
-    </Link>
+          <WithStyles(ForwardRef(Typography))
+            className="wye-Header__title title"
+            onClick={[Function]}
+            variant="h1"
+          >
+            Wye
+          </WithStyles(ForwardRef(Typography))>
+        </a>
+      </Link>
+      <Link
+        href="/browse"
+      >
+        <a
+          className="wye-Header__link wye-Header__link--withNoHoverDecoration link linkWithNoHoverDecoration"
+        >
+          <WithStyles(ForwardRef(Typography))
+            className="wye-Header__browseLink browseLink"
+            variant="h3"
+          >
+            Browse
+          </WithStyles(ForwardRef(Typography))>
+        </a>
+      </Link>
+    </div>
     <div
       className="wye-Header__linksContainer linksContainer"
     >

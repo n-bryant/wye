@@ -11,8 +11,18 @@ const styles = theme => ({
     alignItems: "center",
     justifyContent: "space-between"
   },
+  mainNav: {
+    display: "flex",
+    alignItems: "center"
+  },
   title: {
-    cursor: "pointer"
+    cursor: "pointer",
+    paddingRight: theme.spacing(2),
+    borderRight: `1px solid ${theme.palette.common.white}`
+  },
+  browseLink: {
+    marginLeft: "0",
+    fontWeight: "300"
   },
   linksContainer: {
     display: "flex",

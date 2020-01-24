@@ -67,10 +67,7 @@ export const Item = props => {
             onMouseEnter={() => setShowOverlay(true)}
             onMouseLeave={() => setShowOverlay(false)}
           >
-            <HeroImage
-              altText={game.name}
-              imageSrc={`http://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg`}
-            />
+            <HeroImage altText={game.name} imageSrc={game.headerImage} />
             <div
               className={classnames.element("titleBar", {
                 hidden: showOverlay

@@ -36,13 +36,17 @@ const resolvers = {
     articles: async (_source, { gameId }, { dataSources }) => {
       return dataSources.steamNewsAPI.getNewsForGameById(gameId);
     },
+    mostPopularBackgroundSrc: async (_source, _args, { dataSources }) => {
+      return dataSources.wyeGamesAPI.getMostPopularBackground();
+    },
     recommendations: async (
       _source,
       {
         users,
         filters: { playerFilters = {}, gameFilters = {} } = {},
         orderBy,
-        sortOrder = "DESC"
+        sortOrder = "DESC",
+        first
       },
       { dataSources }
     ) => {
@@ -190,7 +194,7 @@ const resolvers = {
           totalCount: uniqueGameDetails.length
         },
         userDetails,
-        edges
+        edges: first ? edges.slice(0, first) : edges
       };
     }
   },

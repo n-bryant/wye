@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BrowsePage should render successfully 1`] = `
+<BackgroundQuery>
+  <div
+    className="wye-BrowsePage root"
+  >
+    <WithStyles(ForwardRef(Container))
+      className="wye-BrowsePage__container container"
+      disableGutters={true}
+      maxWidth={false}
+    >
+      <WithStyles(ForwardRef(Container))
+        className="wye-BrowsePage__main main"
+        maxWidth="lg"
+      >
+        <WithStyles(ForwardRef(Typography))
+          className="wye-BrowsePage__heading heading"
+          variant="h1"
+        >
+          Featured Games
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          className="wye-BrowsePage__subHeading subHeading"
+          variant="h2"
+        >
+          Browse the most popular and discounted multiplayer games
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(Container))>
+    </WithStyles(ForwardRef(Container))>
+  </div>
+</BackgroundQuery>
+`;
