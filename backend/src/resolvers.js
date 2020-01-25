@@ -39,6 +39,9 @@ const resolvers = {
     mostPopularBackgroundSrc: async (_source, _args, { dataSources }) => {
       return dataSources.wyeGamesAPI.getMostPopularBackground();
     },
+    getHighlightTrailer: async (_source, { gameId }, { dataSources }) => {
+      return dataSources.steamGamesAPI.getGameHighlightTrailer(gameId);
+    },
     recommendations: async (
       _source,
       {

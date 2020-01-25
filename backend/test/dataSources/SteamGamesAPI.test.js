@@ -96,4 +96,54 @@ describe("SteamGamesAPI", () => {
       expect(data).toMatchObject(gameReducer(mockedGameResponse[gameId].data));
     });
   });
+
+  describe("getGameHighlightTrailer", () => {
+    it("should have a getGameHighlightTrailer method", () => {
+      expect(steamGamesAPI.getGameHighlightTrailer).toBeDefined();
+    });
+
+    it(`should have the getGameHighlightTrailer method call to ${STEAM_GAMES_API_GAMES_ENDPOINT}
+    with an appids parameter matching the provided gameId`, () => {
+      steamGamesAPI.getGameHighlightTrailer(gameId);
+      expect(steamGamesAPI.get).toBeCalledWith(STEAM_GAMES_API_GAMES_ENDPOINT, {
+        appids: gameId
+      });
+    });
+
+    it("should return an empty string if the searched game does not have any highlight movies", async () => {
+      const mockedGameResponse = {
+        [gameId]: {
+          data: {
+            name: "foo"
+          }
+        }
+      };
+      steamGamesAPI.get.mockReturnValueOnce(mockedGameResponse);
+      const result = await steamGamesAPI.getGameHighlightTrailer(gameId);
+      expect(result).toBe("");
+    });
+
+    it("should return the path to the game's highlight trailer if the searched game has a highlight movie", async () => {
+      const mockedGameResponse = {
+        [gameId]: {
+          data: {
+            name: "foo",
+            movies: [
+              {
+                webm: {
+                  ["480"]: "pathToTrailer"
+                },
+                highlight: true
+              }
+            ]
+          }
+        }
+      };
+      steamGamesAPI.get.mockReturnValueOnce(mockedGameResponse);
+      const result = await steamGamesAPI.getGameHighlightTrailer(gameId);
+      expect(result).toBe(
+        mockedGameResponse[gameId].data.movies[0].webm["480"]
+      );
+    });
+  });
 });

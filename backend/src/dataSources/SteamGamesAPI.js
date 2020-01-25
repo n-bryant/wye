@@ -28,6 +28,22 @@ class SteamGamesAPI extends RESTDataSource {
     const formattedGame = Object.keys(game).length ? gameReducer(game) : {};
     return formattedGame;
   }
+
+  /**
+   * Gets the path for a game's highlight trailer from Steam's API's appdetails endpoint
+   * @param { String } gameId
+   * @returns {String}
+   */
+  async getGameHighlightTrailer(gameId) {
+    const data = await this.get(STEAM_GAMES_API_GAMES_ENDPOINT, {
+      appids: gameId
+    });
+    const gameMovies = get(data, [gameId, "data", "movies"], []);
+    const gameHighlightedMovies = gameMovies.filter(movie => movie.highlight);
+    return gameHighlightedMovies[0] && gameHighlightedMovies[0].webm["480"]
+      ? gameHighlightedMovies[0].webm["480"]
+      : "";
+  }
 }
 
 module.exports = SteamGamesAPI;

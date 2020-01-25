@@ -310,6 +310,47 @@ Object {
               "kind": "InputValueDefinition",
               "name": Object {
                 "kind": "Name",
+                "value": "gameId",
+              },
+              "type": Object {
+                "kind": "NonNullType",
+                "type": Object {
+                  "kind": "NamedType",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "ID",
+                  },
+                },
+              },
+            },
+          ],
+          "description": undefined,
+          "directives": Array [],
+          "kind": "FieldDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "getHighlightTrailer",
+          },
+          "type": Object {
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
+            },
+          },
+        },
+        Object {
+          "arguments": Array [
+            Object {
+              "defaultValue": undefined,
+              "description": undefined,
+              "directives": Array [],
+              "kind": "InputValueDefinition",
+              "name": Object {
+                "kind": "Name",
                 "value": "users",
               },
               "type": Object {
@@ -3182,7 +3223,7 @@ Object {
   ],
   "kind": "Document",
   "loc": Object {
-    "end": 8876,
+    "end": 8972,
     "start": 0,
   },
 }

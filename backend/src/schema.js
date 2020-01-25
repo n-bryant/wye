@@ -30,6 +30,8 @@ const typeDefs = gql`
     game(gameId: ID!): Game!
     # query for the background image of the most popular game
     mostPopularBackgroundSrc: String!
+    # get the path for a game's highlight trailer
+    getHighlightTrailer(gameId: ID!): String!
     # query for game recommendations for a list of users with filtering
     recommendations(
       users: [ID]
