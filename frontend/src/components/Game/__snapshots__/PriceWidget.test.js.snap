@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PriceWidget getPrice should render a price details container with sale details if the game is on sale 1`] = `
+<div
+  className="wye-PriceWidget__priceDetailsContainer wye-PriceWidget__priceDetailsContainer--withDiscount priceDetailsContainer priceDetailsContainerWithDiscount"
+>
+  <WithStyles(ForwardRef(Typography))
+    className="wye-PriceWidget__discountPercent discountPercent"
+    variant="h1"
+  >
+    -
+    50
+    %
+  </WithStyles(ForwardRef(Typography))>
+  <div
+    className="wye-PriceWidget__priceDetails priceDetails"
+  >
+    <WithStyles(ForwardRef(Typography))
+      className="wye-PriceWidget__initialPrice initialPrice"
+      variant="body2"
+    >
+      $10.00
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      variant="body1"
+    >
+      $5.00
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+</div>
+`;
+
+exports[`PriceWidget getPrice should render a price details container with the sole final price value if the game is not on sale 1`] = `
+<div
+  className="wye-PriceWidget__priceDetailsContainer priceDetailsContainer"
+>
+  <WithStyles(ForwardRef(Typography))
+    className="wye-PriceWidget__finalPrice finalPrice"
+    variant="body1"
+  >
+    $5.00
+  </WithStyles(ForwardRef(Typography))>
+</div>
+`;
+
+exports[`PriceWidget should render successfully 1`] = `
+<div
+  className="wye-PriceWidget root"
+>
+  <div
+    className="wye-PriceWidget__priceContainer priceContainer"
+  >
+    <WithStyles(ForwardRef(Typography))
+      className="wye-PriceWidget__priceFree priceFree"
+      variant="h2"
+    >
+      Free to Play
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+</div>
+`;
