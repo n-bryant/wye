@@ -14,54 +14,6 @@ exports[`PriceInfoBlock should render a link with the metacritic score and way t
 </WithStyles(ForwardRef(Typography))>
 `;
 
-exports[`PriceInfoBlock should render a price details container with sale details if the game is on sale 1`] = `
-<div
-  className="wye-PriceInfoBlock__priceDetailsContainer wye-PriceInfoBlock__priceDetailsContainer--withDiscount priceDetailsContainer priceDetailsContainerWithDiscount"
->
-  <WithStyles(ForwardRef(Typography))
-    className="wye-PriceInfoBlock__discountPercent discountPercent"
-    variant="h1"
-  >
-    -
-    50
-    %
-  </WithStyles(ForwardRef(Typography))>
-  <div
-    className="wye-PriceInfoBlock__priceDetails priceDetails"
-  >
-    <WithStyles(ForwardRef(Typography))
-      className="wye-PriceInfoBlock__initialPrice initialPrice"
-      variant="body2"
-    >
-      $10.00
-    </WithStyles(ForwardRef(Typography))>
-    <WithStyles(ForwardRef(Typography))
-      variant="body1"
-    >
-      $5.00
-    </WithStyles(ForwardRef(Typography))>
-  </div>
-</div>
-`;
-
-exports[`PriceInfoBlock should render a price details container with the sole final price value if the game is not on sale 1`] = `
-<div
-  className="wye-PriceInfoBlock__priceDetailsContainer priceDetailsContainer"
->
-  <WithStyles(ForwardRef(Typography))
-    variant="body1"
-  >
-    Price:
-  </WithStyles(ForwardRef(Typography))>
-  <WithStyles(ForwardRef(Typography))
-    className="wye-PriceInfoBlock__finalPrice finalPrice"
-    variant="body1"
-  >
-    $5.00
-  </WithStyles(ForwardRef(Typography))>
-</div>
-`;
-
 exports[`PriceInfoBlock should render successfully 1`] = `
 <div
   className="wye-PriceInfoBlock root"
@@ -69,12 +21,20 @@ exports[`PriceInfoBlock should render successfully 1`] = `
   <div
     className="wye-PriceInfoBlock__priceContainer priceContainer"
   >
-    <WithStyles(ForwardRef(Typography))
-      className="wye-PriceInfoBlock__priceFree priceFree"
-      variant="h2"
-    >
-      Free to Play
-    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(PriceWidget)
+      className="wye-PriceInfoBlock__priceWidget priceWidget"
+      classes={Object {}}
+      data={
+        Object {
+          "discountPercentage": 50,
+          "finalFormatted": "$5.00",
+          "freeToPlay": true,
+          "initialFormatted": "$10.00",
+          "onSale": true,
+        }
+      }
+      skinny={false}
+    />
     <a
       className="wye-PriceInfoBlock__link link"
       href="https://store.steampowered.com/app/1"

@@ -14,6 +14,7 @@ import { mdiPlusMinus } from "@mdi/js";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
+import PriceWidget from "./PriceWidget";
 import styles from "./PriceInfoBlock.styles";
 
 /**
@@ -26,52 +27,6 @@ export const PriceInfoBlock = props => {
     width
   } = props;
   const router = useRouter();
-
-  const getPrice = () => {
-    if (price.freeToPlay) {
-      return (
-        <Typography className={classnames.element("priceFree")} variant="h2">
-          Free to Play
-        </Typography>
-      );
-    } else if (price.onSale) {
-      return (
-        <div
-          className={classnames.element("priceDetailsContainer", {
-            withDiscount: true
-          })}
-        >
-          <Typography
-            className={classnames.element("discountPercent")}
-            variant="h1"
-          >
-            -{price.discountPercentage}%
-          </Typography>
-          <div className={classnames.element("priceDetails")}>
-            <Typography
-              className={classnames.element("initialPrice")}
-              variant="body2"
-            >
-              {price.initialFormatted}
-            </Typography>
-            <Typography variant="body1">{price.finalFormatted}</Typography>
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div className={classnames.element("priceDetailsContainer")}>
-          <Typography variant="body1">Price:</Typography>
-          <Typography
-            className={classnames.element("finalPrice")}
-            variant="body1"
-          >
-            {price.finalFormatted}
-          </Typography>
-        </div>
-      );
-    }
-  };
 
   const hasSmScreen = ["xs", "sm"].some(val => val === width);
 
@@ -86,7 +41,10 @@ export const PriceInfoBlock = props => {
           withSmScreen: hasSmScreen
         })}
       >
-        {getPrice()}
+        <PriceWidget
+          data={price}
+          className={classnames.element("priceWidget")}
+        />
         <a
           className={classnames.element("link")}
           href={`https://store.steampowered.com/app/${router.query.id}`}
@@ -140,13 +98,7 @@ PriceInfoBlock.propTypes = {
     withSmScreen: PropTypes.string,
     priceContainer: PropTypes.string,
     priceContainerWithSmScreen: PropTypes.string,
-    priceDetailsContainer: PropTypes.string,
-    priceDetailsContainerWithDiscount: PropTypes.string,
-    discountPercent: PropTypes.string,
-    initialPrice: PropTypes.string,
-    finalPrice: PropTypes.string,
-    priceDetails: PropTypes.string,
-    priceFree: PropTypes.string,
+    priceWidget: PropTypes.string,
     storeButton: PropTypes.string,
     link: PropTypes.string,
     metacriticContainer: PropTypes.string,

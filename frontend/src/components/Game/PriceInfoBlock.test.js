@@ -15,13 +15,7 @@ describe("PriceInfoBlock", () => {
       withSmScreen: "withSmScreen",
       priceContainer: "priceContainer",
       priceContainerWithSmScreen: "priceContainerWithSmScreen",
-      priceDetailsContainer: "priceDetailsContainer",
-      priceDetailsContainerWithDiscount: "priceDetailsContainerWithDiscount",
-      discountPercent: "discountPercent",
-      initialPrice: "initialPrice",
-      finalPrice: "finalPrice",
-      priceDetails: "priceDetails",
-      priceFree: "priceFree",
+      priceWidget: "priceWidget",
       storeButton: "storeButton",
       link: "link",
       metacriticContainer: "metacriticContainer",
@@ -49,49 +43,6 @@ describe("PriceInfoBlock", () => {
   it("should render successfully", () => {
     const wrapper = shallow(<PriceInfoBlock {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
-  });
-
-  it("should render a price details container with sale details if the game is on sale", () => {
-    const propsWithDiscount = {
-      ...props,
-      data: {
-        ...props.data,
-        price: {
-          ...props.data.price,
-          freeToPlay: false
-        }
-      }
-    };
-    const wrapperWithDiscount = shallow(
-      <PriceInfoBlock {...propsWithDiscount} />
-    );
-    const priceDetailsContainer = wrapperWithDiscount.findWhere(n =>
-      n.hasClass(props.classes.priceDetailsContainerWithDiscount)
-    );
-    expect(priceDetailsContainer.length).toBe(1);
-    expect(toJson(priceDetailsContainer)).toMatchSnapshot();
-  });
-
-  it("should render a price details container with the sole final price value if the game is not on sale", () => {
-    const propsWithoutDiscount = {
-      ...props,
-      data: {
-        ...props.data,
-        price: {
-          ...props.data.price,
-          freeToPlay: false,
-          onSale: false
-        }
-      }
-    };
-    const wrapperWitouthDiscount = shallow(
-      <PriceInfoBlock {...propsWithoutDiscount} />
-    );
-    const priceDetailsContainer = wrapperWitouthDiscount.findWhere(n =>
-      n.hasClass(props.classes.priceDetailsContainer)
-    );
-    expect(priceDetailsContainer.length).toBe(1);
-    expect(toJson(priceDetailsContainer)).toMatchSnapshot();
   });
 
   it("should render a link with the metacritic score and way to navigate to the reviews page if the metacritic score is above 0", () => {
