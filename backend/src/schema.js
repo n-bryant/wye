@@ -36,7 +36,7 @@ const typeDefs = gql`
     recommendations(
       users: [ID]
       filters: FilterInput
-      orderBy: OrderByField
+      orderBy: [OrderByField!]
       sortOrder: OrderDirection
       first: Int
     ): RecommendationConnection!

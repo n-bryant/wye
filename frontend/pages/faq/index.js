@@ -6,6 +6,7 @@ import JSS_CLASS_NAME_PREFIX from "../../lib/classNamePrefix";
 import { withStyles } from "@material-ui/core/styles";
 
 import FaqAccordion from "../../src/components/FaqAccordion";
+import IndexPageBackground from "../../src/components/ScrollingBackground/IndexPageBackground";
 import styles from "./index.styles";
 
 /**
@@ -17,6 +18,7 @@ export const FaqPage = props => {
   return (
     <div className={classnames.root()}>
       <FaqAccordion />
+      <IndexPageBackground />
     </div>
   );
 };

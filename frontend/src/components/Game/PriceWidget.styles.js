@@ -25,6 +25,9 @@ const styles = theme => ({
     textDecoration: "line-through",
     fontSize: "0.5rem"
   },
+  finalWithSale: {
+    fontSize: "0.75rem"
+  },
   finalPrice: {
     marginLeft: theme.spacing(1),
     padding: theme.spacing(1),
@@ -37,9 +40,8 @@ const styles = theme => ({
     paddingLeft: "4px"
   },
   priceFree: {
-    padding: "4px",
-    background: theme.palette.common.black,
-    marginRight: "24px"
+    padding: "4px 8px",
+    background: theme.palette.common.black
   }
 });
 export default styles;

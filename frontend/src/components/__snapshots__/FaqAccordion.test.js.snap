@@ -611,8 +611,5 @@ exports[`FaqAccordion should render successfully 1`] = `
       </WithStyles(ForwardRef(ExpansionPanelDetails))>
     </WithStyles(ForwardRef(ExpansionPanel))>
   </div>
-  <WithStyles(IndexPageBackground)
-    classes={Object {}}
-  />
 </div>
 `;

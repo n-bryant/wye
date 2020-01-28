@@ -9,12 +9,14 @@ const styles = theme => ({
     height: "100%",
     zIndex: "1",
     position: "relative",
-    paddingTop: "2rem",
-    paddingBottom: "2rem"
+    overflow: "hidden"
   },
   main: {
     height: "100%",
-    overflow: "auto"
+    overflowY: "auto",
+    overflowX: "hidden",
+    paddingTop: "2rem",
+    paddingBottom: "2rem"
   },
   heading: {
     fontSize: "3rem",
@@ -22,7 +24,8 @@ const styles = theme => ({
   },
   subHeading: {
     fontSize: "1rem",
-    fontWeight: "300"
+    fontWeight: "300",
+    marginBottom: theme.spacing(4)
   }
 });
 export default styles;

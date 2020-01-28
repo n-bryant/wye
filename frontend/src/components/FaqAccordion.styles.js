@@ -4,7 +4,8 @@ const styles = theme => ({
     display: "flex",
     flexDirection: "column",
     background: "rgba(34, 139, 230,.25)",
-    position: "relative"
+    position: "relative",
+    zIndex: "1"
   },
   titleContainer: {
     height: "56px",

@@ -17,7 +17,6 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
-import IndexPageBackground from "./ScrollingBackground/IndexPageBackground";
 import styles from "./FaqAccordion.styles";
 
 export const EXPAND_ALL_BUTTON_OPTIONS = {
@@ -519,7 +518,6 @@ export const FaqAccordion = props => {
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </div>
-      <IndexPageBackground />
     </div>
   );
 };

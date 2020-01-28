@@ -47,10 +47,10 @@ export const BrowsePage = props => {
       <div className={classnames.root()}>
         <Container
           className={classnames.element("container")}
-          maxWidth={false}
+          maxWidth="lg"
           disableGutters
         >
-          <Container className={classnames.element("main")} maxWidth="lg">
+          <Container className={classnames.element("main")} maxWidth={false}>
             <Typography className={classnames.element("heading")} variant="h1">
               Featured Games
             </Typography>

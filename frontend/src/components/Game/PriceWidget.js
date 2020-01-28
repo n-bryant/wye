@@ -55,7 +55,12 @@ export class PriceWidget extends React.Component {
             >
               {data.initialFormatted}
             </Typography>
-            <Typography variant="body1">{data.finalFormatted}</Typography>
+            <Typography
+              variant="body1"
+              className={this.classnames.element("finalWithSale")}
+            >
+              {data.finalFormatted}
+            </Typography>
           </div>
         </div>
       );
@@ -98,6 +103,7 @@ PriceWidget.propTypes = {
     discountPercentSkinny: PropTypes.string,
     initialPrice: PropTypes.string,
     finalPrice: PropTypes.string,
+    finalWithSale: PropTypes.string,
     priceDetails: PropTypes.string,
     priceFree: PropTypes.string
   }),

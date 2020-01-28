@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popper should render successfully 1`] = `
+<div
+  className="wye-Popper__root root"
+  style={
+    Object {
+      "height": 354,
+      "width": 300,
+    }
+  }
+>
+  <div
+    className="wye-Popper__arrow wye-Popper__arrow--left arrow arrowLeft"
+    style={Object {}}
+  />
+  <div
+    className="wye-Popper__content content"
+  >
+    foo
+  </div>
+</div>
+`;
