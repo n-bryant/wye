@@ -12,6 +12,7 @@ describe("PriceWidget", () => {
       discountPercentSkinny: "discountPercentSkinny",
       initialPrice: "initialPrice",
       finalPrice: "finalPrice",
+      finalWithSale: "finalWithSale",
       priceDetails: "priceDetails",
       priceFree: "priceFree"
     },

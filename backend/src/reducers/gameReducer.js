@@ -94,7 +94,7 @@ const gameReducer = game => {
           score: 0,
           reviewsPageUrl: ""
         },
-    categories: game["categories"],
+    categories: game["categories"] ? game["categories"] : [],
     genres: game["genres"],
     headerImageUrl: game["header_image"],
     heroImageUrl: `${GAME_IMAGES_BASE_URL}${game["steam_appid"]}/library_hero.jpg`,

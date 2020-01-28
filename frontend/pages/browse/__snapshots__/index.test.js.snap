@@ -8,11 +8,11 @@ exports[`BrowsePage should render successfully 1`] = `
     <WithStyles(ForwardRef(Container))
       className="wye-BrowsePage__container container"
       disableGutters={true}
-      maxWidth={false}
+      maxWidth="lg"
     >
       <WithStyles(ForwardRef(Container))
         className="wye-BrowsePage__main main"
-        maxWidth="lg"
+        maxWidth={false}
       >
         <WithStyles(ForwardRef(Typography))
           className="wye-BrowsePage__heading heading"

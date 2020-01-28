@@ -19,7 +19,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.common.black,
     overflow: "hidden",
     position: "absolute",
-    zIndex: "-1",
+    zIndex: "0",
     top: "0",
     right: "0",
     bottom: "0",

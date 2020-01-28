@@ -7,7 +7,8 @@ const styles = theme => ({
   container: {
     backgroundColor: "rgba(34, 139, 230,.25)",
     height: "100%",
-    zIndex: "1"
+    zIndex: "1",
+    position: "relative"
   },
   main: {
     height: "100%",

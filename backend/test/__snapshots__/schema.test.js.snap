@@ -391,10 +391,16 @@ Object {
                 "value": "orderBy",
               },
               "type": Object {
-                "kind": "NamedType",
-                "name": Object {
-                  "kind": "Name",
-                  "value": "OrderByField",
+                "kind": "ListType",
+                "type": Object {
+                  "kind": "NonNullType",
+                  "type": Object {
+                    "kind": "NamedType",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "OrderByField",
+                    },
+                  },
                 },
               },
             },
@@ -3223,7 +3229,7 @@ Object {
   ],
   "kind": "Document",
   "loc": Object {
-    "end": 8972,
+    "end": 8975,
     "start": 0,
   },
 }

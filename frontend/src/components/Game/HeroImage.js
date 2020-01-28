@@ -26,7 +26,7 @@ export const HeroImage = props => {
   };
 
   return (
-    <React.Fragment>
+    <div className={classnames.root()}>
       <img
         className={classnames.element("image", {
           hidden: !loaded
@@ -43,7 +43,7 @@ export const HeroImage = props => {
         src={PLACEHOLDER_PATH}
         alt={altText}
       />
-    </React.Fragment>
+    </div>
   );
 };
 HeroImage.classnames = createClassNameHelper(
@@ -52,6 +52,7 @@ HeroImage.classnames = createClassNameHelper(
 HeroImage.propTypes = {
   // styles to apply
   classes: PropTypes.shape({
+    root: PropTypes.string,
     image: PropTypes.string,
     imageHidden: PropTypes.string,
     placeholder: PropTypes.string,

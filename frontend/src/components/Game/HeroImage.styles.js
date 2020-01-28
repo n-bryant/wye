@@ -16,6 +16,7 @@ const hidden = {
 };
 
 const styles = () => ({
+  root: {},
   image,
   imageHidden: {
     ...hidden
