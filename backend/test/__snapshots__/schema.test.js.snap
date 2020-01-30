@@ -2570,7 +2570,7 @@ Object {
           "kind": "FieldDefinition",
           "name": Object {
             "kind": "Name",
-            "value": "owners",
+            "value": "ownersFormatted",
           },
           "type": Object {
             "kind": "NonNullType",
@@ -2578,7 +2578,47 @@ Object {
               "kind": "NamedType",
               "name": Object {
                 "kind": "Name",
-                "value": "OwnerCount",
+                "value": "String",
+              },
+            },
+          },
+        },
+        Object {
+          "arguments": Array [],
+          "description": undefined,
+          "directives": Array [],
+          "kind": "FieldDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "ownersMax",
+          },
+          "type": Object {
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "Int",
+              },
+            },
+          },
+        },
+        Object {
+          "arguments": Array [],
+          "description": undefined,
+          "directives": Array [],
+          "kind": "FieldDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "ownersMin",
+          },
+          "type": Object {
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "Int",
               },
             },
           },
@@ -2783,78 +2823,6 @@ Object {
       "name": Object {
         "kind": "Name",
         "value": "WyeGame",
-      },
-    },
-    Object {
-      "description": undefined,
-      "directives": Array [],
-      "fields": Array [
-        Object {
-          "arguments": Array [],
-          "description": undefined,
-          "directives": Array [],
-          "kind": "FieldDefinition",
-          "name": Object {
-            "kind": "Name",
-            "value": "min",
-          },
-          "type": Object {
-            "kind": "NonNullType",
-            "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "Int",
-              },
-            },
-          },
-        },
-        Object {
-          "arguments": Array [],
-          "description": undefined,
-          "directives": Array [],
-          "kind": "FieldDefinition",
-          "name": Object {
-            "kind": "Name",
-            "value": "max",
-          },
-          "type": Object {
-            "kind": "NonNullType",
-            "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "Int",
-              },
-            },
-          },
-        },
-        Object {
-          "arguments": Array [],
-          "description": undefined,
-          "directives": Array [],
-          "kind": "FieldDefinition",
-          "name": Object {
-            "kind": "Name",
-            "value": "formatted",
-          },
-          "type": Object {
-            "kind": "NonNullType",
-            "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "String",
-              },
-            },
-          },
-        },
-      ],
-      "interfaces": Array [],
-      "kind": "ObjectTypeDefinition",
-      "name": Object {
-        "kind": "Name",
-        "value": "OwnerCount",
       },
     },
     Object {
@@ -3201,6 +3169,74 @@ Object {
           "kind": "InputValueDefinition",
           "name": Object {
             "kind": "Name",
+            "value": "ownersMin_lte",
+          },
+          "type": Object {
+            "kind": "NamedType",
+            "name": Object {
+              "kind": "Name",
+              "value": "Int",
+            },
+          },
+        },
+        Object {
+          "defaultValue": undefined,
+          "description": undefined,
+          "directives": Array [],
+          "kind": "InputValueDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "ownersMin_gte",
+          },
+          "type": Object {
+            "kind": "NamedType",
+            "name": Object {
+              "kind": "Name",
+              "value": "Int",
+            },
+          },
+        },
+        Object {
+          "defaultValue": undefined,
+          "description": undefined,
+          "directives": Array [],
+          "kind": "InputValueDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "ownersMax_lte",
+          },
+          "type": Object {
+            "kind": "NamedType",
+            "name": Object {
+              "kind": "Name",
+              "value": "Int",
+            },
+          },
+        },
+        Object {
+          "defaultValue": undefined,
+          "description": undefined,
+          "directives": Array [],
+          "kind": "InputValueDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "ownersMax_gte",
+          },
+          "type": Object {
+            "kind": "NamedType",
+            "name": Object {
+              "kind": "Name",
+              "value": "Int",
+            },
+          },
+        },
+        Object {
+          "defaultValue": undefined,
+          "description": undefined,
+          "directives": Array [],
+          "kind": "InputValueDefinition",
+          "name": Object {
+            "kind": "Name",
             "value": "discount_lte",
           },
           "type": Object {
@@ -3272,7 +3308,7 @@ Object {
   ],
   "kind": "Document",
   "loc": Object {
-    "end": 9135,
+    "end": 9486,
     "start": 0,
   },
 }
