@@ -26,6 +26,7 @@ exports[`BrowsePage should render successfully 1`] = `
         >
           Browse the most popular and discounted multiplayer games
         </WithStyles(ForwardRef(Typography))>
+        <MostPopularFeaturedQuery />
       </WithStyles(ForwardRef(Container))>
     </WithStyles(ForwardRef(Container))>
   </div>

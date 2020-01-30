@@ -9,6 +9,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import BackgroundProvider from "../../src/components/BackgroundProvider";
+import MostPopularFeatured from "../../src/components/Browse/MostPopularFeatured";
 import styles from "./index.styles";
 
 /**
@@ -60,6 +61,7 @@ export const BrowsePage = props => {
             >
               Browse the most popular and discounted multiplayer games
             </Typography>
+            <MostPopularFeatured />
           </Container>
         </Container>
       </div>

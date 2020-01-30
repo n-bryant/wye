@@ -39,7 +39,7 @@ exports[`PaginationWidget should render successfully 1`] = `
   <WithStyles(ForwardRef(Typography))
     variant="body2"
   >
-    Page 1 of 3
+    1 of 3
   </WithStyles(ForwardRef(Typography))>
   <WithStyles(ForwardRef(Button))
     className="wye-PaginationWidget__paddle paddle"

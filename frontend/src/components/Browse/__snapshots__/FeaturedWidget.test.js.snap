@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FeaturedWidget should render successfully 1`] = `
+<WithStyles(ForwardRef(Container))
+  className="wye-FeaturedWidget__root root"
+  disableGutters={true}
+  maxWidth={false}
+>
+  <WithStyles(ForwardRef(Typography))
+    className="wye-FeaturedWidget__heading heading"
+    gutterBottom={true}
+    variant="h2"
+  >
+    title
+  </WithStyles(ForwardRef(Typography))>
+  <WithStyles(ForwardRef(Typography))
+    className="wye-FeaturedWidget__subHeading subHeading"
+    gutterBottom={true}
+    variant="body1"
+  >
+    subTitle
+  </WithStyles(ForwardRef(Typography))>
+  <WithStyles(ForwardRef(Container))
+    className="wye-FeaturedWidget__content content"
+    disableGutters={true}
+  />
+  <WithStyles(ForwardRef(Container))
+    className="wye-FeaturedWidget__seeMoreButtonContainer seeMoreButtonContainer"
+    disableGutters={true}
+  >
+    <Link
+      href="path"
+    >
+      <a>
+        <WithStyles(ForwardRef(Button))>
+          <WithStyles(ForwardRef(Typography))
+            variant="body2"
+          >
+            See more...
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(Button))>
+      </a>
+    </Link>
+  </WithStyles(ForwardRef(Container))>
+</WithStyles(ForwardRef(Container))>
+`;

@@ -18,7 +18,8 @@ const typeDefs = gql`
     HOURS_PLAYED
     PLAYTIME_RECENT
     PLAYTIME_FOREVER
-    OWNER_COUNT
+    OWNER_COUNT_MIN
+    OWNER_COUNT_MAX
   }
 
   type Query {
@@ -297,8 +298,12 @@ const typeDefs = gql`
     playtime2Weeks: Int!
     # playtime since March 2009 in minutes
     playtimeForever: Int!
-    # range of owner count
-    owners: OwnerCount!
+    # formatted range of owner count
+    ownersFormatted: String!
+    # max owner count
+    ownersMax: Int!
+    # min owner count
+    ownersMin: Int!
     # location of the game's header image
     headerImage: String!
     # game page background image location
@@ -319,12 +324,6 @@ const typeDefs = gql`
     libraryCapsule: String!
     # location of the game's library hero image
     libraryHero: String!
-  }
-
-  type OwnerCount {
-    min: Int!
-    max: Int!
-    formatted: String!
   }
 
   type UserPlaytime {
@@ -365,6 +364,18 @@ const typeDefs = gql`
     freeToPlay: Boolean
     # filter value for games that are on sale
     onSale: Boolean
+    # filter for games with rating <= value
+    userRating_lte: Int
+    # filter for games with rating >= value
+    userRating_gte: Int
+    # filter for games with lower range of owners <= value
+    ownersMin_lte: Int
+    # filter for games with lower range of owners >= value
+    ownersMin_gte: Int
+    # filter for games with upper range of owners <= value
+    ownersMax_lte: Int
+    # filter for games with upper range of owners >= value
+    ownersMax_gte: Int
     # fitler for games with discount <= value
     discount_lte: Int
     # fitler for games with discount >= value

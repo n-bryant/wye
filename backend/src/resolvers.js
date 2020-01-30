@@ -19,7 +19,8 @@ const SORT_BY_MAP = {
   USER_RATING: "node.game.userRating",
   PLAYTIME_RECENT: "node.game.playtime2Weeks",
   PLAYTIME_FOREVER: "node.game.playtimeForever",
-  OWNER_COUNT: "node.game.owners.max",
+  OWNER_COUNT_MIN: "node.game.ownersMin",
+  OWNER_COUNT_MAX: "node.game.ownersMax",
   OWNED_BY: "node.ownedBy.length",
   RECENTLY_PLAYED_BY: "node.recentlyPlayedBy.length",
   HOURS_PLAYED: "node.playtime"
@@ -177,13 +178,11 @@ const resolvers = {
         }
       ];
       if (orderBy) {
-        // sort by the given orderBy field
-        sortBy = [
-          {
-            prop: SORT_BY_MAP[orderBy],
-            direction
-          }
-        ];
+        // sort by the given orderBy field(s)
+        sortBy = orderBy.map(field => ({
+          prop: SORT_BY_MAP[field],
+          direction
+        }));
       }
       if (orderBy === SORT_BY_MAP.HOURS_PLAYED) {
         sortRecommendationsByPlaytime(edges, sortOrder);

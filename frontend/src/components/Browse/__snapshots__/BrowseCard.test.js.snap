@@ -32,8 +32,7 @@ exports[`BrowseCard popper content should only render a Popper if an anchorEl is
     <span
       className="wye-BrowseCard__category category"
     >
-      Developers:
-       
+      Developers: 
     </span>
      
     a, b
@@ -45,8 +44,7 @@ exports[`BrowseCard popper content should only render a Popper if an anchorEl is
     <span
       className="wye-BrowseCard__category category"
     >
-      Publishers:
-       
+      Publishers: 
     </span>
      
     a, b
@@ -122,53 +120,50 @@ exports[`BrowseCard popper content should only render a Popper if an anchorEl is
 `;
 
 exports[`BrowseCard should render successfully 1`] = `
-<WithStyles(ForwardRef(Grid))
-  item={true}
-  xs={6}
+<WithStyles(ForwardRef(Card))
+  className="wye-BrowseCard wye-BrowseCard--header root header"
 >
-  <WithStyles(ForwardRef(Card))
-    className="wye-BrowseCard wye-BrowseCard--header root header"
+  <Link
+    as="/game/1"
+    href="/game/[id]"
   >
-    <Link
-      as="/game/1"
-      href="/game/[id]"
-    >
-      <a>
-        <WithStyles(ForwardRef(CardActionArea))
-          className="wye-BrowseCard__actionArea actionArea"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
+    <a>
+      <WithStyles(ForwardRef(CardActionArea))
+        className="wye-BrowseCard__actionArea actionArea"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <WithStyles(ForwardRef(CardContent))
+          className="wye-BrowseCard__content content"
         >
-          <WithStyles(ForwardRef(CardContent))>
-            <WithStyles(HeroImage)
-              altText="foo"
-              className="wye-BrowseCard__media wye-BrowseCard__media--header media mediaHeader"
-              classes={Object {}}
-              imageSrc="header"
-            />
-          </WithStyles(ForwardRef(CardContent))>
-        </WithStyles(ForwardRef(CardActionArea))>
-      </a>
-    </Link>
-    <div
-      className="wye-BrowseCard__priceWidget priceWidget"
-    >
-      <WithStyles(PriceWidget)
-        classes={Object {}}
-        data={
-          Object {
-            "discountPercentage": 0,
-            "finalFormatted": "$0.00",
-            "freeToPlay": true,
-            "initialFormatted": "$0.00",
-            "onSale": false,
-          }
+          <WithStyles(HeroImage)
+            altText="foo"
+            className="wye-BrowseCard__media wye-BrowseCard__media--header media mediaHeader"
+            classes={Object {}}
+            imageSrc="header"
+          />
+        </WithStyles(ForwardRef(CardContent))>
+      </WithStyles(ForwardRef(CardActionArea))>
+    </a>
+  </Link>
+  <div
+    className="wye-BrowseCard__priceWidget priceWidget"
+  >
+    <WithStyles(PriceWidget)
+      classes={Object {}}
+      data={
+        Object {
+          "discountPercentage": 0,
+          "finalFormatted": "$0.00",
+          "freeToPlay": true,
+          "initialFormatted": "$0.00",
+          "onSale": false,
         }
-        skinny={true}
-      />
-    </div>
-  </WithStyles(ForwardRef(Card))>
-</WithStyles(ForwardRef(Grid))>
+      }
+      skinny={true}
+    />
+  </div>
+</WithStyles(ForwardRef(Card))>
 `;
 
 exports[`HighlightTrailerQuery should render successfully 1`] = `

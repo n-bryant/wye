@@ -24,7 +24,7 @@ import {
 import LoadingState from "../LoadingState";
 import UserAvatar from "./UserAvatar";
 import Item from "./Item";
-import PaginationWidget from "./PaginationWidget";
+import PaginationWidget from "../PaginationWidget";
 import styles from "./index.styles";
 
 // recommendations query
@@ -57,10 +57,8 @@ export const GET_RECOMMENDATIONS_QUERY = gql`
             initialPrice
             finalPrice
             userRating
-            owners {
-              max
-              formatted
-            }
+            ownersFormatted
+            ownersMax
             playtime2Weeks
             playtimeForever
             headerImage

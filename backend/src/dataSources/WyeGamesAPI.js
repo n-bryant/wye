@@ -72,20 +72,7 @@ class WyeGamesAPI extends RESTDataSource {
           developers: game.developers.split(", "),
           publishers: game.publishers.split(", "),
           genres: game.genres.split(", "),
-          tags: game.tags.split(", "),
-          owners: game.owners
-            ? {
-                min:
-                  parseInt(game.owners.split(" .. ")[0].replace(/,/g, "")) || 0,
-                max:
-                  parseInt(game.owners.split(" .. ")[1].replace(/,/g, "")) || 0,
-                formatted: game.owners
-              }
-            : {
-                min: 0,
-                max: 0,
-                formatted: "n/a"
-              }
+          tags: game.tags.split(", ")
         };
       });
 
