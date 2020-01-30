@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { withStyles } from "@material-ui/core/styles";
 import createClassNameHelper from "@n_bryant/classnames-helper";
-import JSS_CLASS_NAME_PREFIX from "../../../lib/classNamePrefix";
+import JSS_CLASS_NAME_PREFIX from "../../lib/classNamePrefix";
 
 import Icon from "@mdi/react";
 import {
@@ -54,7 +54,7 @@ export const PaginationWidget = props => {
           path={mdiChevronLeft}
         />
       </Button>
-      <Typography variant="body2">{`Page ${currentPage} of ${totalPages}`}</Typography>
+      <Typography variant="body2">{`${currentPage} of ${totalPages}`}</Typography>
       <Button
         className={classnames.element("paddle")}
         disabled={nextPaddleDisabled}

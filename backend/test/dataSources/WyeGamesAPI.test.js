@@ -38,7 +38,9 @@ describe("WyeGamesAPI", () => {
         publishers: "",
         genres: "",
         tags: "",
-        owners: "5,000 .. 10,000"
+        ownersFormatted: "5,000 .. 10,000",
+        ownersMin: 5000,
+        ownersMax: 10000
       };
       const game2 = {
         name: "2",
@@ -46,7 +48,9 @@ describe("WyeGamesAPI", () => {
         publishers: "",
         genres: "",
         tags: "",
-        owners: "5,000 .. 10,000"
+        ownersFormatted: "5,000 .. 10,000",
+        ownersMin: 5000,
+        ownersMax: 10000
       };
       wyeGamesAPI.post.mockReturnValueOnce({
         games: [game1, game2]
@@ -62,11 +66,9 @@ describe("WyeGamesAPI", () => {
           publishers: [game1.publishers],
           genres: [game1.genres],
           tags: [game1.tags],
-          owners: {
-            formatted: "5,000 .. 10,000",
-            min: 5000,
-            max: 10000
-          }
+          ownersFormatted: "5,000 .. 10,000",
+          ownersMin: 5000,
+          ownersMax: 10000
         }
       ]);
     });
@@ -85,7 +87,9 @@ describe("WyeGamesAPI", () => {
             publishers: "1, 2",
             genres: "1, 2",
             tags: "1, 2",
-            owners: "5,000 .. 10,000"
+            ownersFormatted: "5,000 .. 10,000",
+            ownersMin: 5000,
+            ownersMax: 10000
           }
         ]
       };
@@ -95,11 +99,9 @@ describe("WyeGamesAPI", () => {
           publishers: ["1", "2"],
           genres: ["1", "2"],
           tags: ["1", "2"],
-          owners: {
-            formatted: "5,000 .. 10,000",
-            min: 5000,
-            max: 10000
-          }
+          ownersFormatted: "5,000 .. 10,000",
+          ownersMin: 5000,
+          ownersMax: 10000
         }
       ];
       wyeGamesAPI.post.mockReturnValueOnce(mockedGamesResponse);

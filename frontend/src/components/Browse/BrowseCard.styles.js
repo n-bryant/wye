@@ -3,7 +3,8 @@ const styles = theme => ({
     background: "transparent",
     position: "relative",
     overflow: "visible",
-    boxShadow: "none"
+    boxShadow: "none",
+    height: "100%"
   },
   header: {
     maxWidth: "450px"
@@ -20,27 +21,36 @@ const styles = theme => ({
   lib: {
     maxWidth: "300px"
   },
+  maxSize: {
+    maxWidth: "100%"
+  },
   media: {},
   mediaHeader: {
-    height: "215px"
+    height: "100%",
+    maxHeight: "215px"
   },
   mediaSm: {
-    height: "87px"
+    height: "100%",
+    maxHeight: "87px"
   },
   mediaMd: {
-    height: "181px"
+    height: "100%",
+    maxHeight: "181px"
   },
   mediaLg: {
-    height: "353px"
+    height: "100%",
+    maxHeight: "353px"
   },
   mediaLib: {
-    height: "450px"
+    height: "100%",
+    maxHeight: "450px"
+  },
+  mediaMaxSize: {
+    maxHeight: "100%"
   },
   content: {
-    background: "rgba(0,0,0,.5)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between"
+    padding: "0 !important",
+    height: "100%"
   },
   title: {
     color: theme.palette.common.blue6
@@ -69,7 +79,8 @@ const styles = theme => ({
   actionArea: {
     boxShadow:
       "0px 5px 5px -3px rgba(0,0,0,0.2), 0px 8px 10px 1px rgba(0,0,0,0.14), 0px 3px 14px 2px rgba(0,0,0,0.12)",
-    marginBottom: theme.spacing(0.5)
+    marginBottom: theme.spacing(0.5),
+    height: "100%"
   },
   priceWidget: {
     display: "flex",
