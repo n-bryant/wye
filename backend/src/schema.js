@@ -33,6 +33,8 @@ const typeDefs = gql`
     mostPopularBackgroundSrc: String!
     # get the path for a game's highlight trailer
     getHighlightTrailer(gameId: ID!): String!
+    # get the top title for the top publishers
+    getTopTitleForMostPopularPublishers: [PublisherTopTitle]!
     # query for game recommendations for a list of users with filtering
     recommendations(
       users: [ID]
@@ -226,6 +228,13 @@ const typeDefs = gql`
     thumbnailUrl: String!
     # url for the full size video
     fullsizeUrl: String!
+  }
+
+  type PublisherTopTitle {
+    # the publisher's name
+    publisher: String!
+    # data for the publisher's most popular title
+    topTitle: WyeGame!
   }
 
   #
