@@ -43,6 +43,13 @@ const resolvers = {
     getHighlightTrailer: async (_source, { gameId }, { dataSources }) => {
       return dataSources.steamGamesAPI.getGameHighlightTrailer(gameId);
     },
+    getTopTitleForMostPopularPublishers: async (
+      _source,
+      _args,
+      { dataSources }
+    ) => {
+      return dataSources.wyeGamesAPI.getTopTitleForMostPopularPublishers();
+    },
     recommendations: async (
       _source,
       {

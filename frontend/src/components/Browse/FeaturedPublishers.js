@@ -10,6 +10,8 @@ import get from "lodash.get";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 
+import { userRouter } from "next/router";
+
 import Grid from "@material-ui/core/Grid";
 
 import LoadingState from "../LoadingState";
@@ -18,57 +20,52 @@ import FeaturedWidget from "./FeaturedWidget";
 import BrowseCard from "./BrowseCard";
 import styles from "./MostPopularFeatured.styles";
 
-// get the most popular games with at least 10,000,000 owners and an avg user rating of at least 75
-export const GET_MOST_POPULAR_FEATURED_QUERY = gql`
-  query GET_MOST_POPULAR_FEATURED_QUERY {
-    recommendations(
-      orderBy: [PLAYTIME_RECENT, USER_RATING]
-      filters: { gameFilters: { userRating_gte: 75, ownersMin_gte: 10000000 } }
-      sortOrder: DESC
-      first: 5
-    ) {
-      edges {
-        node {
-          game {
-            appid
-            name
-            developers
-            publishers
-            ownersFormatted
-            userRating
-            genres
-            freeToPlay
-            onSale
-            discount
-            initialPrice
-            finalPrice
-            headerImage
-            capsuleLg
-          }
+// get the top title for the 5 most popular publishers
+export const GET_FEATURED_PUBLISHERS_TOP_ITEM_QUERY = gql`
+  query GET_FEATURED_PUBLISHERS_TOP_ITEM_QUERY {
+    getTopTitleForMostPopularPublishers {
+      publisher {
+        topTitle {
+          appid
+          name
+          developers
+          publishers
+          ownersFormatted
+          userRating
+          genres
+          freeToPlay
+          onSale
+          discount
+          initialPrice
+          finalPrice
+          headerImage
+          capsuleMd
         }
       }
     }
   }
 `;
 
-export const MOST_POPULAR_TITLE = "Trending";
-export const MOST_POPULAR_SUBTITLE = "Most popular by recent playtime";
+export const TITLE = "Publishers";
+export const SUBTITLE =
+  "The most played titles by the most prolific publishers";
 
 /**
  * renders a FeaturedWidget with cards representing the 5 most popular multiplayer games
  */
-export const MostPopularFeatured = props => {
-  const classnames = MostPopularFeatured.classnames(props);
+export const FeaturedPublishers = props => {
+  const classnames = FeaturedPublishers.classnames(props);
   const { items, width } = props;
   const [currentPage, setCurrentPage] = React.useState(1);
+  const router = useRouter();
 
   const featuredItem = items[0];
   const subFeaturedItems = items.slice(1);
   return (
     <FeaturedWidget
       className={classnames.root()}
-      title={MOST_POPULAR_TITLE}
-      subTitle={MOST_POPULAR_SUBTITLE}
+      title={TITLE}
+      subTitle={SUBTITLE}
     >
       {!["xs", "sm"].some(val => val === width) && items.length > 1 ? (
         <Grid
@@ -145,42 +142,33 @@ export const MostPopularFeatured = props => {
     </FeaturedWidget>
   );
 };
-MostPopularFeatured.classnames = createClassNameHelper(
-  `${JSS_CLASS_NAME_PREFIX}MostPopularFeatured`
+FeaturedPublishers.classnames = createClassNameHelper(
+  `${JSS_CLASS_NAME_PREFIX}FeaturedPublishers`
 );
-MostPopularFeatured.propTypes = {
+FeaturedPublishers.propTypes = {
   // styles to apply
   classes: PropTypes.shape({
-    root: PropTypes.string,
-    featuredItemContainer: PropTypes.string,
-    featuredItem: PropTypes.string,
-    featuredItemContent: PropTypes.string,
-    featuredItemFullWidth: PropTypes.string,
-    subFeaturedItemsContainer: PropTypes.string,
-    subFeaturedItem: PropTypes.string,
-    featuredItemContainer: PropTypes.string,
-    featuredItem: PropTypes.string,
-    paginationWidget: PropTypes.string
+    root: PropTypes.string
   }),
   // data for the cards to be rendered in the FeaturedWidget
   items: PropTypes.array,
   // material-ui width
   width: PropTypes.string
 };
-MostPopularFeatured.defaultProps = {
+FeaturedPublishers.defaultProps = {
   classes: {}
 };
 
-export const StyledMostPopularFeatured = withWidth()(
-  withStyles(styles)(MostPopularFeatured)
+export const StyledFeaturedPublishers = withWidth()(
+  withStyles(styles)(FeaturedPublishers)
 );
 
 /**
- * renders a Query to fetch the most popular games and returns a StyledMostPopularFeatured
+ * renders a Query to fetch the top titles by the most popular publishers and returns a StyledFeaturedPublishers
  */
-const MostPopularFeaturedQuery = props => {
+const FeaturedPublishersQuery = props => {
   return (
-    <Query query={GET_MOST_POPULAR_FEATURED_QUERY}>
+    <Query query={GET_FEATURED_PUBLISHERS_TOP_ITEM_QUERY}>
       {({ loading, data, error }) => {
         if (loading) {
           return <LoadingState />;
@@ -190,13 +178,11 @@ const MostPopularFeaturedQuery = props => {
           console.log(error);
         }
 
-        const items = get(data, ["recommendations", "edges"], []).map(
-          edge => edge.node.game
-        );
-        return <StyledMostPopularFeatured items={items} {...props} />;
+        const items = get(data, ["getTopTitleForMostPopularPublishers"], []);
+        return <StyledFeaturedPublishers items={items} {...props} />;
       }}
     </Query>
   );
 };
 
-export default MostPopularFeaturedQuery;
+export default FeaturedPublishersQuery;

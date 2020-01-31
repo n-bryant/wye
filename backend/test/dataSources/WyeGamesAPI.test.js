@@ -1,3 +1,4 @@
+const wyeGameReducer = require("../../src/reducers/wyeGameReducer");
 const WyeGamesAPI = require("../../src/dataSources/WyeGamesAPI");
 
 process.env.WYE_SUPPORT_URL = "foo";
@@ -234,6 +235,91 @@ describe("WyeGamesAPI", () => {
       expect(
         wyeGamesAPI.applyStringArrayIncludesFilters(games, filters)
       ).toEqual(expectedResult);
+    });
+  });
+
+  describe("getTopTitleForMostPopularPublishers", () => {
+    it("should have a getTopTitleForMostPopularPublishers method", () => {
+      expect(wyeGamesAPI.getTopTitleForMostPopularPublishers).toBeDefined();
+    });
+
+    it("should return an empty array if there are no top publisher titles", async () => {
+      const mockedGamesResponse = {};
+      wyeGamesAPI.post.mockReturnValueOnce(mockedGamesResponse);
+      const result = await wyeGamesAPI.getTopTitleForMostPopularPublishers();
+      expect(result).toEqual([]);
+    });
+
+    it("should return a list of the top 5 publisher's most popular titles", async () => {
+      const mockedGamesResponse = {
+        games: [
+          {
+            appid: "1",
+            playtime2Weeks: 500,
+            developers: "dev",
+            publishers: "a",
+            genres: "genre",
+            tags: "tag"
+          },
+          {
+            appid: "3",
+            playtime2Weeks: 25,
+            developers: "dev",
+            publishers: "a, b, c",
+            genres: "genre",
+            tags: "tag"
+          },
+          {
+            appid: "2",
+            playtime2Weeks: 5,
+            developers: "dev",
+            publishers: "a, b",
+            genres: "genre",
+            tags: "tag"
+          },
+          {
+            appid: "5",
+            playtime2Weeks: 30,
+            developers: "dev",
+            publishers: "a, b, c, d, e",
+            genres: "genre",
+            tags: "tag"
+          },
+          {
+            appid: "4",
+            playtime2Weeks: 60,
+            developers: "dev",
+            publishers: "a, b, c, d",
+            genres: "genre",
+            tags: "tag"
+          }
+        ]
+      };
+      const expectedResult = [
+        {
+          publisher: "a",
+          topTitle: wyeGameReducer(mockedGamesResponse.games[0])
+        },
+        {
+          publisher: "b",
+          topTitle: wyeGameReducer(mockedGamesResponse.games[4])
+        },
+        {
+          publisher: "c",
+          topTitle: wyeGameReducer(mockedGamesResponse.games[4])
+        },
+        {
+          publisher: "d",
+          topTitle: wyeGameReducer(mockedGamesResponse.games[4])
+        },
+        {
+          publisher: "e",
+          topTitle: wyeGameReducer(mockedGamesResponse.games[3])
+        }
+      ];
+      wyeGamesAPI.post.mockReturnValueOnce(mockedGamesResponse);
+      const result = await wyeGamesAPI.getTopTitleForMostPopularPublishers();
+      expect(result).toEqual(expectedResult);
     });
   });
 });

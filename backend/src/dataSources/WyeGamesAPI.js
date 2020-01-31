@@ -1,5 +1,7 @@
 const { RESTDataSource } = require("apollo-datasource-rest");
 const get = require("lodash.get");
+const { sortRecommendations } = require("../../lib/util/sortRecommendations");
+const wyeGamesReducer = require("../reducers/wyeGameReducer");
 
 /**
  * Builds a REST data source for Wye's support service games API
@@ -18,6 +20,7 @@ class WyeGamesAPI extends RESTDataSource {
 
   /**
    * Retrieves the path for the most popular game's background image
+   * @returns {String}
    */
   async getMostPopularBackground() {
     // fetch game data
@@ -27,6 +30,62 @@ class WyeGamesAPI extends RESTDataSource {
     });
     const games = get(data, "games");
     return games && games.length ? get(data, "games")[0].backgroundImage : "";
+  }
+
+  /**
+   * Returns a list of the most popular publishers
+   * @returns {Array}
+   */
+  async getTopTitleForMostPopularPublishers() {
+    // fetch game data
+    const data = await this.post("games/");
+    const games = get(data, "games", []);
+
+    let publishers = {};
+    // aggregate the occurrences of each publisher in the games list
+    for (let i = 0; i < games.length; i++) {
+      // check that the game has publishers
+      if (games[i].publishers && games[i].publishers.length) {
+        // iterate over a game's publishers and either:
+        // - add it to the list of publishers if it isn't in the list yet
+        // - increment the publisher's count if it exists in the list
+        const gamePublishers = games[i].publishers.split(", ");
+        for (let j = 0; j < gamePublishers.length; j++) {
+          if (!publishers[gamePublishers[j]]) {
+            publishers[gamePublishers[j]] = 1;
+          } else {
+            publishers[gamePublishers[j]]++;
+          }
+        }
+      }
+    }
+
+    // sort for the top 5 publishers with the biggest library desc,
+    // then get the publisher's most popular game
+    // - excluding INC and LLC
+    const EXCLUDE_KEYS = ["LLC", "Inc."];
+    const mostPopularTitles = Object.keys(publishers)
+      .filter(key => !EXCLUDE_KEYS.some(item => item === key))
+      .sort((a, b) => publishers[b] - publishers[a])
+      .slice(0, 5)
+      .map(publisher => {
+        const topTitle = sortRecommendations(
+          [
+            {
+              prop: "playtime2Weeks",
+              direction: -1
+            }
+          ],
+          games.filter(
+            game => game.publishers && game.publishers.indexOf(publisher) !== -1
+          )
+        )[0];
+        return {
+          publisher,
+          topTitle: wyeGamesReducer(topTitle)
+        };
+      });
+    return mostPopularTitles.length ? mostPopularTitles : [];
   }
 
   /**
@@ -66,15 +125,7 @@ class WyeGamesAPI extends RESTDataSource {
 
     // shape data to fit schema
     if (games.length) {
-      games = games.map(game => {
-        return {
-          ...game,
-          developers: game.developers.split(", "),
-          publishers: game.publishers.split(", "),
-          genres: game.genres.split(", "),
-          tags: game.tags.split(", ")
-        };
-      });
+      games = games.map(game => wyeGamesReducer(game));
 
       if (filters) {
         // apply any additional string array includes filters
