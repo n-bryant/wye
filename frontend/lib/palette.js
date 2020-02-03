@@ -14,6 +14,9 @@ const palette = {
     error: oc.red6,
     info: oc.blue5
   },
+  panel: {
+    background: "#171E28"
+  },
   link: {
     default: oc.blue6,
     visited: oc.blue6,

@@ -103,7 +103,7 @@ export const GameDetails = props => {
     highlightedVideos.length || screenshots.length || videos.length;
 
   return (
-    <BackgroundProvider src={backgroundImageUrl}>
+    <BackgroundProvider backgroundUrl={backgroundImageUrl}>
       <div className={classnames.root()}>
         <Grid
           className={classnames.element("detailsContainer", {

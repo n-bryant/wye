@@ -20,9 +20,9 @@ exports[`FeaturedPublishers should adjust the layout of the cards if the width i
       xs={3}
     >
       <HighlightTrailerQuery
-        cardActionHref="/browse/publisher/[id]"
+        cardActionHref="/browse/publishers/[name]"
         cardActionLabel="1"
-        cardActionLinkPath="/browse/publisher/1"
+        cardActionLinkPath="/browse/publishers/1"
         data={
           Object {
             "appid": "1",
@@ -58,9 +58,9 @@ exports[`FeaturedPublishers should adjust the layout of the cards if the width i
       xs={3}
     >
       <HighlightTrailerQuery
-        cardActionHref="/browse/publisher/[id]"
+        cardActionHref="/browse/publishers/[name]"
         cardActionLabel="2"
-        cardActionLinkPath="/browse/publisher/2"
+        cardActionLinkPath="/browse/publishers/2"
         data={
           Object {
             "appid": "2",
@@ -96,9 +96,9 @@ exports[`FeaturedPublishers should adjust the layout of the cards if the width i
       xs={3}
     >
       <HighlightTrailerQuery
-        cardActionHref="/browse/publisher/[id]"
+        cardActionHref="/browse/publishers/[name]"
         cardActionLabel="3"
-        cardActionLinkPath="/browse/publisher/3"
+        cardActionLinkPath="/browse/publishers/3"
         data={
           Object {
             "appid": "3",
@@ -134,9 +134,9 @@ exports[`FeaturedPublishers should adjust the layout of the cards if the width i
       xs={3}
     >
       <HighlightTrailerQuery
-        cardActionHref="/browse/publisher/[id]"
+        cardActionHref="/browse/publishers/[name]"
         cardActionLabel="4"
-        cardActionLinkPath="/browse/publisher/4"
+        cardActionLinkPath="/browse/publishers/4"
         data={
           Object {
             "appid": "4",
@@ -189,9 +189,9 @@ exports[`FeaturedPublishers should render successfully 1`] = `
       xs={6}
     >
       <HighlightTrailerQuery
-        cardActionHref="/browse/publisher/[id]"
+        cardActionHref="/browse/publishers/[name]"
         cardActionLabel="1"
-        cardActionLinkPath="/browse/publisher/1"
+        cardActionLinkPath="/browse/publishers/1"
         data={
           Object {
             "appid": "1",
@@ -227,9 +227,9 @@ exports[`FeaturedPublishers should render successfully 1`] = `
       xs={6}
     >
       <HighlightTrailerQuery
-        cardActionHref="/browse/publisher/[id]"
+        cardActionHref="/browse/publishers/[name]"
         cardActionLabel="2"
-        cardActionLinkPath="/browse/publisher/2"
+        cardActionLinkPath="/browse/publishers/2"
         data={
           Object {
             "appid": "2",
@@ -272,9 +272,9 @@ exports[`FeaturedPublishers should render successfully 1`] = `
       xs={6}
     >
       <HighlightTrailerQuery
-        cardActionHref="/browse/publisher/[id]"
+        cardActionHref="/browse/publishers/[name]"
         cardActionLabel="3"
-        cardActionLinkPath="/browse/publisher/3"
+        cardActionLinkPath="/browse/publishers/3"
         data={
           Object {
             "appid": "3",
@@ -310,9 +310,9 @@ exports[`FeaturedPublishers should render successfully 1`] = `
       xs={6}
     >
       <HighlightTrailerQuery
-        cardActionHref="/browse/publisher/[id]"
+        cardActionHref="/browse/publishers/[name]"
         cardActionLabel="4"
-        cardActionLinkPath="/browse/publisher/4"
+        cardActionLinkPath="/browse/publishers/4"
         data={
           Object {
             "appid": "4",

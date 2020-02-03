@@ -49,8 +49,8 @@ export const FeaturedPublishers = props => {
                 data={item.topTitle}
                 withPrice={false}
                 cardActionLabel={item.publisher}
-                cardActionHref={"/browse/publisher/[id]"}
-                cardActionLinkPath={`/browse/publisher/${item.publisher}`}
+                cardActionHref={"/browse/publishers/[name]"}
+                cardActionLinkPath={`/browse/publishers/${item.publisher}`}
               />
             </Grid>
           ))}
@@ -75,8 +75,8 @@ export const FeaturedPublishers = props => {
                   data={item.topTitle}
                   withPrice={false}
                   cardActionLabel={item.publisher}
-                  cardActionHref={"/browse/publisher/[id]"}
-                  cardActionLinkPath={`/browse/publisher/${item.publisher}`}
+                  cardActionHref={"/browse/publishers/[name]"}
+                  cardActionLinkPath={`/browse/publishers/${item.publisher}`}
                 />
               </Grid>
             ))}
@@ -99,8 +99,8 @@ export const FeaturedPublishers = props => {
                   data={item.topTitle}
                   withPrice={false}
                   cardActionLabel={item.publisher}
-                  cardActionHref={"/browse/publisher/[id]"}
-                  cardActionLinkPath={`/browse/publisher/${item.publisher}`}
+                  cardActionHref={"/browse/publishers/[name]"}
+                  cardActionLinkPath={`/browse/publishers/${item.publisher}`}
                 />
               </Grid>
             ))}

@@ -14,6 +14,15 @@ const styles = theme => ({
   },
   paginationWidget: {
     marginTop: theme.spacing(1)
+  },
+  quickLinksContainer: {
+    display: "flex",
+    justifyContent: "flex-end"
+  },
+  quickLink: {
+    "&:first-of-type": {
+      marginRight: theme.spacing(2)
+    }
   }
 });
 export default styles;

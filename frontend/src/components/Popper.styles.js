@@ -1,7 +1,7 @@
 const styles = theme => ({
   root: {
     position: "absolute",
-    background: "#171E28",
+    background: theme.palette.panel.background,
     top: "0",
     zIndex: "10"
   },
@@ -20,11 +20,11 @@ const styles = theme => ({
   },
   arrowLeft: {
     left: "-12px",
-    borderRight: "solid 12px #171E28"
+    borderRight: `solid 12px ${theme.palette.panel.background}`
   },
   arrowRight: {
     left: "100%",
-    borderLeft: "solid 12px #171E28"
+    borderLeft: `solid 12px ${theme.palette.panel.background}`
   }
 });
 export default styles;
