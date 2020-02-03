@@ -1,10 +1,4 @@
-import { act } from "react-dom/test-utils";
-import { MockedProvider } from "@apollo/react-testing";
-import wait from "waait";
-
-import LoadingState from "../LoadingState";
-import MostPopularFeaturedQuery, {
-  GET_MOST_POPULAR_FEATURED_QUERY,
+import {
   MostPopularFeatured,
   StyledMostPopularFeatured
 } from "./MostPopularFeatured";
@@ -171,53 +165,5 @@ describe("MostPopularFeatured", () => {
       const wrapper = shallow(<MostPopularFeatured {...propsWithSmallWidth} />);
       expect(toJson(wrapper)).toMatchSnapshot();
     });
-  });
-});
-
-describe("MostPopularFeaturedQuery", () => {
-  it("should render successfully", () => {
-    const mocks = [
-      {
-        request: {
-          query: GET_MOST_POPULAR_FEATURED_QUERY
-        },
-        result: {
-          data: mockedData
-        }
-      }
-    ];
-    const wrapper = mount(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <MostPopularFeaturedQuery />
-      </MockedProvider>
-    );
-    expect(
-      wrapper.find(MostPopularFeaturedQuery).find(LoadingState).length
-    ).toBe(1);
-  });
-
-  it("should return a StyledMostPopularFeatured", async () => {
-    const mocks = [
-      {
-        request: {
-          query: GET_MOST_POPULAR_FEATURED_QUERY
-        },
-        result: {
-          data: mockedData
-        }
-      }
-    ];
-    const wrapper = mount(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <MostPopularFeaturedQuery />
-      </MockedProvider>
-    );
-
-    await act(async () => {
-      await wait(0); // wait for response
-      wrapper.update();
-    });
-
-    expect(wrapper.find(StyledMostPopularFeatured).length).toBe(1);
   });
 });

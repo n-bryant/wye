@@ -6,50 +6,12 @@ import JSS_CLASS_NAME_PREFIX from "../../../lib/classNamePrefix";
 import { withStyles } from "@material-ui/core/styles";
 import { withWidth } from "@material-ui/core/";
 
-import get from "lodash.get";
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
-
 import Grid from "@material-ui/core/Grid";
 
-import LoadingState from "../LoadingState";
 import PaginationWidget from "../PaginationWidget";
 import FeaturedWidget from "./FeaturedWidget";
 import BrowseCard from "./BrowseCard";
 import styles from "./MostPopularFeatured.styles";
-
-// get the most popular games with at least 10,000,000 owners and an avg user rating of at least 75
-export const GET_MOST_POPULAR_FEATURED_QUERY = gql`
-  query GET_MOST_POPULAR_FEATURED_QUERY {
-    recommendations(
-      orderBy: [PLAYTIME_RECENT, USER_RATING]
-      filters: { gameFilters: { userRating_gte: 75, ownersMin_gte: 10000000 } }
-      sortOrder: DESC
-      first: 5
-    ) {
-      edges {
-        node {
-          game {
-            appid
-            name
-            developers
-            publishers
-            ownersFormatted
-            userRating
-            genres
-            freeToPlay
-            onSale
-            discount
-            initialPrice
-            finalPrice
-            headerImage
-            capsuleLg
-          }
-        }
-      }
-    }
-  }
-`;
 
 export const MOST_POPULAR_TITLE = "Trending";
 export const MOST_POPULAR_SUBTITLE = "Most popular by recent playtime";
@@ -172,32 +134,9 @@ MostPopularFeatured.defaultProps = {
   classes: {}
 };
 
+// apply styles
 export const StyledMostPopularFeatured = withWidth()(
   withStyles(styles)(MostPopularFeatured)
 );
 
-/**
- * renders a Query to fetch the most popular games and returns a StyledMostPopularFeatured
- */
-const MostPopularFeaturedQuery = props => {
-  return (
-    <Query query={GET_MOST_POPULAR_FEATURED_QUERY}>
-      {({ loading, data, error }) => {
-        if (loading) {
-          return <LoadingState />;
-        }
-
-        if (error) {
-          console.log(error);
-        }
-
-        const items = get(data, ["recommendations", "edges"], []).map(
-          edge => edge.node.game
-        );
-        return <StyledMostPopularFeatured items={items} {...props} />;
-      }}
-    </Query>
-  );
-};
-
-export default MostPopularFeaturedQuery;
+export default StyledMostPopularFeatured;

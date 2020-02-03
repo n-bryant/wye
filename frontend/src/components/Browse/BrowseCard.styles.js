@@ -118,7 +118,8 @@ const styles = theme => ({
   },
   priceWidget: {
     display: "flex",
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
+    marginTop: theme.spacing(0.5)
   }
 });
 export default styles;

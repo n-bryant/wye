@@ -37,13 +37,11 @@ export const HeroImage = props => {
         src={hasBrokenSrc ? PLACEHOLDER_PATH : imageSrc}
         alt={altText}
       />
-      <img
+      <div
         className={classnames.element("placeholder", {
           hidden: loaded
         })}
-        src={PLACEHOLDER_PATH}
-        alt={altText}
-      />
+      ></div>
     </div>
   );
 };

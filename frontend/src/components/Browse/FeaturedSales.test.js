@@ -1,13 +1,17 @@
-import {
-  FeaturedPublishers,
-  StyledFeaturedPublishers
-} from "./FeaturedPublishers";
+import { FeaturedSales } from "./FeaturedSales";
 
-const mockedResult = {
-  getTopTitleForMostPopularPublishers: [
-    {
-      publisher: "1",
-      topTitle: {
+describe("FeaturedSales", () => {
+  const props = {
+    classes: {
+      root: "root",
+      featuredSaleContainer: "featuredSaleContainer",
+      featuredSale: "featuredSale",
+      subFeaturedSaleContainer: "subFeaturedSaleContainer",
+      subFeaturedSale: "subFeaturedSale",
+      paginationWidget: "paginationWidget"
+    },
+    items: [
+      {
         appid: "1",
         name: "name",
         developers: ["a"],
@@ -21,12 +25,9 @@ const mockedResult = {
         initialPrice: 1000,
         finalPrice: 750,
         headerImage: "header",
-        capsuleMd: "md"
-      }
-    },
-    {
-      publisher: "2",
-      topTitle: {
+        libraryCapsule: "lib"
+      },
+      {
         appid: "2",
         name: "name",
         developers: ["a"],
@@ -40,12 +41,9 @@ const mockedResult = {
         initialPrice: 1000,
         finalPrice: 750,
         headerImage: "header",
-        capsuleMd: "md"
-      }
-    },
-    {
-      publisher: "3",
-      topTitle: {
+        libraryCapsule: "lib"
+      },
+      {
         appid: "3",
         name: "name",
         developers: ["a"],
@@ -59,12 +57,9 @@ const mockedResult = {
         initialPrice: 1000,
         finalPrice: 750,
         headerImage: "header",
-        capsuleMd: "md"
-      }
-    },
-    {
-      publisher: "4",
-      topTitle: {
+        libraryCapsule: "lib"
+      },
+      {
         appid: "4",
         name: "name",
         developers: ["a"],
@@ -78,33 +73,54 @@ const mockedResult = {
         initialPrice: 1000,
         finalPrice: 750,
         headerImage: "header",
-        capsuleMd: "md"
+        libraryCapsule: "lib"
+      },
+      {
+        appid: "5",
+        name: "name",
+        developers: ["a"],
+        publishers: ["a"],
+        ownersFormatted: "10,000 .. 20,000",
+        userRating: 95,
+        genres: ["a"],
+        freeToPlay: false,
+        onSale: true,
+        discount: 25,
+        initialPrice: 1000,
+        finalPrice: 750,
+        headerImage: "header",
+        libraryCapsule: "lib"
+      },
+      {
+        appid: "6",
+        name: "name",
+        developers: ["a"],
+        publishers: ["a"],
+        ownersFormatted: "10,000 .. 20,000",
+        userRating: 95,
+        genres: ["a"],
+        freeToPlay: false,
+        onSale: true,
+        discount: 25,
+        initialPrice: 1000,
+        finalPrice: 750,
+        headerImage: "header",
+        libraryCapsule: "lib"
       }
-    }
-  ]
-};
-
-describe("FeaturedPublishers", () => {
-  const props = {
-    classes: {
-      root: "root",
-      itemsContainer: "itemsContainer",
-      item: "item"
-    },
-    items: mockedResult.getTopTitleForMostPopularPublishers,
+    ],
     width: "xs"
   };
 
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<FeaturedPublishers {...props} />);
+    wrapper = shallow(<FeaturedSales {...props} />);
   });
 
   it("should render successfully", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it("should adjust the layout of the cards if the width is larger than xs or sm", () => {
+  it("should adjust the presentation of the cards if the width is md+", () => {
     wrapper.setProps({
       width: "md"
     });
