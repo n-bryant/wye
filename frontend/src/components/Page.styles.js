@@ -5,7 +5,8 @@ const styles = theme => ({
   },
   innerContent: {
     height: "calc(100% - 56px)",
-    backgroundColor: theme.palette.common.black
+    backgroundColor: theme.palette.common.black,
+    overflow: "auto"
   }
 });
 export default styles;

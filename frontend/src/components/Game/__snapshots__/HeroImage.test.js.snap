@@ -11,10 +11,8 @@ exports[`HeroImage should render successfully 1`] = `
     onLoad={[Function]}
     src=""
   />
-  <img
-    alt="alt"
+  <div
     className="wye-HeroImage__placeholder placeholder"
-    src="/steamHeroPlaceholder.jpg"
   />
 </div>
 `;

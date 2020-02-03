@@ -14,28 +14,17 @@ exports[`BrowsePage should render successfully 1`] = `
         className="wye-BrowsePage__main main"
         maxWidth={false}
       >
-        <WithStyles(ForwardRef(Typography))
-          className="wye-BrowsePage__heading heading"
-          variant="h1"
-        >
-          Featured Games
-        </WithStyles(ForwardRef(Typography))>
-        <WithStyles(ForwardRef(Typography))
-          className="wye-BrowsePage__subHeading subHeading"
-          variant="h2"
-        >
-          Browse the most popular and discounted multiplayer games
-        </WithStyles(ForwardRef(Typography))>
-        <Styled(MuiBox)
-          my={4}
-        >
-          <MostPopularFeaturedQuery />
-        </Styled(MuiBox)>
-        <Styled(MuiBox)
-          my={4}
-        >
-          <FeaturedPublishersQuery />
-        </Styled(MuiBox)>
+        <FeaturedItemsQuery
+          classes={
+            Object {
+              "container": "container",
+              "heading": "heading",
+              "main": "main",
+              "root": "root",
+              "subHeading": "subHeading",
+            }
+          }
+        />
       </WithStyles(ForwardRef(Container))>
     </WithStyles(ForwardRef(Container))>
   </div>

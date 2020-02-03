@@ -26,7 +26,8 @@ const styles = () => ({
     ...hidden
   },
   placeholder: {
-    ...image
+    ...image,
+    backgroundColor: "rgba(34, 139, 230, 0.25)"
   },
   placeholderHidden: {
     ...hidden
