@@ -14,7 +14,7 @@ export const PLACEHOLDER_PATH = "/steamHeroPlaceholder.jpg";
  */
 export const HeroImage = props => {
   const classnames = HeroImage.classnames(props);
-  const { altText, imageSrc } = props;
+  const { altText, imageSrc, squaredBottom } = props;
   const [hasBrokenSrc, setHasBrokenSrc] = React.useState(false);
   const [loaded, setLoaded] = React.useState(false);
 
@@ -29,7 +29,8 @@ export const HeroImage = props => {
     <div className={classnames.root()}>
       <img
         className={classnames.element("image", {
-          hidden: !loaded
+          hidden: !loaded,
+          squaredBottom
         })}
         onError={onError}
         onLoad={onLoad}
@@ -54,6 +55,7 @@ HeroImage.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
     image: PropTypes.string,
+    imageSquaredBottom: PropTypes.string,
     imageHidden: PropTypes.string,
     placeholder: PropTypes.string,
     placeholderHidden: PropTypes.string
@@ -61,7 +63,9 @@ HeroImage.propTypes = {
   // alt text for the image
   altText: PropTypes.string,
   // the location of the image to render
-  imageSrc: PropTypes.string
+  imageSrc: PropTypes.string,
+  // whether the bottom of the image should have a squared bottom
+  squaredBottom: PropTypes.bool
 };
 HeroImage.defaultProps = {
   classes: {},

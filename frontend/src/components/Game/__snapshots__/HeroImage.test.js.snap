@@ -6,7 +6,7 @@ exports[`HeroImage should render successfully 1`] = `
 >
   <img
     alt="alt"
-    className="wye-HeroImage__image wye-HeroImage__image--hidden image imageHidden"
+    className="wye-HeroImage__image wye-HeroImage__image--hidden wye-HeroImage__image--squaredBottom image imageHidden"
     onError={[Function]}
     onLoad={[Function]}
     src=""

@@ -7,9 +7,11 @@ import { withWidth } from "@material-ui/core/";
 import { withStyles } from "@material-ui/core/styles";
 
 import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import BackgroundProvider from "../../src/components/BackgroundProvider";
 import MostPopularFeatured from "../../src/components/Browse/MostPopularFeatured";
+import FeaturedPublishers from "../../src/components/Browse/FeaturedPublishers";
 import styles from "./index.styles";
 
 /**
@@ -61,7 +63,12 @@ export const BrowsePage = props => {
             >
               Browse the most popular and discounted multiplayer games
             </Typography>
-            <MostPopularFeatured />
+            <Box my={4}>
+              <MostPopularFeatured />
+            </Box>
+            <Box my={4}>
+              <FeaturedPublishers />
+            </Box>
           </Container>
         </Container>
       </div>

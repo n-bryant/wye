@@ -1,26 +1,12 @@
 const styles = theme => ({
   root: {},
-  featuredItemContainer: {
-    height: "353px"
+  itemsContainer: {
+    marginTop: theme.spacing(0.5),
+    height: "246px",
+    justifyContent: "center"
   },
-  featuredItem: {
-    height: "100%",
-    paddingRight: theme.spacing(1)
-  },
-  featuredItemFullWidth: {
-    paddingRight: "0"
-  },
-  featuredItemContent: {
-    paddingBottom: "2px !important"
-  },
-  subFeaturedItemsContainer: {
+  item: {
     height: "100%"
-  },
-  subFeaturedItem: {
-    height: "50%"
-  },
-  paginationWidget: {
-    marginTop: theme.spacing(1)
   }
 });
 export default styles;

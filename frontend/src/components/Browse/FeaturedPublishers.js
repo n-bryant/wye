@@ -10,37 +10,33 @@ import get from "lodash.get";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 
-import { userRouter } from "next/router";
-
 import Grid from "@material-ui/core/Grid";
 
 import LoadingState from "../LoadingState";
-import PaginationWidget from "../PaginationWidget";
 import FeaturedWidget from "./FeaturedWidget";
 import BrowseCard from "./BrowseCard";
-import styles from "./MostPopularFeatured.styles";
+import styles from "./FeaturedPublishers.styles";
 
-// get the top title for the 5 most popular publishers
-export const GET_FEATURED_PUBLISHERS_TOP_ITEM_QUERY = gql`
-  query GET_FEATURED_PUBLISHERS_TOP_ITEM_QUERY {
+// get the top title for the 4 most popular publishers
+export const GET_FEATURED_PUBLISHERS_TOP_TITLE_QUERY = gql`
+  query GET_FEATURED_PUBLISHERS_TOP_TITLE_QUERY {
     getTopTitleForMostPopularPublishers {
-      publisher {
-        topTitle {
-          appid
-          name
-          developers
-          publishers
-          ownersFormatted
-          userRating
-          genres
-          freeToPlay
-          onSale
-          discount
-          initialPrice
-          finalPrice
-          headerImage
-          capsuleMd
-        }
+      publisher
+      topTitle {
+        appid
+        name
+        developers
+        publishers
+        ownersFormatted
+        userRating
+        genres
+        freeToPlay
+        onSale
+        discount
+        initialPrice
+        finalPrice
+        headerImage
+        capsuleMd
       }
     }
   }
@@ -51,16 +47,13 @@ export const SUBTITLE =
   "The most played titles by the most prolific publishers";
 
 /**
- * renders a FeaturedWidget with cards representing the 5 most popular multiplayer games
+ * renders a FeaturedWidget with cards representing the top title of the
+ * 4 publishers with the most titles
  */
 export const FeaturedPublishers = props => {
   const classnames = FeaturedPublishers.classnames(props);
   const { items, width } = props;
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const router = useRouter();
 
-  const featuredItem = items[0];
-  const subFeaturedItems = items.slice(1);
   return (
     <FeaturedWidget
       className={classnames.root()}
@@ -69,74 +62,77 @@ export const FeaturedPublishers = props => {
     >
       {!["xs", "sm"].some(val => val === width) && items.length > 1 ? (
         <Grid
-          className={classnames.element("featuredItemContainer")}
+          className={classnames.element("itemsContainer")}
           container
-          alignItems={"center"}
+          justify="center"
+          spacing={2}
         >
-          <Grid
-            className={classnames.element("featuredItem")}
-            container
-            item
-            xs={6}
-            spacing={1}
-          >
+          {items.map(item => (
             <Grid
+              key={item.topTitle.appid}
+              className={classnames.element("item")}
               item
-              xs={12}
-              className={classnames.element("featuredItemContent")}
+              xs={3}
             >
-              <BrowseCard data={featuredItem} variant="lg" withPrice={false} />
+              <BrowseCard
+                variant="md"
+                data={item.topTitle}
+                withPrice={false}
+                cardActionLabel={item.publisher}
+                cardActionLinkPath={`/browse/publisher/${item.publisher}`}
+              />
             </Grid>
-          </Grid>
-          <Grid
-            className={classnames.element("subFeaturedItemsContainer")}
-            container
-            item
-            spacing={1}
-            xs={6}
-          >
-            {subFeaturedItems.map(item => (
-              <Grid
-                className={classnames.element("subFeaturedItem")}
-                key={item.appid}
-                item
-                xs={6}
-              >
-                <BrowseCard data={item} variant="lg" withPrice={false} />
-              </Grid>
-            ))}
-          </Grid>
+          ))}
         </Grid>
       ) : (
         <React.Fragment>
           <Grid
-            className={classnames.element("featuredItemContainer")}
+            className={classnames.element("itemsContainer")}
             container
-            alignItems={"center"}
+            justify="center"
+            spacing={2}
           >
-            {items[currentPage - 1] && (
+            {items.slice(0, 2).map(item => (
               <Grid
-                className={classnames.element("featuredItem", {
-                  fullWidth: true
-                })}
+                key={item.topTitle.appid}
+                className={classnames.element("item")}
                 item
-                xs={12}
+                xs={6}
               >
                 <BrowseCard
-                  data={items[currentPage - 1]}
-                  variant="header"
+                  variant="md"
+                  data={item.topTitle}
                   withPrice={false}
-                  maxSize={true}
+                  cardActionLabel={item.publisher}
+                  cardActionLinkPath={`/browse/publisher/${item.publisher}`}
                 />
               </Grid>
-            )}
+            ))}
           </Grid>
-          <PaginationWidget
-            className={classnames.element("paginationWidget")}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            totalPages={items.length}
-          />
+          <Grid
+            className={classnames.element("itemsContainer")}
+            container
+            justify="center"
+            spacing={2}
+          >
+            {items.slice(2, 4).map(item => (
+              <Grid
+                key={item.topTitle.appid}
+                className={classnames.element("item")}
+                item
+                xs={6}
+              >
+                <BrowseCard
+                  variant="md"
+                  data={item.topTitle}
+                  withPrice={false}
+                  cardActionLabel={item.publisher}
+                  cardActionHref={"/browse/publisher/[id]"}
+                  cardActionLinkPath={`/browse/publisher/${item.publisher}`}
+                />
+              </Grid>
+            ))}
+          </Grid>
         </React.Fragment>
       )}
     </FeaturedWidget>
@@ -148,7 +144,9 @@ FeaturedPublishers.classnames = createClassNameHelper(
 FeaturedPublishers.propTypes = {
   // styles to apply
   classes: PropTypes.shape({
-    root: PropTypes.string
+    root: PropTypes.string,
+    itemsContainer: PropTypes.string,
+    item: PropTypes.string
   }),
   // data for the cards to be rendered in the FeaturedWidget
   items: PropTypes.array,
@@ -168,7 +166,7 @@ export const StyledFeaturedPublishers = withWidth()(
  */
 const FeaturedPublishersQuery = props => {
   return (
-    <Query query={GET_FEATURED_PUBLISHERS_TOP_ITEM_QUERY}>
+    <Query query={GET_FEATURED_PUBLISHERS_TOP_TITLE_QUERY}>
       {({ loading, data, error }) => {
         if (loading) {
           return <LoadingState />;

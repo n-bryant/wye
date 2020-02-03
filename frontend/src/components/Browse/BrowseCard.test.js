@@ -1,14 +1,14 @@
 import { act } from "react-dom/test-utils";
 import { MockedProvider } from "@apollo/react-testing";
-import wait from "waait";
 
 import Card from "@material-ui/core/Card";
 import Chip from "@material-ui/core/Chip";
+import CardActions from "@material-ui/core/CardActions";
+
 import HeroImage from "../Game/HeroImage";
 import Popper from "../Popper";
 import HighlightTrailerQuery, {
   BrowseCard,
-  StyledBrowseCard,
   VARIANTS_MAP,
   GET_HIGHLIGHT_TRAILER
 } from "./BrowseCard";
@@ -24,12 +24,12 @@ describe("BrowseCard", () => {
       lib: "lib",
       maxSize: "maxSize",
       media: "media",
-      mediaHeader: "mediaHeader",
-      mediaSm: "mediaSm",
-      mediaMd: "mediaMd",
-      mediaLg: "mediaLg",
-      mediaLib: "mediaLib",
-      mediaMaxSize: "mediaMaxSize",
+      gameLinkHeader: "gameLinkHeader",
+      gameLinkSm: "gameLinkSm",
+      gameLinkMd: "gameLinkMd",
+      gameLinkLg: "gameLinkLg",
+      gameLinkLib: "gameLinkLib",
+      gameLinkMaxSize: "gameLinkMaxSize",
       content: "content",
       title: "title",
       category: "category",
@@ -38,7 +38,11 @@ describe("BrowseCard", () => {
       chipLabel: "chipLabel",
       trailer: "trailer",
       actionArea: "actionArea",
-      priceWidget: "priceWidget"
+      priceWidget: "priceWidget",
+      gameLink: "gameLink",
+      actionsContainer: "actionsContainer",
+      actionLink: "actionLink",
+      actionLinkLabel: "actionLinkLabel"
     },
     data: {
       appid: "1",
@@ -102,6 +106,18 @@ describe("BrowseCard", () => {
     });
   });
 
+  it("should render CardActions if the cardActionLabel, cardActionLinkPath, and cardActionHref props are defined", () => {
+    wrapper.setProps({
+      cardActionLabel: "label",
+      cardActionLinkPath: "path",
+      cardActionHref: "href"
+    });
+    wrapper.update();
+    const cardActions = wrapper.find(CardActions);
+    expect(cardActions.length).toBe(1);
+    expect(toJson(cardActions)).toMatchSnapshot();
+  });
+
   describe("popper content", () => {
     let wrapperWithState;
     beforeEach(() => {
@@ -145,7 +161,7 @@ describe("HighlightTrailerQuery", () => {
     }
   };
 
-  it("should render successfully", () => {
+  it("should render successfully", async () => {
     const mocks = [
       {
         request: {
@@ -161,11 +177,14 @@ describe("HighlightTrailerQuery", () => {
         }
       }
     ];
-    const wrapper = mount(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <HighlightTrailerQuery {...props} />
-      </MockedProvider>
-    );
+    let wrapper;
+    await act(async () => {
+      wrapper = mount(
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <HighlightTrailerQuery {...props} />
+        </MockedProvider>
+      );
+    });
     expect(toJson(wrapper.find(HighlightTrailerQuery))).toMatchSnapshot();
   });
 });

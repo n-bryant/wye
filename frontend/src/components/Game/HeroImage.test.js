@@ -4,6 +4,7 @@ describe("HeroImage", () => {
   const props = {
     classes: {
       image: "image",
+      imageSquaredBottom: "imageSquaredBottom",
       imageHidden: "imageHidden",
       placeholder: "placeholder",
       placeholderHidden: "placeholderHidden"

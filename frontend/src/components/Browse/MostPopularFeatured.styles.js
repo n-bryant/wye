@@ -4,8 +4,7 @@ const styles = theme => ({
     height: "353px"
   },
   featuredItem: {
-    height: "100%",
-    paddingRight: theme.spacing(1)
+    height: "100%"
   },
   featuredItemFullWidth: {
     paddingRight: "0"
