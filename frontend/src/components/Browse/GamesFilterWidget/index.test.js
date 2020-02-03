@@ -1,0 +1,135 @@
+import { act } from "react-dom/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
+import wait from "waait";
+
+import {
+  FilterGamesQuery,
+  GamesFilterWidget,
+  GAMES_FILTER_QUERY,
+  MainContent
+} from "./index";
+
+describe("FilterGamesQuery", () => {
+  const mockedResult = {
+    recommendations: {
+      pageInfo: {
+        totalCount: 1
+      },
+      edges: [
+        {
+          node: {
+            game: {
+              appid: "1",
+              name: "name",
+              developers: ["a"],
+              publishers: ["a"],
+              ownersFormatted: "10,000 .. 20,000",
+              userRating: 95,
+              genres: ["a"],
+              freeToPlay: false,
+              onSale: true,
+              discount: 25,
+              initialPrice: 1000,
+              finalPrice: 750,
+              headerImage: "header",
+              backgroundImage: "background"
+            },
+            ownedBy: [],
+            recentlyPlayedBy: [],
+            playtime: []
+          }
+        }
+      ]
+    }
+  };
+
+  const props = {
+    classnames: {
+      element: jest.fn(),
+      root: jest.fn()
+    }
+  };
+
+  it("should render successfully", () => {
+    const mocks = [
+      {
+        request: {
+          query: GAMES_FILTER_QUERY
+        },
+        result: {
+          data: mockedResult
+        }
+      }
+    ];
+    const wrapper = mount(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <FilterGamesQuery {...props} />
+      </MockedProvider>
+    );
+    expect(toJson(wrapper.find(FilterGamesQuery))).toMatchSnapshot();
+  });
+
+  it("should render a MainContent once the query has loaded", async () => {
+    const mocks = [
+      {
+        request: {
+          query: GAMES_FILTER_QUERY
+        },
+        result: {
+          data: mockedResult
+        }
+      }
+    ];
+    const wrapper = mount(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <FilterGamesQuery {...props} />
+      </MockedProvider>
+    );
+
+    await act(async () => {
+      await wait(0);
+      wrapper.update();
+    });
+    expect(wrapper.find(MainContent).length).toBe(1);
+  });
+});
+
+describe("GamesFilterWidget", () => {
+  const props = {
+    classes: {
+      root: "root"
+    }
+  };
+
+  it("should render successfully", () => {
+    expect(toJson(shallow(<GamesFilterWidget {...props} />))).toMatchSnapshot();
+  });
+
+  it("should pass any received filter options to the rendered FilterGamesQuery", () => {
+    const propsWithFilters = {
+      ...props,
+      initialFilters: {
+        orderBy: ["USER_RATING"],
+        sortOrder: "DESC"
+      }
+    };
+    const wrapper = shallow(<GamesFilterWidget {...propsWithFilters} />);
+    expect(wrapper.find(FilterGamesQuery).prop("variables")).toMatchObject(
+      propsWithFilters.initialFilters
+    );
+  });
+});
+
+describe("MainContent", () => {
+  const props = {
+    classnames: {
+      root: jest.fn(),
+      element: jest.fn()
+    },
+    featuredBackgroundUrl: "url"
+  };
+
+  it("should render successfully", () => {
+    expect(toJson(shallow(<MainContent {...props} />))).toMatchSnapshot();
+  });
+});

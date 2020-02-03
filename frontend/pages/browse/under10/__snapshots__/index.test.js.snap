@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Under10Page should render successfully 1`] = `
+<div
+  className="wye-Under10Page root"
+>
+  <WithWidth(WithStyles(GamesFilterWidget))
+    initialFilters={
+      Object {
+        "filters": Object {
+          "gameFilters": Object {
+            "finalPrice_lte": 999,
+            "freeToPlay": false,
+          },
+        },
+        "orderBy": Array [
+          "FINAL_PRICE",
+          "USER_RATING",
+        ],
+        "sortOrder": "DESC",
+      }
+    }
+  />
+</div>
+`;

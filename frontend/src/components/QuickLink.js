@@ -11,9 +11,6 @@ import Typography from "@material-ui/core/Typography";
 
 import styles from "./QuickLink.styles";
 
-export const TITLE = "Sales";
-export const SUBTITLE = "Big sales for some of the hottest titles";
-
 /**
  * renders a Button wrapped with a Link that serves as a Quick Link
  */
