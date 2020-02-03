@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuickLink should render successfully 1`] = `
+<Fragment>
+  <Link
+    href="linkHref"
+  >
+    <a
+      className="wye-QuickLink root"
+    >
+      <WithStyles(ForwardRef(Button))
+        className="wye-QuickLink__button button"
+      >
+        <WithStyles(ForwardRef(Typography))
+          variant="body1"
+        >
+          label
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(Button))>
+    </a>
+  </Link>
+</Fragment>
+`;

@@ -7,7 +7,9 @@ import { withStyles } from "@material-ui/core/styles";
 import { withWidth } from "@material-ui/core/";
 
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 
+import QuickLink from "../QuickLink";
 import PaginationWidget from "../PaginationWidget";
 import FeaturedWidget from "./FeaturedWidget";
 import BrowseCard from "./BrowseCard";
@@ -46,18 +48,6 @@ export const FeaturedSales = props => {
           container
           spacing={2}
         >
-          <Grid container item spacing={2} xs={6}>
-            {featuredSales.map(saleItem => (
-              <Grid
-                className={classnames.element("featuredSale")}
-                key={saleItem.appid}
-                item
-                xs={6}
-              >
-                <BrowseCard data={saleItem} variant="lib" withPrice={true} />
-              </Grid>
-            ))}
-          </Grid>
           <Grid
             className={classnames.element("subFeaturedSaleContainer")}
             container
@@ -73,6 +63,18 @@ export const FeaturedSales = props => {
                 xs={6}
               >
                 <BrowseCard data={saleItem} variant="header" withPrice={true} />
+              </Grid>
+            ))}
+          </Grid>
+          <Grid container item spacing={2} xs={6}>
+            {featuredSales.map(saleItem => (
+              <Grid
+                className={classnames.element("featuredSale")}
+                key={saleItem.appid}
+                item
+                xs={6}
+              >
+                <BrowseCard data={saleItem} variant="lib" withPrice={true} />
               </Grid>
             ))}
           </Grid>
@@ -103,6 +105,18 @@ export const FeaturedSales = props => {
           />
         </React.Fragment>
       )}
+      <Box className={classnames.element("quickLinksContainer")} my={4}>
+        <QuickLink
+          className={classnames.element("quickLink")}
+          label={"under $5"}
+          linkHref="/browse/under5"
+        />
+        <QuickLink
+          className={classnames.element("quickLink")}
+          label={"under $10"}
+          linkHref="/browse/under10"
+        />
+      </Box>
     </FeaturedWidget>
   );
 };
@@ -117,7 +131,9 @@ FeaturedSales.propTypes = {
     featuredSale: PropTypes.string,
     subFeaturedSaleContainer: PropTypes.string,
     subFeaturedSale: PropTypes.string,
-    paginationWidget: PropTypes.string
+    paginationWidget: PropTypes.string,
+    quickLinksContainer: PropTypes.string,
+    quickLink: PropTypes.string
   }),
   // data for the cards to be rendered in the FeaturedWidget
   items: PropTypes.array,

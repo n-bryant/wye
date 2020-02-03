@@ -8,7 +8,9 @@ describe("FeaturedSales", () => {
       featuredSale: "featuredSale",
       subFeaturedSaleContainer: "subFeaturedSaleContainer",
       subFeaturedSale: "subFeaturedSale",
-      paginationWidget: "paginationWidget"
+      paginationWidget: "paginationWidget",
+      quickLinksContainer: "quickLinksContainer",
+      quickLink: "quickLink"
     },
     items: [
       {

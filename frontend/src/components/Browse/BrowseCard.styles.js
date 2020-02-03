@@ -1,6 +1,6 @@
 const styles = theme => ({
   root: {
-    background: "#171E28",
+    background: theme.palette.panel.background,
     position: "relative",
     overflow: "visible",
     boxShadow: "none",
