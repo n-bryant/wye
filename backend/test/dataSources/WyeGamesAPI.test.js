@@ -311,10 +311,6 @@ describe("WyeGamesAPI", () => {
         {
           publisher: "d",
           topTitle: wyeGameReducer(mockedGamesResponse.games[4])
-        },
-        {
-          publisher: "e",
-          topTitle: wyeGameReducer(mockedGamesResponse.games[3])
         }
       ];
       wyeGamesAPI.post.mockReturnValueOnce(mockedGamesResponse);

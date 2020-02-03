@@ -74,6 +74,7 @@ export const MostPopularFeatured = props => {
         <Grid
           className={classnames.element("featuredItemContainer")}
           container
+          justify={"space-between"}
           alignItems={"center"}
         >
           <Grid

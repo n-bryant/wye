@@ -119,6 +119,28 @@ exports[`BrowseCard popper content should only render a Popper if an anchorEl is
 </WithStyles(Popper)>
 `;
 
+exports[`BrowseCard should render CardActions if the cardActionLabel, cardActionLinkPath, and cardActionHref props are defined 1`] = `
+<WithStyles(ForwardRef(CardActions))
+  className="wye-BrowseCard__actionsContainer actionsContainer"
+>
+  <Link
+    as="path"
+    href="href"
+  >
+    <a
+      className="wye-BrowseCard__actionLink actionLink"
+    >
+      <WithStyles(ForwardRef(Typography))
+        className="wye-BrowseCard__actionLinkLabel actionLinkLabel"
+        variant="body1"
+      >
+        label
+      </WithStyles(ForwardRef(Typography))>
+    </a>
+  </Link>
+</WithStyles(ForwardRef(CardActions))>
+`;
+
 exports[`BrowseCard should render successfully 1`] = `
 <WithStyles(ForwardRef(Card))
   className="wye-BrowseCard wye-BrowseCard--header root header"
@@ -127,7 +149,9 @@ exports[`BrowseCard should render successfully 1`] = `
     as="/game/1"
     href="/game/[id]"
   >
-    <a>
+    <a
+      className="wye-BrowseCard__gameLink wye-BrowseCard__gameLink--header gameLink gameLinkHeader"
+    >
       <WithStyles(ForwardRef(CardActionArea))
         className="wye-BrowseCard__actionArea actionArea"
         onMouseEnter={[Function]}
@@ -138,9 +162,10 @@ exports[`BrowseCard should render successfully 1`] = `
         >
           <WithStyles(HeroImage)
             altText="foo"
-            className="wye-BrowseCard__media wye-BrowseCard__media--header media mediaHeader"
+            className="wye-BrowseCard__media media"
             classes={Object {}}
             imageSrc="header"
+            squaredBottom={false}
           />
         </WithStyles(ForwardRef(CardContent))>
       </WithStyles(ForwardRef(CardActionArea))>

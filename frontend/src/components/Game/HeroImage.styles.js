@@ -18,6 +18,10 @@ const hidden = {
 const styles = () => ({
   root: {},
   image,
+  imageSquaredBottom: {
+    borderBottomLeftRadius: "0",
+    borderBottomRightRadius: "0"
+  },
   imageHidden: {
     ...hidden
   },

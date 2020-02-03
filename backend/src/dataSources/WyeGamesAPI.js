@@ -33,7 +33,7 @@ class WyeGamesAPI extends RESTDataSource {
   }
 
   /**
-   * Returns a list of the most popular publishers
+   * Returns a list of the most popular publishers and their top titles
    * @returns {Array}
    */
   async getTopTitleForMostPopularPublishers() {
@@ -60,14 +60,14 @@ class WyeGamesAPI extends RESTDataSource {
       }
     }
 
-    // sort for the top 5 publishers with the biggest library desc,
+    // sort for the top 4 publishers with the biggest library desc,
     // then get the publisher's most popular game
     // - excluding INC and LLC
     const EXCLUDE_KEYS = ["LLC", "Inc."];
     const mostPopularTitles = Object.keys(publishers)
       .filter(key => !EXCLUDE_KEYS.some(item => item === key))
       .sort((a, b) => publishers[b] - publishers[a])
-      .slice(0, 5)
+      .slice(0, 4)
       .map(publisher => {
         const topTitle = sortRecommendations(
           [

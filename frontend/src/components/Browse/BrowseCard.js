@@ -15,7 +15,6 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
 
@@ -64,10 +63,17 @@ export const GET_HIGHLIGHT_TRAILER = gql`
  */
 export const BrowseCard = props => {
   const classnames = BrowseCard.classnames(props);
-  const { data, variant, trailerPath, withPrice, maxSize } = props;
+  const {
+    data,
+    variant,
+    trailerPath,
+    cardActionLabel,
+    cardActionHref,
+    cardActionLinkPath,
+    withPrice,
+    maxSize
+  } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
-
-  // console.log(data);
 
   const priceData = {
     freeToPlay: data.freeToPlay,
@@ -96,7 +102,16 @@ export const BrowseCard = props => {
       })}
     >
       <Link href="/game/[id]" as={`/game/${data.appid}`}>
-        <a>
+        <a
+          className={classnames.element("gameLink", {
+            header: variant === "header",
+            sm: variant === "sm",
+            md: variant === "md",
+            lg: variant === "lg",
+            lib: variant === "lib",
+            maxSize
+          })}
+        >
           <CardActionArea
             className={classnames.element("actionArea")}
             onMouseEnter={handleMouseEnter}
@@ -104,21 +119,12 @@ export const BrowseCard = props => {
           >
             <CardContent className={classnames.element("content")}>
               <HeroImage
-                className={classnames.element("media", {
-                  header: variant === "header",
-                  sm: variant === "sm",
-                  md: variant === "md",
-                  lg: variant === "lg",
-                  lib: variant === "lib",
-                  maxSize
-                })}
+                className={classnames.element("media")}
                 altText={data.name}
                 imageSrc={data[VARIANTS_MAP[variant].image]}
+                squaredBottom={Boolean(cardActionLabel)}
               />
             </CardContent>
-            {/* <CardContent className={classnames.element("content")}>
-                <Typography variant="h2">{data.name}</Typography>
-              </CardContent> */}
           </CardActionArea>
         </a>
       </Link>
@@ -184,12 +190,20 @@ export const BrowseCard = props => {
           )}
         </Popper>
       )}
-
-      {/* <CardActions>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions> */}
+      {cardActionLabel && cardActionLinkPath && cardActionHref && (
+        <CardActions className={classnames.element("actionsContainer")}>
+          <Link href={cardActionHref} as={cardActionLinkPath}>
+            <a className={classnames.element("actionLink")}>
+              <Typography
+                className={classnames.element("actionLinkLabel")}
+                variant="body1"
+              >
+                {cardActionLabel}
+              </Typography>
+            </a>
+          </Link>
+        </CardActions>
+      )}
       {withPrice && (
         <div className={classnames.element("priceWidget")}>
           <PriceWidget data={priceData} skinny={true} />
@@ -212,13 +226,17 @@ BrowseCard.propTypes = {
     lib: PropTypes.string,
     maxSize: PropTypes.string,
     media: PropTypes.string,
-    mediaHeader: PropTypes.string,
-    mediaSm: PropTypes.string,
-    mediaMd: PropTypes.string,
-    mediaLg: PropTypes.string,
-    mediaLib: PropTypes.string,
-    mediaMaxSize: PropTypes.string,
+    gameLinkHeader: PropTypes.string,
+    gameLinkSm: PropTypes.string,
+    gameLinkMd: PropTypes.string,
+    gameLinkLg: PropTypes.string,
+    gameLinkLib: PropTypes.string,
+    gameLinkMaxSize: PropTypes.string,
+    gameLink: PropTypes.string,
     content: PropTypes.string,
+    actionsContainer: PropTypes.string,
+    actionLink: PropTypes.string,
+    actionLinkLabel: PropTypes.string,
     title: PropTypes.string,
     category: PropTypes.string,
     genresContainer: PropTypes.string,
@@ -236,6 +254,12 @@ BrowseCard.propTypes = {
   variant: PropTypes.oneOf(Object.keys(VARIANTS_MAP)),
   // include the price widget
   withPrice: PropTypes.bool,
+  // the label for the card action
+  cardActionLabel: PropTypes.string,
+  // the href for the card action link
+  cardActionHref: PropTypes.string,
+  // the path for the card action link
+  cardActionLinkPath: PropTypes.string,
   // whether the card should assume the dimensions of its container
   maxSize: PropTypes.bool
 };

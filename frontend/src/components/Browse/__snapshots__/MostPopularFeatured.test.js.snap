@@ -89,6 +89,7 @@ exports[`MostPopularFeatured should render successfully 1`] = `
     alignItems="center"
     className="wye-MostPopularFeatured__featuredItemContainer featuredItemContainer"
     container={true}
+    justify="space-between"
   >
     <WithStyles(ForwardRef(Grid))
       className="wye-MostPopularFeatured__featuredItem featuredItem"
