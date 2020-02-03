@@ -1,0 +1,623 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterGamesQuery should render successfully 1`] = `
+<FilterGamesQuery
+  classnames={
+    Object {
+      "element": [MockFunction],
+      "root": [MockFunction],
+    }
+  }
+>
+  <Query
+    query={
+      Object {
+        "definitions": Array [
+          Object {
+            "directives": Array [],
+            "kind": "OperationDefinition",
+            "name": Object {
+              "kind": "Name",
+              "value": "GAMES_FILTER_QUERY",
+            },
+            "operation": "query",
+            "selectionSet": Object {
+              "kind": "SelectionSet",
+              "selections": Array [
+                Object {
+                  "alias": undefined,
+                  "arguments": Array [
+                    Object {
+                      "kind": "Argument",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "users",
+                      },
+                      "value": Object {
+                        "kind": "Variable",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "users",
+                        },
+                      },
+                    },
+                    Object {
+                      "kind": "Argument",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "filters",
+                      },
+                      "value": Object {
+                        "kind": "Variable",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "filters",
+                        },
+                      },
+                    },
+                    Object {
+                      "kind": "Argument",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "orderBy",
+                      },
+                      "value": Object {
+                        "kind": "Variable",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "orderBy",
+                        },
+                      },
+                    },
+                    Object {
+                      "kind": "Argument",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "sortOrder",
+                      },
+                      "value": Object {
+                        "kind": "Variable",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "sortOrder",
+                        },
+                      },
+                    },
+                    Object {
+                      "kind": "Argument",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "first",
+                      },
+                      "value": Object {
+                        "kind": "Variable",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "first",
+                        },
+                      },
+                    },
+                  ],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "recommendations",
+                  },
+                  "selectionSet": Object {
+                    "kind": "SelectionSet",
+                    "selections": Array [
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "pageInfo",
+                        },
+                        "selectionSet": Object {
+                          "kind": "SelectionSet",
+                          "selections": Array [
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "totalCount",
+                              },
+                              "selectionSet": undefined,
+                            },
+                          ],
+                        },
+                      },
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "edges",
+                        },
+                        "selectionSet": Object {
+                          "kind": "SelectionSet",
+                          "selections": Array [
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "node",
+                              },
+                              "selectionSet": Object {
+                                "kind": "SelectionSet",
+                                "selections": Array [
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "game",
+                                    },
+                                    "selectionSet": Object {
+                                      "kind": "SelectionSet",
+                                      "selections": Array [
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "appid",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "name",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "developers",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "publishers",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "ownersFormatted",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "userRating",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "genres",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "freeToPlay",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "onSale",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "discount",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "initialPrice",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "finalPrice",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "headerImage",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "backgroundImage",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "ownedBy",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "recentlyPlayedBy",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "playtime",
+                                    },
+                                    "selectionSet": Object {
+                                      "kind": "SelectionSet",
+                                      "selections": Array [
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "id",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "hoursPlayed",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+            "variableDefinitions": Array [
+              Object {
+                "defaultValue": undefined,
+                "directives": Array [],
+                "kind": "VariableDefinition",
+                "type": Object {
+                  "kind": "ListType",
+                  "type": Object {
+                    "kind": "NamedType",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "ID",
+                    },
+                  },
+                },
+                "variable": Object {
+                  "kind": "Variable",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "users",
+                  },
+                },
+              },
+              Object {
+                "defaultValue": undefined,
+                "directives": Array [],
+                "kind": "VariableDefinition",
+                "type": Object {
+                  "kind": "NamedType",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "FilterInput",
+                  },
+                },
+                "variable": Object {
+                  "kind": "Variable",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "filters",
+                  },
+                },
+              },
+              Object {
+                "defaultValue": undefined,
+                "directives": Array [],
+                "kind": "VariableDefinition",
+                "type": Object {
+                  "kind": "ListType",
+                  "type": Object {
+                    "kind": "NonNullType",
+                    "type": Object {
+                      "kind": "NamedType",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "OrderByField",
+                      },
+                    },
+                  },
+                },
+                "variable": Object {
+                  "kind": "Variable",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "orderBy",
+                  },
+                },
+              },
+              Object {
+                "defaultValue": undefined,
+                "directives": Array [],
+                "kind": "VariableDefinition",
+                "type": Object {
+                  "kind": "NamedType",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "OrderDirection",
+                  },
+                },
+                "variable": Object {
+                  "kind": "Variable",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "sortOrder",
+                  },
+                },
+              },
+              Object {
+                "defaultValue": undefined,
+                "directives": Array [],
+                "kind": "VariableDefinition",
+                "type": Object {
+                  "kind": "NamedType",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "Int",
+                  },
+                },
+                "variable": Object {
+                  "kind": "Variable",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "first",
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        "kind": "Document",
+        "loc": Object {
+          "end": 861,
+          "start": 0,
+        },
+      }
+    }
+  >
+    <WithStyles(LoadingState)
+      classes={Object {}}
+    >
+      <LoadingState
+        classes={
+          Object {
+            "progressIndicator": "LoadingState-progressIndicator-2",
+            "root": "LoadingState-root-1",
+          }
+        }
+      >
+        <div
+          className="wye-LoadingState LoadingState-root-1"
+        >
+          <WithStyles(ForwardRef(CircularProgress))
+            className="wye-LoadingState__progressIndicator LoadingState-progressIndicator-2"
+          >
+            <ForwardRef(CircularProgress)
+              className="wye-LoadingState__progressIndicator LoadingState-progressIndicator-2"
+              classes={
+                Object {
+                  "circle": "MuiCircularProgress-circle",
+                  "circleDisableShrink": "MuiCircularProgress-circleDisableShrink",
+                  "circleIndeterminate": "MuiCircularProgress-circleIndeterminate",
+                  "circleStatic": "MuiCircularProgress-circleStatic",
+                  "colorPrimary": "MuiCircularProgress-colorPrimary",
+                  "colorSecondary": "MuiCircularProgress-colorSecondary",
+                  "indeterminate": "MuiCircularProgress-indeterminate",
+                  "root": "MuiCircularProgress-root",
+                  "static": "MuiCircularProgress-static",
+                  "svg": "MuiCircularProgress-svg",
+                }
+              }
+            >
+              <div
+                className="MuiCircularProgress-root wye-LoadingState__progressIndicator LoadingState-progressIndicator-2 MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+                role="progressbar"
+                style={
+                  Object {
+                    "height": 40,
+                    "width": 40,
+                  }
+                }
+              >
+                <svg
+                  className="MuiCircularProgress-svg"
+                  viewBox="22 22 44 44"
+                >
+                  <circle
+                    className="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+                    cx={44}
+                    cy={44}
+                    fill="none"
+                    r={20.2}
+                    strokeWidth={3.6}
+                    style={Object {}}
+                  />
+                </svg>
+              </div>
+            </ForwardRef(CircularProgress)>
+          </WithStyles(ForwardRef(CircularProgress))>
+        </div>
+      </LoadingState>
+    </WithStyles(LoadingState)>
+  </Query>
+</FilterGamesQuery>
+`;
+
+exports[`GamesFilterWidget should render successfully 1`] = `
+<div
+  className="wye-GamesFilterWidget root"
+>
+  <ContextProvider
+    value={
+      Object {
+        "setFilterOptions": [Function],
+      }
+    }
+  >
+    <FilterGamesQuery
+      classnames={
+        ClassNameHelper {
+          "componentName": "wye-GamesFilterWidget",
+          "element": [Function],
+          "props": Object {
+            "classes": Object {
+              "root": "root",
+            },
+          },
+          "root": [Function],
+        }
+      }
+      variables={Object {}}
+    />
+  </ContextProvider>
+</div>
+`;
+
+exports[`MainContent should render successfully 1`] = `
+<div>
+  <BackgroundQuery
+    backgroundUrl="url"
+  >
+    <div>
+      GamesFilterWidget placeholder
+    </div>
+  </BackgroundQuery>
+</div>
+`;
