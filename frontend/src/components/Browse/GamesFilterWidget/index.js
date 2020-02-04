@@ -10,8 +10,13 @@ import get from "lodash.get";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 
+import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+
 import LoadingState from "../../LoadingState";
 import BackgroundProvider from "../../BackgroundProvider";
+import FilteredGameList from "./FilteredGameList";
 import styles from "./index.styles";
 
 // query for a list of games, filtered by the provided criteria
@@ -33,6 +38,14 @@ export const GAMES_FILTER_QUERY = gql`
       pageInfo {
         totalCount
       }
+      userDetails {
+        id
+        profileUrl
+        avatarName
+        avatarImageUrl
+        onlineStatus
+        lastOnlineTime
+      }
       edges {
         node {
           game {
@@ -49,12 +62,13 @@ export const GAMES_FILTER_QUERY = gql`
             initialPrice
             finalPrice
             headerImage
+            capsuleLg
             backgroundImage
           }
           ownedBy
           recentlyPlayedBy
           playtime {
-            id
+            steamId
             hoursPlayed
           }
         }
@@ -73,11 +87,38 @@ export const GamesFilterWidgetContextConsumer =
 /**
  * renders the inner content of the GamesFilterWidget
  */
-export const MainContent = ({ classnames, featuredBackgroundUrl }) => {
+export const MainContent = ({
+  classnames,
+  title,
+  subtitle,
+  featuredBackgroundUrl,
+  items,
+  userDetails
+}) => {
   return (
     <div className={classnames.element("mainContent")}>
       <BackgroundProvider backgroundUrl={featuredBackgroundUrl}>
-        <div>GamesFilterWidget placeholder</div>
+        <div className={classnames.element("contentWrapper")}>
+          <Container maxWidth="lg" disableGutters={true}>
+            <Box my={4}>
+              <Typography
+                className={classnames.element("heading")}
+                variant="h2"
+                gutterBottom={true}
+              >
+                {title}
+              </Typography>
+              <Typography
+                className={classnames.element("subHeading")}
+                variant="body1"
+                gutterBottom={true}
+              >
+                {subtitle}
+              </Typography>
+            </Box>
+          </Container>
+          <FilteredGameList items={items} userDetails={userDetails} />
+        </div>
       </BackgroundProvider>
     </div>
   );
@@ -85,8 +126,16 @@ export const MainContent = ({ classnames, featuredBackgroundUrl }) => {
 MainContent.propTypes = {
   // the classnames helper from the parent GamesFilterWidget
   classnames: PropTypes.object.isRequired,
+  // the title to render for the content
+  title: PropTypes.string.isRequired,
+  // the subtitle to render for the content
+  subtitle: PropTypes.string.isRequired,
   // the background image path of the top result of the filtered list
-  featuredBackgroundUrl: PropTypes.string.isRequired
+  featuredBackgroundUrl: PropTypes.string.isRequired,
+  // the list of items to display
+  items: PropTypes.array,
+  // user information
+  userDetails: PropTypes.array
 };
 
 /**
@@ -94,7 +143,7 @@ MainContent.propTypes = {
  */
 export const GamesFilterWidget = props => {
   const classnames = GamesFilterWidget.classnames(props);
-  const { width, initialFilters } = props;
+  const { width, initialFilters, title, subtitle } = props;
   const [filterOptions, setFilterOptions] = React.useState(
     initialFilters ? initialFilters : {}
   );
@@ -106,7 +155,12 @@ export const GamesFilterWidget = props => {
           setFilterOptions
         }}
       >
-        <FilterGamesQuery variables={filterOptions} classnames={classnames} />
+        <FilterGamesQuery
+          variables={filterOptions}
+          classnames={classnames}
+          title={title}
+          subtitle={subtitle}
+        />
       </GamesFilterWidgetContextProvider>
     </div>
   );
@@ -117,7 +171,11 @@ GamesFilterWidget.classnames = createClassNameHelper(
 GamesFilterWidget.propTypes = {
   // styles to apply
   classes: PropTypes.shape({
-    root: PropTypes.string
+    root: PropTypes.string,
+    contentWrapper: PropTypes.string,
+    mainContent: PropTypes.string,
+    heading: PropTypes.string,
+    subHeading: PropTypes.string
   }),
   // width value from material-ui
   width: PropTypes.string,
@@ -131,7 +189,11 @@ GamesFilterWidget.propTypes = {
     orderBy: PropTypes.arrayOf(PropTypes.string),
     sortOrder: PropTypes.string,
     first: PropTypes.number
-  })
+  }),
+  // the title to render for the content
+  title: PropTypes.string.isRequired,
+  // the subtitle to render for the content
+  subtitle: PropTypes.string.isRequired
 };
 GamesFilterWidget.defaultProps = {
   classes: {}
@@ -160,13 +222,17 @@ export const FilterGamesQuery = props => {
           return <div>oops</div>;
         }
 
-        // console.log(data);
+        // compile data for children
         const featuredBackgroundUrl = get(data, ["recommendations", "edges"])[0]
           .node.game.backgroundImage;
+        const items = get(data, ["recommendations", "edges"], []);
+        const userDetails = get(data, ["recommendations", "userDetails"], []);
 
         return (
           <MainContent
             featuredBackgroundUrl={featuredBackgroundUrl}
+            items={items}
+            userDetails={userDetails}
             {...props}
           />
         );

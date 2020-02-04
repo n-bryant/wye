@@ -27,6 +27,21 @@ const styles = theme => ({
   maxSize: {
     maxWidth: "100%"
   },
+  horizontal: {
+    display: "flex",
+    background: theme.palette.common.yellow1
+  },
+  horizontalContent: {
+    width: "calc(100% - 150px)",
+    padding: "8px !important",
+    position: "relative"
+  },
+  horizontalTitle: {
+    fontSize: "1.5rem",
+    fontWeight: "500",
+    lineHeight: "1.75rem",
+    color: theme.palette.common.yellow1
+  },
   media: {
     height: "100%"
   },
@@ -49,6 +64,9 @@ const styles = theme => ({
   },
   gameLinkLib: {
     maxHeight: "450px"
+  },
+  gameLinkHorizontal: {
+    width: "150px"
   },
   gameLinkMaxSize: {
     maxHeight: "100%"
@@ -80,6 +98,7 @@ const styles = theme => ({
   trailer: {
     margin: ".5rem auto",
     maxWidth: "100%",
+    maxHeight: "215px",
     height: "auto"
   },
   actionArea: {
@@ -120,6 +139,30 @@ const styles = theme => ({
     display: "flex",
     justifyContent: "flex-end",
     marginTop: theme.spacing(0.5)
+  },
+  contentWrapper: {
+    height: "100%",
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: theme.spacing(1),
+    background: "rgba(0,0,0,0.5)",
+    borderBottomRightRadius: "4px",
+    borderTopRightRadius: "4px"
+  },
+  horizontalSubContent: {
+    position: "absolute",
+    bottom: "-16px",
+    right: "-16px"
+  },
+  usersContainer: {
+    display: "flex",
+    justifyContent: "space-evenly",
+    position: "absolute",
+    top: "-16px",
+    left: "0",
+    right: "0"
   }
 });
 export default styles;

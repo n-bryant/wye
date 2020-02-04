@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilteredGameList should render successfully 1`] = `
+<WithStyles(ForwardRef(Container))
+  className="wye-FilteredGameList__root root"
+  disableGutters={true}
+  maxWidth="lg"
+>
+  <Styled(MuiBox)
+    my={4}
+  >
+    <WithStyles(ForwardRef(Grid))
+      container={true}
+      justify="center"
+      spacing={6}
+    >
+      <WithStyles(ForwardRef(Grid))
+        className="wye-FilteredGameList__item item"
+        item={true}
+        key="1"
+        md={6}
+        xs={12}
+      >
+        <HighlightTrailerQuery
+          data={
+            Object {
+              "appid": "1",
+            }
+          }
+          playtimeAndOwnershipData={
+            Object {
+              "ownedBy": undefined,
+              "playtime": undefined,
+              "recentlyPlayedBy": undefined,
+            }
+          }
+          variant="horizontal"
+          withPrice={true}
+        />
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+  </Styled(MuiBox)>
+</WithStyles(ForwardRef(Container))>
+`;

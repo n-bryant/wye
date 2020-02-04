@@ -42,7 +42,14 @@ describe("BrowseCard", () => {
       gameLink: "gameLink",
       actionsContainer: "actionsContainer",
       actionLink: "actionLink",
-      actionLinkLabel: "actionLinkLabel"
+      actionLinkLabel: "actionLinkLabel",
+      horizontal: "horizontal",
+      gameLinkHorizontal: "gameLinkHorizontal",
+      horizontalContent: "horizontalContent",
+      contentWrapper: "contentWrapper",
+      horizontalTitle: "horizontalTitle",
+      horizontalSubContent: "horizontalSubContent",
+      usersContainer: "usersContainer"
     },
     data: {
       appid: "1",
@@ -91,6 +98,37 @@ describe("BrowseCard", () => {
           .indexOf(`media${variant}`)
       ).toBeTruthy();
     });
+  });
+
+  it("should render a horizontal CardContent if the variant is horizontal", () => {
+    wrapper.setProps({
+      variant: "horizontal",
+      userDetails: [
+        {
+          id: "1",
+          profileUrl: "url",
+          avatarName: "name",
+          avatarImageUrl: "img",
+          onlineStatus: "Online"
+        }
+      ],
+      playtimeAndOwnershipData: {
+        ownedBy: ["1"],
+        recentlyPlayedBy: ["1"],
+        playtime: [
+          {
+            steamId: "1",
+            hoursPlayed: 3.5
+          }
+        ]
+      }
+    });
+    wrapper.update();
+    const horizontalContent = wrapper.findWhere(n =>
+      n.hasClass(props.classes.horizontalContent)
+    );
+    expect(horizontalContent.length).toBe(1);
+    expect(toJson(horizontalContent)).toMatchSnapshot();
   });
 
   it("should set the image src for the HeroImage based on the variant", () => {

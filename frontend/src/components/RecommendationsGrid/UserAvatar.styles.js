@@ -4,19 +4,25 @@ const styles = theme => ({
     maxWidth: "fit-content"
   },
   tooltip: {
-    border: "1px solid hsla(0,0%,100%,0.2)",
-    background: "rgba(0,0,0,.75)"
+    background: theme.palette.panel.background
+  },
+  arrow: {
+    "&:before": {
+      borderColor: `transparent transparent ${theme.palette.panel.background} transparent !important`
+    }
   },
   avatarContainer: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    boxShadow:
+      "0px 5px 5px -3px rgba(0,0,0,0.2), 0px 8px 10px 1px rgba(0,0,0,0.14), 0px 3px 14px 2px rgba(0,0,0,0.12)"
   },
   image: {
-    width: "64px",
-    height: "64px",
+    width: "32px",
+    height: "32px",
     border: "1px solid hsla(0,0%,100%,0.2)",
-    marginBottom: "0.5rem"
+    borderRadius: "4px"
   },
   tooltipHeading: {
     color: theme.palette.common.blue6
@@ -27,6 +33,7 @@ const styles = theme => ({
     alignItems: "center",
     justifyContent: "center",
     marginTop: "0.5rem",
+    marginBottom: "0.5rem",
     color: theme.palette.link.default,
     "&:hover": {
       color: theme.palette.link.hover

@@ -110,7 +110,7 @@ const resolvers = {
       );
 
       // 5. get user profile data
-      const userDetails = dataSources.steamUsersAPI.getUserSummariesByIds(
+      const userDetails = await dataSources.steamUsersAPI.getUserSummariesByIds(
         users
       );
 
@@ -144,14 +144,14 @@ const resolvers = {
                 )
               ) {
                 return {
-                  id: user,
+                  steamId: user,
                   hoursPlayed: userOwnedGames[user]["games"].filter(
                     userGame => userGame.id === game.appid
                   )[0].hoursPlayed
                 };
               } else {
                 return {
-                  id: user,
+                  steamId: user,
                   hoursPlayed: 0
                 };
               }

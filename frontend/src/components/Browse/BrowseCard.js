@@ -19,6 +19,7 @@ import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
 
 import formatCurrency from "../../../lib/formatCurrency";
+import UserAvatar from "../../components/RecommendationsGrid/UserAvatar";
 import PriceWidget from "../Game/PriceWidget";
 import HeroImage from "../Game/HeroImage";
 import Popper from "../Popper";
@@ -48,9 +49,13 @@ export const VARIANTS_MAP = {
   },
   lib: {
     image: IMG_TYPES_MAP.LIBRARY_CAPSULE
+  },
+  horizontal: {
+    image: IMG_TYPES_MAP.CAPSULE_LG
   }
 };
 
+// retrieves the highlight trailer path for a game
 export const GET_HIGHLIGHT_TRAILER = gql`
   query GET_HIGHLIGHT_TRAILER($gameId: ID!) {
     getHighlightTrailer(gameId: $gameId)
@@ -65,6 +70,8 @@ export const BrowseCard = props => {
   const classnames = BrowseCard.classnames(props);
   const {
     data,
+    userDetails,
+    playtimeAndOwnershipData,
     variant,
     trailerPath,
     cardActionLabel,
@@ -98,6 +105,7 @@ export const BrowseCard = props => {
         md: variant === "md",
         lg: variant === "lg",
         lib: variant === "lib",
+        horizontal: variant === "horizontal",
         maxSize
       })}
     >
@@ -109,6 +117,7 @@ export const BrowseCard = props => {
             md: variant === "md",
             lg: variant === "lg",
             lib: variant === "lib",
+            horizontal: variant === "horizontal",
             maxSize
           })}
         >
@@ -122,7 +131,9 @@ export const BrowseCard = props => {
                 className={classnames.element("media")}
                 altText={data.name}
                 imageSrc={data[VARIANTS_MAP[variant].image]}
+                placeholderPath={data[IMG_TYPES_MAP.HEADER]}
                 squaredBottom={Boolean(cardActionLabel)}
+                squaredRight={variant === "horizontal"}
               />
             </CardContent>
           </CardActionArea>
@@ -204,7 +215,48 @@ export const BrowseCard = props => {
           </Link>
         </CardActions>
       )}
-      {withPrice && (
+      {variant === "horizontal" && (
+        <CardContent className={classnames.element("horizontalContent")}>
+          {userDetails && userDetails.length > 0 && (
+            <div className={classnames.element("usersContainer")}>
+              {userDetails.map(user => {
+                // compile player game data
+                const gameDetails = {
+                  ownsGame: playtimeAndOwnershipData.ownedBy.some(
+                    item => item === user.id
+                  ),
+                  recentlyPlayedGame: playtimeAndOwnershipData.recentlyPlayedBy.some(
+                    item => item === user.id
+                  ),
+                  hoursPlayed: playtimeAndOwnershipData.playtime.filter(
+                    item => item.steamId === user.id
+                  )[0].hoursPlayed
+                };
+
+                return (
+                  <UserAvatar
+                    key={user.id}
+                    data={user}
+                    gameDetails={gameDetails}
+                  />
+                );
+              })}
+            </div>
+          )}
+          <div className={classnames.element("contentWrapper")}>
+            <Typography
+              className={classnames.element("horizontalTitle")}
+              variant="h2"
+            >
+              {data.name}
+            </Typography>
+            <div className={classnames.element("horizontalSubContent")}>
+              <PriceWidget data={priceData} />
+            </div>
+          </div>
+        </CardContent>
+      )}
+      {withPrice && variant !== "horizontal" && (
         <div className={classnames.element("priceWidget")}>
           <PriceWidget data={priceData} skinny={true} />
         </div>
@@ -224,6 +276,10 @@ BrowseCard.propTypes = {
     md: PropTypes.string,
     lg: PropTypes.string,
     lib: PropTypes.string,
+    horizontal: PropTypes.string,
+    horizontalContent: PropTypes.string,
+    horizontalSubContent: PropTypes.string,
+    horizontalTitle: PropTypes.string,
     maxSize: PropTypes.string,
     media: PropTypes.string,
     gameLinkHeader: PropTypes.string,
@@ -244,10 +300,15 @@ BrowseCard.propTypes = {
     chipLabel: PropTypes.string,
     trailer: PropTypes.string,
     actionArea: PropTypes.string,
-    priceWidget: PropTypes.string
+    priceWidget: PropTypes.string,
+    usersContainer: PropTypes.string
   }),
-  // data for card display
+  // game data for card to display
   data: PropTypes.object,
+  // details for any users associated with the game
+  userDetails: PropTypes.array,
+  // playtime and ownership details
+  playtimeAndOwnershipData: PropTypes.object,
   // path to the highlight trailer
   trailerPath: PropTypes.string,
   // which card variant to render

@@ -141,6 +141,64 @@ exports[`BrowseCard should render CardActions if the cardActionLabel, cardAction
 </WithStyles(ForwardRef(CardActions))>
 `;
 
+exports[`BrowseCard should render a horizontal CardContent if the variant is horizontal 1`] = `
+<WithStyles(ForwardRef(CardContent))
+  className="wye-BrowseCard__horizontalContent horizontalContent"
+>
+  <div
+    className="wye-BrowseCard__usersContainer usersContainer"
+  >
+    <WithStyles(UserAvatar)
+      classes={Object {}}
+      data={
+        Object {
+          "avatarImageUrl": "img",
+          "avatarName": "name",
+          "id": "1",
+          "onlineStatus": "Online",
+          "profileUrl": "url",
+        }
+      }
+      gameDetails={
+        Object {
+          "hoursPlayed": 3.5,
+          "ownsGame": true,
+          "recentlyPlayedGame": true,
+        }
+      }
+      key="1"
+    />
+  </div>
+  <div
+    className="wye-BrowseCard__contentWrapper contentWrapper"
+  >
+    <WithStyles(ForwardRef(Typography))
+      className="wye-BrowseCard__horizontalTitle horizontalTitle"
+      variant="h2"
+    >
+      foo
+    </WithStyles(ForwardRef(Typography))>
+    <div
+      className="wye-BrowseCard__horizontalSubContent horizontalSubContent"
+    >
+      <WithStyles(PriceWidget)
+        classes={Object {}}
+        data={
+          Object {
+            "discountPercentage": 0,
+            "finalFormatted": "$0.00",
+            "freeToPlay": true,
+            "initialFormatted": "$0.00",
+            "onSale": false,
+          }
+        }
+        skinny={false}
+      />
+    </div>
+  </div>
+</WithStyles(ForwardRef(CardContent))>
+`;
+
 exports[`BrowseCard should render successfully 1`] = `
 <WithStyles(ForwardRef(Card))
   className="wye-BrowseCard wye-BrowseCard--header root header"
@@ -165,7 +223,9 @@ exports[`BrowseCard should render successfully 1`] = `
             className="wye-BrowseCard__media media"
             classes={Object {}}
             imageSrc="header"
+            placeholderPath="header"
             squaredBottom={false}
+            squaredRight={false}
           />
         </WithStyles(ForwardRef(CardContent))>
       </WithStyles(ForwardRef(CardActionArea))>

@@ -11,16 +11,17 @@ exports[`GameDetails should render successfully 1`] = `
       spacing={1}
     >
       <WithStyles(ForwardRef(Grid))
+        className="wye-GameDetails__backButtonContainer makeStyles-backButtonContainer-9"
         item={true}
         lg={8}
         xs={12}
       >
         <WithStyles(ForwardRef(Button))
-          className="wye-GameDetails__recommendationsButton makeStyles-recommendationsButton-9"
+          className="wye-GameDetails__backButton makeStyles-backButton-10"
           onClick={[Function]}
         >
           <Icon
-            className="wye-GameDetails__icon makeStyles-icon-10"
+            className="wye-GameDetails__icon makeStyles-icon-11"
             color={null}
             horizontal={false}
             path="M20,9V15H12V19.84L4.16,12L12,4.16V9H20Z"
@@ -32,7 +33,7 @@ exports[`GameDetails should render successfully 1`] = `
           <WithStyles(ForwardRef(Typography))
             variant="body2"
           >
-            recommendations
+            back
           </WithStyles(ForwardRef(Typography))>
         </WithStyles(ForwardRef(Button))>
       </WithStyles(ForwardRef(Grid))>

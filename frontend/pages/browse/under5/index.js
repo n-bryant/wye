@@ -13,6 +13,8 @@ import styles from "./index.styles";
  */
 export const Under5Page = props => {
   const classnames = Under5Page.classnames(props);
+  const title = "Games Under $5";
+  const subtitle = "Browse games available at a bargain";
   const config = {
     filters: {
       gameFilters: {
@@ -26,7 +28,11 @@ export const Under5Page = props => {
 
   return (
     <div className={classnames.root()}>
-      <GamesFilterWidget initialFilters={config} />
+      <GamesFilterWidget
+        title={title}
+        subtitle={subtitle}
+        initialFilters={config}
+      />
     </div>
   );
 };
