@@ -79,7 +79,10 @@ class SteamPlayerServiceAPI extends RESTDataSource {
       for (const game of playerOwnedGames) {
         playerGames[playerId]["games"].push({
           id: game["appid"].toString(),
-          hoursPlayed: game["playtime_forever"]
+          hoursPlayed:
+            !game.playtime_forever || game.playtime_forever === 0
+              ? 0
+              : parseFloat((game["playtime_forever"] / 60).toFixed(2), 10)
         });
       }
     }

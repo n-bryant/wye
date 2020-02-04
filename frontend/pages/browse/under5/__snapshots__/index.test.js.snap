@@ -20,6 +20,8 @@ exports[`Under5Page should render successfully 1`] = `
         "sortOrder": "DESC",
       }
     }
+    subtitle="Browse games available at a bargain"
+    title="Games Under $5"
   />
 </div>
 `;

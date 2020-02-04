@@ -337,9 +337,9 @@ const typeDefs = gql`
 
   type UserPlaytime {
     # the user's ID
-    id: ID!
+    steamId: String!
     # the user's total game play time in hours
-    hoursPlayed: Int!
+    hoursPlayed: Float!
   }
 
   input FilterInput {

@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import NProgress from "nprogress";
 import Router from "next/router";
-import PropTypes from "prop-types";
 
 // implementation of nprogress that displays the progress of a loading state as a progress bar with a spinner
 class NextNProgress extends React.Component {

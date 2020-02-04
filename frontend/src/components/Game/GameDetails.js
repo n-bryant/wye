@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import get from "lodash.get";
 import { useRouter } from "next/router";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -16,11 +15,6 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
-import {
-  ACTIONS,
-  CONTENT_OPTIONS,
-  AppContextConsumer
-} from "../../../pages/_app";
 import BackgroundProvider from "../BackgroundProvider";
 import MediaCarousel from "./MediaCarousel";
 import ReleaseInfoBlock from "./ReleaseInfoBlock";
@@ -61,18 +55,25 @@ const useStyles = makeStyles({
   priceContainerWithSmWidth: {
     marginLeft: "-4px"
   },
-  recommendationsButton: {
+  backButtonContainer: {
+    padding: "0 !important",
+    marginBottom: "4px"
+  },
+  backButton: {
     padding: "0",
-    textTransform: "none",
+    textDecoration: "none",
+    transition: "all 0.25s ease-in-out",
     "&:hover": {
       background: "transparent",
-      textDecoration: "underline"
+      textDecoration: "underline",
+      transition: "all 0.25s ease-in-out"
     }
   },
   icon: {
     height: "1rem",
     fill: "white",
-    marginRight: "0.5rem"
+    marginRight: "0.5rem",
+    transition: "fill 0.25s ease-in-out"
   }
 });
 
@@ -82,8 +83,6 @@ const useStyles = makeStyles({
 export const GameDetails = props => {
   const {
     data: { details, articles },
-    users,
-    dispatch,
     width
   } = props;
   const router = useRouter();
@@ -113,29 +112,23 @@ export const GameDetails = props => {
           container
           spacing={1}
         >
-          <Grid item xs={12} lg={8}>
+          <Grid
+            className={classnames.element("backButtonContainer")}
+            item
+            xs={12}
+            lg={8}
+          >
             <Button
-              className={classnames.element("recommendationsButton")}
+              className={classnames.element("backButton")}
               onClick={() => {
-                if (users && users.length > 0) {
-                  dispatch({
-                    type: ACTIONS.SET_CONTENT,
-                    value: CONTENT_OPTIONS.RECOMMENDATIONS
-                  });
-                } else {
-                  dispatch({
-                    type: ACTIONS.SET_CONTENT,
-                    value: CONTENT_OPTIONS.FORM
-                  });
-                }
-                router.push("/");
+                router.back();
               }}
             >
               <Icon
                 className={classnames.element("icon")}
                 path={mdiArrowLeftBold}
               />
-              <Typography variant="body2">recommendations</Typography>
+              <Typography variant="body2">back</Typography>
             </Button>
           </Grid>
           <Grid item xs={12}>
@@ -185,40 +178,21 @@ GameDetails.propTypes = {
     detailsContainerWithMaxWidth: PropTypes.string,
     priceContainer: PropTypes.string,
     priceContainerWithSmWidth: PropTypes.string,
-    recommendationsButton: PropTypes.string,
+    backButton: PropTypes.string,
     icon: PropTypes.string
   }),
   // detailed info for a game
   details: PropTypes.object,
   // a game's article data
   articles: PropTypes.array,
-  // recommendations users
-  users: PropTypes.array,
-  // handler to update app level state
-  dispatch: PropTypes.func,
   // width details from withWidth
   width: PropTypes.string
 };
 GameDetails.defaultProps = {
-  classes: {},
-  dispatch: () => {}
+  classes: {}
 };
 
 // provide media breakpoints
 const GameDetailsWithWidth = withWidth()(GameDetails);
 
-/**
- * Renders a GameDetails with app context
- */
-export const GameDetailsWithContext = props => (
-  <AppContextConsumer>
-    {context => {
-      const users = get(context, ["state", "users"], []);
-      const dispatch = get(context, "dispatch", () => {});
-      return (
-        <GameDetailsWithWidth users={users} dispatch={dispatch} {...props} />
-      );
-    }}
-  </AppContextConsumer>
-);
-export default GameDetailsWithContext;
+export default GameDetailsWithWidth;

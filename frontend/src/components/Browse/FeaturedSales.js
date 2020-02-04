@@ -9,6 +9,11 @@ import { withWidth } from "@material-ui/core/";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 
+import {
+  getOffsetStart,
+  getOffsetEnd,
+  getTotalPages
+} from "../../../lib/pagingUtilities";
 import QuickLink from "../QuickLink";
 import PaginationWidget from "../PaginationWidget";
 import FeaturedWidget from "./FeaturedWidget";
@@ -28,9 +33,9 @@ export const FeaturedSales = props => {
   // pagination values
   const perPage = 3;
   const [currentPage, setCurrentPage] = React.useState(1);
-  const pageStart =
-    currentPage === 1 ? 0 : items.length - (currentPage - 1) * perPage;
-  const pageEnd = currentPage * perPage;
+  const totalPages = getTotalPages(items.length, perPage);
+  const pageStart = getOffsetStart(currentPage, items.length, perPage);
+  const pageEnd = getOffsetEnd(currentPage, perPage);
 
   // divide items into featured/sub-featured
   const featuredSales = items.slice(0, 2);
@@ -101,7 +106,7 @@ export const FeaturedSales = props => {
             className={classnames.element("paginationWidget")}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
-            totalPages={items.length / perPage}
+            totalPages={totalPages}
           />
         </React.Fragment>
       )}

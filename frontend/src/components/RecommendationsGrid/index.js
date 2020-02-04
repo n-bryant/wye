@@ -74,7 +74,7 @@ export const GET_RECOMMENDATIONS_QUERY = gql`
           ownedBy
           recentlyPlayedBy
           playtime {
-            id
+            steamId
             hoursPlayed
           }
         }

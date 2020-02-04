@@ -7,14 +7,18 @@ import JSS_CLASS_NAME_PREFIX from "../../../lib/classNamePrefix";
 
 import styles from "./HeroImage.styles";
 
-export const PLACEHOLDER_PATH = "/steamHeroPlaceholder.jpg";
-
 /**
  * renders a hero image with a placeholder src value
  */
 export const HeroImage = props => {
   const classnames = HeroImage.classnames(props);
-  const { altText, imageSrc, squaredBottom } = props;
+  const {
+    altText,
+    imageSrc,
+    placeholderPath,
+    squaredBottom,
+    squaredRight
+  } = props;
   const [hasBrokenSrc, setHasBrokenSrc] = React.useState(false);
   const [loaded, setLoaded] = React.useState(false);
 
@@ -30,11 +34,12 @@ export const HeroImage = props => {
       <img
         className={classnames.element("image", {
           hidden: !loaded,
-          squaredBottom
+          squaredBottom,
+          squaredRight
         })}
         onError={onError}
         onLoad={onLoad}
-        src={hasBrokenSrc ? PLACEHOLDER_PATH : imageSrc}
+        src={hasBrokenSrc ? placeholderPath : imageSrc}
         alt={altText}
       />
       <div
@@ -54,6 +59,7 @@ HeroImage.propTypes = {
     root: PropTypes.string,
     image: PropTypes.string,
     imageSquaredBottom: PropTypes.string,
+    imageSquaredRight: PropTypes.string,
     imageHidden: PropTypes.string,
     placeholder: PropTypes.string,
     placeholderHidden: PropTypes.string
@@ -62,8 +68,12 @@ HeroImage.propTypes = {
   altText: PropTypes.string,
   // the location of the image to render
   imageSrc: PropTypes.string,
+  // placeholder path if the image src is broken
+  placeholderPath: PropTypes.string,
   // whether the bottom of the image should have a squared bottom
-  squaredBottom: PropTypes.bool
+  squaredBottom: PropTypes.bool,
+  // whether the bottom of the image should have a squared right
+  squaredRight: PropTypes.bool
 };
 HeroImage.defaultProps = {
   classes: {},

@@ -5,6 +5,7 @@ describe("HeroImage", () => {
     classes: {
       image: "image",
       imageSquaredBottom: "imageSquaredBottom",
+      imageSquaredRight: "imageSquaredRight",
       imageHidden: "imageHidden",
       placeholder: "placeholder",
       placeholderHidden: "placeholderHidden"

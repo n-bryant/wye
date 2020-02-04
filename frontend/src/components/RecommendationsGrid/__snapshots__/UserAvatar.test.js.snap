@@ -7,8 +7,10 @@ exports[`UserAvatar should render successfully 1`] = `
   xs={3}
 >
   <WithStyles(ForwardRef(Tooltip))
+    arrow={true}
     classes={
       Object {
+        "arrow": undefined,
         "tooltip": "tooltip",
       }
     }
@@ -23,11 +25,6 @@ exports[`UserAvatar should render successfully 1`] = `
         className="wye-UserAvatar__image image"
         src="avatarImageUrl"
       />
-      <WithStyles(ForwardRef(Typography))
-        variant="body1"
-      >
-        avatarName
-      </WithStyles(ForwardRef(Typography))>
     </div>
   </WithStyles(ForwardRef(Tooltip))>
 </WithStyles(ForwardRef(Grid))>

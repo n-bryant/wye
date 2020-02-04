@@ -2911,7 +2911,7 @@ Object {
           "kind": "FieldDefinition",
           "name": Object {
             "kind": "Name",
-            "value": "id",
+            "value": "steamId",
           },
           "type": Object {
             "kind": "NonNullType",
@@ -2919,7 +2919,7 @@ Object {
               "kind": "NamedType",
               "name": Object {
                 "kind": "Name",
-                "value": "ID",
+                "value": "String",
               },
             },
           },
@@ -2939,7 +2939,7 @@ Object {
               "kind": "NamedType",
               "name": Object {
                 "kind": "Name",
-                "value": "Int",
+                "value": "Float",
               },
             },
           },
@@ -3383,7 +3383,7 @@ Object {
   ],
   "kind": "Document",
   "loc": Object {
-    "end": 9750,
+    "end": 9761,
     "start": 0,
   },
 }

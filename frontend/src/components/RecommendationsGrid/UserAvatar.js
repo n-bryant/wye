@@ -24,7 +24,7 @@ export const PLACEHOLDER_PATH = "/steam.png";
  */
 export const UserAvatar = props => {
   const classnames = UserAvatar.classnames(props);
-  const { data, classes } = props;
+  const { data, classes, gameDetails } = props;
   const { id, profileUrl, avatarName, avatarImageUrl, onlineStatus } = data;
 
   /**
@@ -32,14 +32,41 @@ export const UserAvatar = props => {
    */
   const TooltipContent = () => (
     <React.Fragment>
+      <Typography variant="body2" gutterBottom={true}>
+        <span className={classnames.element("tooltipHeading")}>
+          {avatarName}
+        </span>
+      </Typography>
       <Typography variant="body2">
         <span className={classnames.element("tooltipHeading")}>SteamID:</span>{" "}
         {id}
       </Typography>
-      <Typography variant="body2">
+      <Typography variant="body2" gutterBottom={true}>
         <span className={classnames.element("tooltipHeading")}>Status:</span>{" "}
         {onlineStatus}
       </Typography>
+      {gameDetails && (
+        <React.Fragment>
+          <Typography variant="body2">
+            <span className={classnames.element("tooltipHeading")}>
+              Owns Game:
+            </span>{" "}
+            {gameDetails.ownsGame ? "Yes" : "No"}
+          </Typography>
+          <Typography variant="body2">
+            <span className={classnames.element("tooltipHeading")}>
+              Recently Played:
+            </span>{" "}
+            {gameDetails.recentlyPlayedGame ? "Yes" : "No"}
+          </Typography>
+          <Typography variant="body2">
+            <span className={classnames.element("tooltipHeading")}>
+              Hours Played:
+            </span>{" "}
+            {gameDetails.hoursPlayed}
+          </Typography>
+        </React.Fragment>
+      )}
       <Link href={profileUrl} prefetch={false}>
         <a className={classnames.element("link")} target="_blank">
           <Icon
@@ -56,7 +83,8 @@ export const UserAvatar = props => {
     <Grid className={classnames.root()} item xs={3}>
       <Tooltip
         interactive
-        classes={{ tooltip: classes.tooltip }}
+        arrow={true}
+        classes={{ tooltip: classes.tooltip, arrow: classes.arrow }}
         title={<TooltipContent />}
       >
         <div className={classnames.element("avatarContainer")}>
@@ -65,7 +93,6 @@ export const UserAvatar = props => {
             src={avatarImageUrl}
             alt={avatarName}
           />
-          <Typography variant="body1">{avatarName}</Typography>
         </div>
       </Tooltip>
     </Grid>
@@ -93,6 +120,15 @@ UserAvatar.propTypes = {
     avatarName: PropTypes.string,
     avatarImageUrl: PropTypes.string,
     onlineStatus: PropTypes.string
+  }),
+  // a user's ownership and playtime for a game
+  gameDetails: PropTypes.shape({
+    // does the user own the game
+    ownsGame: PropTypes.bool,
+    // has the user recently played the game
+    recentlyPlayedGame: PropTypes.bool,
+    // the user's playtime for the game
+    hoursPlayed: PropTypes.number
   })
 };
 UserAvatar.defaultProps = {

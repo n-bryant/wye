@@ -22,6 +22,10 @@ const styles = () => ({
     borderBottomLeftRadius: "0",
     borderBottomRightRadius: "0"
   },
+  imageSquaredRight: {
+    borderTopRightRadius: "0",
+    borderBottomRightRadius: "0"
+  },
   imageHidden: {
     ...hidden
   },

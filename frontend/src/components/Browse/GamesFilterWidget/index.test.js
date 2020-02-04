@@ -32,12 +32,23 @@ describe("FilterGamesQuery", () => {
               initialPrice: 1000,
               finalPrice: 750,
               headerImage: "header",
+              capsuleLg: "capsuleLg",
               backgroundImage: "background"
             },
             ownedBy: [],
             recentlyPlayedBy: [],
             playtime: []
           }
+        }
+      ],
+      userDetails: [
+        {
+          id: "1",
+          profileUrl: "url",
+          avatarName: "name",
+          avatarImageUrl: "img",
+          onlineStatus: "Online",
+          lastOnlineTime: "then"
         }
       ]
     }
@@ -47,7 +58,9 @@ describe("FilterGamesQuery", () => {
     classnames: {
       element: jest.fn(),
       root: jest.fn()
-    }
+    },
+    title: "title",
+    subtitle: "subtitle"
   };
 
   it("should render successfully", () => {
@@ -98,7 +111,9 @@ describe("GamesFilterWidget", () => {
   const props = {
     classes: {
       root: "root"
-    }
+    },
+    title: "title",
+    subtitle: "subtitle"
   };
 
   it("should render successfully", () => {
@@ -126,7 +141,9 @@ describe("MainContent", () => {
       root: jest.fn(),
       element: jest.fn()
     },
-    featuredBackgroundUrl: "url"
+    featuredBackgroundUrl: "url",
+    title: "title",
+    subtitle: "subtitle"
   };
 
   it("should render successfully", () => {

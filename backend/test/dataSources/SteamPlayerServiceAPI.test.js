@@ -133,7 +133,10 @@ describe("SteamPlayerServiceAPI", () => {
           games: [
             {
               id: mockGamesList[0].appid.toString(),
-              hoursPlayed: mockGamesList[0].playtime_forever
+              hoursPlayed: parseFloat(
+                (mockGamesList[0].playtime_forever / 60).toFixed(2),
+                10
+              )
             }
           ]
         }

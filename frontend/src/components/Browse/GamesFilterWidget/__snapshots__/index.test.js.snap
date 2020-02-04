@@ -8,6 +8,8 @@ exports[`FilterGamesQuery should render successfully 1`] = `
       "root": [MockFunction],
     }
   }
+  subtitle="subtitle"
+  title="title"
 >
   <Query
     query={
@@ -127,6 +129,87 @@ exports[`FilterGamesQuery should render successfully 1`] = `
                               "name": Object {
                                 "kind": "Name",
                                 "value": "totalCount",
+                              },
+                              "selectionSet": undefined,
+                            },
+                          ],
+                        },
+                      },
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "userDetails",
+                        },
+                        "selectionSet": Object {
+                          "kind": "SelectionSet",
+                          "selections": Array [
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "id",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "profileUrl",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "avatarName",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "avatarImageUrl",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "onlineStatus",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "lastOnlineTime",
                               },
                               "selectionSet": undefined,
                             },
@@ -319,6 +402,17 @@ exports[`FilterGamesQuery should render successfully 1`] = `
                                           "kind": "Field",
                                           "name": Object {
                                             "kind": "Name",
+                                            "value": "capsuleLg",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
                                             "value": "backgroundImage",
                                           },
                                           "selectionSet": undefined,
@@ -367,7 +461,7 @@ exports[`FilterGamesQuery should render successfully 1`] = `
                                           "kind": "Field",
                                           "name": Object {
                                             "kind": "Name",
-                                            "value": "id",
+                                            "value": "steamId",
                                           },
                                           "selectionSet": undefined,
                                         },
@@ -506,7 +600,7 @@ exports[`FilterGamesQuery should render successfully 1`] = `
         ],
         "kind": "Document",
         "loc": Object {
-          "end": 861,
+          "end": 1032,
           "start": 0,
         },
       }
@@ -600,10 +694,14 @@ exports[`GamesFilterWidget should render successfully 1`] = `
             "classes": Object {
               "root": "root",
             },
+            "subtitle": "subtitle",
+            "title": "title",
           },
           "root": [Function],
         }
       }
+      subtitle="subtitle"
+      title="title"
       variables={Object {}}
     />
   </ContextProvider>
@@ -616,7 +714,30 @@ exports[`MainContent should render successfully 1`] = `
     backgroundUrl="url"
   >
     <div>
-      GamesFilterWidget placeholder
+      <WithStyles(ForwardRef(Container))
+        disableGutters={true}
+        maxWidth="lg"
+      >
+        <Styled(MuiBox)
+          my={4}
+        >
+          <WithStyles(ForwardRef(Typography))
+            gutterBottom={true}
+            variant="h2"
+          >
+            title
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            gutterBottom={true}
+            variant="body1"
+          >
+            subtitle
+          </WithStyles(ForwardRef(Typography))>
+        </Styled(MuiBox)>
+      </WithStyles(ForwardRef(Container))>
+      <WithStyles(FilteredGameList)
+        classes={Object {}}
+      />
     </div>
   </BackgroundQuery>
 </div>
