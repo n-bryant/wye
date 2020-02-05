@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { withStyles } from "@material-ui/core/styles";
+import { withWidth } from "@material-ui/core";
 import createClassNameHelper from "@n_bryant/classnames-helper";
 import JSS_CLASS_NAME_PREFIX from "../../../lib/classNamePrefix";
 
@@ -78,7 +79,8 @@ export const BrowseCard = props => {
     cardActionHref,
     cardActionLinkPath,
     withPrice,
-    maxSize
+    maxSize,
+    width
   } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -118,6 +120,9 @@ export const BrowseCard = props => {
             lg: variant === "lg",
             lib: variant === "lib",
             horizontal: variant === "horizontal",
+            horizontalWide:
+              variant === "horizontal" &&
+              ["sm", "lg"].some(val => val === width),
             maxSize
           })}
         >
@@ -216,7 +221,11 @@ export const BrowseCard = props => {
         </CardActions>
       )}
       {variant === "horizontal" && (
-        <CardContent className={classnames.element("horizontalContent")}>
+        <CardContent
+          className={classnames.element("horizontalContent", {
+            wide: ["sm", "lg"].some(val => val === width)
+          })}
+        >
           {userDetails && userDetails.length > 0 && (
             <div className={classnames.element("usersContainer")}>
               {userDetails.map(user => {
@@ -282,6 +291,8 @@ BrowseCard.propTypes = {
     horizontalTitle: PropTypes.string,
     maxSize: PropTypes.string,
     media: PropTypes.string,
+    horizontalContentWide: PropTypes.string,
+    gameLinkHorizontalWide: PropTypes.string,
     gameLinkHeader: PropTypes.string,
     gameLinkSm: PropTypes.string,
     gameLinkMd: PropTypes.string,
@@ -322,7 +333,9 @@ BrowseCard.propTypes = {
   // the path for the card action link
   cardActionLinkPath: PropTypes.string,
   // whether the card should assume the dimensions of its container
-  maxSize: PropTypes.bool
+  maxSize: PropTypes.bool,
+  // material-ui width value
+  width: PropTypes.string
 };
 BrowseCard.defaultProps = {
   classes: {},
@@ -332,7 +345,7 @@ BrowseCard.defaultProps = {
 };
 
 // apply styles
-export const StyledBrowseCard = withStyles(styles)(BrowseCard);
+export const StyledBrowseCard = withWidth()(withStyles(styles)(BrowseCard));
 
 /**
  * renders a Query for a game's highlight trailer that returns a StyledBrowseCard

@@ -9,8 +9,8 @@ import {
 
 describe("getOffsetStart", () => {
   it("should return the difference between a list length, the remaining items beyond the current page, and the remainder of the list length divided by the per page limit", () => {
-    expect(getOffsetStart(1, 500, 20)).toBe(20);
-    expect(getOffsetStart(2, 500, 20)).toBe(40);
+    expect(getOffsetStart(1, 500, 20)).toBe(0);
+    expect(getOffsetStart(2, 500, 20)).toBe(20);
     expect(getOffsetStart(26, 510, 20)).toBe(500);
   });
 });

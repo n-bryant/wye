@@ -143,4 +143,17 @@ describe("PaginationWidget", () => {
       .prop("onClick")();
     expect(props.setCurrentPage).toHaveBeenCalledWith(3);
   });
+
+  it("should not render the first/last page buttons if the total pages is 2 or less", () => {
+    wrapper.setProps({
+      totalPages: 2
+    });
+    wrapper.update();
+    expect(wrapper.findWhere(n => n.prop("path") === mdiPageFirst).length).toBe(
+      0
+    );
+    expect(wrapper.findWhere(n => n.prop("path") === mdiPageLast).length).toBe(
+      0
+    );
+  });
 });

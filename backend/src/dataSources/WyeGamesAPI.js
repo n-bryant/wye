@@ -1,7 +1,20 @@
 const { RESTDataSource } = require("apollo-datasource-rest");
 const get = require("lodash.get");
+const uniq = require("lodash.uniq");
 const { sortRecommendations } = require("../../lib/util/sortRecommendations");
 const wyeGamesReducer = require("../reducers/wyeGameReducer");
+
+const EXCLUDED_PUBLISHER_KEYS = [
+  "Inc.",
+  "LLC",
+  "Lttd.",
+  "(none)",
+  "LTD.",
+  "a.s.",
+  "-",
+  "LTD",
+  "none"
+];
 
 /**
  * Builds a REST data source for Wye's support service games API
@@ -16,6 +29,82 @@ class WyeGamesAPI extends RESTDataSource {
       publishers_in: "publishers",
       developers_in: "developers"
     };
+  }
+
+  /**
+   * Retrieves a list of genres associated with Wye's games list
+   * @returns {Array}
+   */
+  async getGenres() {
+    // fetch game data
+    const data = await this.post("games/");
+    const games = get(data, "games", []);
+
+    // aggregate list of genres
+    let genres = [];
+    for (const game of games) {
+      genres = genres.concat(game.genres.split(", "));
+    }
+
+    // return unique / valid values
+    return uniq(genres.filter(genre => genre.length > 0));
+  }
+
+  /**
+   * Retrieves a list of publishers associated with Wye's games list
+   * @param {String} filter
+   * @returns {Array}
+   */
+  async getPublishers(filter) {
+    // fetch game data
+    const data = await this.post("games/");
+    const games = get(data, "games", []);
+
+    // aggregate list of publishers
+    let publishers = [];
+    for (const game of games) {
+      publishers = publishers.concat(
+        game.publishers.split(", ").map(publisher => publisher.trim())
+      );
+    }
+
+    // filter for unique and valid values, then sort alphabetically
+    return uniq(
+      publishers
+        .filter(publisher => {
+          let valid = true;
+          // empty string or an excluded key
+          if (
+            publisher.length < 1 ||
+            EXCLUDED_PUBLISHER_KEYS.some(
+              key => publisher.toUpperCase() === key.toUpperCase()
+            )
+          ) {
+            valid = false;
+          }
+
+          // text filtering
+          if (filter) {
+            const matcher = new RegExp(filter.toUpperCase(), "g");
+            if (!matcher.test(publisher.toUpperCase())) {
+              valid = false;
+            }
+          }
+
+          return valid;
+        })
+        .sort(function(a, b) {
+          if (a.toUpperCase() < b.toUpperCase()) {
+            return -1;
+          }
+
+          if (a.toUpperCase() > b.toUpperCase()) {
+            return 1;
+          }
+
+          return 0;
+        })
+    );
   }
 
   /**
@@ -63,9 +152,8 @@ class WyeGamesAPI extends RESTDataSource {
     // sort for the top 4 publishers with the biggest library desc,
     // then get the publisher's most popular game
     // - excluding INC and LLC
-    const EXCLUDE_KEYS = ["LLC", "Inc."];
     const mostPopularTitles = Object.keys(publishers)
-      .filter(key => !EXCLUDE_KEYS.some(item => item === key))
+      .filter(key => !EXCLUDED_PUBLISHER_KEYS.some(item => item === key))
       .sort((a, b) => publishers[b] - publishers[a])
       .slice(0, 4)
       .map(publisher => {

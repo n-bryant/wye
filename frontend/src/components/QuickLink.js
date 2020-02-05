@@ -16,13 +16,17 @@ import styles from "./QuickLink.styles";
  */
 export const QuickLink = props => {
   const classnames = QuickLink.classnames(props);
-  const { label, linkHref, linkAs } = props;
+  const { label, linkHref, linkAs, fixedDimensions } = props;
 
   return (
     <React.Fragment>
       {linkAs ? (
         <Link href={linkHref} as={linkAs}>
-          <a className={classnames.root()}>
+          <a
+            className={classnames.root({
+              fixed: fixedDimensions
+            })}
+          >
             <Button className={classnames.element("button")}>
               <Typography variant="body1">{label}</Typography>
             </Button>
@@ -30,7 +34,11 @@ export const QuickLink = props => {
         </Link>
       ) : (
         <Link href={linkHref}>
-          <a className={classnames.root()}>
+          <a
+            className={classnames.root({
+              fixed: fixedDimensions
+            })}
+          >
             <Button className={classnames.element("button")}>
               <Typography variant="body1">{label}</Typography>
             </Button>
@@ -47,14 +55,17 @@ QuickLink.propTypes = {
   // styles to apply
   classes: PropTypes.shape({
     root: PropTypes.string,
-    button: PropTypes.string
+    button: PropTypes.string,
+    fixed: PropTypes.string
   }),
   // the label to display on the Button
   label: PropTypes.string.isRequired,
   // the href value for the Link
   linkHref: PropTypes.string.isRequired,
   // the as value for the Link
-  linkAs: PropTypes.string
+  linkAs: PropTypes.string,
+  // whether to set fixed dimensions for the root
+  fixedDimensions: PropTypes.bool
 };
 QuickLink.defaultProps = {
   classes: {}

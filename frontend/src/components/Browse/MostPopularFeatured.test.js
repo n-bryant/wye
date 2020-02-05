@@ -1,119 +1,4 @@
-import {
-  MostPopularFeatured,
-  StyledMostPopularFeatured
-} from "./MostPopularFeatured";
-
-const mockedData = {
-  recommendations: {
-    edges: [
-      {
-        node: {
-          game: {
-            appid: "1",
-            name: "name",
-            developers: ["a", "b"],
-            publishers: ["a"],
-            ownersFormatted: "10,000 .. 20,000",
-            userRating: 95,
-            genres: ["c"],
-            freeToPlay: false,
-            onSale: true,
-            discount: 25,
-            initialPrice: 1000,
-            finalPrice: 7500,
-            headerImage: "header",
-            capsuleLg: "lg",
-            capsuleSm: "sm"
-          }
-        }
-      },
-      {
-        node: {
-          game: {
-            appid: "2",
-            name: "name",
-            developers: ["a", "b"],
-            publishers: ["a"],
-            ownersFormatted: "10,000 .. 20,000",
-            userRating: 95,
-            genres: ["c"],
-            freeToPlay: false,
-            onSale: true,
-            discount: 25,
-            initialPrice: 1000,
-            finalPrice: 7500,
-            headerImage: "header",
-            capsuleLg: "lg",
-            capsuleSm: "sm"
-          }
-        }
-      },
-      {
-        node: {
-          game: {
-            appid: "3",
-            name: "name",
-            developers: ["a", "b"],
-            publishers: ["a"],
-            ownersFormatted: "10,000 .. 20,000",
-            userRating: 95,
-            genres: ["c"],
-            freeToPlay: false,
-            onSale: true,
-            discount: 25,
-            initialPrice: 1000,
-            finalPrice: 7500,
-            headerImage: "header",
-            capsuleLg: "lg",
-            capsuleSm: "sm"
-          }
-        }
-      },
-      {
-        node: {
-          game: {
-            appid: "4",
-            name: "name",
-            developers: ["a", "b"],
-            publishers: ["a"],
-            ownersFormatted: "10,000 .. 20,000",
-            userRating: 95,
-            genres: ["c"],
-            freeToPlay: false,
-            onSale: true,
-            discount: 25,
-            initialPrice: 1000,
-            finalPrice: 7500,
-            headerImage: "header",
-            capsuleLg: "lg",
-            capsuleSm: "sm"
-          }
-        }
-      },
-      {
-        node: {
-          game: {
-            appid: "5",
-            name: "name",
-            developers: ["a", "b"],
-            publishers: ["a"],
-            ownersFormatted: "10,000 .. 20,000",
-            userRating: 95,
-            genres: ["c"],
-            freeToPlay: false,
-            onSale: true,
-            discount: 25,
-            initialPrice: 1000,
-            finalPrice: 7500,
-            headerImage: "header",
-            capsuleLg: "lg",
-            capsuleSm: "sm"
-          }
-        }
-      }
-    ]
-  }
-};
+import { MostPopularFeatured } from "./MostPopularFeatured";
 
 describe("MostPopularFeatured", () => {
   const props = {
@@ -126,7 +11,8 @@ describe("MostPopularFeatured", () => {
       featuredItemContainer: "featuredItemContainer",
       featuredItem: "featuredItem",
       paginationWidget: "paginationWidget",
-      featuredItemFullWidth: "featuredItemFullWidth"
+      featuredItemFullWidth: "featuredItemFullWidth",
+      quickLinkContainer: "quickLinkContainer"
     },
     items: [
       {

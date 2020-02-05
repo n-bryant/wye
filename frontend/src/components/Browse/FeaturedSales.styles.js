@@ -20,9 +20,12 @@ const styles = theme => ({
     justifyContent: "flex-end"
   },
   quickLink: {
-    "&:first-of-type": {
-      marginRight: theme.spacing(2)
-    }
+    marginLeft: theme.spacing(2)
+  },
+  spacer: {
+    width: "80%",
+    margin: "0 auto",
+    borderBottom: `1px solid ${theme.palette.common.white}`
   }
 });
 export default styles;

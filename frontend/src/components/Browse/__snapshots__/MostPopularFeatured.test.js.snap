@@ -36,6 +36,16 @@ exports[`MostPopularFeatured should render a full width card with pagination wid
     setCurrentPage={[Function]}
     totalPages={5}
   />
+  <Styled(MuiBox)
+    className="wye-MostPopularFeatured__quickLinkContainer quickLinkContainer"
+    my={4}
+  >
+    <WithStyles(QuickLink)
+      classes={Object {}}
+      label="Top 100"
+      linkHref="/browse/top100"
+    />
+  </Styled(MuiBox)>
 </WithStyles(FeaturedWidget)>
 `;
 
@@ -75,6 +85,16 @@ exports[`MostPopularFeatured should render a full width card with pagination wid
     setCurrentPage={[Function]}
     totalPages={5}
   />
+  <Styled(MuiBox)
+    className="wye-MostPopularFeatured__quickLinkContainer quickLinkContainer"
+    my={4}
+  >
+    <WithStyles(QuickLink)
+      classes={Object {}}
+      label="Top 100"
+      linkHref="/browse/top100"
+    />
+  </Styled(MuiBox)>
 </WithStyles(FeaturedWidget)>
 `;
 
@@ -187,5 +207,15 @@ exports[`MostPopularFeatured should render successfully 1`] = `
       </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Grid))>
   </WithStyles(ForwardRef(Grid))>
+  <Styled(MuiBox)
+    className="wye-MostPopularFeatured__quickLinkContainer quickLinkContainer"
+    my={4}
+  >
+    <WithStyles(QuickLink)
+      classes={Object {}}
+      label="Top 100"
+      linkHref="/browse/top100"
+    />
+  </Styled(MuiBox)>
 </WithStyles(FeaturedWidget)>
 `;

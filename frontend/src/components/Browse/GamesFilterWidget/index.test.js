@@ -1,6 +1,8 @@
 import { act } from "react-dom/test-utils";
 import { MockedProvider } from "@apollo/react-testing";
+import { ThemeProvider } from "@material-ui/core/styles";
 import wait from "waait";
+import theme from "../../../../lib/theme";
 
 import {
   FilterGamesQuery,
@@ -75,9 +77,11 @@ describe("FilterGamesQuery", () => {
       }
     ];
     const wrapper = mount(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <FilterGamesQuery {...props} />
-      </MockedProvider>
+      <ThemeProvider theme={theme}>
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <FilterGamesQuery {...props} />
+        </MockedProvider>
+      </ThemeProvider>
     );
     expect(toJson(wrapper.find(FilterGamesQuery))).toMatchSnapshot();
   });
@@ -94,9 +98,11 @@ describe("FilterGamesQuery", () => {
       }
     ];
     const wrapper = mount(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <FilterGamesQuery {...props} />
-      </MockedProvider>
+      <ThemeProvider theme={theme}>
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <FilterGamesQuery {...props} />
+        </MockedProvider>
+      </ThemeProvider>
     );
 
     await act(async () => {

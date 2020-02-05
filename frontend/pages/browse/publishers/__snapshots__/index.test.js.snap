@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PublishersPage should render successfully 1`] = `
+<div
+  className="wye-PublishersPage"
+>
+  <WithWidth(WithStyles(BrowseByPublisher)) />
+</div>
+`;

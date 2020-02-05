@@ -318,4 +318,118 @@ describe("WyeGamesAPI", () => {
       expect(result).toEqual(expectedResult);
     });
   });
+
+  describe("getGenres", () => {
+    it("should have a getGenres method", () => {
+      expect(wyeGamesAPI.getGenres).toBeDefined();
+    });
+
+    it("should return a list of genres", async () => {
+      const mockedGamesResponse = {
+        games: [
+          {
+            appid: "1",
+            playtime2Weeks: 500,
+            developers: "dev",
+            publishers: "a",
+            genres: "genre1",
+            tags: "tag"
+          },
+          {
+            appid: "3",
+            playtime2Weeks: 25,
+            developers: "dev",
+            publishers: "a, b, c",
+            genres: "genre1, genre2",
+            tags: "tag"
+          },
+          {
+            appid: "2",
+            playtime2Weeks: 5,
+            developers: "dev",
+            publishers: "a, b",
+            genres: "genre1, genre2, genre3",
+            tags: "tag"
+          },
+          {
+            appid: "5",
+            playtime2Weeks: 30,
+            developers: "dev",
+            publishers: "a, b, c, d, e",
+            genres: "genre1, genre2, genre3, genre4",
+            tags: "tag"
+          },
+          {
+            appid: "4",
+            playtime2Weeks: 60,
+            developers: "dev",
+            publishers: "a, b, c, d",
+            genres: "genre1, genre2, genre3, genre4, genre5",
+            tags: "tag"
+          }
+        ]
+      };
+      const expectedResult = ["genre1", "genre2", "genre3", "genre4", "genre5"];
+      wyeGamesAPI.post.mockReturnValueOnce(mockedGamesResponse);
+      const result = await wyeGamesAPI.getGenres();
+      expect(result).toEqual(expectedResult);
+    });
+  });
+
+  describe("getPublishers", () => {
+    it("should have a getPublishers method", () => {
+      expect(wyeGamesAPI.getPublishers).toBeDefined();
+    });
+
+    it("should return a list of publishers", async () => {
+      const mockedGamesResponse = {
+        games: [
+          {
+            appid: "1",
+            playtime2Weeks: 500,
+            developers: "dev",
+            publishers: "a",
+            genres: "genre1",
+            tags: "tag"
+          },
+          {
+            appid: "3",
+            playtime2Weeks: 25,
+            developers: "dev",
+            publishers: "a, b, c",
+            genres: "genre1, genre2",
+            tags: "tag"
+          },
+          {
+            appid: "2",
+            playtime2Weeks: 5,
+            developers: "dev",
+            publishers: "a, b",
+            genres: "genre1, genre2, genre3",
+            tags: "tag"
+          },
+          {
+            appid: "5",
+            playtime2Weeks: 30,
+            developers: "dev",
+            publishers: "a, b, c, d, e",
+            genres: "genre1, genre2, genre3, genre4",
+            tags: "tag"
+          },
+          {
+            appid: "4",
+            playtime2Weeks: 60,
+            developers: "dev",
+            publishers: "a, b, c, d",
+            genres: "genre1, genre2, genre3, genre4, genre5",
+            tags: "tag"
+          }
+        ]
+      };
+      const expectedResult = ["a", "b", "c", "d", "e"];
+      wyeGamesAPI.post.mockReturnValueOnce(mockedGamesResponse);
+      const result = await wyeGamesAPI.getPublishers();
+      expect(result).toEqual(expectedResult);
+    });
+  });
 });

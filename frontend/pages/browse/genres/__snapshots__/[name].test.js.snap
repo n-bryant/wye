@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GenrePage should render successfully 1`] = `
+<div
+  className="wye-GenrePage"
+>
+  <WithWidth(WithStyles(GamesFilterWidget))
+    initialFilters={
+      Object {
+        "filters": Object {
+          "gameFilters": Object {
+            "genres_in": Array [
+              "name",
+            ],
+          },
+        },
+        "orderBy": Array [
+          "USER_RATING",
+        ],
+        "sortOrder": "DESC",
+      }
+    }
+    subtitle="Browse name titles"
+    title="name"
+  />
+</div>
+`;

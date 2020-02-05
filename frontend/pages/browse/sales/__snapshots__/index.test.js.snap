@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BrowseSalesPage should render successfully 1`] = `
+<div
+  className="wye-BrowseSalesPage"
+>
+  <WithWidth(WithStyles(GamesFilterWidget))
+    initialFilters={
+      Object {
+        "filters": Object {
+          "gameFilters": Object {
+            "onSale": true,
+          },
+        },
+        "orderBy": Array [
+          "DISCOUNT",
+          "USER_RATING",
+        ],
+        "sortOrder": "DESC",
+      }
+    }
+    subtitle="Browse titles available at a discount"
+    title="Sales"
+  />
+</div>
+`;

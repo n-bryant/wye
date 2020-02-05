@@ -1,7 +1,4 @@
-import {
-  FeaturedPublishers,
-  StyledFeaturedPublishers
-} from "./FeaturedPublishers";
+import { FeaturedPublishers } from "./FeaturedPublishers";
 
 const mockedResult = {
   getTopTitleForMostPopularPublishers: [
@@ -89,7 +86,8 @@ describe("FeaturedPublishers", () => {
     classes: {
       root: "root",
       itemsContainer: "itemsContainer",
-      item: "item"
+      item: "item",
+      quickLinkContainer: "quickLinkContainer"
     },
     items: mockedResult.getTopTitleForMostPopularPublishers,
     width: "xs"

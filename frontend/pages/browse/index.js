@@ -19,13 +19,14 @@ import BackgroundProvider from "../../src/components/BackgroundProvider";
 import MostPopularFeatured from "../../src/components/Browse/MostPopularFeatured";
 import FeaturedPublishers from "../../src/components/Browse/FeaturedPublishers";
 import FeaturedSales from "../../src/components/Browse/FeaturedSales";
+import BrowseByGenre from "../../src/components/Browse/BrowseByGenre";
 import styles from "./index.styles";
 
 export const FEATURED_ITEMS_QUERY = gql`
   query FEATURED_ITEMS_QUERY {
     featuredMostPopular: recommendations(
       orderBy: [PLAYTIME_RECENT, USER_RATING]
-      filters: { gameFilters: { userRating_gte: 75, ownersMin_gte: 10000000 } }
+      filters: { gameFilters: { userRating_gte: 75, ownersMin_gte: 2000000 } }
       sortOrder: DESC
       first: 5
     ) {
@@ -102,6 +103,7 @@ export const FEATURED_ITEMS_QUERY = gql`
         }
       }
     }
+    genres
   }
 `;
 
@@ -164,12 +166,14 @@ export const BrowsePage = props => {
             ["feauturedSales", "edges"],
             []
           ).map(edge => edge.node.game);
+          const genres = get(data, "genres", []);
 
           return (
             <MainContent
               mostPopularItems={mostPopularItems}
               featuredPublishersItems={featuredPublishersItems}
               featuredSalesItems={featuredSalesItems}
+              genres={genres}
               {...props}
             />
           );
@@ -185,7 +189,8 @@ export const BrowsePage = props => {
   const MainContent = ({
     mostPopularItems,
     featuredPublishersItems,
-    featuredSalesItems
+    featuredSalesItems,
+    genres
   }) => {
     return (
       <React.Fragment>
@@ -204,13 +209,15 @@ export const BrowsePage = props => {
         <Box my={4}>
           <FeaturedSales items={featuredSalesItems} />
         </Box>
+        <BrowseByGenre genres={genres} />
       </React.Fragment>
     );
   };
   MainContent.propTypes = {
     mostPopularItems: PropTypes.array,
     featuredPublishersItems: PropTypes.array,
-    featuredSalesItems: PropTypes.array
+    featuredSalesItems: PropTypes.array,
+    genres: PropTypes.array
   };
 
   return (

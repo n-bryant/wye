@@ -15,7 +15,7 @@ export function getOffsetStart(currentPage, listLength, perPage) {
   const mod = getTotalCountModPageLimit(listLength, perPage);
   const offsetCount = getOffsetCount(perPage, pageDifferential);
 
-  return listLength - offsetCount - mod;
+  return listLength - offsetCount - (mod === 0 ? perPage : mod);
 }
 
 /**

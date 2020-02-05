@@ -36,6 +36,11 @@ const styles = theme => ({
     padding: "8px !important",
     position: "relative"
   },
+  horizontalContentWide: {
+    width: "calc(100% - 300px)",
+    padding: "8px !important",
+    position: "relative"
+  },
   horizontalTitle: {
     fontSize: "1.5rem",
     fontWeight: "500",
@@ -67,6 +72,9 @@ const styles = theme => ({
   },
   gameLinkHorizontal: {
     width: "150px"
+  },
+  gameLinkHorizontalWide: {
+    width: "300px"
   },
   gameLinkMaxSize: {
     maxHeight: "100%"

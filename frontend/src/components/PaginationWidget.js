@@ -30,18 +30,20 @@ export const PaginationWidget = props => {
 
   return (
     <div className={classnames.root()}>
-      <Button
-        className={classnames.element("paddle")}
-        disabled={prevPaddleDisabled}
-        onClick={() => setCurrentPage(1)}
-      >
-        <Icon
-          className={classnames.element("paddleIcon", {
-            disabled: prevPaddleDisabled
-          })}
-          path={mdiPageFirst}
-        />
-      </Button>
+      {totalPages > 2 && (
+        <Button
+          className={classnames.element("paddle")}
+          disabled={prevPaddleDisabled}
+          onClick={() => setCurrentPage(1)}
+        >
+          <Icon
+            className={classnames.element("paddleIcon", {
+              disabled: prevPaddleDisabled
+            })}
+            path={mdiPageFirst}
+          />
+        </Button>
+      )}
       <Button
         className={classnames.element("paddle")}
         disabled={prevPaddleDisabled}
@@ -67,18 +69,20 @@ export const PaginationWidget = props => {
           path={mdiChevronRight}
         />
       </Button>
-      <Button
-        className={classnames.element("paddle")}
-        disabled={nextPaddleDisabled}
-        onClick={() => setCurrentPage(totalPages)}
-      >
-        <Icon
-          className={classnames.element("paddleIcon", {
-            disabled: nextPaddleDisabled
-          })}
-          path={mdiPageLast}
-        />
-      </Button>
+      {totalPages > 2 && (
+        <Button
+          className={classnames.element("paddle")}
+          disabled={nextPaddleDisabled}
+          onClick={() => setCurrentPage(totalPages)}
+        >
+          <Icon
+            className={classnames.element("paddleIcon", {
+              disabled: nextPaddleDisabled
+            })}
+            path={mdiPageLast}
+          />
+        </Button>
+      )}
     </div>
   );
 };
