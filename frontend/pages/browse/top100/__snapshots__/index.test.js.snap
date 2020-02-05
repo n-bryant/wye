@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopHundredPage should render successfully 1`] = `
+<div
+  className="wye-TopHundredPage"
+>
+  <WithWidth(WithStyles(GamesFilterWidget))
+    initialFilters={
+      Object {
+        "filters": Object {
+          "gameFilters": Object {
+            "ownersMin_gte": 2000000,
+            "userRating_gte": 75,
+          },
+        },
+        "first": 100,
+        "orderBy": Array [
+          "PLAYTIME_RECENT",
+          "USER_RATING",
+        ],
+        "sortOrder": "DESC",
+      }
+    }
+    subtitle="Browse the most popular by recent playtime"
+    title="Top 100"
+  />
+</div>
+`;

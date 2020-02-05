@@ -5,9 +5,13 @@ import createClassNameHelper from "@n_bryant/classnames-helper";
 import JSS_CLASS_NAME_PREFIX from "../../../../lib/classNamePrefix";
 import { withStyles } from "@material-ui/core/styles";
 
+import { useRouter } from "next/router";
+
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import {
   getOffsetStart,
@@ -23,7 +27,8 @@ import styles from "./FilteredGameList.styles";
  */
 export const FilteredGameList = props => {
   const classnames = FilteredGameList.classnames(props);
-  const { items, userDetails } = props;
+  const { classes, items, userDetails } = props;
+  const router = useRouter();
 
   // pagination values
   const perPage = 20;
@@ -38,6 +43,24 @@ export const FilteredGameList = props => {
       maxWidth="lg"
       disableGutters={true}
     >
+      <Box my={4}>
+        <Autocomplete
+          classes={{
+            paper: classes.paper,
+            option: classes.option
+          }}
+          id="filtered-game-list-search"
+          onChange={(_e, value) => {
+            router.push(`/game/${value.appid}`);
+          }}
+          options={items.map(item => item.node.game)}
+          getOptionLabel={item => item.name}
+          style={{ width: 300 }}
+          renderInput={params => (
+            <TextField {...params} label="Search" fullWidth />
+          )}
+        />
+      </Box>
       <Box my={4}>
         {totalPages > 1 && (
           <Box my={4}>
@@ -91,7 +114,9 @@ FilteredGameList.propTypes = {
   // styles to apply
   classes: PropTypes.shape({
     root: PropTypes.string,
-    item: PropTypes.string
+    item: PropTypes.string,
+    paper: PropTypes.string,
+    option: PropTypes.string
   }),
   // the items to render in the list
   items: PropTypes.array,

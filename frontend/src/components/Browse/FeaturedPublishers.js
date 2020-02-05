@@ -7,7 +7,9 @@ import { withStyles } from "@material-ui/core/styles";
 import { withWidth } from "@material-ui/core/";
 
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 
+import QuickLink from "../QuickLink";
 import FeaturedWidget from "./FeaturedWidget";
 import BrowseCard from "./BrowseCard";
 import styles from "./FeaturedPublishers.styles";
@@ -107,6 +109,9 @@ export const FeaturedPublishers = props => {
           </Grid>
         </React.Fragment>
       )}
+      <Box className={classnames.element("quickLinkContainer")} my={4}>
+        <QuickLink label={"All Publishers"} linkHref="/browse/publishers" />
+      </Box>
     </FeaturedWidget>
   );
 };
@@ -118,7 +123,8 @@ FeaturedPublishers.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
     itemsContainer: PropTypes.string,
-    item: PropTypes.string
+    item: PropTypes.string,
+    quickLinkContainer: PropTypes.string
   }),
   // data for the cards to be rendered in the FeaturedWidget
   items: PropTypes.array,

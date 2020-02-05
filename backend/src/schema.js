@@ -35,6 +35,10 @@ const typeDefs = gql`
     getHighlightTrailer(gameId: ID!): String!
     # get the top title for the top publishers
     getTopTitleForMostPopularPublishers: [PublisherTopTitle]!
+    # get a list of all genres
+    genres: [String]!
+    # get a list of all publishers
+    publishers(filter: String): [String]!
     # query for game recommendations for a list of users with filtering
     recommendations(
       users: [ID]

@@ -9,6 +9,34 @@ exports[`FilteredGameList should render successfully 1`] = `
   <Styled(MuiBox)
     my={4}
   >
+    <WithStyles(ForwardRef(Autocomplete))
+      classes={
+        Object {
+          "option": undefined,
+          "paper": undefined,
+        }
+      }
+      getOptionLabel={[Function]}
+      id="filtered-game-list-search"
+      onChange={[Function]}
+      options={
+        Array [
+          Object {
+            "appid": "1",
+          },
+        ]
+      }
+      renderInput={[Function]}
+      style={
+        Object {
+          "width": 300,
+        }
+      }
+    />
+  </Styled(MuiBox)>
+  <Styled(MuiBox)
+    my={4}
+  >
     <WithStyles(ForwardRef(Grid))
       container={true}
       justify="center"

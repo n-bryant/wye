@@ -110,7 +110,7 @@ export const FeaturedSales = props => {
           />
         </React.Fragment>
       )}
-      <Box className={classnames.element("quickLinksContainer")} my={4}>
+      <Box className={classnames.element("quickLinksContainer")} my={8}>
         <QuickLink
           className={classnames.element("quickLink")}
           label={"under $5"}
@@ -121,7 +121,13 @@ export const FeaturedSales = props => {
           label={"under $10"}
           linkHref="/browse/under10"
         />
+        <QuickLink
+          className={classnames.element("quickLink")}
+          label={"All Sales"}
+          linkHref="/browse/sales"
+        />
       </Box>
+      <div className={classnames.element("spacer")}></div>
     </FeaturedWidget>
   );
 };
@@ -138,7 +144,8 @@ FeaturedSales.propTypes = {
     subFeaturedSale: PropTypes.string,
     paginationWidget: PropTypes.string,
     quickLinksContainer: PropTypes.string,
-    quickLink: PropTypes.string
+    quickLink: PropTypes.string,
+    spacer: PropTypes.string
   }),
   // data for the cards to be rendered in the FeaturedWidget
   items: PropTypes.array,

@@ -20,6 +20,10 @@ const styles = theme => ({
   },
   paginationWidget: {
     marginTop: theme.spacing(1)
+  },
+  quickLinkContainer: {
+    display: "flex",
+    justifyContent: "flex-end"
   }
 });
 export default styles;

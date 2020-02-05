@@ -7,7 +7,9 @@ import { withStyles } from "@material-ui/core/styles";
 import { withWidth } from "@material-ui/core/";
 
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 
+import QuickLink from "../QuickLink";
 import PaginationWidget from "../PaginationWidget";
 import FeaturedWidget from "./FeaturedWidget";
 import BrowseCard from "./BrowseCard";
@@ -105,6 +107,9 @@ export const MostPopularFeatured = props => {
           />
         </React.Fragment>
       )}
+      <Box className={classnames.element("quickLinkContainer")} my={4}>
+        <QuickLink label="Top 100" linkHref="/browse/top100" />
+      </Box>
     </FeaturedWidget>
   );
 };
@@ -123,7 +128,8 @@ MostPopularFeatured.propTypes = {
     subFeaturedItem: PropTypes.string,
     featuredItemContainer: PropTypes.string,
     featuredItem: PropTypes.string,
-    paginationWidget: PropTypes.string
+    paginationWidget: PropTypes.string,
+    quickLinkContainer: PropTypes.string
   }),
   // data for the cards to be rendered in the FeaturedWidget
   items: PropTypes.array,

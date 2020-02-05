@@ -6,7 +6,7 @@ exports[`QuickLink should render successfully 1`] = `
     href="linkHref"
   >
     <a
-      className="wye-QuickLink root"
+      className="wye-QuickLink wye-QuickLink--fixed root"
     >
       <WithStyles(ForwardRef(Button))
         className="wye-QuickLink__button button"

@@ -10,7 +10,8 @@ describe("FeaturedSales", () => {
       subFeaturedSale: "subFeaturedSale",
       paginationWidget: "paginationWidget",
       quickLinksContainer: "quickLinksContainer",
-      quickLink: "quickLink"
+      quickLink: "quickLink",
+      spacer: "spacer"
     },
     items: [
       {

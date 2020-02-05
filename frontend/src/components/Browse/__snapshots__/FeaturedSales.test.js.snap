@@ -240,7 +240,7 @@ exports[`FeaturedSales should adjust the presentation of the cards if the width 
   </WithStyles(ForwardRef(Grid))>
   <Styled(MuiBox)
     className="wye-FeaturedSales__quickLinksContainer quickLinksContainer"
-    my={4}
+    my={8}
   >
     <WithStyles(QuickLink)
       className="wye-FeaturedSales__quickLink quickLink"
@@ -254,7 +254,16 @@ exports[`FeaturedSales should adjust the presentation of the cards if the width 
       label="under $10"
       linkHref="/browse/under10"
     />
+    <WithStyles(QuickLink)
+      className="wye-FeaturedSales__quickLink quickLink"
+      classes={Object {}}
+      label="All Sales"
+      linkHref="/browse/sales"
+    />
   </Styled(MuiBox)>
+  <div
+    className="wye-FeaturedSales__spacer spacer"
+  />
 </WithStyles(FeaturedWidget)>
 `;
 
@@ -269,7 +278,113 @@ exports[`FeaturedSales should render successfully 1`] = `
     className="wye-FeaturedSales__featuredSaleContainer featuredSaleContainer"
     container={true}
     spacing={2}
-  />
+  >
+    <WithStyles(ForwardRef(Grid))
+      className="wye-FeaturedSales__featuredSale featuredSale"
+      item={true}
+      key="1"
+      xs={4}
+    >
+      <HighlightTrailerQuery
+        data={
+          Object {
+            "appid": "1",
+            "developers": Array [
+              "a",
+            ],
+            "discount": 25,
+            "finalPrice": 750,
+            "freeToPlay": false,
+            "genres": Array [
+              "a",
+            ],
+            "headerImage": "header",
+            "initialPrice": 1000,
+            "libraryCapsule": "lib",
+            "name": "name",
+            "onSale": true,
+            "ownersFormatted": "10,000 .. 20,000",
+            "publishers": Array [
+              "a",
+            ],
+            "userRating": 95,
+          }
+        }
+        variant="lib"
+        withPrice={true}
+      />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      className="wye-FeaturedSales__featuredSale featuredSale"
+      item={true}
+      key="2"
+      xs={4}
+    >
+      <HighlightTrailerQuery
+        data={
+          Object {
+            "appid": "2",
+            "developers": Array [
+              "a",
+            ],
+            "discount": 25,
+            "finalPrice": 750,
+            "freeToPlay": false,
+            "genres": Array [
+              "a",
+            ],
+            "headerImage": "header",
+            "initialPrice": 1000,
+            "libraryCapsule": "lib",
+            "name": "name",
+            "onSale": true,
+            "ownersFormatted": "10,000 .. 20,000",
+            "publishers": Array [
+              "a",
+            ],
+            "userRating": 95,
+          }
+        }
+        variant="lib"
+        withPrice={true}
+      />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      className="wye-FeaturedSales__featuredSale featuredSale"
+      item={true}
+      key="3"
+      xs={4}
+    >
+      <HighlightTrailerQuery
+        data={
+          Object {
+            "appid": "3",
+            "developers": Array [
+              "a",
+            ],
+            "discount": 25,
+            "finalPrice": 750,
+            "freeToPlay": false,
+            "genres": Array [
+              "a",
+            ],
+            "headerImage": "header",
+            "initialPrice": 1000,
+            "libraryCapsule": "lib",
+            "name": "name",
+            "onSale": true,
+            "ownersFormatted": "10,000 .. 20,000",
+            "publishers": Array [
+              "a",
+            ],
+            "userRating": 95,
+          }
+        }
+        variant="lib"
+        withPrice={true}
+      />
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
   <WithStyles(PaginationWidget)
     className="wye-FeaturedSales__paginationWidget paginationWidget"
     classes={Object {}}
@@ -279,7 +394,7 @@ exports[`FeaturedSales should render successfully 1`] = `
   />
   <Styled(MuiBox)
     className="wye-FeaturedSales__quickLinksContainer quickLinksContainer"
-    my={4}
+    my={8}
   >
     <WithStyles(QuickLink)
       className="wye-FeaturedSales__quickLink quickLink"
@@ -293,6 +408,15 @@ exports[`FeaturedSales should render successfully 1`] = `
       label="under $10"
       linkHref="/browse/under10"
     />
+    <WithStyles(QuickLink)
+      className="wye-FeaturedSales__quickLink quickLink"
+      classes={Object {}}
+      label="All Sales"
+      linkHref="/browse/sales"
+    />
   </Styled(MuiBox)>
+  <div
+    className="wye-FeaturedSales__spacer spacer"
+  />
 </WithStyles(FeaturedWidget)>
 `;

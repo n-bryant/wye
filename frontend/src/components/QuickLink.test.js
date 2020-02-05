@@ -5,7 +5,8 @@ describe("QuickLink", () => {
   const props = {
     classes: {
       root: "root",
-      button: "button"
+      button: "button",
+      fixed: "fixed"
     },
     label: "label",
     linkHref: "linkHref"
@@ -23,5 +24,16 @@ describe("QuickLink", () => {
     };
     const wrapper = shallow(<QuickLink {...propsWithLinkAs} />);
     expect(wrapper.find(Link).prop("as")).toBe(propsWithLinkAs.linkAs);
+  });
+
+  it("should add fixed stylings if the fixedDimensions prop is truthy", () => {
+    const propsWithFixed = {
+      ...props,
+      fixedDimensions: true
+    };
+    const wrapper = shallow(<QuickLink {...propsWithFixed} />);
+    expect(wrapper.findWhere(n => n.hasClass(props.classes.fixed)).length).toBe(
+      1
+    );
   });
 });

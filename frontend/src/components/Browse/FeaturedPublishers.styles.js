@@ -7,6 +7,10 @@ const styles = theme => ({
   },
   item: {
     height: "100%"
+  },
+  quickLinkContainer: {
+    display: "flex",
+    justifyContent: "flex-end"
   }
 });
 export default styles;

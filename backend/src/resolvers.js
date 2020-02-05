@@ -37,6 +37,12 @@ const resolvers = {
     articles: async (_source, { gameId }, { dataSources }) => {
       return dataSources.steamNewsAPI.getNewsForGameById(gameId);
     },
+    genres: async (_source, _args, { dataSources }) => {
+      return dataSources.wyeGamesAPI.getGenres();
+    },
+    publishers: async (_source, { filter }, { dataSources }) => {
+      return dataSources.wyeGamesAPI.getPublishers(filter);
+    },
     mostPopularBackgroundSrc: async (_source, _args, { dataSources }) => {
       return dataSources.wyeGamesAPI.getMostPopularBackground();
     },
