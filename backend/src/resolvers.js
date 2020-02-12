@@ -68,43 +68,48 @@ const resolvers = {
       { dataSources }
     ) => {
       let uniqueOwnedGamesWithPlayerFiltersApplied = [];
-      let userOwnedGames,
-        userRecentlyPlayedGames = {};
+      let userOwnedGames = {};
+      let userRecentlyPlayedGames = {};
       if (users) {
         // 1. get all unique games owned by players from Steam's player service API
-        userOwnedGames = await dataSources.steamPlayerServiceAPI.getOwnedGamesByPlayerIds(
-          users
-        );
-        let uniqueOwnedGames = [];
-        Object.keys(userOwnedGames).forEach(user => {
-          uniqueOwnedGames = uniqueOwnedGames.concat(
-            userOwnedGames[user]["games"].map(game => game.id)
-          );
-        });
-        uniqueOwnedGames = uniq(uniqueOwnedGames);
+        userOwnedGames =
+          (await dataSources.steamPlayerServiceAPI.getOwnedGamesByPlayerIds(
+            users
+          )) || {};
 
-        // 2. get recently played games by players from Steam's player service API
-        userRecentlyPlayedGames = await dataSources.steamPlayerServiceAPI.getRecentlyPlayedGamesByPlayerIds(
-          users
-        );
+        if (userOwnedGames && Object.keys(userOwnedGames).length) {
+          let uniqueOwnedGames = [];
+          Object.keys(userOwnedGames).forEach(user => {
+            uniqueOwnedGames = uniqueOwnedGames.concat(
+              userOwnedGames[user]["games"].map(game => game.id)
+            );
+          });
+          uniqueOwnedGames = uniq(uniqueOwnedGames);
 
-        // 3. apply player filters to the list of unique owned games
-        uniqueOwnedGamesWithPlayerFiltersApplied = uniqueOwnedGames;
-        Object.keys(playerFilters).forEach(key => {
-          if (key === PLAYER_FILTERS_KEYS.OWNED_BY) {
-            uniqueOwnedGamesWithPlayerFiltersApplied = applyPlayerFilterToGamesList(
-              playerFilters[key],
-              uniqueOwnedGamesWithPlayerFiltersApplied,
-              userOwnedGames
-            );
-          } else if (key === PLAYER_FILTERS_KEYS.RECENTLY_PLAYED_BY) {
-            uniqueOwnedGamesWithPlayerFiltersApplied = applyPlayerFilterToGamesList(
-              playerFilters[key],
-              uniqueOwnedGamesWithPlayerFiltersApplied,
-              userRecentlyPlayedGames
-            );
-          }
-        });
+          // 2. get recently played games by players from Steam's player service API
+          userRecentlyPlayedGames =
+            (await dataSources.steamPlayerServiceAPI.getRecentlyPlayedGamesByPlayerIds(
+              users
+            )) || {};
+
+          // 3. apply player filters to the list of unique owned games
+          uniqueOwnedGamesWithPlayerFiltersApplied = uniqueOwnedGames;
+          Object.keys(playerFilters).forEach(key => {
+            if (key === PLAYER_FILTERS_KEYS.OWNED_BY) {
+              uniqueOwnedGamesWithPlayerFiltersApplied = applyPlayerFilterToGamesList(
+                playerFilters[key],
+                uniqueOwnedGamesWithPlayerFiltersApplied,
+                userOwnedGames
+              );
+            } else if (key === PLAYER_FILTERS_KEYS.RECENTLY_PLAYED_BY) {
+              uniqueOwnedGamesWithPlayerFiltersApplied = applyPlayerFilterToGamesList(
+                playerFilters[key],
+                uniqueOwnedGamesWithPlayerFiltersApplied,
+                userRecentlyPlayedGames
+              );
+            }
+          });
+        }
       }
 
       // 4. get details for each unique game from Wye's support service's API and apply filters

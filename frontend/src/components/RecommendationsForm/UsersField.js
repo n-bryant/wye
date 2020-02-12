@@ -23,15 +23,15 @@ export const MAX_USER_COUNT = 6;
  */
 export const UsersField = props => {
   const classnames = UsersField.classnames(props);
-  const { classes, usersValue, setUsersValue } = props;
+  const { classes, name, setFieldValue, value } = props;
   const [textFieldValue, setTextFieldValue] = React.useState("");
 
   /**
    * adds a user to the users field value
-   * @param {String} value
+   * @param {String} user
    */
-  const addUser = value => {
-    setUsersValue(usersValue.concat([value]));
+  const addUser = user => {
+    setFieldValue(name, value.concat([user]));
     setTextFieldValue("");
   };
 
@@ -40,20 +40,30 @@ export const UsersField = props => {
    * @param {Int} index
    */
   const removeUser = index => {
-    setUsersValue(usersValue.filter((_el, elIndex) => elIndex !== index));
+    setFieldValue(
+      name,
+      value.filter((_el, elIndex) => elIndex !== index)
+    );
   };
 
   // should not be able to add a user if the text field is blank,
   // or if the allowed number of users has already been added
   const addUserDisabled =
-    !textFieldValue.length || usersValue.length >= MAX_USER_COUNT;
-  const textFieldDisabled = usersValue.length >= MAX_USER_COUNT;
+    !textFieldValue.length ||
+    value.length >= MAX_USER_COUNT ||
+    value.some(val => val === textFieldValue);
+  const textFieldDisabled = value.length >= MAX_USER_COUNT;
 
   return (
     <div className={classnames.root()}>
       <div className={classnames.element("addUserfieldContainer")}>
         <TextField
           className={classnames.element("addUserField")}
+          InputLabelProps={{
+            classes: {
+              disabled: props.classes.fieldRoot
+            }
+          }}
           label="Add a SteamID:"
           placeholder="e.g. - 76561197975995523"
           autoFocus={true}
@@ -82,28 +92,24 @@ export const UsersField = props => {
         >
           <Icon
             className={classnames.element("addUserIcon", {
-              enabled: textFieldValue.length
+              enabled: !addUserDisabled,
+              disabled: addUserDisabled
             })}
             path={
-              textFieldValue.length ? mdiAccountPlus : mdiAccountPlusOutline
+              !addUserDisabled && textFieldValue.length
+                ? mdiAccountPlus
+                : mdiAccountPlusOutline
             }
           />
         </Button>
       </div>
       <div className={classnames.element("fieldItemsContainer")}>
-        <Typography
-          className={classnames.element("chipsLabel", {
-            hidden: !usersValue.length
-          })}
-        >
-          SteamIDs:
-        </Typography>
-        {usersValue &&
-          usersValue.map((_user, index) => {
+        {value &&
+          value.map((_user, index) => {
             return (
               <Chip
                 key={index}
-                label={usersValue[index]}
+                label={value[index]}
                 onDelete={() => removeUser(index)}
                 className={classnames.element("chip")}
                 variant="outlined"
@@ -126,8 +132,6 @@ UsersField.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
     fieldItemsContainer: PropTypes.string,
-    chipsLabel: PropTypes.string,
-    chipsLabelHidden: PropTypes.string,
     chip: PropTypes.string,
     deleteIcon: PropTypes.string,
     addUserfieldContainer: PropTypes.string,
@@ -136,15 +140,15 @@ UsersField.propTypes = {
     addUserIcon: PropTypes.string,
     addUserIconEnabled: PropTypes.string
   }),
-  // users field value from context
-  usersValue: PropTypes.array,
-  // handler for updating users field value from context
-  setUsersValue: PropTypes.func
+  // Formik field name
+  name: PropTypes.string,
+  // users field value from Formik form
+  value: PropTypes.array,
+  // handler for updating users field value
+  setFieldValue: PropTypes.func
 };
 UsersField.defaultProps = {
-  classes: {},
-  usersValue: [],
-  setUsersValue: () => {}
+  classes: {}
 };
 
 // apply styles

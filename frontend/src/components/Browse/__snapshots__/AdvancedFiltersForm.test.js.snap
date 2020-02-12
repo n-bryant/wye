@@ -1,0 +1,208 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdvancedFiltersForm should render successfully 1`] = `
+<ForwardRef(Drawer)
+  ModalProps={
+    Object {
+      "BackdropProps": Object {
+        "classes": Object {
+          "root": "backdrop",
+        },
+        "invisible": true,
+      },
+      "disablePortal": true,
+    }
+  }
+  anchor="right"
+  className="wye-AdvancedFiltersForm root"
+  classes={
+    Object {
+      "docked": "MuiDrawer-docked",
+      "modal": "MuiDrawer-modal modal",
+      "paper": "MuiDrawer-paper",
+      "paperAnchorBottom": "MuiDrawer-paperAnchorBottom",
+      "paperAnchorDockedBottom": "MuiDrawer-paperAnchorDockedBottom",
+      "paperAnchorDockedLeft": "MuiDrawer-paperAnchorDockedLeft",
+      "paperAnchorDockedRight": "MuiDrawer-paperAnchorDockedRight",
+      "paperAnchorDockedTop": "MuiDrawer-paperAnchorDockedTop",
+      "paperAnchorLeft": "MuiDrawer-paperAnchorLeft",
+      "paperAnchorRight": "MuiDrawer-paperAnchorRight paper",
+      "paperAnchorTop": "MuiDrawer-paperAnchorTop",
+      "root": "MuiDrawer-root drawer",
+    }
+  }
+  onClose={[Function]}
+  open={true}
+>
+  <WithStyles(ForwardRef(Container))
+    className="wye-AdvancedFiltersForm__drawerContent drawerContent"
+    disableGutters={true}
+  >
+    <Styled(MuiBox)
+      className="wye-AdvancedFiltersForm__closeButtonContainer closeButtonContainer"
+    >
+      <WithStyles(ButtonWithHoverFill)
+        classes={Object {}}
+        displayLabel={false}
+        handleClick={[Function]}
+        icon="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+        label="Close"
+      />
+    </Styled(MuiBox)>
+    <Styled(MuiBox)
+      className="wye-AdvancedFiltersForm__fieldsContainer fieldsContainer"
+    >
+      <Form>
+        <WithStyles(ForwardRef(Typography))
+          className="wye-AdvancedFiltersForm__fieldSectionTitle fieldSectionTitle"
+          variant="body1"
+        >
+          Users:
+        </WithStyles(ForwardRef(Typography))>
+        <Field
+          name="users"
+        >
+          <Component />
+        </Field>
+        <Styled(MuiBox)
+          className="wye-AdvancedFiltersForm__fieldSection fieldSection"
+          my={4}
+        >
+          <WithStyles(ForwardRef(Typography))
+            className="wye-AdvancedFiltersForm__fieldSectionTitle fieldSectionTitle"
+            variant="body1"
+          >
+            Game Filters:
+          </WithStyles(ForwardRef(Typography))>
+          <Styled(MuiBox)
+            my={2}
+          >
+            <Field
+              name="filters"
+            >
+              <Component />
+            </Field>
+          </Styled(MuiBox)>
+          <Styled(MuiBox)
+            my={2}
+          >
+            <Field
+              name="filters"
+            >
+              <Component />
+            </Field>
+          </Styled(MuiBox)>
+          <Styled(MuiBox)
+            my={2}
+          >
+            <Field
+              name="filters"
+            >
+              <Component />
+            </Field>
+          </Styled(MuiBox)>
+          <Styled(MuiBox)
+            my={2}
+          >
+            <Field
+              name="filters"
+            >
+              <Component />
+            </Field>
+          </Styled(MuiBox)>
+          <Styled(MuiBox)
+            my={2}
+          >
+            <Field
+              name="filters"
+            >
+              <Component />
+            </Field>
+          </Styled(MuiBox)>
+          <Styled(MuiBox)
+            my={2}
+          >
+            <Field
+              name="filters"
+            >
+              <Component />
+            </Field>
+          </Styled(MuiBox)>
+          <Styled(MuiBox)
+            my={2}
+          >
+            <Field
+              name="filters"
+            >
+              <Component />
+            </Field>
+          </Styled(MuiBox)>
+          <Styled(MuiBox)
+            my={2}
+          >
+            <Field
+              name="filters"
+            >
+              <Component />
+            </Field>
+          </Styled(MuiBox)>
+        </Styled(MuiBox)>
+        <Styled(MuiBox)
+          className="wye-AdvancedFiltersForm__fieldSection fieldSection"
+          my={4}
+        >
+          <WithStyles(ForwardRef(Typography))
+            className="wye-AdvancedFiltersForm__fieldSectionTitle fieldSectionTitle"
+            variant="body1"
+          >
+            Sorting:
+          </WithStyles(ForwardRef(Typography))>
+          <Styled(MuiBox)
+            my={2}
+          >
+            <Field
+              name="orderBy"
+            >
+              <Component />
+            </Field>
+          </Styled(MuiBox)>
+          <Styled(MuiBox)
+            my={2}
+          >
+            <Field
+              name="sortOrder"
+            >
+              <Component />
+            </Field>
+          </Styled(MuiBox)>
+        </Styled(MuiBox)>
+      </Form>
+    </Styled(MuiBox)>
+    <Styled(MuiBox)
+      className="wye-AdvancedFiltersForm__submitButtonContainer submitButtonContainer"
+      my={4}
+    >
+      <WithStyles(ActionButton)
+        classes={Object {}}
+        label="Filter"
+        onClick={[Function]}
+      />
+    </Styled(MuiBox)>
+  </WithStyles(ForwardRef(Container))>
+</ForwardRef(Drawer)>
+`;
+
+exports[`AdvancedFiltersFormWithFormik should render successfully 1`] = `
+<Formik
+  initialValues={
+    Object {
+      "filters": Object {},
+      "orderBy": Array [],
+      "sortOrder": "DESC",
+      "users": Array [],
+    }
+  }
+>
+  <Component />
+</Formik>
+`;

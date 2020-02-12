@@ -1,6 +1,6 @@
 const styles = theme => ({
   root: {
-    height: "56px",
+    height: theme.layout.header.height,
     background: theme.palette.common.blue6,
     boxShadow: "0 0 4px 0 rgba(0,0,0,0.25), 0 4px 4px 0 rgba(0,0,0,0.25)"
   },

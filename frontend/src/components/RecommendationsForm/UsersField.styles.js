@@ -3,24 +3,16 @@ const styles = theme => ({
     width: "100%",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    marginTop: theme.spacing(3)
   },
   fieldItemsContainer: {
-    width: "80%",
-    marginBottom: theme.spacing(4),
     textAlign: "center"
-  },
-  chipsLabel: {
-    color: theme.palette.common.white,
-    marginBottom: theme.spacing(2)
-  },
-  chipsLabelHidden: {
-    display: "none"
   },
   chip: {
     color: theme.palette.common.white,
     border: `1px solid ${theme.palette.common.blue6}`,
-    margin: `0 ${theme.spacing(1)}px ${theme.spacing(1)}px 0`,
+    margin: `${theme.spacing(2)}px ${theme.spacing(1)}px 0 0`,
     maxWidth: "175px",
     justifyContent: "space-between"
   },
@@ -33,11 +25,13 @@ const styles = theme => ({
   addUserfieldContainer: {
     width: "275px",
     display: "flex",
-    alignItems: "flex-end",
-    marginBottom: theme.spacing(3)
+    alignItems: "flex-end"
   },
   addUserField: {
-    width: "225px"
+    width: "225px",
+    "&:disabled": {
+      color: theme.palette.common.white
+    }
   },
   addUserButton: {
     padding: "0",
@@ -63,6 +57,12 @@ const styles = theme => ({
       fill: theme.palette.common.blue6,
       transition: ".25s ease-in-out"
     }
+  },
+  addUserIconDisabled: {
+    fill: "rgba(255,255,255, 0.38)"
+  },
+  fieldRoot: {
+    color: "rgba(255,255,255, 0.38) !important"
   }
 });
 export default styles;

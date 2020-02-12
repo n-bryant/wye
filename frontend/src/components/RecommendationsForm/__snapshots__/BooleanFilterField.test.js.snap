@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BooleanFilterField should render successfully 1`] = `
+<div
+  className="wye-BooleanFilterField root"
+>
+  <WithStyles(ForwardRef(Typography))
+    className="wye-BooleanFilterField__label label"
+    gutterBottom={true}
+    variant="body2"
+  >
+    label
+  </WithStyles(ForwardRef(Typography))>
+  <div>
+    <WithStyles(ForwardRef(Switch))
+      checked={false}
+      classes={
+        Object {
+          "checked": "switchChecked",
+          "switchBase": "switch",
+          "track": "switch",
+        }
+      }
+      color="primary"
+      inputProps={
+        Object {
+          "aria-label": "freeToPlay-checkbox",
+        }
+      }
+      onChange={[Function]}
+      value="label"
+    />
+  </div>
+</div>
+`;

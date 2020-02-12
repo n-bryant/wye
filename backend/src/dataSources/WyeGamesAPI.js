@@ -6,6 +6,7 @@ const wyeGamesReducer = require("../reducers/wyeGameReducer");
 
 const EXCLUDED_PUBLISHER_KEYS = [
   "Inc.",
+  "Inc",
   "LLC",
   "Lttd.",
   "(none)",

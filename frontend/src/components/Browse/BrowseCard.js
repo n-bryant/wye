@@ -168,11 +168,18 @@ export const BrowseCard = props => {
           ) : (
             <img src={data.headerImage} width="100%" />
           )}
-          <Typography variant="body2">
+          <Typography
+            variant="body2"
+            className={classnames.element("withEllipsis")}
+          >
             <span className={classnames.element("category")}>Developers: </span>{" "}
             {data.developers.join(", ")}
           </Typography>
-          <Typography variant="body2" gutterBottom={true}>
+          <Typography
+            variant="body2"
+            className={classnames.element("withEllipsis")}
+            gutterBottom={true}
+          >
             <span className={classnames.element("category")}>Publishers: </span>{" "}
             {data.publishers.join(", ")}
           </Typography>
@@ -312,7 +319,8 @@ BrowseCard.propTypes = {
     trailer: PropTypes.string,
     actionArea: PropTypes.string,
     priceWidget: PropTypes.string,
-    usersContainer: PropTypes.string
+    usersContainer: PropTypes.string,
+    withEllipsis: PropTypes.string
   }),
   // game data for card to display
   data: PropTypes.object,

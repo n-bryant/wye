@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SliderFilterField should render successfully 1`] = `
+<div
+  className="wye-SliderFilterField root"
+>
+  <WithStyles(ForwardRef(Typography))
+    className="wye-SliderFilterField__label label"
+    gutterBottom={true}
+    id="range-filter-slider"
+    variant="body2"
+  >
+    label
+  </WithStyles(ForwardRef(Typography))>
+  <div
+    className="wye-SliderFilterField__valueLabelContainer valueLabelContainer"
+  >
+    <WithStyles(ForwardRef(Typography))
+      variant="body2"
+    >
+      0%
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      variant="body2"
+    >
+      100%
+    </WithStyles(ForwardRef(Typography))>
+  </div>
+  <div>
+    <WithStyles(ForwardRef(Slider))
+      aria-labelledby="range-filter-slider"
+      classes={
+        Object {
+          "rail": "rail",
+          "root": "sliderRoot",
+          "thumb": "thumb",
+          "track": "track",
+        }
+      }
+      getAriaValueText={[Function]}
+      max={100}
+      min={0}
+      onChange={[Function]}
+      value={
+        Array [
+          0,
+          100,
+        ]
+      }
+      valueLabelDisplay="off"
+    />
+  </div>
+</div>
+`;

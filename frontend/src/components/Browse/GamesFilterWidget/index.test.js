@@ -61,8 +61,12 @@ describe("FilterGamesQuery", () => {
       element: jest.fn(),
       root: jest.fn()
     },
+    onDataReceived: jest.fn(),
     title: "title",
-    subtitle: "subtitle"
+    subtitle: "subtitle",
+    initialValues: {
+      filters: {}
+    }
   };
 
   it("should render successfully", () => {
