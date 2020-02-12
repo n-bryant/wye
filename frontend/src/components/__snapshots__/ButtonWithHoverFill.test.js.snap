@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonWithHoverFill should render successfully 1`] = `
+<WithStyles(ForwardRef(Button))
+  aria-label="label"
+  className="wye-ButtonWithHoverFill root"
+  onClick={[MockFunction]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <WithStyles(ForwardRef(Typography))
+    variant="body1"
+  >
+    label
+  </WithStyles(ForwardRef(Typography))>
+  <Icon
+    className="wye-ButtonWithHoverFill__icon wye-ButtonWithHoverFill__icon--hovered wye-ButtonWithHoverFill__icon--withLabel icon iconHovered iconWithLabel"
+    color={null}
+    horizontal={false}
+    path="icon"
+    rotate={0}
+    size={null}
+    spin={false}
+    vertical={false}
+  />
+</WithStyles(ForwardRef(Button))>
+`;

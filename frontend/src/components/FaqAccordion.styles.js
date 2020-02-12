@@ -8,8 +8,8 @@ const styles = theme => ({
     zIndex: "1"
   },
   titleContainer: {
-    height: "56px",
-    minHeight: "56px",
+    height: theme.layout.header.height,
+    minHeight: theme.layout.header.height,
     background: "rgba(0,0,0,.8)",
     display: "flex",
     justifyContent: "space-between",

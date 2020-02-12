@@ -171,6 +171,11 @@ const styles = theme => ({
     top: "-16px",
     left: "0",
     right: "0"
+  },
+  withEllipsis: {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap"
   }
 });
 export default styles;

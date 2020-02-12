@@ -89,7 +89,7 @@ export const GameDetails = props => {
   const classes = useStyles(details);
   const classnames = GameDetails.classnames({ classes });
 
-  console.log(details);
+  // console.log(details);
   const {
     highlightedVideos,
     backgroundImageUrl,

@@ -4,6 +4,11 @@ import typography from "./typography";
 
 // Create a theme instance.
 const theme = createMuiTheme({
+  layout: {
+    header: {
+      height: "56px"
+    }
+  },
   props: {
     MuiButtonBase: {
       // disable ripple globally for buttons

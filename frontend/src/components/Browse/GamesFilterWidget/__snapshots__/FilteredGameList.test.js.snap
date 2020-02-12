@@ -12,6 +12,7 @@ exports[`FilteredGameList should render successfully 1`] = `
     <WithStyles(ForwardRef(Autocomplete))
       classes={
         Object {
+          "noOptions": undefined,
           "option": undefined,
           "paper": undefined,
         }

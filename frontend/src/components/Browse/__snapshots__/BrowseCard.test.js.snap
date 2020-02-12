@@ -27,6 +27,7 @@ exports[`BrowseCard popper content should only render a Popper if an anchorEl is
     foo
   </video>
   <WithStyles(ForwardRef(Typography))
+    className="wye-BrowseCard__withEllipsis withEllipsis"
     variant="body2"
   >
     <span
@@ -38,6 +39,7 @@ exports[`BrowseCard popper content should only render a Popper if an anchorEl is
     a, b
   </WithStyles(ForwardRef(Typography))>
   <WithStyles(ForwardRef(Typography))
+    className="wye-BrowseCard__withEllipsis withEllipsis"
     gutterBottom={true}
     variant="body2"
   >

@@ -51,7 +51,8 @@ describe("BrowseCard", () => {
       contentWrapper: "contentWrapper",
       horizontalTitle: "horizontalTitle",
       horizontalSubContent: "horizontalSubContent",
-      usersContainer: "usersContainer"
+      usersContainer: "usersContainer",
+      withEllipsis: "withEllipsis"
     },
     data: {
       appid: "1",

@@ -8,6 +8,12 @@ exports[`FilterGamesQuery should render successfully 1`] = `
       "root": [MockFunction],
     }
   }
+  initialValues={
+    Object {
+      "filters": Object {},
+    }
+  }
+  onDataReceived={[MockFunction]}
   subtitle="subtitle"
   title="title"
 >
@@ -681,6 +687,8 @@ exports[`GamesFilterWidget should render successfully 1`] = `
   <ContextProvider
     value={
       Object {
+        "filterOptions": Object {},
+        "filteredDataSet": Object {},
         "setFilterOptions": [Function],
       }
     }
@@ -700,6 +708,7 @@ exports[`GamesFilterWidget should render successfully 1`] = `
           "root": [Function],
         }
       }
+      onDataReceived={[Function]}
       subtitle="subtitle"
       title="title"
       variables={Object {}}
@@ -714,6 +723,20 @@ exports[`MainContent should render successfully 1`] = `
     backgroundUrl="url"
   >
     <div>
+      <AdvancedFiltersFormWithFormik
+        drawerCloseHandler={[Function]}
+        drawerOpen={false}
+        hiddenFields={Array []}
+        initialValues={
+          Object {
+            "filters": Object {
+              "gameFilters": Object {
+                "appid_in": Array [],
+              },
+            },
+          }
+        }
+      />
       <WithStyles(ForwardRef(Container))
         disableGutters={true}
         maxWidth="lg"
@@ -734,9 +757,21 @@ exports[`MainContent should render successfully 1`] = `
             subtitle
           </WithStyles(ForwardRef(Typography))>
         </Styled(MuiBox)>
+        <Styled(MuiBox)
+          my={4}
+        >
+          <WithStyles(ButtonWithHoverFill)
+            classes={Object {}}
+            displayLabel={true}
+            handleClick={[Function]}
+            icon="M6,13H18V11H6M3,6V8H21V6M10,18H14V16H10V18Z"
+            label="filter"
+          />
+        </Styled(MuiBox)>
       </WithStyles(ForwardRef(Container))>
       <WithStyles(FilteredGameList)
         classes={Object {}}
+        items={Array []}
       />
     </div>
   </BackgroundQuery>

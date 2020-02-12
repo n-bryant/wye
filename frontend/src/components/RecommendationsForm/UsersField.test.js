@@ -15,10 +15,12 @@ describe("UsersField", () => {
       addUserField: "addUserField",
       addUserButton: "addUserButton",
       addUserIcon: "addUserIcon",
-      addUserIconEnabled: "addUserIconEnabled"
+      addUserIconEnabled: "addUserIconEnabled",
+      addUserIconDisabled: "addUserIconDisabled"
     },
-    usersValue: [],
-    setUsersValue: jest.fn()
+    name: "field",
+    value: [],
+    setFieldValue: jest.fn()
   };
 
   const setTextFieldValue = jest.fn();
@@ -41,7 +43,7 @@ describe("UsersField", () => {
 
     wrapper.setProps({
       ...props,
-      usersValue: ["a", "b", "c", "d", "e", "f"]
+      value: ["a", "b", "c", "d", "e", "f"]
     });
     wrapper.update();
     expect(
@@ -103,8 +105,7 @@ describe("UsersField", () => {
       target: { value: newValue },
       preventDefault: jest.fn()
     });
-    expect(props.setUsersValue).toHaveBeenCalledWith([newValue]);
-    expect(setTextFieldValue).toHaveBeenCalledWith("");
+    expect(props.setFieldValue).toHaveBeenCalledWith(props.name, [newValue]);
   });
 
   it("should add a user when the add user button is clicked", () => {
@@ -120,7 +121,9 @@ describe("UsersField", () => {
       n.hasClass(props.classes.addUserButton)
     );
     addUserButton.prop("onClick")();
-    expect(props.setUsersValue).toHaveBeenCalledWith([textFieldValue]);
+    expect(props.setFieldValue).toHaveBeenCalledWith(props.name, [
+      textFieldValue
+    ]);
   });
 
   it("should set the add user button to disabled if the text field value is blank", () => {
@@ -141,7 +144,7 @@ describe("UsersField", () => {
   it("should set the add user button to disabled if the max user count has been reached", () => {
     const newProps = {
       ...props,
-      usersValue: ["a", "b", "c", "d", "e", "f"]
+      value: ["a", "b", "c", "d", "e", "f"]
     };
     const textFieldValue = "foo";
     const useStateSpy = jest.spyOn(React, "useState");
@@ -173,51 +176,31 @@ describe("UsersField", () => {
     expect(addUserIcon.prop("path")).toBe(mdiAccountPlus);
   });
 
-  it("should hide the chips label if the usersValue prop does not have length", () => {
-    const chipsLabel = wrapper.findWhere(n =>
-      n.hasClass(props.classes.chipsLabelHidden)
-    );
-    expect(chipsLabel.length).toBe(1);
-  });
-
   it("should render a Chip for each added user", () => {
-    const usersValue = ["a", "b", "c"];
+    const value = ["a", "b", "c"];
     wrapper.setProps({
-      usersValue
+      value
     });
     wrapper.update();
 
-    expect(wrapper.find(Chip).length).toBe(usersValue.length);
+    expect(wrapper.find(Chip).length).toBe(value.length);
   });
 
   it("should set the Chips' label to the added user's SteamID", () => {
-    const usersValue = ["a", "b", "c"];
+    const value = ["a", "b", "c"];
     wrapper.setProps({
-      usersValue
+      value
     });
     wrapper.update();
     wrapper.find(Chip).forEach((chip, index) => {
-      expect(chip.prop("label")).toBe(usersValue[index]);
+      expect(chip.prop("label")).toBe(value[index]);
     });
-  });
-
-  it("should remove a user if the Chip's onDelete prop is called", () => {
-    const usersValue = ["a", "b"];
-    wrapper.setProps({
-      usersValue
-    });
-    wrapper.update();
-    wrapper
-      .find(Chip)
-      .at(0)
-      .prop("onDelete")();
-    expect(props.setUsersValue).toHaveBeenCalledWith([usersValue[1]]);
   });
 
   it("should set outlined and deleteIcon classes for the Chips", () => {
-    const usersValue = ["a"];
+    const value = ["a"];
     wrapper.setProps({
-      usersValue
+      value
     });
     wrapper.update();
     expect(wrapper.find(Chip).prop("classes")).toEqual({

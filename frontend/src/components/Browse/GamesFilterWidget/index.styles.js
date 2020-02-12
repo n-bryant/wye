@@ -16,6 +16,20 @@ const styles = theme => ({
   contentWrapper: {
     padding: "2rem",
     height: "100%"
+  },
+  headingContainer: {
+    [theme.breakpoints.up("sm")]: {
+      display: "flex",
+      justifyContent: "space-between"
+    }
+  },
+  advFilterButton: {
+    padding: "0",
+    textTransform: "none",
+    "&:hover": {
+      color: theme.palette.common.blue6,
+      background: "none"
+    }
   }
 });
 export default styles;

@@ -47,7 +47,8 @@ export const FilteredGameList = props => {
         <Autocomplete
           classes={{
             paper: classes.paper,
-            option: classes.option
+            option: classes.option,
+            noOptions: classes.option
           }}
           id="filtered-game-list-search"
           onChange={(_e, value) => {
@@ -57,7 +58,7 @@ export const FilteredGameList = props => {
           getOptionLabel={item => item.name}
           style={{ width: 300 }}
           renderInput={params => (
-            <TextField {...params} label="Search" fullWidth />
+            <TextField {...params} label="search:" fullWidth />
           )}
         />
       </Box>

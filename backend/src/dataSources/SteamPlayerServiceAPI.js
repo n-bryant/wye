@@ -63,13 +63,19 @@ class SteamPlayerServiceAPI extends RESTDataSource {
   async getOwnedGamesByPlayerIds(playerIds) {
     let playerGames = {};
     for (const playerId of playerIds) {
-      // collect user owned game data
-      const data = await this.get(STEAM_PLAYER_SERVICE_OWNED_GAMES_ENDPOINT, {
-        key: process.env.API_KEY,
-        steamid: playerId,
-        include_appinfo: true,
-        include_played_free_games: true
-      });
+      let data = {};
+      try {
+        // collect user owned game data
+        data = await this.get(STEAM_PLAYER_SERVICE_OWNED_GAMES_ENDPOINT, {
+          key: process.env.API_KEY,
+          steamid: playerId,
+          include_appinfo: true,
+          include_played_free_games: true
+        });
+      } catch (e) {
+        console.log(e);
+        return;
+      }
 
       // set user game and playtime for the player ID
       playerGames[playerId] = {
