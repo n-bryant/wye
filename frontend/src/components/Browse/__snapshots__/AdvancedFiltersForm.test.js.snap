@@ -1,41 +1,116 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AdvancedFiltersForm should render successfully 1`] = `
-<ForwardRef(Drawer)
-  ModalProps={
-    Object {
-      "BackdropProps": Object {
-        "classes": Object {
-          "root": "backdrop",
-        },
-        "invisible": true,
-      },
-      "disablePortal": true,
-    }
-  }
-  anchor="right"
-  className="wye-AdvancedFiltersForm root"
+<WithStyles(OnClickOutsideWrapper)
   classes={
     Object {
-      "docked": "MuiDrawer-docked",
-      "modal": "MuiDrawer-modal modal",
-      "paper": "MuiDrawer-paper",
-      "paperAnchorBottom": "MuiDrawer-paperAnchorBottom",
-      "paperAnchorDockedBottom": "MuiDrawer-paperAnchorDockedBottom",
-      "paperAnchorDockedLeft": "MuiDrawer-paperAnchorDockedLeft",
-      "paperAnchorDockedRight": "MuiDrawer-paperAnchorDockedRight",
-      "paperAnchorDockedTop": "MuiDrawer-paperAnchorDockedTop",
-      "paperAnchorLeft": "MuiDrawer-paperAnchorLeft",
-      "paperAnchorRight": "MuiDrawer-paperAnchorRight paper",
-      "paperAnchorTop": "MuiDrawer-paperAnchorTop",
-      "root": "MuiDrawer-root drawer",
+      "backdrop": "backdrop",
+      "closeButtonContainer": "closeButtonContainer",
+      "closing": "closing",
+      "drawer": "drawer",
+      "drawerContent": "drawerContent",
+      "fieldSection": "fieldSection",
+      "fieldSectionTitle": "fieldSectionTitle",
+      "fieldsContainer": "fieldsContainer",
+      "menuPaper": "menuPaper",
+      "modal": "modal",
+      "paper": "paper",
+      "root": "root",
+      "selectOption": "selectOption",
+      "submitButtonContainer": "submitButtonContainer",
     }
   }
-  onClose={[Function]}
-  open={true}
+  drawerCloseHandler={[MockFunction]}
+  formik={
+    Object {
+      "setFieldValue": [MockFunction],
+      "values": Object {},
+    }
+  }
+  gameList={
+    Array [
+      Object {
+        "appid": "1",
+        "discount": 25,
+        "finalPrice": 1000,
+        "genres": Array [
+          "a",
+        ],
+        "ownersMax": 1000,
+        "ownersMin": 500,
+        "tags": Array [
+          "a",
+        ],
+      },
+      Object {
+        "appid": "2",
+        "discount": 15,
+        "finalPrice": 500,
+        "genres": Array [
+          "a",
+          "b",
+        ],
+        "ownersMax": 10000,
+        "ownersMin": 5000,
+        "tags": Array [
+          "a",
+        ],
+      },
+      Object {
+        "appid": "3",
+        "discount": 50,
+        "finalPrice": 350,
+        "genres": Array [
+          "a",
+          "b",
+          "c",
+        ],
+        "ownersMax": 2000,
+        "ownersMin": 1000,
+        "tags": Array [
+          "a",
+        ],
+      },
+      Object {
+        "appid": "4",
+        "discount": 75,
+        "finalPrice": 250,
+        "genres": Array [
+          "a",
+          "b",
+          "c",
+          "d",
+        ],
+        "ownersMax": 300,
+        "ownersMin": 150,
+        "tags": Array [
+          "a",
+        ],
+      },
+      Object {
+        "appid": "5",
+        "discount": 90,
+        "finalPrice": 1500,
+        "genres": Array [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+        ],
+        "ownersMax": 5000,
+        "ownersMin": 2500,
+        "tags": Array [
+          "a",
+        ],
+      },
+    ]
+  }
+  handleClickOutside={[Function]}
+  hiddenFields={Array []}
 >
   <WithStyles(ForwardRef(Container))
-    className="wye-AdvancedFiltersForm__drawerContent drawerContent"
+    className="wye-AdvancedFiltersForm root"
     disableGutters={true}
   >
     <Styled(MuiBox)
@@ -146,6 +221,15 @@ exports[`AdvancedFiltersForm should render successfully 1`] = `
               <Component />
             </Field>
           </Styled(MuiBox)>
+          <Styled(MuiBox)
+            my={2}
+          >
+            <Field
+              name="filters"
+            >
+              <Component />
+            </Field>
+          </Styled(MuiBox)>
         </Styled(MuiBox)>
         <Styled(MuiBox)
           className="wye-AdvancedFiltersForm__fieldSection fieldSection"
@@ -184,25 +268,189 @@ exports[`AdvancedFiltersForm should render successfully 1`] = `
     >
       <WithStyles(ActionButton)
         classes={Object {}}
+        disabled={true}
         label="Filter"
         onClick={[Function]}
       />
     </Styled(MuiBox)>
   </WithStyles(ForwardRef(Container))>
-</ForwardRef(Drawer)>
+</WithStyles(OnClickOutsideWrapper)>
 `;
 
 exports[`AdvancedFiltersFormWithFormik should render successfully 1`] = `
-<Formik
-  initialValues={
+<ContextProvider
+  value={
     Object {
-      "filters": Object {},
-      "orderBy": Array [],
-      "sortOrder": "DESC",
-      "users": Array [],
+      "dirty": false,
+      "errors": Object {},
+      "getFieldHelpers": [Function],
+      "getFieldMeta": [Function],
+      "getFieldProps": [Function],
+      "handleBlur": [Function],
+      "handleChange": [Function],
+      "handleReset": [Function],
+      "handleSubmit": [Function],
+      "initialErrors": Object {},
+      "initialStatus": undefined,
+      "initialTouched": Object {},
+      "initialValues": Object {
+        "filters": Object {},
+        "orderBy": Array [],
+        "sortOrder": "DESC",
+        "users": Array [],
+      },
+      "isSubmitting": false,
+      "isValid": true,
+      "isValidating": false,
+      "registerField": [Function],
+      "resetForm": [Function],
+      "setErrors": [Function],
+      "setFieldError": [Function],
+      "setFieldTouched": [Function],
+      "setFieldValue": [Function],
+      "setFormikState": [Function],
+      "setStatus": [Function],
+      "setSubmitting": [Function],
+      "setTouched": [Function],
+      "setValues": [Function],
+      "status": undefined,
+      "submitCount": 0,
+      "submitForm": [Function],
+      "touched": Object {},
+      "unregisterField": [Function],
+      "validateField": [Function],
+      "validateForm": [Function],
+      "validateOnBlur": true,
+      "validateOnChange": true,
+      "validateOnMount": false,
+      "values": Object {
+        "filters": Object {},
+        "orderBy": Array [],
+        "sortOrder": "DESC",
+        "users": Array [],
+      },
     }
   }
 >
-  <Component />
-</Formik>
+  <WithStyles(AdvancedFiltersForm)
+    classes={Object {}}
+    developerOptions={
+      Array [
+        "a",
+      ]
+    }
+    formik={
+      Object {
+        "dirty": false,
+        "errors": Object {},
+        "getFieldHelpers": [Function],
+        "getFieldMeta": [Function],
+        "getFieldProps": [Function],
+        "handleBlur": [Function],
+        "handleChange": [Function],
+        "handleReset": [Function],
+        "handleSubmit": [Function],
+        "initialErrors": Object {},
+        "initialStatus": undefined,
+        "initialTouched": Object {},
+        "initialValues": Object {
+          "filters": Object {},
+          "orderBy": Array [],
+          "sortOrder": "DESC",
+          "users": Array [],
+        },
+        "isSubmitting": false,
+        "isValid": true,
+        "isValidating": false,
+        "registerField": [Function],
+        "resetForm": [Function],
+        "setErrors": [Function],
+        "setFieldError": [Function],
+        "setFieldTouched": [Function],
+        "setFieldValue": [Function],
+        "setFormikState": [Function],
+        "setStatus": [Function],
+        "setSubmitting": [Function],
+        "setTouched": [Function],
+        "setValues": [Function],
+        "status": undefined,
+        "submitCount": 0,
+        "submitForm": [Function],
+        "touched": Object {},
+        "unregisterField": [Function],
+        "validateField": [Function],
+        "validateForm": [Function],
+        "validateOnBlur": true,
+        "validateOnChange": true,
+        "validateOnMount": false,
+        "values": Object {
+          "filters": Object {},
+          "orderBy": Array [],
+          "sortOrder": "DESC",
+          "users": Array [],
+        },
+      }
+    }
+    gameList={
+      Array [
+        Object {
+          "appid": "1",
+          "developers": Array [
+            "a",
+          ],
+          "genres": Array [
+            "a",
+          ],
+          "name": "foo",
+          "publishers": Array [
+            "a",
+          ],
+          "tags": Array [
+            "a",
+          ],
+        },
+      ]
+    }
+    genreOptions={
+      Array [
+        "a",
+      ]
+    }
+    initialValues={Object {}}
+    items={
+      Array [
+        Object {
+          "node": Object {
+            "game": Object {
+              "appid": "1",
+              "developers": Array [
+                "a",
+              ],
+              "genres": Array [
+                "a",
+              ],
+              "name": "foo",
+              "publishers": Array [
+                "a",
+              ],
+              "tags": Array [
+                "a",
+              ],
+            },
+          },
+        },
+      ]
+    }
+    publisherOptions={
+      Array [
+        "a",
+      ]
+    }
+    tagOptions={
+      Array [
+        "a",
+      ]
+    }
+  />
+</ContextProvider>
 `;

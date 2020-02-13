@@ -95,7 +95,7 @@ BackgroundProvider.defaultProps = {
  * renders a Query that pulls the background image of the most popular game and returns a BackgroundProvider
  */
 const BackgroundQuery = props => {
-  const { src } = props;
+  const { src, useDefault } = props;
   return (
     <Query query={GET_MOST_POPULAR_BACKGROUND_QUERY}>
       {({ loading, error, data }) => {
@@ -116,8 +116,12 @@ const BackgroundQuery = props => {
         }
 
         // set the background path either with the provided src override or the value from the query
-        const backgroundUrl =
-          src && src.length ? src : get(data, "mostPopularBackgroundSrc");
+        let backgroundUrl;
+        if (!src || (src && !src.length) || useDefault) {
+          backgroundUrl = get(data, "mostPopularBackgroundSrc");
+        } else {
+          backgroundUrl = src;
+        }
 
         return <BackgroundProvider backgroundUrl={backgroundUrl} {...props} />;
       }}
@@ -126,7 +130,9 @@ const BackgroundQuery = props => {
 };
 BackgroundQuery.propTypes = {
   // override value for the background image path
-  src: PropTypes.string
+  src: PropTypes.string,
+  // whether to use the default background
+  useDefault: PropTypes.bool
 };
 
 export default BackgroundQuery;

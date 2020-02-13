@@ -28,6 +28,7 @@ describe("FilterGamesQuery", () => {
               ownersFormatted: "10,000 .. 20,000",
               userRating: 95,
               genres: ["a"],
+              tags: ["a"],
               freeToPlay: false,
               onSale: true,
               discount: 25,
