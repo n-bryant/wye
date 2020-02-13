@@ -42,13 +42,17 @@ export const CheckboxFilterField = props => {
   const handleChange = option => event => {
     const newValue = { ...checkedOptions, [option]: event.target.checked };
     setCheckedOptions(newValue);
-    setFieldValue(name, {
+    let valueToSet = {
       ...value,
       [category]: {
         ...value[category],
         [type]: Object.keys(newValue).filter(key => Boolean(newValue[key]))
       }
-    });
+    };
+    if (Object.keys(newValue).every(key => !newValue[key])) {
+      delete valueToSet[category][type];
+    }
+    setFieldValue(name, valueToSet);
   };
 
   const optionsCount = Object.keys(checkedOptions).length;

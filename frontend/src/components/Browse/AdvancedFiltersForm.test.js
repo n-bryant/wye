@@ -1,24 +1,42 @@
+import { Container } from "@material-ui/core";
 import BooleanFilterField from "../RecommendationsForm/BooleanFilterField";
 import AdvancedFiltersFormWithFormik, {
   getCategoryOptions,
   getMinValue,
   getMaxValue,
-  AdvancedFiltersForm,
-  StyledAdvancedFiltersForm
+  AdvancedFiltersForm
 } from "./AdvancedFiltersForm";
 
 describe("AdvancedFiltersFormWithFormik", () => {
   const props = {
-    initialValues: {}
+    initialValues: {},
+    items: [
+      {
+        node: {
+          game: {
+            appid: "1",
+            name: "foo",
+            publishers: ["a"],
+            developers: ["a"],
+            genres: ["a"],
+            tags: ["a"]
+          }
+        }
+      }
+    ]
   };
 
-  const renderCallbackArgs = {
-    foo: "bar"
+  const gamesFilterWidgetRenderCallbackArgs = {
+    setFilterOptions: jest.fn()
   };
 
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<AdvancedFiltersFormWithFormik {...props} />);
+    wrapper = shallow(
+      shallow(<AdvancedFiltersFormWithFormik {...props} />).prop("children")(
+        gamesFilterWidgetRenderCallbackArgs
+      )
+    );
   });
 
   it("should render successfully", () => {
@@ -26,7 +44,7 @@ describe("AdvancedFiltersFormWithFormik", () => {
   });
 
   it("should set some defaults for the initialValues passed to the Formik form", () => {
-    expect(wrapper.prop("initialValues")).toMatchObject({
+    expect(wrapper.prop("value").initialValues).toMatchObject({
       users: [],
       filters: {},
       orderBy: [],
@@ -35,9 +53,7 @@ describe("AdvancedFiltersFormWithFormik", () => {
   });
 
   it("should pass formik props and any received props to its rendered child", () => {
-    expect(wrapper.prop("children")(renderCallbackArgs).props.formik.foo).toBe(
-      renderCallbackArgs.foo
-    );
+    expect(wrapper.prop("children").props.formik).toBeDefined();
   });
 });
 
@@ -48,7 +64,8 @@ const games = [
     finalPrice: 1000,
     ownersMin: 500,
     ownersMax: 1000,
-    genres: ["a"]
+    genres: ["a"],
+    tags: ["a"]
   },
   {
     appid: "2",
@@ -56,7 +73,8 @@ const games = [
     finalPrice: 500,
     ownersMin: 5000,
     ownersMax: 10000,
-    genres: ["a", "b"]
+    genres: ["a", "b"],
+    tags: ["a"]
   },
   {
     appid: "3",
@@ -64,7 +82,8 @@ const games = [
     finalPrice: 350,
     ownersMin: 1000,
     ownersMax: 2000,
-    genres: ["a", "b", "c"]
+    genres: ["a", "b", "c"],
+    tags: ["a"]
   },
   {
     appid: "4",
@@ -72,7 +91,8 @@ const games = [
     finalPrice: 250,
     ownersMin: 150,
     ownersMax: 300,
-    genres: ["a", "b", "c", "d"]
+    genres: ["a", "b", "c", "d"],
+    tags: ["a"]
   },
   {
     appid: "5",
@@ -80,7 +100,8 @@ const games = [
     finalPrice: 1500,
     ownersMin: 2500,
     ownersMax: 5000,
-    genres: ["a", "b", "c", "d", "e"]
+    genres: ["a", "b", "c", "d", "e"],
+    tags: ["a"]
   }
 ];
 
@@ -129,7 +150,8 @@ describe("AdvancedFiltersForm", () => {
                 ownersMax: 1000,
                 publishers: ["a", "b"],
                 developers: ["a", "b", "c"],
-                genres: ["a"]
+                genres: ["a"],
+                tags: ["a"]
               }
             }
           },
@@ -143,7 +165,8 @@ describe("AdvancedFiltersForm", () => {
                 ownersMax: 10000,
                 publishers: ["a", "b"],
                 developers: ["a", "b", "c"],
-                genres: ["a"]
+                genres: ["a"],
+                tags: ["a"]
               }
             }
           },
@@ -157,7 +180,8 @@ describe("AdvancedFiltersForm", () => {
                 ownersMax: 2000,
                 publishers: ["a", "b"],
                 developers: ["a", "b", "c"],
-                genres: ["a"]
+                genres: ["a"],
+                tags: ["a"]
               }
             }
           },
@@ -171,7 +195,8 @@ describe("AdvancedFiltersForm", () => {
                 ownersMax: 300,
                 publishers: ["a", "b"],
                 developers: ["a", "b", "c"],
-                genres: ["a"]
+                genres: ["a"],
+                tags: ["a"]
               }
             }
           },
@@ -185,7 +210,8 @@ describe("AdvancedFiltersForm", () => {
                 ownersMax: 5000,
                 publishers: ["a", "b"],
                 developers: ["a", "b", "c"],
-                genres: ["a"]
+                genres: ["a"],
+                tags: ["a"]
               }
             }
           }
@@ -197,6 +223,7 @@ describe("AdvancedFiltersForm", () => {
   const props = {
     classes: {
       root: "root",
+      closing: "closing",
       drawer: "drawer",
       drawerContent: "drawerContent",
       modal: "modal",
@@ -210,7 +237,7 @@ describe("AdvancedFiltersForm", () => {
       selectOption: "selectOption",
       submitButtonContainer: "submitButtonContainer"
     },
-    drawerOpen: true,
+    gameList: games,
     drawerCloseHandler: jest.fn(),
     formik: {
       setFieldValue: jest.fn(),
@@ -219,15 +246,13 @@ describe("AdvancedFiltersForm", () => {
     hiddenFields: []
   };
 
-  let wrapper, drawer;
+  let wrapper;
   beforeEach(() => {
     wrapper = shallow(<AdvancedFiltersForm {...props} />);
   });
 
   it("should render successfully", () => {
-    expect(
-      toJson(shallow(wrapper.prop("children")(renderCallbackArgs)))
-    ).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   it("should render the Player Filters section if a formik users value is defined and has length", () => {
@@ -240,11 +265,8 @@ describe("AdvancedFiltersForm", () => {
       }
     });
     wrapper.update();
-
     expect(
-      shallow(wrapper.prop("children")(renderCallbackArgs)).findWhere(
-        n => n.text() === "Player Filters:"
-      ).length
+      wrapper.findWhere(n => n.text() === "Player Filters:").length
     ).not.toBe(0);
   });
 
@@ -254,10 +276,6 @@ describe("AdvancedFiltersForm", () => {
     });
     wrapper.update();
 
-    expect(
-      shallow(wrapper.prop("children")(renderCallbackArgs)).find(
-        BooleanFilterField
-      ).length
-    ).toBe(0);
+    expect(wrapper.find(BooleanFilterField).length).toBe(0);
   });
 });

@@ -1,33 +1,38 @@
 const styles = theme => {
-  const innerDrawerStyles = {
-    top: theme.layout.header.height,
-    height: `calc(100% - ${theme.layout.header.height})`
-  };
-
   return {
     root: {
-      height: "100%",
-      position: "relative"
-    },
-    drawer: {
-      ...innerDrawerStyles
-    },
-    drawerContent: {
-      height: "100%"
-    },
-    modal: {
-      ...innerDrawerStyles
-    },
-    paper: {
-      ...innerDrawerStyles,
-      width: "350px",
       background: theme.palette.panel.background,
+      position: "fixed",
+      top: theme.layout.header.height,
+      right: "0",
+      bottom: "0",
+      height: `calc(100% - ${theme.layout.header.height})`,
+      width: "350px",
       [theme.breakpoints.down("xs")]: {
         width: "100%"
+      },
+      zIndex: "10",
+      overflow: "auto",
+      animation: "$slideLeft 0.25s linear"
+    },
+    closing: {
+      animation: "$slideRight 0.25s linear"
+    },
+    "@keyframes slideLeft": {
+      "0%": {
+        transform: "translate3d(350px,0,0)"
+      },
+      "100%": {
+        transform: "translate3d(0,0,0)"
       }
     },
-    backdrop: {
-      ...innerDrawerStyles
+    "@keyframes slideRight": {
+      "0%": {
+        transform: "translate3d(0,0,0)"
+      },
+      "100%": {
+        transform: "translate3d(350px,0,0)"
+      }
     },
     closeButtonContainer: {
       marginTop: "0",

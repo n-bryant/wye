@@ -59,6 +59,7 @@ export const GAMES_FILTER_QUERY = gql`
             publishers
             ownersFormatted
             userRating
+            tags
             genres
             freeToPlay
             onSale
@@ -81,11 +82,6 @@ export const GAMES_FILTER_QUERY = gql`
   }
 `;
 
-export const REFERRER_TYPES_MAP = {
-  SALES: "SALES",
-  PUBLISHERS: "PUBLISHERS"
-};
-
 // set up a context provider
 const GamesFilterWidgetContext = React.createContext({});
 export const GamesFilterWidgetContextProvider =
@@ -94,108 +90,105 @@ export const GamesFilterWidgetContextConsumer =
   GamesFilterWidgetContext.Consumer;
 
 /**
- * returns whether a given object has the provided property anywhere in its structure
- * @param {Object} obj
- * @param {String} property
- * @returns {Boolean}
- */
-export function containsProperty(obj, property) {
-  let hasProperty = false;
-  [obj].forEach(function loop(value) {
-    if (value[property]) {
-      hasProperty = true;
-    }
-
-    if (typeof value === "object" && Object.keys(value).length > 0) {
-      Object.keys(value).forEach(key => loop(value[key]));
-    }
-  });
-  return hasProperty;
-}
-
-/**
  * renders the inner content of the GamesFilterWidget
  */
 export const MainContent = ({
   classnames,
   title,
   subtitle,
-  featuredBackgroundUrl,
   items = [],
   userDetails,
-  initialValues = { filters: {} },
-  referrerType
+  initialValues = { filters: {} }
 }) => {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-
-  // restrict further filtering to the original game list
-  const appids = items.map(item => item.node.game.appid);
-  initialValues = {
-    ...initialValues,
-    filters: {
-      ...initialValues.filters,
-      gameFilters: {
-        ...initialValues.filters.gameFilters,
-        appid_in: appids
-      }
-    }
-  };
-
-  let hiddenFields = [];
-  if (referrerType) {
-    switch (referrerType) {
-      case REFERRER_TYPES_MAP.SALES:
-        hiddenFields = hiddenFields.concat(["onSale", "freeToPlay"]);
-        break;
-      case REFERRER_TYPES_MAP.PUBLISHERS:
-        hiddenFields = hiddenFields.concat([]);
-        break;
-    }
-  }
+  const [filtered, setFiltered] = React.useState(false);
 
   return (
     <div className={classnames.element("mainContent")}>
-      <BackgroundProvider backgroundUrl={featuredBackgroundUrl}>
-        <div className={classnames.element("contentWrapper")}>
-          <AdvancedFiltersForm
-            initialValues={initialValues}
-            drawerOpen={drawerOpen}
-            drawerCloseHandler={() => setDrawerOpen(false)}
-            hiddenFields={hiddenFields}
-          />
-          <Container
-            className={classnames.element("headingContainer")}
-            maxWidth="lg"
-            disableGutters={true}
-          >
-            <Box my={4}>
-              <Typography
-                className={classnames.element("heading")}
-                variant="h2"
-                gutterBottom={true}
-              >
-                {title}
-              </Typography>
-              <Typography
-                className={classnames.element("subHeading")}
-                variant="body1"
-                gutterBottom={true}
-              >
-                {subtitle}
-              </Typography>
-            </Box>
-            <Box my={4}>
-              <ButtonWithHoverFill
-                handleClick={() => setDrawerOpen(true)}
-                icon={mdiFilterVariant}
-                label="filter"
-                displayLabel={true}
-              />
-            </Box>
-          </Container>
-          <FilteredGameList items={items} userDetails={userDetails} />
-        </div>
-      </BackgroundProvider>
+      <GamesFilterWidgetContextConsumer>
+        {context => {
+          if (context.initialFilters !== initialValues) {
+            setFiltered(true);
+          } else {
+            // restrict further filtering to the original game list
+            const appids = items.map(item => item.node.game.appid);
+            initialValues.filters.gameFilters.appid_in = appids;
+          }
+
+          const useDefaultBackground = items.length === 0;
+
+          return (
+            <BackgroundProvider
+              useDefault={useDefaultBackground}
+              src={
+                useDefaultBackground ? "" : items[0].node.game.backgroundImage
+              }
+            >
+              <div className={classnames.element("contentWrapper")}>
+                {drawerOpen && (
+                  <AdvancedFiltersForm
+                    initialValues={initialValues}
+                    drawerCloseHandler={() => setDrawerOpen(false)}
+                    items={items}
+                  />
+                )}
+                <Container
+                  className={classnames.element("headingContainer")}
+                  maxWidth="lg"
+                  disableGutters={true}
+                >
+                  <Box my={4}>
+                    <Typography
+                      className={classnames.element("heading")}
+                      variant="h2"
+                      gutterBottom={true}
+                    >
+                      {title}
+                    </Typography>
+                    <Typography
+                      className={classnames.element("subHeading")}
+                      variant="body1"
+                      gutterBottom={true}
+                    >
+                      {subtitle}
+                    </Typography>
+                  </Box>
+                  <Box my={4}>
+                    {!filtered && (
+                      <ButtonWithHoverFill
+                        handleClick={() => {
+                          context.setFilterOptions(context.initialFilters);
+                          setDrawerOpen(true);
+                        }}
+                        icon={mdiFilterVariant}
+                        label="filter"
+                        displayLabel={true}
+                      />
+                    )}
+                    {filtered && (
+                      <ButtonWithHoverFill
+                        handleClick={() => {
+                          context.setFilterOptions(context.initialFilters);
+                          setFiltered(false);
+                        }}
+                        icon={mdiFilterVariant}
+                        label="reset filters"
+                        displayLabel={true}
+                      />
+                    )}
+                  </Box>
+                </Container>
+                {items.length > 0 && (
+                  <FilteredGameList items={items} userDetails={userDetails} />
+                )}
+                {items.length === 0 && (
+                  <Typography variant="h1">Empty State Placeholder</Typography>
+                )}
+              </div>
+            </BackgroundProvider>
+          );
+        }}
+      </GamesFilterWidgetContextConsumer>
     </div>
   );
 };
@@ -206,18 +199,12 @@ MainContent.propTypes = {
   title: PropTypes.string.isRequired,
   // the subtitle to render for the content
   subtitle: PropTypes.string.isRequired,
-  // the background image path of the top result of the filtered list
-  featuredBackgroundUrl: PropTypes.string.isRequired,
   // the list of items to display
   items: PropTypes.array,
   // user information
   userDetails: PropTypes.array,
   // initial values for the advanced filters form
-  initialValues: PropTypes.object,
-  // the type of page that requested a GameFilterWidget
-  referrerType: PropTypes.oneOf(
-    Object.keys(REFERRER_TYPES_MAP).map(key => REFERRER_TYPES_MAP[key])
-  )
+  initialValues: PropTypes.object
 };
 
 /**
@@ -226,7 +213,6 @@ MainContent.propTypes = {
 export const GamesFilterWidget = props => {
   const classnames = GamesFilterWidget.classnames(props);
   const { initialFilters, title, subtitle } = props;
-  const [filteredDataSet, setFilteredDataset] = React.useState({});
   const [filterOptions, setFilterOptions] = React.useState(
     initialFilters ? initialFilters : {}
   );
@@ -235,15 +221,14 @@ export const GamesFilterWidget = props => {
     <div className={classnames.root()}>
       <GamesFilterWidgetContextProvider
         value={{
+          initialFilters,
           filterOptions,
-          setFilterOptions,
-          filteredDataSet
+          setFilterOptions
         }}
       >
         <FilterGamesQuery
           variables={filterOptions}
           classnames={classnames}
-          onDataReceived={setFilteredDataset}
           title={title}
           subtitle={subtitle}
         />
@@ -294,7 +279,7 @@ export const StyledGamesFilterWidget = withWidth()(
  * renders a Query that fetches a filtered list of games based on the options passed and returns a MainContent hydrated with data
  */
 export const FilterGamesQuery = props => {
-  const { variables, onDataReceived } = props;
+  const { variables } = props;
 
   return (
     <Query query={GAMES_FILTER_QUERY} variables={variables}>
@@ -309,15 +294,11 @@ export const FilterGamesQuery = props => {
         }
 
         // compile data for children
-        onDataReceived(data);
-        const featuredBackgroundUrl = get(data, ["recommendations", "edges"])[0]
-          .node.game.backgroundImage;
         const items = get(data, ["recommendations", "edges"], []);
         const userDetails = get(data, ["recommendations", "userDetails"], []);
 
         return (
           <MainContent
-            featuredBackgroundUrl={featuredBackgroundUrl}
             items={items}
             userDetails={userDetails}
             initialValues={variables}

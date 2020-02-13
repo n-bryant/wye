@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import get from "lodash.get";
 import uniq from "lodash.uniq";
+import wait from "waait";
 
 import createClassNameHelper from "@n_bryant/classnames-helper";
 import JSS_CLASS_NAME_PREFIX from "../../../lib/classNamePrefix";
@@ -14,7 +14,6 @@ import { mdiClose } from "@mdi/js";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import Drawer from "@material-ui/core/Drawer";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -27,6 +26,7 @@ import CheckboxFilterField from "../RecommendationsForm/CheckboxFilterField";
 import BooleanFilterField from "../RecommendationsForm/BooleanFilterField";
 import SliderFilterField from "../RecommendationsForm/SliderFilterField";
 import { GamesFilterWidgetContextConsumer } from "./GamesFilterWidget/";
+import OnClickOutsideWrapper from "../OnClickOutsideWrapper";
 import styles from "./AdvancedFiltersForm.styles";
 
 // available sort options
@@ -137,19 +137,21 @@ export const AdvancedFiltersForm = props => {
   const classnames = AdvancedFiltersForm.classnames(props);
   const {
     classes,
-    drawerOpen,
     drawerCloseHandler,
     formik,
-    hiddenFields
+    developerOptions,
+    publisherOptions,
+    genreOptions,
+    tagOptions,
+    gameList
   } = props;
   const [sortBy, setSortBy] = React.useState("USER_RATING");
   const [sortDirection, setSortDirection] = React.useState("DESC");
-  // console.log(formik);
+  const [closing, setClosing] = React.useState(false);
 
-  // close drawer and reset form values
+  // close drawer
   const handleClose = () => {
     drawerCloseHandler();
-    formik.resetForm();
   };
 
   // handler for changes to the sort by field
@@ -164,332 +166,317 @@ export const AdvancedFiltersForm = props => {
     formik.setFieldValue("sortOrder", event.target.value);
   };
 
-  return (
-    <GamesFilterWidgetContextConsumer>
-      {context => {
-        // compile contextual data to generate field options
-        const edges = get(
-          context,
-          ["filteredDataSet", "recommendations", "edges"],
-          []
-        );
-        const gameList = edges.map(edge => edge.node.game);
-        const publisherOptions = getCategoryOptions(gameList, "publishers");
-        const developerOptions = getCategoryOptions(gameList, "developers");
-        const genreOptions = getCategoryOptions(gameList, "genres");
+  // set closing and a small timeout to allow closing animation to play
+  const handleClickOutside = async () => {
+    setClosing(true);
+    await wait(250);
+    handleClose();
+  };
 
-        return (
-          <Drawer
-            className={classnames.root()}
-            classes={{
-              root: classes.drawer,
-              modal: classes.modal,
-              paperAnchorRight: classes.paper
-            }}
-            anchor="right"
-            open={drawerOpen}
-            onClose={handleClose}
-            ModalProps={{
-              disablePortal: true,
-              BackdropProps: {
-                invisible: true,
-                classes: {
-                  root: classes.backdrop
-                }
-              }
-            }}
-          >
-            <Container
-              className={classnames.element("drawerContent")}
-              disableGutters={true}
+  return (
+    <OnClickOutsideWrapper handleClickOutside={handleClickOutside} {...props}>
+      <Container
+        className={classnames.root({
+          closing
+        })}
+        disableGutters={true}
+      >
+        <Box className={classnames.element("closeButtonContainer")}>
+          <ButtonWithHoverFill
+            handleClick={handleClose}
+            icon={mdiClose}
+            label="Close"
+            displayLabel={false}
+          />
+        </Box>
+        <Box className={classnames.element("fieldsContainer")}>
+          <Form onSubmit={formik.handleSubmit}>
+            <Typography
+              className={classnames.element("fieldSectionTitle")}
+              variant="body1"
             >
-              <Box className={classnames.element("closeButtonContainer")}>
-                <ButtonWithHoverFill
-                  handleClick={handleClose}
-                  icon={mdiClose}
-                  label="Close"
-                  displayLabel={false}
-                />
-              </Box>
-              <Box className={classnames.element("fieldsContainer")}>
-                <Form>
-                  <Typography
-                    className={classnames.element("fieldSectionTitle")}
-                    variant="body1"
-                  >
-                    Users:
-                  </Typography>
-                  <Field name="users">
+              Users:
+            </Typography>
+            <Field name="users">
+              {({ field }) => (
+                <UsersField {...field} setFieldValue={formik.setFieldValue} />
+              )}
+            </Field>
+            {formik.values.users && formik.values.users.length > 0 && (
+              <Box className={classnames.element("fieldSection")} my={4}>
+                <Typography
+                  className={classnames.element("fieldSectionTitle")}
+                  variant="body1"
+                >
+                  Player Filters:
+                </Typography>
+                <Box my={2}>
+                  <Field name="filters">
                     {({ field }) => (
-                      <UsersField
+                      <CheckboxFilterField
                         {...field}
+                        label="Owned By -"
+                        type="ownedBy"
+                        category="playerFilters"
                         setFieldValue={formik.setFieldValue}
+                        options={formik.values.users}
                       />
                     )}
                   </Field>
-                  {formik.values.users && formik.values.users.length > 0 && (
-                    <Box className={classnames.element("fieldSection")} my={4}>
-                      <Typography
-                        className={classnames.element("fieldSectionTitle")}
-                        variant="body1"
-                      >
-                        Player Filters:
-                      </Typography>
-                      <Box my={2}>
-                        <Field name="filters">
-                          {({ field }) => (
-                            <CheckboxFilterField
-                              {...field}
-                              label="Owned By -"
-                              type="ownedBy"
-                              category="playerFilters"
-                              setFieldValue={formik.setFieldValue}
-                              options={formik.values.users}
-                            />
-                          )}
-                        </Field>
-                      </Box>
-                      <Box my={2}>
-                        <Field name="filters">
-                          {({ field }) => (
-                            <CheckboxFilterField
-                              {...field}
-                              label="Recently Played By -"
-                              type="recentlyPlayedBy"
-                              category="playerFilters"
-                              setFieldValue={formik.setFieldValue}
-                              options={formik.values.users}
-                            />
-                          )}
-                        </Field>
-                      </Box>
-                    </Box>
-                  )}
-                  <Box className={classnames.element("fieldSection")} my={4}>
-                    <Typography
-                      className={classnames.element("fieldSectionTitle")}
-                      variant="body1"
-                    >
-                      Game Filters:
-                    </Typography>
-                    <Box my={2}>
-                      <Field name="filters">
-                        {({ field }) => (
-                          <CheckboxFilterField
-                            {...field}
-                            label="Publishers -"
-                            type="publishers_in"
-                            category="gameFilters"
-                            setFieldValue={formik.setFieldValue}
-                            options={publisherOptions}
-                          />
-                        )}
-                      </Field>
-                    </Box>
-                    <Box my={2}>
-                      <Field name="filters">
-                        {({ field }) => (
-                          <CheckboxFilterField
-                            {...field}
-                            label="Developers -"
-                            type="developers_in"
-                            category="gameFilters"
-                            setFieldValue={formik.setFieldValue}
-                            options={developerOptions}
-                          />
-                        )}
-                      </Field>
-                    </Box>
-                    <Box my={2}>
-                      <Field name="filters">
-                        {({ field }) => (
-                          <CheckboxFilterField
-                            {...field}
-                            label="Genres -"
-                            type="genres_in"
-                            category="gameFilters"
-                            setFieldValue={formik.setFieldValue}
-                            options={genreOptions}
-                          />
-                        )}
-                      </Field>
-                    </Box>
-                    {!hiddenFields.some(item => item === "onSale") && (
-                      <React.Fragment>
-                        <Box my={2}>
-                          <Field name="filters">
-                            {({ field }) => (
-                              <BooleanFilterField
-                                {...field}
-                                label="Free to Play -"
-                                type="freeToPlay"
-                                setFieldValue={formik.setFieldValue}
-                              />
-                            )}
-                          </Field>
-                        </Box>
-                        <Box my={2}>
-                          <Field name="filters">
-                            {({ field }) => (
-                              <BooleanFilterField
-                                {...field}
-                                label="On Sale -"
-                                type="onSale"
-                                setFieldValue={formik.setFieldValue}
-                              />
-                            )}
-                          </Field>
-                        </Box>
-                      </React.Fragment>
+                </Box>
+                <Box my={2}>
+                  <Field name="filters">
+                    {({ field }) => (
+                      <CheckboxFilterField
+                        {...field}
+                        label="Recently Played By -"
+                        type="recentlyPlayedBy"
+                        category="playerFilters"
+                        setFieldValue={formik.setFieldValue}
+                        options={formik.values.users}
+                      />
                     )}
-                    <Box my={2}>
-                      <Field name="filters">
-                        {({ field }) => (
-                          <SliderFilterField
-                            {...field}
-                            label="User Rating -"
-                            min={getMinValue(gameList, "userRating")}
-                            max={getMaxValue(gameList, "userRating")}
-                            minType="userRating_lte"
-                            maxType="userRating_gte"
-                            setFieldValue={formik.setFieldValue}
-                            labelFormatHandler={val => val}
-                          />
-                        )}
-                      </Field>
-                    </Box>
-                    <Box my={2}>
-                      <Field name="filters">
-                        {({ field }) => (
-                          <SliderFilterField
-                            {...field}
-                            label="Discount -"
-                            min={getMinValue(gameList, "discount")}
-                            max={getMaxValue(gameList, "discount")}
-                            minType="discount_lte"
-                            maxType="discount_gte"
-                            setFieldValue={formik.setFieldValue}
-                            labelFormatHandler={val => `${val}%`}
-                          />
-                        )}
-                      </Field>
-                    </Box>
-                    <Box my={2}>
-                      <Field name="filters">
-                        {({ field }) => (
-                          <SliderFilterField
-                            {...field}
-                            label="Price -"
-                            min={getMinValue(gameList, "finalPrice")}
-                            max={getMaxValue(gameList, "finalPrice")}
-                            minType="finalPrice_lte"
-                            maxType="finalPrice_gte"
-                            setFieldValue={formik.setFieldValue}
-                            labelFormatHandler={val => formatCurrency(val)}
-                          />
-                        )}
-                      </Field>
-                    </Box>
-                  </Box>
-                  <Box className={classnames.element("fieldSection")} my={4}>
-                    <Typography
-                      className={classnames.element("fieldSectionTitle")}
-                      variant="body1"
-                    >
-                      Sorting:
-                    </Typography>
-                    <Box my={2}>
-                      <Field name="orderBy">
-                        {fieldProps => (
-                          <React.Fragment>
-                            <InputLabel
-                              className={classnames.element(
-                                "fieldSectionTitle"
-                              )}
-                              id="sort-by-select-label"
-                            >
-                              Sort By -
-                            </InputLabel>
-                            <Select
-                              labelId="sort-by-select-label"
-                              id="sort-by-select"
-                              value={sortBy}
-                              onChange={handleSortByChange}
-                              MenuProps={{
-                                classes: {
-                                  paper: classes.menuPaper
-                                }
-                              }}
-                            >
-                              {Object.keys(SORT_BY_OPTIONS).map(
-                                (key, index) => (
-                                  <MenuItem
-                                    className={classnames.element(
-                                      "selectOption"
-                                    )}
-                                    key={index}
-                                    value={key}
-                                  >
-                                    {SORT_BY_OPTIONS[key]}
-                                  </MenuItem>
-                                )
-                              )}
-                            </Select>
-                          </React.Fragment>
-                        )}
-                      </Field>
-                    </Box>
-                    <Box my={2}>
-                      <Field name="sortOrder">
-                        {fieldProps => (
-                          <React.Fragment>
-                            <InputLabel
-                              className={classnames.element(
-                                "fieldSectionTitle"
-                              )}
-                              id="sort-order-select-label"
-                            >
-                              Sort Direction -
-                            </InputLabel>
-                            <Select
-                              labelId="sort-order-select-label"
-                              id="sort-order-select"
-                              value={sortDirection}
-                              onChange={handleSortOrderChange}
-                              MenuProps={{
-                                classes: {
-                                  paper: classes.menuPaper
-                                }
-                              }}
-                            >
-                              {SORT_DIRECTION_OPTIONS.map((value, index) => (
-                                <MenuItem
-                                  className={classnames.element("selectOption")}
-                                  key={index}
-                                  value={value}
-                                >
-                                  {value}
-                                </MenuItem>
-                              ))}
-                            </Select>
-                          </React.Fragment>
-                        )}
-                      </Field>
-                    </Box>
-                  </Box>
-                </Form>
+                  </Field>
+                </Box>
               </Box>
-              <Box
-                my={4}
-                className={classnames.element("submitButtonContainer")}
+            )}
+            <Box className={classnames.element("fieldSection")} my={4}>
+              <Typography
+                className={classnames.element("fieldSectionTitle")}
+                variant="body1"
               >
-                <ActionButton label="Filter" />
+                Game Filters:
+              </Typography>
+              <Box my={2}>
+                <Field name="filters">
+                  {({ field }) => (
+                    <CheckboxFilterField
+                      {...field}
+                      label="Publishers -"
+                      type="publishers_in"
+                      category="gameFilters"
+                      setFieldValue={formik.setFieldValue}
+                      options={publisherOptions}
+                    />
+                  )}
+                </Field>
               </Box>
-            </Container>
-          </Drawer>
-        );
-      }}
-    </GamesFilterWidgetContextConsumer>
+              <Box my={2}>
+                <Field name="filters">
+                  {({ field }) => (
+                    <CheckboxFilterField
+                      {...field}
+                      label="Developers -"
+                      type="developers_in"
+                      category="gameFilters"
+                      setFieldValue={formik.setFieldValue}
+                      options={developerOptions}
+                    />
+                  )}
+                </Field>
+              </Box>
+              <Box my={2}>
+                <Field name="filters">
+                  {({ field }) => (
+                    <CheckboxFilterField
+                      {...field}
+                      label="Tags -"
+                      type="tags_in"
+                      category="gameFilters"
+                      setFieldValue={formik.setFieldValue}
+                      options={tagOptions}
+                    />
+                  )}
+                </Field>
+              </Box>
+              <Box my={2}>
+                <Field name="filters">
+                  {({ field }) => (
+                    <CheckboxFilterField
+                      {...field}
+                      label="Genres -"
+                      type="genres_in"
+                      category="gameFilters"
+                      setFieldValue={formik.setFieldValue}
+                      options={genreOptions}
+                    />
+                  )}
+                </Field>
+              </Box>
+              {!gameList.every(game => game.freeToPlay) &&
+                !gameList.every(game => game.onSale) && (
+                  <React.Fragment>
+                    <Box my={2}>
+                      <Field name="filters">
+                        {({ field }) => (
+                          <BooleanFilterField
+                            {...field}
+                            label="Free to Play -"
+                            type="freeToPlay"
+                            setFieldValue={formik.setFieldValue}
+                          />
+                        )}
+                      </Field>
+                    </Box>
+                    <Box my={2}>
+                      <Field name="filters">
+                        {({ field }) => (
+                          <BooleanFilterField
+                            {...field}
+                            label="On Sale -"
+                            type="onSale"
+                            setFieldValue={formik.setFieldValue}
+                          />
+                        )}
+                      </Field>
+                    </Box>
+                  </React.Fragment>
+                )}
+              <Box my={2}>
+                <Field name="filters">
+                  {({ field }) => (
+                    <SliderFilterField
+                      {...field}
+                      label="User Rating -"
+                      min={getMinValue(gameList, "userRating")}
+                      max={getMaxValue(gameList, "userRating")}
+                      minType="userRating_gte"
+                      maxType="userRating_lte"
+                      setFieldValue={formik.setFieldValue}
+                      labelFormatHandler={val => val}
+                    />
+                  )}
+                </Field>
+              </Box>
+              {!gameList.every(game => game.freeToPlay) && (
+                <React.Fragment>
+                  <Box my={2}>
+                    <Field name="filters">
+                      {({ field }) => (
+                        <SliderFilterField
+                          {...field}
+                          label="Discount -"
+                          min={getMinValue(gameList, "discount")}
+                          max={getMaxValue(gameList, "discount")}
+                          minType="discount_gte"
+                          maxType="discount_lte"
+                          setFieldValue={formik.setFieldValue}
+                          labelFormatHandler={val => `${val}%`}
+                        />
+                      )}
+                    </Field>
+                  </Box>
+                  <Box my={2}>
+                    <Field name="filters">
+                      {({ field }) => (
+                        <SliderFilterField
+                          {...field}
+                          label="Price -"
+                          min={getMinValue(gameList, "finalPrice")}
+                          max={getMaxValue(gameList, "finalPrice")}
+                          minType="finalPrice_gte"
+                          maxType="finalPrice_lte"
+                          setFieldValue={formik.setFieldValue}
+                          labelFormatHandler={val => formatCurrency(val)}
+                        />
+                      )}
+                    </Field>
+                  </Box>
+                </React.Fragment>
+              )}
+            </Box>
+            <Box className={classnames.element("fieldSection")} my={4}>
+              <Typography
+                className={classnames.element("fieldSectionTitle")}
+                variant="body1"
+              >
+                Sorting:
+              </Typography>
+              <Box my={2}>
+                <Field name="orderBy">
+                  {_fieldProps => (
+                    <React.Fragment>
+                      <InputLabel
+                        className={classnames.element("fieldSectionTitle")}
+                        id="sort-by-select-label"
+                      >
+                        Sort By -
+                      </InputLabel>
+                      <Select
+                        labelId="sort-by-select-label"
+                        id="sort-by-select"
+                        value={sortBy}
+                        onChange={handleSortByChange}
+                        MenuProps={{
+                          classes: {
+                            paper: classes.menuPaper
+                          }
+                        }}
+                      >
+                        {Object.keys(SORT_BY_OPTIONS).map((key, index) => (
+                          <MenuItem
+                            className={classnames.element("selectOption")}
+                            key={index}
+                            value={key}
+                          >
+                            {SORT_BY_OPTIONS[key]}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </React.Fragment>
+                  )}
+                </Field>
+              </Box>
+              <Box my={2}>
+                <Field name="sortOrder">
+                  {_fieldProps => (
+                    <React.Fragment>
+                      <InputLabel
+                        className={classnames.element("fieldSectionTitle")}
+                        id="sort-order-select-label"
+                      >
+                        Sort Direction -
+                      </InputLabel>
+                      <Select
+                        labelId="sort-order-select-label"
+                        id="sort-order-select"
+                        value={sortDirection}
+                        onChange={handleSortOrderChange}
+                        MenuProps={{
+                          classes: {
+                            paper: classes.menuPaper
+                          }
+                        }}
+                      >
+                        {SORT_DIRECTION_OPTIONS.map((value, index) => (
+                          <MenuItem
+                            className={classnames.element("selectOption")}
+                            key={index}
+                            value={value}
+                          >
+                            {value}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </React.Fragment>
+                  )}
+                </Field>
+              </Box>
+            </Box>
+          </Form>
+        </Box>
+        <Box my={4} className={classnames.element("submitButtonContainer")}>
+          <ActionButton
+            label="Filter"
+            disabled={formik.isSubmitting || !formik.dirty}
+            onClick={() => {
+              formik.submitForm();
+              drawerCloseHandler();
+            }}
+          />
+        </Box>
+      </Container>
+    </OnClickOutsideWrapper>
   );
 };
 AdvancedFiltersForm.classnames = createClassNameHelper(
@@ -499,11 +486,7 @@ AdvancedFiltersForm.propTypes = {
   // styles to apply
   classes: PropTypes.shape({
     root: PropTypes.string,
-    drawer: PropTypes.string,
-    drawerContent: PropTypes.string,
-    modal: PropTypes.string,
-    paper: PropTypes.string,
-    backdrop: PropTypes.string,
+    closing: PropTypes.string,
     closeButtonContainer: PropTypes.string,
     fieldsContainer: PropTypes.string,
     fieldSection: PropTypes.string,
@@ -512,14 +495,20 @@ AdvancedFiltersForm.propTypes = {
     selectOption: PropTypes.string,
     submitButtonContainer: PropTypes.string
   }),
-  // whether the drawer should be open
-  drawerOpen: PropTypes.bool,
   // handler for closing the drawer
   drawerCloseHandler: PropTypes.func,
   // formik values
   formik: PropTypes.object,
-  // list of fields not hide
-  hiddenFields: PropTypes.array
+  // list of developer options
+  developerOptions: PropTypes.array,
+  // list of publisher options
+  publisherOptions: PropTypes.array,
+  // list of genre options
+  genreOptions: PropTypes.array,
+  // list of tag options
+  tagOptions: PropTypes.array,
+  // list of games
+  gameList: PropTypes.array
 };
 AdvancedFiltersForm.defaultProps = {
   classes: {}
@@ -534,25 +523,53 @@ export const StyledAdvancedFiltersForm = withStyles(styles)(
  * renders an AdvancedFiltersFormWithFormik wrapped by Formik
  */
 export const AdvancedFiltersFormWithFormik = props => {
-  let { initialValues } = props;
+  let { initialValues, items } = props;
   const FORM_VALUE_KEYS_MAP = {
     users: [],
     filters: {},
     orderBy: [],
     sortOrder: "DESC"
   };
+  let adjustedInitialValues = { ...initialValues };
   Object.keys(FORM_VALUE_KEYS_MAP).forEach(key => {
-    if (!initialValues.hasOwnProperty(key)) {
-      initialValues[key] = FORM_VALUE_KEYS_MAP[key];
+    if (!adjustedInitialValues.hasOwnProperty(key)) {
+      adjustedInitialValues[key] = FORM_VALUE_KEYS_MAP[key];
     }
   });
 
   return (
-    <Formik initialValues={initialValues}>
-      {formikProps => {
-        return <StyledAdvancedFiltersForm formik={formikProps} {...props} />;
+    <GamesFilterWidgetContextConsumer>
+      {context => {
+        // compile contextual data to generate field options
+        const gameList = items.map(edge => edge.node.game);
+        const publisherOptions = getCategoryOptions(gameList, "publishers");
+        const developerOptions = getCategoryOptions(gameList, "developers");
+        const genreOptions = getCategoryOptions(gameList, "genres");
+        const tagOptions = getCategoryOptions(gameList, "tags");
+
+        const handleSubmit = payload => {
+          context.setFilterOptions(payload);
+        };
+
+        return (
+          <Formik initialValues={adjustedInitialValues} onSubmit={handleSubmit}>
+            {formikProps => {
+              return (
+                <StyledAdvancedFiltersForm
+                  formik={formikProps}
+                  publisherOptions={publisherOptions}
+                  developerOptions={developerOptions}
+                  genreOptions={genreOptions}
+                  tagOptions={tagOptions}
+                  gameList={gameList}
+                  {...props}
+                />
+              );
+            }}
+          </Formik>
+        );
       }}
-    </Formik>
+    </GamesFilterWidgetContextConsumer>
   );
 };
 AdvancedFiltersFormWithFormik.propTypes = {

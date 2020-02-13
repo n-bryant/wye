@@ -16,8 +16,8 @@ describe("SliderFilterField", () => {
     label: "label",
     min: 0,
     max: 100,
-    minType: "discount_lte",
-    maxType: "discount_gte",
+    minType: "discount_gte",
+    maxType: "discount_lte",
     value: {
       gameFilters: {}
     },

@@ -108,19 +108,19 @@ SliderFilterField.propTypes = {
   max: PropTypes.number.isRequired,
   // the type of the min value
   minType: PropTypes.oneOf([
-    "userRating_lte",
-    "ownersMin_lte",
-    "ownersMax_lte",
-    "discount_lte",
-    "finalPrice_lte"
-  ]).isRequired,
-  // the type of the max value
-  maxType: PropTypes.oneOf([
     "userRating_gte",
     "ownersMin_gte",
     "ownersMax_gte",
     "discount_gte",
     "finalPrice_gte"
+  ]).isRequired,
+  // the type of the max value
+  maxType: PropTypes.oneOf([
+    "userRating_lte",
+    "ownersMin_lte",
+    "ownersMax_lte",
+    "discount_lte",
+    "finalPrice_lte"
   ]).isRequired,
   // playerFilters field value from Formik form
   value: PropTypes.object,
