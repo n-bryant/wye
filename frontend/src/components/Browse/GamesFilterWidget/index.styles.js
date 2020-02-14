@@ -30,6 +30,10 @@ const styles = theme => ({
       color: theme.palette.common.blue6,
       background: "none"
     }
+  },
+  actionsContainer: {
+    display: "flex",
+    justifyContent: "space-between"
   }
 });
 export default styles;

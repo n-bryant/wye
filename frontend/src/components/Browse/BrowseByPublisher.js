@@ -12,6 +12,8 @@ import { withStyles } from "@material-ui/core/styles";
 
 import { useRouter } from "next/router";
 
+import { mdiArrowLeftBold } from "@mdi/js";
+
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -25,6 +27,7 @@ import {
   getTotalPages
 } from "../../../lib/pagingUtilities";
 import LoadingState from "../../components/LoadingState";
+import ButtonWithHoverFill from "../../components/ButtonWithHoverFill";
 import PaginationWidget from "../PaginationWidget";
 import BackgroundProvider from "../../components/BackgroundProvider";
 import QuickLink from "../../components/QuickLink";
@@ -58,6 +61,17 @@ export const BrowseByPublisher = props => {
 
     return (
       <React.Fragment>
+        <Box my={2}>
+          <ButtonWithHoverFill
+            icon={mdiArrowLeftBold}
+            handleClick={() => {
+              router.back();
+            }}
+            label="back"
+            displayLabel={true}
+            transformText={true}
+          />
+        </Box>
         <Box className={classnames.element("contentContainer")} my={4}>
           <Typography
             className={classnames.element("heading")}

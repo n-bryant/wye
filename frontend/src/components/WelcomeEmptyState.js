@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import get from "lodash.get";
+import { useRouter } from "next/router";
 
 import { withStyles } from "@material-ui/core/styles";
 import createClassNameHelper from "@n_bryant/classnames-helper";
@@ -10,7 +10,6 @@ import JSS_CLASS_NAME_PREFIX from "../../lib/classNamePrefix";
 import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 
-import { AppContextConsumer, ACTIONS, CONTENT_OPTIONS } from "../../pages/_app";
 import ActionButton from "./ActionButton";
 import styles from "./WelcomeEmptyState.styles";
 
@@ -20,7 +19,7 @@ import styles from "./WelcomeEmptyState.styles";
  */
 export const WelcomeEmptyState = props => {
   const classnames = WelcomeEmptyState.classnames(props);
-  const { dispatch } = props;
+  const router = useRouter();
   const buttonLabel = "Get Started";
 
   return (
@@ -64,10 +63,7 @@ export const WelcomeEmptyState = props => {
         <ActionButton
           label={buttonLabel}
           onClick={() => {
-            dispatch({
-              type: ACTIONS.SET_CONTENT,
-              value: CONTENT_OPTIONS.FORM
-            });
+            router.push("/browse/advancedsearch");
           }}
         />
       </div>
@@ -96,16 +92,4 @@ WelcomeEmptyState.defaultProps = {
 // apply styles
 export const StyledWelcomeEmptyState = withStyles(styles)(WelcomeEmptyState);
 
-/**
- * Renders a StyledWelcomeEmptyState with app context
- */
-export const WelcomeEmptyStateWithContext = props => (
-  <AppContextConsumer>
-    {context => {
-      const dispatch = get(context, "dispatch", () => {});
-      return <StyledWelcomeEmptyState dispatch={dispatch} {...props} />;
-    }}
-  </AppContextConsumer>
-);
-
-export default WelcomeEmptyStateWithContext;
+export default StyledWelcomeEmptyState;

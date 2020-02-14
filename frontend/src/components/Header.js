@@ -8,17 +8,31 @@ import { withStyles } from "@material-ui/core/styles";
 import Link from "next/link";
 import Icon from "@mdi/react";
 import { mdiGithubCircle } from "@mdi/js";
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
-import { AppContextConsumer, ACTIONS, CONTENT_OPTIONS } from "../../pages/_app";
 import styles from "./Header.styles.js";
 
 /**
- * renders an AppBar with home, faq, and github links
+ * renders an AppBar with a Browse Menu and Toolbar with home, faq, and github links
  */
 export const Header = props => {
   const classnames = Header.classnames(props);
-  const { dispatch } = props;
+  const { classes } = props;
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleMenu = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <AppBar position="static" className={classnames.root()}>
@@ -30,34 +44,123 @@ export const Header = props => {
                 withNoHoverDecoration: true
               })}
             >
-              <Typography
-                className={classnames.element("title")}
-                variant="h1"
-                onClick={() =>
-                  dispatch({
-                    type: ACTIONS.SET_CONTENT,
-                    value: CONTENT_OPTIONS.WELCOME
-                  })
-                }
-              >
+              <Typography className={classnames.element("title")} variant="h1">
                 Wye
               </Typography>
             </a>
           </Link>
-          <Link href="/browse">
-            <a
-              className={classnames.element("link", {
-                withNoHoverDecoration: true
-              })}
+          <Button
+            className={classnames.element("browseMenuButton")}
+            aria-label="browse menu launcher"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleMenu}
+          >
+            Browse
+          </Button>
+          <Menu
+            id="menu-appbar"
+            classes={{
+              paper: classes.browseMenu
+            }}
+            anchorEl={anchorEl}
+            getContentAnchorEl={null}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left"
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left"
+            }}
+            open={open}
+            onClose={handleClose}
+          >
+            <Typography
+              className={classnames.element("menuSectionTitle")}
+              variant="body1"
+              gutterBottom={true}
             >
-              <Typography
-                className={classnames.element("browseLink")}
-                variant="h3"
-              >
-                Browse
-              </Typography>
-            </a>
-          </Link>
+              Browse Featured:
+            </Typography>
+            <MenuItem onClick={handleClose} disableGutters={true}>
+              <Link href="/browse">
+                <a className={classnames.element("menuLink")}>
+                  <Typography variant="body2">Featured</Typography>
+                </a>
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose} disableGutters={true}>
+              <Link href="/browse/advancedsearch">
+                <a className={classnames.element("menuLink")}>
+                  <Typography variant="body2">Advanced Search</Typography>
+                </a>
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose} disableGutters={true}>
+              <Link href="/browse/top100">
+                <a className={classnames.element("menuLink")}>
+                  <Typography variant="body2">Top 100</Typography>
+                </a>
+              </Link>
+            </MenuItem>
+            <Typography
+              className={classnames.element("menuSectionTitle")}
+              variant="body1"
+              gutterBottom={true}
+            >
+              Browse Sales:
+            </Typography>
+            <MenuItem onClick={handleClose} disableGutters={true}>
+              <Link href="/browse/sales">
+                <a className={classnames.element("menuLink")}>
+                  <Typography variant="body2">All Sales</Typography>
+                </a>
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose} disableGutters={true}>
+              <Link href="/browse/under10">
+                <a className={classnames.element("menuLink")}>
+                  <Typography variant="body2">Under $10</Typography>
+                </a>
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose} disableGutters={true}>
+              <Link href="/browse/under5">
+                <a className={classnames.element("menuLink")}>
+                  <Typography variant="body2">Under $5</Typography>
+                </a>
+              </Link>
+            </MenuItem>
+            <Typography
+              className={classnames.element("menuSectionTitle")}
+              variant="body1"
+              gutterBottom={true}
+            >
+              Browse by Category:
+            </Typography>
+            <MenuItem onClick={handleClose} disableGutters={true}>
+              <Link href="/browse/publishers">
+                <a className={classnames.element("menuLink")}>
+                  <Typography variant="body2">Publishers</Typography>
+                </a>
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose} disableGutters={true}>
+              <Link href="/browse/genres">
+                <a className={classnames.element("menuLink")}>
+                  <Typography variant="body2">Genres</Typography>
+                </a>
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose} disableGutters={true}>
+              <Link href="/browse/tags">
+                <a className={classnames.element("menuLink")}>
+                  <Typography variant="body2">Tags</Typography>
+                </a>
+              </Link>
+            </MenuItem>
+          </Menu>
         </div>
         <div className={classnames.element("linksContainer")}>
           <Link href="/faq">
@@ -88,24 +191,18 @@ Header.propTypes = {
     linksContainer: PropTypes.string,
     link: PropTypes.string,
     linkWithNoHoverDecoration: PropTypes.string,
-    githubIcon: PropTypes.string
+    githubIcon: PropTypes.string,
+    browseMenuButton: PropTypes.string,
+    browseMenu: PropTypes.string,
+    menuSectionTitle: PropTypes.string,
+    menuLink: PropTypes.string
   })
 };
 Header.defaultProps = {
   classes: {}
 };
 
+// apply styles
 export const StyledHeader = withStyles(styles)(Header);
 
-/**
- * Renders a StyledHeader with app context
- */
-export const HeaderWithContext = props => (
-  <AppContextConsumer>
-    {({ dispatch }) => {
-      return <StyledHeader dispatch={dispatch} {...props} />;
-    }}
-  </AppContextConsumer>
-);
-
-export default HeaderWithContext;
+export default StyledHeader;

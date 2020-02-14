@@ -13,16 +13,51 @@ const styles = theme => ({
   },
   mainNav: {
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    height: "100%"
   },
   title: {
     cursor: "pointer",
     paddingRight: theme.spacing(2),
     borderRight: `1px solid ${theme.palette.common.white}`
   },
-  browseLink: {
-    marginLeft: "0",
-    fontWeight: "300"
+  browseMenuButton: {
+    padding: "0",
+    textTransform: "none",
+    height: "100%",
+    fontWeight: "300",
+    fontSize: "1.25rem",
+    marginLeft: "0.5rem",
+    "&:hover": {
+      background: "none"
+    }
+  },
+  browseMenu: {
+    background: theme.palette.panel.background,
+    borderTopLeftRadius: "0",
+    borderTopRightRadius: "0",
+    padding: "1rem"
+  },
+  menuSectionTitle: {
+    color: theme.palette.common.yellow1,
+    borderBottom: `1px solid ${theme.palette.common.yellow1}`,
+    padding: "0.5rem 0"
+  },
+  menuLink: {
+    color: theme.palette.common.white,
+    textDecoration: "none",
+    "&:hover": {
+      color: theme.palette.link.default
+    },
+    "&:active": {
+      color: theme.palette.link.active
+    },
+    "&:visited": {
+      color: theme.palette.common.white,
+      "&:hover": {
+        color: theme.palette.link.default
+      }
+    }
   },
   linksContainer: {
     display: "flex",
@@ -35,7 +70,10 @@ const styles = theme => ({
     "&:active, &:hover": {
       textDecoration: "underline"
     },
-    margin: "0 .5rem"
+    margin: "0 .5rem",
+    height: "100%",
+    display: "flex",
+    alignItems: "center"
   },
   linkWithNoHoverDecoration: {
     "&:hover": {

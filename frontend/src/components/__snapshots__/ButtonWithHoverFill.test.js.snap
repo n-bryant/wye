@@ -3,7 +3,7 @@
 exports[`ButtonWithHoverFill should render successfully 1`] = `
 <WithStyles(ForwardRef(Button))
   aria-label="label"
-  className="wye-ButtonWithHoverFill root"
+  className="wye-ButtonWithHoverFill wye-ButtonWithHoverFill--transformText root"
   onClick={[MockFunction]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}

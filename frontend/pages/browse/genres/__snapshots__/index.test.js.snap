@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GenresPage should render successfully 1`] = `
+<div
+  className="wye-GenresPage"
+>
+  <BackgroundQuery
+    useDefault={true}
+  >
+    <GenresQuery />
+  </BackgroundQuery>
+</div>
+`;

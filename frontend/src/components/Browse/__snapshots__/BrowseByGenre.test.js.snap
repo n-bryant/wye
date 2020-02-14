@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BrowseByGenre should render successfully 1`] = `
+<Styled(MuiBox)
+  className="wye-BrowseByGenre root"
+  my={8}
+>
+  <WithStyles(ForwardRef(Typography))
+    className="wye-BrowseByGenre__title title"
+    variant="h2"
+  >
+    Browse By Genre
+  </WithStyles(ForwardRef(Typography))>
+  <WithStyles(ForwardRef(Grid))
+    container={true}
+    spacing={1}
+  >
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      key="0"
+      xs={6}
+    >
+      <WithStyles(QuickLink)
+        classes={Object {}}
+        fixedDimensions={true}
+        label="foo"
+        linkAs="/browse/genres/foo"
+        linkHref="/browse/genres/[name]"
+      />
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+</Styled(MuiBox)>
+`;
