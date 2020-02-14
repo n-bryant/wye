@@ -8,6 +8,9 @@ const styles = theme => ({
       color: theme.palette.common.blue6
     }
   },
+  transformText: {
+    textTransform: "uppercase"
+  },
   icon: {
     fill: theme.palette.common.white,
     height: "1rem"

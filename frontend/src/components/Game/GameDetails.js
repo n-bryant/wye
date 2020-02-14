@@ -8,14 +8,13 @@ import { withWidth } from "@material-ui/core/";
 import createClassNameHelper from "@n_bryant/classnames-helper";
 import JSS_CLASS_NAME_PREFIX from "../../../lib/classNamePrefix";
 
-import Icon from "@mdi/react";
 import { mdiArrowLeftBold } from "@mdi/js";
 
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 
 import BackgroundProvider from "../BackgroundProvider";
+import ButtonWithHoverFill from "../ButtonWithHoverFill";
 import MediaCarousel from "./MediaCarousel";
 import ReleaseInfoBlock from "./ReleaseInfoBlock";
 import PriceInfoBlock from "./PriceInfoBlock";
@@ -56,7 +55,6 @@ const useStyles = makeStyles({
     marginLeft: "-4px"
   },
   backButtonContainer: {
-    padding: "0 !important",
     marginBottom: "4px"
   },
   backButton: {
@@ -118,18 +116,15 @@ export const GameDetails = props => {
             xs={12}
             lg={8}
           >
-            <Button
-              className={classnames.element("backButton")}
-              onClick={() => {
+            <ButtonWithHoverFill
+              icon={mdiArrowLeftBold}
+              handleClick={() => {
                 router.back();
               }}
-            >
-              <Icon
-                className={classnames.element("icon")}
-                path={mdiArrowLeftBold}
-              />
-              <Typography variant="body2">back</Typography>
-            </Button>
+              label="back"
+              displayLabel={true}
+              transformText={true}
+            />
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h1">{details.name}</Typography>

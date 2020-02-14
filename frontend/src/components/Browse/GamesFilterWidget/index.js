@@ -10,7 +10,9 @@ import get from "lodash.get";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 
-import { mdiFilterVariant } from "@mdi/js";
+import { useRouter } from "next/router";
+
+import { mdiFilterVariant, mdiArrowLeftBold } from "@mdi/js";
 
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
@@ -114,6 +116,7 @@ export const MainContent = ({
   filterOptions,
   fullSearch
 }) => {
+  const router = useRouter();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [filtered, setFiltered] = React.useState(false);
   let gameList = [];
@@ -155,6 +158,42 @@ export const MainContent = ({
                     gameList={gameList}
                   />
                 )}
+                <Box my={2} className={classnames.element("actionsContainer")}>
+                  <ButtonWithHoverFill
+                    icon={mdiArrowLeftBold}
+                    handleClick={() => {
+                      router.back();
+                    }}
+                    label="back"
+                    displayLabel={true}
+                    transformText={true}
+                  />
+                  {!filtered && (
+                    <ButtonWithHoverFill
+                      handleClick={() => {
+                        context.setFilterCriteria(context.initialFilters);
+                        setDrawerOpen(true);
+                      }}
+                      icon={mdiFilterVariant}
+                      label="filter"
+                      displayLabel={true}
+                      transformText={true}
+                    />
+                  )}
+                  {filtered && (
+                    <ButtonWithHoverFill
+                      handleClick={() => {
+                        setCurrentPage(1);
+                        context.setFilterCriteria(context.initialFilters);
+                        setFiltered(false);
+                      }}
+                      icon={mdiFilterVariant}
+                      label="reset filters"
+                      displayLabel={true}
+                      transformText={true}
+                    />
+                  )}
+                </Box>
                 <Container
                   className={classnames.element("headingContainer")}
                   maxWidth="lg"
@@ -175,31 +214,6 @@ export const MainContent = ({
                     >
                       {subtitle}
                     </Typography>
-                  </Box>
-                  <Box my={4}>
-                    {!filtered && (
-                      <ButtonWithHoverFill
-                        handleClick={() => {
-                          context.setFilterCriteria(context.initialFilters);
-                          setDrawerOpen(true);
-                        }}
-                        icon={mdiFilterVariant}
-                        label="filter"
-                        displayLabel={true}
-                      />
-                    )}
-                    {filtered && (
-                      <ButtonWithHoverFill
-                        handleClick={() => {
-                          setCurrentPage(1);
-                          context.setFilterCriteria(context.initialFilters);
-                          setFiltered(false);
-                        }}
-                        icon={mdiFilterVariant}
-                        label="reset filters"
-                        displayLabel={true}
-                      />
-                    )}
                   </Box>
                 </Container>
                 {items.length > 0 && (
@@ -290,7 +304,10 @@ GamesFilterWidget.propTypes = {
     contentWrapper: PropTypes.string,
     mainContent: PropTypes.string,
     heading: PropTypes.string,
-    subHeading: PropTypes.string
+    subHeading: PropTypes.string,
+    headingContainer: PropTypes.string,
+    advFilterButton: PropTypes.string,
+    actionsContainer: PropTypes.string
   }),
   // width value from material-ui
   width: PropTypes.string,

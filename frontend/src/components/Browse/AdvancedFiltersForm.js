@@ -16,6 +16,7 @@ import Typography from "@material-ui/core/Typography";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 import formatCurrency from "../../../lib/formatCurrency";
 import ActionButton from "../ActionButton";
@@ -25,7 +26,6 @@ import CheckboxFilterField from "../RecommendationsForm/CheckboxFilterField";
 import BooleanFilterField from "../RecommendationsForm/BooleanFilterField";
 import SliderFilterField from "../RecommendationsForm/SliderFilterField";
 import { GamesFilterWidgetContextConsumer } from "./GamesFilterWidget/";
-import OnClickOutsideWrapper from "../OnClickOutsideWrapper";
 import styles from "./AdvancedFiltersForm.styles";
 
 // available sort options
@@ -89,7 +89,7 @@ export const AdvancedFiltersForm = props => {
   };
 
   return (
-    <OnClickOutsideWrapper handleClickOutside={handleClickOutside}>
+    <ClickAwayListener onClickAway={handleClickOutside}>
       <Container
         className={classnames.root({
           closing
@@ -98,7 +98,7 @@ export const AdvancedFiltersForm = props => {
       >
         <Box className={classnames.element("closeButtonContainer")}>
           <ButtonWithHoverFill
-            handleClick={handleClose}
+            handleClick={handleClickOutside}
             icon={mdiClose}
             label="Close"
             displayLabel={false}
@@ -398,7 +398,7 @@ export const AdvancedFiltersForm = props => {
           </React.Fragment>
         )}
       </Container>
-    </OnClickOutsideWrapper>
+    </ClickAwayListener>
   );
 };
 AdvancedFiltersForm.classnames = createClassNameHelper(

@@ -4,7 +4,9 @@ exports[`Page should render its children wrapped with the material theme and css
 <div
   className="wye-Page root"
 >
-  <HeaderWithContext />
+  <WithStyles(Header)
+    classes={Object {}}
+  />
   <div
     className="wye-Page__innerContent innerContent"
   >

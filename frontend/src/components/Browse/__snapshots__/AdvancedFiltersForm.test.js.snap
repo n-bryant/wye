@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AdvancedFiltersForm should render successfully 1`] = `
-<WithStyles(OnClickOutsideWrapper)
-  handleClickOutside={[Function]}
+<ForwardRef(ClickAwayListener)
+  onClickAway={[Function]}
 >
   <WithStyles(ForwardRef(Container))
     className="wye-AdvancedFiltersForm root"
@@ -169,7 +169,7 @@ exports[`AdvancedFiltersForm should render successfully 1`] = `
       />
     </Styled(MuiBox)>
   </WithStyles(ForwardRef(Container))>
-</WithStyles(OnClickOutsideWrapper)>
+</ForwardRef(ClickAwayListener)>
 `;
 
 exports[`AdvancedFiltersFormWithFormik should render successfully 1`] = `

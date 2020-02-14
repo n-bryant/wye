@@ -19,27 +19,229 @@ exports[`Header should render successfully 1`] = `
         >
           <WithStyles(ForwardRef(Typography))
             className="wye-Header__title title"
-            onClick={[Function]}
             variant="h1"
           >
             Wye
           </WithStyles(ForwardRef(Typography))>
         </a>
       </Link>
-      <Link
-        href="/browse"
+      <WithStyles(ForwardRef(Button))
+        aria-controls="menu-appbar"
+        aria-haspopup="true"
+        aria-label="browse menu launcher"
+        className="wye-Header__browseMenuButton browseMenuButton"
+        onClick={[Function]}
       >
-        <a
-          className="wye-Header__link wye-Header__link--withNoHoverDecoration link linkWithNoHoverDecoration"
+        Browse
+      </WithStyles(ForwardRef(Button))>
+      <WithStyles(ForwardRef(Menu))
+        anchorEl={null}
+        anchorOrigin={
+          Object {
+            "horizontal": "left",
+            "vertical": "bottom",
+          }
+        }
+        classes={
+          Object {
+            "paper": "browseMenu",
+          }
+        }
+        getContentAnchorEl={null}
+        id="menu-appbar"
+        onClose={[Function]}
+        open={false}
+        transformOrigin={
+          Object {
+            "horizontal": "left",
+            "vertical": "top",
+          }
+        }
+      >
+        <WithStyles(ForwardRef(Typography))
+          className="wye-Header__menuSectionTitle menuSectionTitle"
+          gutterBottom={true}
+          variant="body1"
         >
-          <WithStyles(ForwardRef(Typography))
-            className="wye-Header__browseLink browseLink"
-            variant="h3"
+          Browse Featured:
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(MenuItem))
+          disableGutters={true}
+          onClick={[Function]}
+        >
+          <Link
+            href="/browse"
           >
-            Browse
-          </WithStyles(ForwardRef(Typography))>
-        </a>
-      </Link>
+            <a
+              className="wye-Header__menuLink menuLink"
+            >
+              <WithStyles(ForwardRef(Typography))
+                variant="body2"
+              >
+                Featured
+              </WithStyles(ForwardRef(Typography))>
+            </a>
+          </Link>
+        </WithStyles(ForwardRef(MenuItem))>
+        <WithStyles(ForwardRef(MenuItem))
+          disableGutters={true}
+          onClick={[Function]}
+        >
+          <Link
+            href="/browse/advancedsearch"
+          >
+            <a
+              className="wye-Header__menuLink menuLink"
+            >
+              <WithStyles(ForwardRef(Typography))
+                variant="body2"
+              >
+                Advanced Search
+              </WithStyles(ForwardRef(Typography))>
+            </a>
+          </Link>
+        </WithStyles(ForwardRef(MenuItem))>
+        <WithStyles(ForwardRef(MenuItem))
+          disableGutters={true}
+          onClick={[Function]}
+        >
+          <Link
+            href="/browse/top100"
+          >
+            <a
+              className="wye-Header__menuLink menuLink"
+            >
+              <WithStyles(ForwardRef(Typography))
+                variant="body2"
+              >
+                Top 100
+              </WithStyles(ForwardRef(Typography))>
+            </a>
+          </Link>
+        </WithStyles(ForwardRef(MenuItem))>
+        <WithStyles(ForwardRef(Typography))
+          className="wye-Header__menuSectionTitle menuSectionTitle"
+          gutterBottom={true}
+          variant="body1"
+        >
+          Browse Sales:
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(MenuItem))
+          disableGutters={true}
+          onClick={[Function]}
+        >
+          <Link
+            href="/browse/sales"
+          >
+            <a
+              className="wye-Header__menuLink menuLink"
+            >
+              <WithStyles(ForwardRef(Typography))
+                variant="body2"
+              >
+                All Sales
+              </WithStyles(ForwardRef(Typography))>
+            </a>
+          </Link>
+        </WithStyles(ForwardRef(MenuItem))>
+        <WithStyles(ForwardRef(MenuItem))
+          disableGutters={true}
+          onClick={[Function]}
+        >
+          <Link
+            href="/browse/under10"
+          >
+            <a
+              className="wye-Header__menuLink menuLink"
+            >
+              <WithStyles(ForwardRef(Typography))
+                variant="body2"
+              >
+                Under $10
+              </WithStyles(ForwardRef(Typography))>
+            </a>
+          </Link>
+        </WithStyles(ForwardRef(MenuItem))>
+        <WithStyles(ForwardRef(MenuItem))
+          disableGutters={true}
+          onClick={[Function]}
+        >
+          <Link
+            href="/browse/under5"
+          >
+            <a
+              className="wye-Header__menuLink menuLink"
+            >
+              <WithStyles(ForwardRef(Typography))
+                variant="body2"
+              >
+                Under $5
+              </WithStyles(ForwardRef(Typography))>
+            </a>
+          </Link>
+        </WithStyles(ForwardRef(MenuItem))>
+        <WithStyles(ForwardRef(Typography))
+          className="wye-Header__menuSectionTitle menuSectionTitle"
+          gutterBottom={true}
+          variant="body1"
+        >
+          Browse by Category:
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(MenuItem))
+          disableGutters={true}
+          onClick={[Function]}
+        >
+          <Link
+            href="/browse/publishers"
+          >
+            <a
+              className="wye-Header__menuLink menuLink"
+            >
+              <WithStyles(ForwardRef(Typography))
+                variant="body2"
+              >
+                Publishers
+              </WithStyles(ForwardRef(Typography))>
+            </a>
+          </Link>
+        </WithStyles(ForwardRef(MenuItem))>
+        <WithStyles(ForwardRef(MenuItem))
+          disableGutters={true}
+          onClick={[Function]}
+        >
+          <Link
+            href="/browse/genres"
+          >
+            <a
+              className="wye-Header__menuLink menuLink"
+            >
+              <WithStyles(ForwardRef(Typography))
+                variant="body2"
+              >
+                Genres
+              </WithStyles(ForwardRef(Typography))>
+            </a>
+          </Link>
+        </WithStyles(ForwardRef(MenuItem))>
+        <WithStyles(ForwardRef(MenuItem))
+          disableGutters={true}
+          onClick={[Function]}
+        >
+          <Link
+            href="/browse/tags"
+          >
+            <a
+              className="wye-Header__menuLink menuLink"
+            >
+              <WithStyles(ForwardRef(Typography))
+                variant="body2"
+              >
+                Tags
+              </WithStyles(ForwardRef(Typography))>
+            </a>
+          </Link>
+        </WithStyles(ForwardRef(MenuItem))>
+      </WithStyles(ForwardRef(Menu))>
     </div>
     <div
       className="wye-Header__linksContainer linksContainer"

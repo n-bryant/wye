@@ -16,19 +16,21 @@ import styles from "./ButtonWithHoverFill.styles";
  */
 export const ButtonWithHoverFill = props => {
   const classnames = ButtonWithHoverFill.classnames(props);
-  const { icon, label, displayLabel, handleClick } = props;
+  const { icon, label, displayLabel, handleClick, transformText } = props;
   const [hovered, setHovered] = React.useState(false);
 
   return (
     <Button
-      className={classnames.root()}
+      className={classnames.root({
+        transformText
+      })}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={handleClick}
       aria-label={label}
     >
       {displayLabel && <Typography variant="body1">{label}</Typography>}
-      {icon && (
+      {icon.length && (
         <Icon
           className={classnames.element("icon", {
             hovered,
@@ -59,7 +61,9 @@ ButtonWithHoverFill.propTypes = {
   // whether to display the label text on the button
   displayLabel: PropTypes.bool,
   // click handler for the IconButton
-  handleClick: PropTypes.func.isRequired
+  handleClick: PropTypes.func.isRequired,
+  // whether to transform the text
+  transformText: PropTypes.bool
 };
 ButtonWithHoverFill.defaultProps = {
   classes: {},

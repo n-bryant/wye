@@ -1,24 +1,5 @@
-import HeaderWithContext, { Header } from "./Header";
-import { ACTIONS, CONTENT_OPTIONS } from "../../pages/_app";
-
-describe("HeaderWithContext", () => {
-  it("should pass a dispatch value from context to its rendered child", () => {
-    const renderCallbackArgs = {
-      dispatch: jest.fn()
-    };
-    const props = {
-      fizz: "buzz"
-    };
-
-    const wrapper = shallow(<HeaderWithContext {...props} />);
-    expect(wrapper.prop("children")(renderCallbackArgs).props.dispatch).toBe(
-      renderCallbackArgs.dispatch
-    );
-    expect(wrapper.prop("children")(renderCallbackArgs).props.fizz).toBe(
-      props.fizz
-    );
-  });
-});
+import Button from "@material-ui/core/Button";
+import { Header } from "./Header";
 
 describe("Header", () => {
   const props = {
@@ -31,9 +12,11 @@ describe("Header", () => {
       linkWithNoHoverDecoration: "linkWithNoHoverDecoration",
       githubIcon: "githubIcon",
       mainNav: "mainNav",
-      browseLink: "browseLink"
-    },
-    dispatch: jest.fn()
+      browseMenuButton: "browseMenuButton",
+      browseMenu: "browseMenu",
+      menuSectionTitle: "menuSectionTitle",
+      menuLink: "menuLink"
+    }
   };
 
   it("should render successfully", () => {
@@ -41,12 +24,15 @@ describe("Header", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it("should set the content to the welcome content if the app title in the toolbar is clicked", () => {
+  it("should open the Browse menu if the browseMenuButton is clicked", () => {
+    const anchorEl = {};
+    const setAnchorEl = jest.fn();
+    const useStateSpy = jest.spyOn(React, "useState");
+    useStateSpy.mockImplementation(() => [anchorEl, setAnchorEl]);
     const wrapper = shallow(<Header {...props} />);
-    wrapper.findWhere(n => n.hasClass(props.classes.title)).prop("onClick")();
-    expect(props.dispatch).toHaveBeenCalledWith({
-      type: ACTIONS.SET_CONTENT,
-      value: CONTENT_OPTIONS.WELCOME
+    wrapper.find(Button).prop("onClick")({
+      currentTarget: {}
     });
+    expect(setAnchorEl).toHaveBeenCalled();
   });
 });
