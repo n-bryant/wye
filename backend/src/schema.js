@@ -276,10 +276,25 @@ const typeDefs = gql`
     userDetails: [RecommendationsUser]!
     # list of recommendations
     edges: [RecommendationEdge]!
+    # available filtering options for the result set
+    filterOptions: FilterOptions
   }
 
   type RecommendationEdge {
     node: Recommendation!
+  }
+
+  type FilterOptions {
+    publishers: [String]
+    developers: [String]
+    tags: [String]
+    genres: [String]
+    userRating_min: Int
+    userRating_max: Int
+    discount_min: Int
+    discount_max: Int
+    finalPrice_min: Int
+    finalPrice_max: Int
   }
 
   type WyeGame {

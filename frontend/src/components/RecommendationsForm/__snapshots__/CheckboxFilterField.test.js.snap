@@ -9,57 +9,60 @@ exports[`CheckboxFilterField should render successfully 1`] = `
     gutterBottom={true}
     variant="body2"
   >
-    label 2 
+    label 0 
   </WithStyles(ForwardRef(Typography))>
   <div
     className="wye-CheckboxFilterField__optionsContainer optionsContainer"
+    onScroll={[Function]}
   >
-    <WithStyles(ForwardRef(FormControlLabel))
-      control={
-        <ForwardRef(WithStyles)
-          checked={false}
-          classes={
-            Object {
-              "checked": "checkboxChecked",
-              "root": "checkbox",
+    <div
+      className="wye-CheckboxFilterField__options options"
+    >
+      <WithStyles(ForwardRef(FormControlLabel))
+        control={
+          <ForwardRef(WithStyles)
+            classes={
+              Object {
+                "checked": "checkboxChecked",
+                "root": "checkbox",
+              }
             }
-          }
-          color="default"
-          inputProps={
-            Object {
-              "aria-label": "name-option_optionA",
+            color="default"
+            inputProps={
+              Object {
+                "aria-label": "name-option_optionA",
+              }
             }
-          }
-          onChange={[Function]}
-          value="optionA"
-        />
-      }
-      key="0"
-      label="optionA"
-    />
-    <WithStyles(ForwardRef(FormControlLabel))
-      control={
-        <ForwardRef(WithStyles)
-          checked={false}
-          classes={
-            Object {
-              "checked": "checkboxChecked",
-              "root": "checkbox",
+            onChange={[Function]}
+            value="optionA"
+          />
+        }
+        key="0"
+        label="optionA"
+      />
+      <WithStyles(ForwardRef(FormControlLabel))
+        control={
+          <ForwardRef(WithStyles)
+            classes={
+              Object {
+                "checked": "checkboxChecked",
+                "root": "checkbox",
+              }
             }
-          }
-          color="default"
-          inputProps={
-            Object {
-              "aria-label": "name-option_optionB",
+            color="default"
+            inputProps={
+              Object {
+                "aria-label": "name-option_optionB",
+              }
             }
-          }
-          onChange={[Function]}
-          value="optionB"
-        />
-      }
-      key="1"
-      label="optionB"
-    />
+            onChange={[Function]}
+            value="optionB"
+          />
+        }
+        key="1"
+        label="optionB"
+      />
+    </div>
   </div>
 </div>
 `;
