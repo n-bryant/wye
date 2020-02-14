@@ -207,6 +207,13 @@ exports[`MostPopularFeatured should render successfully 1`] = `
       </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Grid))>
   </WithStyles(ForwardRef(Grid))>
+  <WithStyles(PaginationWidget)
+    className="wye-MostPopularFeatured__paginationWidget paginationWidget"
+    classes={Object {}}
+    currentPage={1}
+    setCurrentPage={[Function]}
+    totalPages={2}
+  />
   <Styled(MuiBox)
     className="wye-MostPopularFeatured__quickLinkContainer quickLinkContainer"
     my={4}

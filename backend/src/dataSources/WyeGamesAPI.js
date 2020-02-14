@@ -156,7 +156,7 @@ class WyeGamesAPI extends RESTDataSource {
     const mostPopularTitles = Object.keys(publishers)
       .filter(key => !EXCLUDED_PUBLISHER_KEYS.some(item => item === key))
       .sort((a, b) => publishers[b] - publishers[a])
-      .slice(0, 4)
+      .slice(0, 8)
       .map(publisher => {
         const topTitle = sortRecommendations(
           [

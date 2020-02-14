@@ -25,9 +25,13 @@ export const MostPopularFeatured = props => {
   const classnames = MostPopularFeatured.classnames(props);
   const { items, width } = props;
   const [currentPage, setCurrentPage] = React.useState(1);
+  const [smallCurrentPage, setSmallCurrentPage] = React.useState(1);
 
-  const featuredItem = items[0];
-  const subFeaturedItems = items.slice(1);
+  let featuredItem, subFeaturedItems;
+  if (items.length) {
+    featuredItem = currentPage == 1 ? items[0] : items[5];
+    subFeaturedItems = currentPage == 1 ? items.slice(1, 5) : items.slice(6);
+  }
   return (
     <FeaturedWidget
       className={classnames.root()}
@@ -35,46 +39,58 @@ export const MostPopularFeatured = props => {
       subTitle={MOST_POPULAR_SUBTITLE}
     >
       {!["xs", "sm"].some(val => val === width) && items.length > 1 ? (
-        <Grid
-          className={classnames.element("featuredItemContainer")}
-          container
-          justify={"space-between"}
-          alignItems={"center"}
-        >
+        <React.Fragment>
           <Grid
-            className={classnames.element("featuredItem")}
+            className={classnames.element("featuredItemContainer")}
             container
-            item
-            xs={6}
-            spacing={1}
+            justify={"space-between"}
+            alignItems={"center"}
           >
             <Grid
+              className={classnames.element("featuredItem")}
+              container
               item
-              xs={12}
-              className={classnames.element("featuredItemContent")}
+              xs={6}
+              spacing={1}
             >
-              <BrowseCard data={featuredItem} variant="lg" withPrice={false} />
+              <Grid
+                item
+                xs={12}
+                className={classnames.element("featuredItemContent")}
+              >
+                <BrowseCard
+                  data={featuredItem}
+                  variant="lg"
+                  withPrice={false}
+                />
+              </Grid>
+            </Grid>
+            <Grid
+              className={classnames.element("subFeaturedItemsContainer")}
+              container
+              item
+              spacing={1}
+              xs={6}
+            >
+              {subFeaturedItems.map(item => (
+                <Grid
+                  className={classnames.element("subFeaturedItem")}
+                  key={item.appid}
+                  item
+                  xs={6}
+                >
+                  <BrowseCard data={item} variant="lg" withPrice={false} />
+                </Grid>
+              ))}
             </Grid>
           </Grid>
-          <Grid
-            className={classnames.element("subFeaturedItemsContainer")}
-            container
-            item
-            spacing={1}
-            xs={6}
-          >
-            {subFeaturedItems.map(item => (
-              <Grid
-                className={classnames.element("subFeaturedItem")}
-                key={item.appid}
-                item
-                xs={6}
-              >
-                <BrowseCard data={item} variant="lg" withPrice={false} />
-              </Grid>
-            ))}
-          </Grid>
-        </Grid>
+          <PaginationWidget
+            className={classnames.element("paginationWidget")}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalPages={2}
+          />
+        </React.Fragment>
       ) : (
         <React.Fragment>
           <Grid
@@ -82,7 +98,7 @@ export const MostPopularFeatured = props => {
             container
             alignItems={"center"}
           >
-            {items[currentPage - 1] && (
+            {items[smallCurrentPage - 1] && (
               <Grid
                 className={classnames.element("featuredItem", {
                   fullWidth: true
@@ -91,7 +107,7 @@ export const MostPopularFeatured = props => {
                 xs={12}
               >
                 <BrowseCard
-                  data={items[currentPage - 1]}
+                  data={items[smallCurrentPage - 1]}
                   variant="header"
                   withPrice={false}
                   maxSize={true}
@@ -101,8 +117,8 @@ export const MostPopularFeatured = props => {
           </Grid>
           <PaginationWidget
             className={classnames.element("paginationWidget")}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
+            currentPage={smallCurrentPage}
+            setCurrentPage={setSmallCurrentPage}
             totalPages={items.length}
           />
         </React.Fragment>

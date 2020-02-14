@@ -28,7 +28,7 @@ export const FEATURED_ITEMS_QUERY = gql`
       orderBy: [PLAYTIME_RECENT, USER_RATING]
       filters: { gameFilters: { userRating_gte: 75, ownersMin_gte: 2000000 } }
       sortOrder: DESC
-      first: 5
+      first: 10
     ) {
       edges {
         node {
