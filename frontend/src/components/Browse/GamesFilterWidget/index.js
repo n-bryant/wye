@@ -50,6 +50,18 @@ export const GAMES_FILTER_QUERY = gql`
         onlineStatus
         lastOnlineTime
       }
+      filterOptions {
+        publishers
+        developers
+        tags
+        genres
+        userRating_min
+        userRating_max
+        discount_min
+        discount_max
+        finalPrice_min
+        finalPrice_max
+      }
       edges {
         node {
           game {
@@ -98,10 +110,18 @@ export const MainContent = ({
   subtitle,
   items = [],
   userDetails,
-  initialValues = { filters: {} }
+  initialValues = { filters: {} },
+  filterOptions,
+  fullSearch
 }) => {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [filtered, setFiltered] = React.useState(false);
+  let gameList = [];
+  if (items.length > 0) {
+    gameList = items.map(edge => edge.node.game);
+  }
+
+  const [currentPage, setCurrentPage] = React.useState(1);
 
   return (
     <div className={classnames.element("mainContent")}>
@@ -109,7 +129,7 @@ export const MainContent = ({
         {context => {
           if (context.initialFilters !== initialValues) {
             setFiltered(true);
-          } else {
+          } else if (!fullSearch) {
             // restrict further filtering to the original game list
             const appids = items.map(item => item.node.game.appid);
             initialValues.filters.gameFilters.appid_in = appids;
@@ -129,7 +149,10 @@ export const MainContent = ({
                   <AdvancedFiltersForm
                     initialValues={initialValues}
                     drawerCloseHandler={() => setDrawerOpen(false)}
+                    resetPaginationHandler={() => setCurrentPage(1)}
                     items={items}
+                    filterOptions={filterOptions}
+                    gameList={gameList}
                   />
                 )}
                 <Container
@@ -157,7 +180,7 @@ export const MainContent = ({
                     {!filtered && (
                       <ButtonWithHoverFill
                         handleClick={() => {
-                          context.setFilterOptions(context.initialFilters);
+                          context.setFilterCriteria(context.initialFilters);
                           setDrawerOpen(true);
                         }}
                         icon={mdiFilterVariant}
@@ -168,7 +191,8 @@ export const MainContent = ({
                     {filtered && (
                       <ButtonWithHoverFill
                         handleClick={() => {
-                          context.setFilterOptions(context.initialFilters);
+                          setCurrentPage(1);
+                          context.setFilterCriteria(context.initialFilters);
                           setFiltered(false);
                         }}
                         icon={mdiFilterVariant}
@@ -179,7 +203,13 @@ export const MainContent = ({
                   </Box>
                 </Container>
                 {items.length > 0 && (
-                  <FilteredGameList items={items} userDetails={userDetails} />
+                  <FilteredGameList
+                    items={items}
+                    userDetails={userDetails}
+                    filtered={filtered}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                  />
                 )}
                 {items.length === 0 && (
                   <Typography variant="h1">Empty State Placeholder</Typography>
@@ -204,7 +234,20 @@ MainContent.propTypes = {
   // user information
   userDetails: PropTypes.array,
   // initial values for the advanced filters form
-  initialValues: PropTypes.object
+  initialValues: PropTypes.object,
+  // options for filtering the retrieved list
+  filterOptions: PropTypes.shape({
+    publishers: PropTypes.arrayOf(PropTypes.string),
+    developers: PropTypes.arrayOf(PropTypes.string),
+    tags: PropTypes.arrayOf(PropTypes.string),
+    genres: PropTypes.arrayOf(PropTypes.string),
+    userRating_min: PropTypes.number,
+    userRating_max: PropTypes.number,
+    discount_min: PropTypes.number,
+    discount_max: PropTypes.number,
+    finalPrice_min: PropTypes.number,
+    finalPrice_max: PropTypes.number
+  })
 };
 
 /**
@@ -212,8 +255,8 @@ MainContent.propTypes = {
  */
 export const GamesFilterWidget = props => {
   const classnames = GamesFilterWidget.classnames(props);
-  const { initialFilters, title, subtitle } = props;
-  const [filterOptions, setFilterOptions] = React.useState(
+  const { initialFilters, title, subtitle, fullSearch } = props;
+  const [filterCriteria, setFilterCriteria] = React.useState(
     initialFilters ? initialFilters : {}
   );
 
@@ -222,15 +265,16 @@ export const GamesFilterWidget = props => {
       <GamesFilterWidgetContextProvider
         value={{
           initialFilters,
-          filterOptions,
-          setFilterOptions
+          filterCriteria,
+          setFilterCriteria
         }}
       >
         <FilterGamesQuery
-          variables={filterOptions}
+          variables={filterCriteria}
           classnames={classnames}
           title={title}
           subtitle={subtitle}
+          fullSearch={fullSearch}
         />
       </GamesFilterWidgetContextProvider>
     </div>
@@ -296,12 +340,20 @@ export const FilterGamesQuery = props => {
         // compile data for children
         const items = get(data, ["recommendations", "edges"], []);
         const userDetails = get(data, ["recommendations", "userDetails"], []);
+        const gameList = items.map(edge => edge.node.game);
+        const filterOptions = get(
+          data,
+          ["recommendations", "filterOptions"],
+          {}
+        );
 
         return (
           <MainContent
             items={items}
             userDetails={userDetails}
             initialValues={variables}
+            gameList={gameList}
+            filterOptions={filterOptions}
             {...props}
           />
         );

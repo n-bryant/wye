@@ -7,10 +7,12 @@ const styles = theme => ({
     color: theme.palette.common.blue6
   },
   optionsContainer: {
-    display: "flex",
-    flexDirection: "column",
     maxHeight: "250px",
     overflow: "auto"
+  },
+  options: {
+    display: "flex",
+    flexDirection: "column"
   },
   checkboxChecked: {
     color: theme.palette.common.blue6

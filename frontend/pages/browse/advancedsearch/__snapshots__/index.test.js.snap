@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdvancedSearchPage should render successfully 1`] = `
+<div
+  className="wye-AdvancedSearchPage root"
+>
+  <WithWidth(WithStyles(GamesFilterWidget))
+    fullSearch={true}
+    initialFilters={
+      Object {
+        "filters": Object {
+          "gameFilters": Object {},
+        },
+        "orderBy": Array [
+          "OWNER_COUNT_MAX",
+          "USER_RATING",
+          "NAME",
+        ],
+        "sortOrder": "DESC",
+      }
+    }
+    subtitle="Browse all titles"
+    title="Advanced Search"
+  />
+</div>
+`;

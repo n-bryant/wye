@@ -11,6 +11,7 @@ import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import {
@@ -27,12 +28,11 @@ import styles from "./FilteredGameList.styles";
  */
 export const FilteredGameList = props => {
   const classnames = FilteredGameList.classnames(props);
-  const { classes, items, userDetails } = props;
+  const { classes, items, userDetails, currentPage, setCurrentPage } = props;
   const router = useRouter();
 
   // pagination values
   const perPage = 20;
-  const [currentPage, setCurrentPage] = React.useState(1);
   const totalPages = getTotalPages(items.length, perPage);
   const pageStart = getOffsetStart(currentPage, items.length, perPage);
   const pageEnd = getOffsetEnd(currentPage, perPage);
@@ -43,28 +43,33 @@ export const FilteredGameList = props => {
       maxWidth="lg"
       disableGutters={true}
     >
-      <Box my={4}>
-        <Autocomplete
-          classes={{
-            paper: classes.paper,
-            option: classes.option,
-            noOptions: classes.option
-          }}
-          id="filtered-game-list-search"
-          onChange={(_e, value) => {
-            router.push(`/game/${value.appid}`);
-          }}
-          options={items.map(item => item.node.game)}
-          getOptionLabel={item => item.name}
-          style={{ width: 300 }}
-          renderInput={params => (
-            <TextField {...params} label="search:" fullWidth />
-          )}
-        />
-      </Box>
+      {totalPages > 1 && (
+        <Box my={4}>
+          <Autocomplete
+            classes={{
+              paper: classes.paper,
+              option: classes.option,
+              noOptions: classes.option
+            }}
+            id="filtered-game-list-search"
+            onChange={(_e, value) => {
+              router.push(`/game/${value.appid}`);
+            }}
+            options={items.map(item => item.node.game)}
+            getOptionLabel={item => item.name}
+            style={{ width: 300 }}
+            renderInput={params => (
+              <TextField {...params} label="search:" fullWidth />
+            )}
+          />
+        </Box>
+      )}
       <Box my={4}>
         {totalPages > 1 && (
           <Box my={4}>
+            <Box my={2}>
+              <Typography variant="body1">{`Exploring ${items.length} titles`}</Typography>
+            </Box>
             <PaginationWidget
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}

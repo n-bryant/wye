@@ -28,11 +28,15 @@ export const CheckboxFilterField = props => {
   } = props;
 
   // set up initial state values
-  let initialState = {};
+  const perPage = 20;
+  let initialValuesState = {};
   options.forEach(option => {
-    initialState[option] = false;
+    initialValuesState[option] = false;
   });
-  const [checkedOptions, setCheckedOptions] = React.useState(initialState);
+  const [checkedOptions, setCheckedOptions] = React.useState(
+    initialValuesState
+  );
+  const [currentPage, setCurrentPage] = React.useState(1);
 
   /**
    * handle changes to the CheckBox options,
@@ -55,6 +59,16 @@ export const CheckboxFilterField = props => {
     setFieldValue(name, valueToSet);
   };
 
+  // handle scroll event and loading of more items
+  const handleScroll = event => {
+    const containerHeight = event.target.getBoundingClientRect().height;
+    const optionsListHeight = event.target.firstElementChild.getBoundingClientRect()
+      .height;
+    if (event.target.scrollTop >= optionsListHeight - containerHeight - 84) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   const optionsCount = Object.keys(checkedOptions).length;
   const selectedOptionsCount = Object.keys(checkedOptions).filter(
     key => !!checkedOptions[key]
@@ -70,26 +84,31 @@ export const CheckboxFilterField = props => {
           selectedOptionsCount > 0 ? `- (${selectedOptionsCount} selected)` : ""
         }`}
       </Typography>
-      <div className={classnames.element("optionsContainer")}>
-        {options.map((option, index) => (
-          <FormControlLabel
-            key={index}
-            control={
-              <Checkbox
-                classes={{
-                  root: classes.checkbox,
-                  checked: classes.checkboxChecked
-                }}
-                checked={checkedOptions[option]}
-                color="default"
-                onChange={handleChange(option)}
-                value={option}
-                inputProps={{ "aria-label": `${name}-option_${option}` }}
-              />
-            }
-            label={option}
-          />
-        ))}
+      <div
+        className={classnames.element("optionsContainer")}
+        onScroll={handleScroll}
+      >
+        <div className={classnames.element("options")}>
+          {options.slice(0, currentPage * perPage).map((option, index) => (
+            <FormControlLabel
+              key={index}
+              control={
+                <Checkbox
+                  classes={{
+                    root: classes.checkbox,
+                    checked: classes.checkboxChecked
+                  }}
+                  checked={checkedOptions[option]}
+                  color="default"
+                  onChange={handleChange(option)}
+                  value={option}
+                  inputProps={{ "aria-label": `${name}-option_${option}` }}
+                />
+              }
+              label={option}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

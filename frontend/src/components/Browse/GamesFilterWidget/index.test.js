@@ -17,6 +17,18 @@ describe("FilterGamesQuery", () => {
       pageInfo: {
         totalCount: 1
       },
+      filterOptions: {
+        publishers: ["a"],
+        developers: ["a"],
+        tags: ["a"],
+        genres: ["a"],
+        userRating_min: 95,
+        userRating_max: 95,
+        discount_min: 25,
+        discount_max: 25,
+        finalPrice_min: 750,
+        finalPrice_max: 750
+      },
       edges: [
         {
           node: {

@@ -85,7 +85,9 @@ const styles = theme => ({
   },
   title: {
     color: theme.palette.common.blue6,
-    textOverflow: "ellipsis"
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap"
   },
   category: {
     color: theme.palette.common.blue6

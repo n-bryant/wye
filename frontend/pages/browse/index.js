@@ -113,31 +113,6 @@ export const FEATURED_ITEMS_QUERY = gql`
 export const BrowsePage = props => {
   const classnames = BrowsePage.classnames(props);
 
-  //                              top right of page ->     advanced search
-  // Heading - Browse Multiplayer Games
-  // Subheading - Browse the most popular and discounted multiplayer games
-
-  // trending - most popular by recent playtime
-  // - Cards: Contain appropriate capsule image, name, and price details
-  //    - on hover: shows name, user rating, dev/pub info and
-  // capsuleLg - 1:4
-
-  // publishers - games by most popular publishers
-  // - Cards: 2 pages of 4 cards; page paddles and page pills
-  //  - Header image linking to most popular title by publisher
-  //  - Publisher name linking to /publisher/[name]
-
-  // big sales - top 4 - rated by discount and user rating
-  // - Cards: 2 pages of 3 cards; page paddles and page pills
-  //  - libraryCapsule image on top
-  //  - name / sale details on bottom
-  //  - on hover: - name, user rating, user details if available (wanted by)
-
-  // buttons to go to filter for under $5 / $10
-
-  // Browse by Genre
-  // - grid of genre buttons
-
   /**
    * renders a Query to fetch featured items
    */

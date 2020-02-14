@@ -8,7 +8,8 @@ describe("CheckboxFilterField", () => {
       checkbox: "checkbox",
       label: "label",
       optionsContainer: "optionsContainer",
-      checkboxChecked: "checkboxChecked"
+      checkboxChecked: "checkboxChecked",
+      options: "options"
     },
     name: "name",
     category: "gameFilters",
@@ -22,14 +23,13 @@ describe("CheckboxFilterField", () => {
   };
 
   let wrapper;
+  let currentPage;
+  let setCurrentPage;
   beforeEach(() => {
-    const checkedOptions = {
-      optionA: false,
-      optionB: false
-    };
-    const setCheckedOptions = jest.fn();
+    currentPage = 1;
+    setCurrentPage = jest.fn();
     const useStateSpy = jest.spyOn(React, "useState");
-    useStateSpy.mockImplementation(() => [checkedOptions, setCheckedOptions]);
+    useStateSpy.mockImplementation(() => [currentPage, setCurrentPage]);
     wrapper = shallow(<CheckboxFilterField {...props} />);
   });
 
@@ -49,5 +49,21 @@ describe("CheckboxFilterField", () => {
         [props.type]: ["optionA"]
       }
     });
+  });
+
+  it("should increment the current page when scrolled to the offset value", () => {
+    wrapper
+      .find("div")
+      .at(1)
+      .prop("onScroll")({
+      target: {
+        scrollTop: 500,
+        getBoundingClientRect: jest.fn(() => ({ height: 250 })),
+        firstElementChild: {
+          getBoundingClientRect: jest.fn(() => ({ height: 200 }))
+        }
+      }
+    });
+    expect(setCurrentPage).toHaveBeenCalledWith(currentPage + 1);
   });
 });

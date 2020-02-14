@@ -4,6 +4,7 @@ const {
   sortRecommendationsByPlaytime
 } = require("../lib/util/sortRecommendations");
 const applyPlayerFilterToGamesList = require("../lib/util/applyPlayerFiltersToGameList");
+const { getFilterOptions } = require("../lib/util/getFilterOptions");
 
 const PLAYER_FILTERS_KEYS = {
   OWNED_BY: "ownedBy",
@@ -120,6 +121,11 @@ const resolvers = {
         gameFilters
       );
 
+      let filterOptions = null;
+      if (uniqueGameDetails.length > 0) {
+        filterOptions = getFilterOptions(uniqueGameDetails);
+      }
+
       // 5. get user profile data
       const userDetails = await dataSources.steamUsersAPI.getUserSummariesByIds(
         users
@@ -214,7 +220,8 @@ const resolvers = {
           totalCount: uniqueGameDetails.length
         },
         userDetails,
-        edges: first ? edges.slice(0, first) : edges
+        edges: first ? edges.slice(0, first) : edges,
+        filterOptions
       };
     }
   },

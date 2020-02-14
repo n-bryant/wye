@@ -2,112 +2,7 @@
 
 exports[`AdvancedFiltersForm should render successfully 1`] = `
 <WithStyles(OnClickOutsideWrapper)
-  classes={
-    Object {
-      "backdrop": "backdrop",
-      "closeButtonContainer": "closeButtonContainer",
-      "closing": "closing",
-      "drawer": "drawer",
-      "drawerContent": "drawerContent",
-      "fieldSection": "fieldSection",
-      "fieldSectionTitle": "fieldSectionTitle",
-      "fieldsContainer": "fieldsContainer",
-      "menuPaper": "menuPaper",
-      "modal": "modal",
-      "paper": "paper",
-      "root": "root",
-      "selectOption": "selectOption",
-      "submitButtonContainer": "submitButtonContainer",
-    }
-  }
-  drawerCloseHandler={[MockFunction]}
-  formik={
-    Object {
-      "setFieldValue": [MockFunction],
-      "values": Object {},
-    }
-  }
-  gameList={
-    Array [
-      Object {
-        "appid": "1",
-        "discount": 25,
-        "finalPrice": 1000,
-        "genres": Array [
-          "a",
-        ],
-        "ownersMax": 1000,
-        "ownersMin": 500,
-        "tags": Array [
-          "a",
-        ],
-      },
-      Object {
-        "appid": "2",
-        "discount": 15,
-        "finalPrice": 500,
-        "genres": Array [
-          "a",
-          "b",
-        ],
-        "ownersMax": 10000,
-        "ownersMin": 5000,
-        "tags": Array [
-          "a",
-        ],
-      },
-      Object {
-        "appid": "3",
-        "discount": 50,
-        "finalPrice": 350,
-        "genres": Array [
-          "a",
-          "b",
-          "c",
-        ],
-        "ownersMax": 2000,
-        "ownersMin": 1000,
-        "tags": Array [
-          "a",
-        ],
-      },
-      Object {
-        "appid": "4",
-        "discount": 75,
-        "finalPrice": 250,
-        "genres": Array [
-          "a",
-          "b",
-          "c",
-          "d",
-        ],
-        "ownersMax": 300,
-        "ownersMin": 150,
-        "tags": Array [
-          "a",
-        ],
-      },
-      Object {
-        "appid": "5",
-        "discount": 90,
-        "finalPrice": 1500,
-        "genres": Array [
-          "a",
-          "b",
-          "c",
-          "d",
-          "e",
-        ],
-        "ownersMax": 5000,
-        "ownersMin": 2500,
-        "tags": Array [
-          "a",
-        ],
-      },
-    ]
-  }
   handleClickOutside={[Function]}
-  hiddenFields={Array []}
 >
   <WithStyles(ForwardRef(Container))
     className="wye-AdvancedFiltersForm root"
@@ -294,7 +189,9 @@ exports[`AdvancedFiltersFormWithFormik should render successfully 1`] = `
       "initialStatus": undefined,
       "initialTouched": Object {},
       "initialValues": Object {
-        "filters": Object {},
+        "filters": Object {
+          "gameFilters": Object {},
+        },
         "orderBy": Array [],
         "sortOrder": "DESC",
         "users": Array [],
@@ -324,7 +221,9 @@ exports[`AdvancedFiltersFormWithFormik should render successfully 1`] = `
       "validateOnChange": true,
       "validateOnMount": false,
       "values": Object {
-        "filters": Object {},
+        "filters": Object {
+          "gameFilters": Object {},
+        },
         "orderBy": Array [],
         "sortOrder": "DESC",
         "users": Array [],
@@ -334,11 +233,6 @@ exports[`AdvancedFiltersFormWithFormik should render successfully 1`] = `
 >
   <WithStyles(AdvancedFiltersForm)
     classes={Object {}}
-    developerOptions={
-      Array [
-        "a",
-      ]
-    }
     formik={
       Object {
         "dirty": false,
@@ -354,7 +248,9 @@ exports[`AdvancedFiltersFormWithFormik should render successfully 1`] = `
         "initialStatus": undefined,
         "initialTouched": Object {},
         "initialValues": Object {
-          "filters": Object {},
+          "filters": Object {
+            "gameFilters": Object {},
+          },
           "orderBy": Array [],
           "sortOrder": "DESC",
           "users": Array [],
@@ -384,37 +280,14 @@ exports[`AdvancedFiltersFormWithFormik should render successfully 1`] = `
         "validateOnChange": true,
         "validateOnMount": false,
         "values": Object {
-          "filters": Object {},
+          "filters": Object {
+            "gameFilters": Object {},
+          },
           "orderBy": Array [],
           "sortOrder": "DESC",
           "users": Array [],
         },
       }
-    }
-    gameList={
-      Array [
-        Object {
-          "appid": "1",
-          "developers": Array [
-            "a",
-          ],
-          "genres": Array [
-            "a",
-          ],
-          "name": "foo",
-          "publishers": Array [
-            "a",
-          ],
-          "tags": Array [
-            "a",
-          ],
-        },
-      ]
-    }
-    genreOptions={
-      Array [
-        "a",
-      ]
     }
     initialValues={Object {}}
     items={
@@ -439,16 +312,6 @@ exports[`AdvancedFiltersFormWithFormik should render successfully 1`] = `
             },
           },
         },
-      ]
-    }
-    publisherOptions={
-      Array [
-        "a",
-      ]
-    }
-    tagOptions={
-      Array [
-        "a",
       ]
     }
   />
