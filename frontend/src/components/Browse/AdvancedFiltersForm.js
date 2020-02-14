@@ -328,6 +328,7 @@ export const AdvancedFiltersForm = props => {
                             value={sortBy}
                             onChange={handleSortByChange}
                             MenuProps={{
+                              disablePortal: true,
                               classes: {
                                 paper: classes.menuPaper
                               }
@@ -363,6 +364,7 @@ export const AdvancedFiltersForm = props => {
                             value={sortDirection}
                             onChange={handleSortOrderChange}
                             MenuProps={{
+                              disablePortal: true,
                               classes: {
                                 paper: classes.menuPaper
                               }

@@ -87,7 +87,8 @@ describe("FeaturedPublishers", () => {
       root: "root",
       itemsContainer: "itemsContainer",
       item: "item",
-      quickLinkContainer: "quickLinkContainer"
+      quickLinkContainer: "quickLinkContainer",
+      paginationWidget: "paginationWidget"
     },
     items: mockedResult.getTopTitleForMostPopularPublishers,
     width: "xs"

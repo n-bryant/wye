@@ -166,6 +166,13 @@ exports[`FeaturedPublishers should adjust the layout of the cards if the width i
       />
     </WithStyles(ForwardRef(Grid))>
   </WithStyles(ForwardRef(Grid))>
+  <WithStyles(PaginationWidget)
+    className="wye-FeaturedPublishers__paginationWidget paginationWidget"
+    classes={Object {}}
+    currentPage={1}
+    setCurrentPage={[Function]}
+    totalPages={1}
+  />
   <Styled(MuiBox)
     className="wye-FeaturedPublishers__quickLinkContainer quickLinkContainer"
     my={4}
@@ -268,13 +275,6 @@ exports[`FeaturedPublishers should render successfully 1`] = `
         withPrice={false}
       />
     </WithStyles(ForwardRef(Grid))>
-  </WithStyles(ForwardRef(Grid))>
-  <WithStyles(ForwardRef(Grid))
-    className="wye-FeaturedPublishers__itemsContainer itemsContainer"
-    container={true}
-    justify="center"
-    spacing={2}
-  >
     <WithStyles(ForwardRef(Grid))
       className="wye-FeaturedPublishers__item item"
       item={true}
@@ -352,6 +352,13 @@ exports[`FeaturedPublishers should render successfully 1`] = `
       />
     </WithStyles(ForwardRef(Grid))>
   </WithStyles(ForwardRef(Grid))>
+  <WithStyles(PaginationWidget)
+    className="wye-FeaturedPublishers__paginationWidget paginationWidget"
+    classes={Object {}}
+    currentPage={1}
+    setCurrentPage={[Function]}
+    totalPages={1}
+  />
   <Styled(MuiBox)
     className="wye-FeaturedPublishers__quickLinkContainer quickLinkContainer"
     my={4}

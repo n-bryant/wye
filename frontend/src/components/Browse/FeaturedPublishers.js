@@ -9,7 +9,13 @@ import { withWidth } from "@material-ui/core/";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 
+import {
+  getOffsetStart,
+  getOffsetEnd,
+  getTotalPages
+} from "../../../lib/pagingUtilities";
 import QuickLink from "../QuickLink";
+import PaginationWidget from "../PaginationWidget";
 import FeaturedWidget from "./FeaturedWidget";
 import BrowseCard from "./BrowseCard";
 import styles from "./FeaturedPublishers.styles";
@@ -25,6 +31,9 @@ export const SUBTITLE =
 export const FeaturedPublishers = props => {
   const classnames = FeaturedPublishers.classnames(props);
   const { items, width } = props;
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [smallCurrentPage, setSmallCurrentPage] = React.useState(1);
+  const perPage = 4;
 
   return (
     <FeaturedWidget
@@ -33,30 +42,43 @@ export const FeaturedPublishers = props => {
       subTitle={SUBTITLE}
     >
       {!["xs", "sm"].some(val => val === width) && items.length > 1 ? (
-        <Grid
-          className={classnames.element("itemsContainer")}
-          container
-          justify="center"
-          spacing={2}
-        >
-          {items.map(item => (
-            <Grid
-              key={item.topTitle.appid}
-              className={classnames.element("item")}
-              item
-              xs={3}
-            >
-              <BrowseCard
-                variant="md"
-                data={item.topTitle}
-                withPrice={false}
-                cardActionLabel={item.publisher}
-                cardActionHref={"/browse/publishers/[name]"}
-                cardActionLinkPath={`/browse/publishers/${item.publisher}`}
-              />
-            </Grid>
-          ))}
-        </Grid>
+        <React.Fragment>
+          <Grid
+            className={classnames.element("itemsContainer")}
+            container
+            justify="center"
+            spacing={2}
+          >
+            {items
+              .slice(
+                getOffsetStart(currentPage, items.length, perPage),
+                getOffsetEnd(currentPage, perPage)
+              )
+              .map(item => (
+                <Grid
+                  key={item.topTitle.appid}
+                  className={classnames.element("item")}
+                  item
+                  xs={3}
+                >
+                  <BrowseCard
+                    variant="md"
+                    data={item.topTitle}
+                    withPrice={false}
+                    cardActionLabel={item.publisher}
+                    cardActionHref={"/browse/publishers/[name]"}
+                    cardActionLinkPath={`/browse/publishers/${item.publisher}`}
+                  />
+                </Grid>
+              ))}
+          </Grid>
+          <PaginationWidget
+            className={classnames.element("paginationWidget")}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalPages={getTotalPages(items.length, perPage)}
+          />
+        </React.Fragment>
       ) : (
         <React.Fragment>
           <Grid
@@ -65,48 +87,35 @@ export const FeaturedPublishers = props => {
             justify="center"
             spacing={2}
           >
-            {items.slice(0, 2).map(item => (
-              <Grid
-                key={item.topTitle.appid}
-                className={classnames.element("item")}
-                item
-                xs={6}
-              >
-                <BrowseCard
-                  variant="md"
-                  data={item.topTitle}
-                  withPrice={false}
-                  cardActionLabel={item.publisher}
-                  cardActionHref={"/browse/publishers/[name]"}
-                  cardActionLinkPath={`/browse/publishers/${item.publisher}`}
-                />
-              </Grid>
-            ))}
+            {items
+              .slice(
+                getOffsetStart(smallCurrentPage, items.length, perPage),
+                getOffsetEnd(smallCurrentPage, perPage)
+              )
+              .map(item => (
+                <Grid
+                  key={item.topTitle.appid}
+                  className={classnames.element("item")}
+                  item
+                  xs={6}
+                >
+                  <BrowseCard
+                    variant="md"
+                    data={item.topTitle}
+                    withPrice={false}
+                    cardActionLabel={item.publisher}
+                    cardActionHref={"/browse/publishers/[name]"}
+                    cardActionLinkPath={`/browse/publishers/${item.publisher}`}
+                  />
+                </Grid>
+              ))}
           </Grid>
-          <Grid
-            className={classnames.element("itemsContainer")}
-            container
-            justify="center"
-            spacing={2}
-          >
-            {items.slice(2, 4).map(item => (
-              <Grid
-                key={item.topTitle.appid}
-                className={classnames.element("item")}
-                item
-                xs={6}
-              >
-                <BrowseCard
-                  variant="md"
-                  data={item.topTitle}
-                  withPrice={false}
-                  cardActionLabel={item.publisher}
-                  cardActionHref={"/browse/publishers/[name]"}
-                  cardActionLinkPath={`/browse/publishers/${item.publisher}`}
-                />
-              </Grid>
-            ))}
-          </Grid>
+          <PaginationWidget
+            className={classnames.element("paginationWidget")}
+            currentPage={smallCurrentPage}
+            setCurrentPage={setSmallCurrentPage}
+            totalPages={getTotalPages(items.length, perPage)}
+          />
         </React.Fragment>
       )}
       <Box className={classnames.element("quickLinkContainer")} my={4}>
