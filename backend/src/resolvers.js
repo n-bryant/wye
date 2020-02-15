@@ -1,8 +1,6 @@
 const uniq = require("lodash.uniq");
-const {
-  sortRecommendations,
-  sortRecommendationsByPlaytime
-} = require("../lib/util/sortRecommendations");
+const { sortRecommendations } = require("../lib/util/sortRecommendations");
+const getGamePlaytime = require("../lib/util/getGamePlaytime");
 const applyPlayerFilterToGamesList = require("../lib/util/applyPlayerFiltersToGameList");
 const { getFilterOptions } = require("../lib/util/getFilterOptions");
 
@@ -24,7 +22,7 @@ const SORT_BY_MAP = {
   OWNER_COUNT_MAX: "node.game.ownersMax",
   OWNED_BY: "node.ownedBy.length",
   RECENTLY_PLAYED_BY: "node.recentlyPlayedBy.length",
-  HOURS_PLAYED: "node.playtime"
+  HOURS_PLAYED: "node.playtime.totalHours"
 };
 
 const resolvers = {
@@ -152,27 +150,7 @@ const resolvers = {
             );
 
         // what is each user's playtime for the game
-        const playtime = !users
-          ? null
-          : Object.keys(userOwnedGames).map(user => {
-              if (
-                userOwnedGames[user]["games"].some(
-                  userGame => userGame.id === game.appid
-                )
-              ) {
-                return {
-                  steamId: user,
-                  hoursPlayed: userOwnedGames[user]["games"].filter(
-                    userGame => userGame.id === game.appid
-                  )[0].hoursPlayed
-                };
-              } else {
-                return {
-                  steamId: user,
-                  hoursPlayed: 0
-                };
-              }
-            });
+        const playtime = !users ? null : getGamePlaytime(game, userOwnedGames);
 
         return {
           node: {
@@ -208,11 +186,7 @@ const resolvers = {
           direction
         }));
       }
-      if (orderBy === SORT_BY_MAP.HOURS_PLAYED) {
-        sortRecommendationsByPlaytime(edges, sortOrder);
-      } else {
-        sortRecommendations(sortBy, edges);
-      }
+      sortRecommendations(sortBy, edges);
 
       // return compiled recommendations
       return {

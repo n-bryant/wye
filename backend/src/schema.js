@@ -251,8 +251,8 @@ const typeDefs = gql`
     ownedBy: [String]
     # which users have recently played the recommended game
     recentlyPlayedBy: [String]
-    # data on hours played by user
-    playtime: [UserPlaytime]
+    # data on combined hours played for a game and playtime by user
+    playtime: Playtime
   }
 
   type RecommendationsUser {
@@ -352,6 +352,11 @@ const typeDefs = gql`
     libraryCapsule: String!
     # location of the game's library hero image
     libraryHero: String!
+  }
+
+  type Playtime {
+    totalHours: Float!
+    playtimeByUser: [UserPlaytime]!
   }
 
   type UserPlaytime {

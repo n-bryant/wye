@@ -92,6 +92,8 @@ export const FilteredGameList = props => {
                   ownedBy: item.node.ownedBy,
                   recentlyPlayedBy: item.node.recentlyPlayedBy,
                   playtime: item.node.playtime
+                    ? item.node.playtime.playtimeByUser
+                    : item.node.playtime
                 }}
                 userDetails={userDetails}
                 withPrice={true}
