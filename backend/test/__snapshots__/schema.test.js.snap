@@ -2164,13 +2164,10 @@ Object {
             "value": "playtime",
           },
           "type": Object {
-            "kind": "ListType",
-            "type": Object {
-              "kind": "NamedType",
-              "name": Object {
-                "kind": "Name",
-                "value": "UserPlaytime",
-              },
+            "kind": "NamedType",
+            "name": Object {
+              "kind": "Name",
+              "value": "Playtime",
             },
           },
         },
@@ -3186,6 +3183,61 @@ Object {
           "kind": "FieldDefinition",
           "name": Object {
             "kind": "Name",
+            "value": "totalHours",
+          },
+          "type": Object {
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "Float",
+              },
+            },
+          },
+        },
+        Object {
+          "arguments": Array [],
+          "description": undefined,
+          "directives": Array [],
+          "kind": "FieldDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "playtimeByUser",
+          },
+          "type": Object {
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "ListType",
+              "type": Object {
+                "kind": "NamedType",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "UserPlaytime",
+                },
+              },
+            },
+          },
+        },
+      ],
+      "interfaces": Array [],
+      "kind": "ObjectTypeDefinition",
+      "name": Object {
+        "kind": "Name",
+        "value": "Playtime",
+      },
+    },
+    Object {
+      "description": undefined,
+      "directives": Array [],
+      "fields": Array [
+        Object {
+          "arguments": Array [],
+          "description": undefined,
+          "directives": Array [],
+          "kind": "FieldDefinition",
+          "name": Object {
+            "kind": "Name",
             "value": "steamId",
           },
           "type": Object {
@@ -3658,7 +3710,7 @@ Object {
   ],
   "kind": "Document",
   "loc": Object {
-    "end": 10235,
+    "end": 10344,
     "start": 0,
   },
 }

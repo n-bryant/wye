@@ -87,8 +87,11 @@ export const GAMES_FILTER_QUERY = gql`
           ownedBy
           recentlyPlayedBy
           playtime {
-            steamId
-            hoursPlayed
+            totalHours
+            playtimeByUser {
+              steamId
+              hoursPlayed
+            }
           }
         }
       }
