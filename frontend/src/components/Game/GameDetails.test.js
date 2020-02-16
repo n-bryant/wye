@@ -1,5 +1,7 @@
-import { GameDetails } from "./GameDetails";
 import MediaCarousel from "./MediaCarousel";
+import RequirementsBlock from "./RequirementsBlock";
+import GameArticles from "./GameArticles";
+import { GameDetails } from "./GameDetails";
 
 jest.mock("next/router", () => ({
   useRouter: () => ({
@@ -25,9 +27,18 @@ describe("GameDetails", () => {
       details: {
         highlightedVideos: [{}],
         screenshots: [],
-        videos: []
+        videos: [],
+        requirements: {
+          minimum: ""
+        }
       },
-      articles: []
+      articles: [
+        {
+          url: "url",
+          title: "title",
+          printDate: "date"
+        }
+      ]
     },
     width: "md"
   };
@@ -53,5 +64,32 @@ describe("GameDetails", () => {
     });
     wrapper.update();
     expect(wrapper.find(MediaCarousel).length).toBe(0);
+  });
+
+  it("should not render the requirements block if there is no requirements info", () => {
+    const propsWithoutRequirements = {
+      ...props,
+      data: {
+        ...props.data,
+        details: {
+          ...props.data.details,
+          requirements: null
+        }
+      }
+    };
+    const wrapper = shallow(<GameDetails {...propsWithoutRequirements} />);
+    expect(wrapper.find(RequirementsBlock).length).toBe(0);
+  });
+
+  it("should not render the articles block if there are no articles", () => {
+    const propsWithoutArticles = {
+      ...props,
+      data: {
+        ...props.data,
+        articles: []
+      }
+    };
+    const wrapper = shallow(<GameDetails {...propsWithoutArticles} />);
+    expect(wrapper.find(GameArticles).length).toBe(0);
   });
 });

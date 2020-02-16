@@ -18,6 +18,7 @@ import ButtonWithHoverFill from "../ButtonWithHoverFill";
 import MediaCarousel from "./MediaCarousel";
 import ReleaseInfoBlock from "./ReleaseInfoBlock";
 import PriceInfoBlock from "./PriceInfoBlock";
+import RequirementsBlock from "./RequirementsBlock";
 import GameArticles from "./GameArticles";
 
 const useStyles = makeStyles({
@@ -48,10 +49,24 @@ const useStyles = makeStyles({
     margin: "0 auto"
   },
   priceContainer: {
-    margin: "12px 4px 12px 6px",
+    margin: "12px 4px 8px 6px",
     width: "100%"
   },
   priceContainerWithSmWidth: {
+    marginLeft: "-4px"
+  },
+  requirementsContainer: {
+    margin: "0 4px 12px 6px",
+    width: "100%"
+  },
+  requirementsContainerWithSmWidth: {
+    marginLeft: "-4px"
+  },
+  articlesContainer: {
+    margin: "0 4px 12px 6px",
+    width: "100%"
+  },
+  articlesContainerWithSmWidth: {
     marginLeft: "-4px"
   },
   backButtonContainer: {
@@ -72,6 +87,10 @@ const useStyles = makeStyles({
     fill: "white",
     marginRight: "0.5rem",
     transition: "fill 0.25s ease-in-out"
+  },
+  spacer: {
+    margin: "2rem",
+    borderBottom: "1px solid hsla(0,0%,100%,0.2)"
   }
 });
 
@@ -94,7 +113,8 @@ export const GameDetails = props => {
     screenshots,
     videos,
     price,
-    metacritic
+    metacritic,
+    requirements
   } = details;
   const hasMedia =
     highlightedVideos.length || screenshots.length || videos.length;
@@ -153,8 +173,27 @@ export const GameDetails = props => {
           >
             <PriceInfoBlock data={{ price, metacritic }} />
           </div>
+          {requirements && (requirements.minimum || requirements.recommended) && (
+            <div
+              className={classnames.element("requirementsContainer", {
+                withSmWidth: ["xs", "sm"].some(val => val === width)
+              })}
+            >
+              <div className={classnames.element("spacer")}></div>
+              <RequirementsBlock requirements={requirements} />
+            </div>
+          )}
+          {articles && articles.length && articles.length > 0 && (
+            <div
+              className={classnames.element("articlesContainer", {
+                withSmWidth: ["xs", "sm"].some(val => val === width)
+              })}
+            >
+              <div className={classnames.element("spacer")}></div>
+              <GameArticles articles={articles} />
+            </div>
+          )}
         </Grid>
-        <GameArticles articles={articles} />
       </div>
     </BackgroundProvider>
   );

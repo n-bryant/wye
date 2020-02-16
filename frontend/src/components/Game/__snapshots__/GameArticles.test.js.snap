@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GameArticles should render successfully 1`] = `
+<div
+  className="wye-GameArticles root"
+>
+  <WithStyles(ForwardRef(Grid))
+    container={true}
+    spacing={1}
+  >
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(Typography))
+        gutterBottom={true}
+        variant="h1"
+      >
+        Recent News:
+      </WithStyles(ForwardRef(Typography))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      key="0"
+      md={6}
+      xs={12}
+    >
+      <Link
+        prefetch={false}
+      >
+        <a
+          className="wye-GameArticles__link link"
+          target="_blank"
+        >
+          <div
+            className="wye-GameArticles__article article"
+          >
+            <WithStyles(ForwardRef(Typography))
+              className="wye-GameArticles__articleTitle articleTitle"
+              gutterBottom={true}
+              variant="h2"
+            >
+              title
+            </WithStyles(ForwardRef(Typography))>
+            <div
+              className="wye-GameArticles__articleContents articleContents"
+            >
+              <WithStyles(ForwardRef(Typography))
+                gutterBottom={true}
+                variant="body1"
+              >
+                <span
+                  className="wye-GameArticles__subTitle subTitle"
+                >
+                  Author:
+                   
+                </span>
+                author
+              </WithStyles(ForwardRef(Typography))>
+              <WithStyles(ForwardRef(Typography))
+                variant="body1"
+              >
+                <span
+                  className="wye-GameArticles__subTitle subTitle"
+                >
+                  Published:
+                   
+                </span>
+                date
+              </WithStyles(ForwardRef(Typography))>
+            </div>
+          </div>
+        </a>
+      </Link>
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+</div>
+`;
