@@ -13,7 +13,7 @@ const STEAM_PLAYER_SERVICE_RECENT_PLAYED_COUNT = 10;
 // SteamNewsAPI
 const STEAM_NEWS_API_BASE_URL = "http://api.steampowered.com/ISteamNews/";
 const STEAM_NEWS_API_ARTICLES_ENDPOINT = "GetNewsForApp/v0002/";
-const STEAM_NEWS_API_ARTICLE_COUNT = 10;
+const STEAM_NEWS_API_ARTICLE_COUNT = 6;
 
 // SteamGamesAPI
 const STEAM_GAMES_API_BASE_URL = "https://store.steampowered.com/api/";

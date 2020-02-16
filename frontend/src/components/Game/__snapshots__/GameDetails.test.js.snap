@@ -11,7 +11,7 @@ exports[`GameDetails should render successfully 1`] = `
       spacing={1}
     >
       <WithStyles(ForwardRef(Grid))
-        className="wye-GameDetails__backButtonContainer makeStyles-backButtonContainer-9"
+        className="wye-GameDetails__backButtonContainer makeStyles-backButtonContainer-13"
         item={true}
         lg={8}
         xs={12}
@@ -55,6 +55,9 @@ exports[`GameDetails should render successfully 1`] = `
               "highlightedVideos": Array [
                 Object {},
               ],
+              "requirements": Object {
+                "minimum": "",
+              },
               "screenshots": Array [],
               "videos": Array [],
             }
@@ -74,11 +77,26 @@ exports[`GameDetails should render successfully 1`] = `
           }
         />
       </div>
+      <div
+        className="wye-GameDetails__articlesContainer makeStyles-articlesContainer-11"
+      >
+        <div
+          className="wye-GameDetails__spacer makeStyles-spacer-16"
+        />
+        <WithStyles(GameArticles)
+          articles={
+            Array [
+              Object {
+                "printDate": "date",
+                "title": "title",
+                "url": "url",
+              },
+            ]
+          }
+          classes={Object {}}
+        />
+      </div>
     </WithStyles(ForwardRef(Grid))>
-    <WithStyles(GameArticles)
-      articles={Array []}
-      classes={Object {}}
-    />
   </div>
 </BackgroundQuery>
 `;

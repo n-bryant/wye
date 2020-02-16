@@ -38,6 +38,10 @@ export const GET_GAME_QUERY = gql`
         publishers
         website
         platforms
+        requirements {
+          minimum
+          recommended
+        }
         metacritic {
           score
           reviewsPageUrl
