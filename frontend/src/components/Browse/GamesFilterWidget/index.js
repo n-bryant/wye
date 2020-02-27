@@ -73,7 +73,10 @@ export const GAMES_FILTER_QUERY = gql`
             publishers
             ownersFormatted
             userRating
-            tags
+            tags {
+              name
+              rank
+            }
             genres
             freeToPlay
             onSale

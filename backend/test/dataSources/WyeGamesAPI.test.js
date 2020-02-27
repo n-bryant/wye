@@ -38,7 +38,7 @@ describe("WyeGamesAPI", () => {
         developers: "foo",
         publishers: "",
         genres: "",
-        tags: "",
+        tags: "a%%rank%%1",
         ownersFormatted: "5,000 .. 10,000",
         ownersMin: 5000,
         ownersMax: 10000
@@ -48,7 +48,7 @@ describe("WyeGamesAPI", () => {
         developers: "bar",
         publishers: "",
         genres: "",
-        tags: "",
+        tags: "b%%rank%%7",
         ownersFormatted: "5,000 .. 10,000",
         ownersMin: 5000,
         ownersMax: 10000
@@ -66,7 +66,12 @@ describe("WyeGamesAPI", () => {
           developers: [game1.developers],
           publishers: [game1.publishers],
           genres: [game1.genres],
-          tags: [game1.tags],
+          tags: [
+            {
+              name: "a",
+              rank: 1
+            }
+          ],
           ownersFormatted: "5,000 .. 10,000",
           ownersMin: 5000,
           ownersMax: 10000
@@ -87,7 +92,7 @@ describe("WyeGamesAPI", () => {
             developers: "1, 2",
             publishers: "1, 2",
             genres: "1, 2",
-            tags: "1, 2",
+            tags: "1%%rank%%3, 2%%rank%%25",
             ownersFormatted: "5,000 .. 10,000",
             ownersMin: 5000,
             ownersMax: 10000
@@ -99,7 +104,16 @@ describe("WyeGamesAPI", () => {
           developers: ["1", "2"],
           publishers: ["1", "2"],
           genres: ["1", "2"],
-          tags: ["1", "2"],
+          tags: [
+            {
+              name: "1",
+              rank: 3
+            },
+            {
+              name: "2",
+              rank: 25
+            }
+          ],
           ownersFormatted: "5,000 .. 10,000",
           ownersMin: 5000,
           ownersMax: 10000
@@ -200,7 +214,12 @@ describe("WyeGamesAPI", () => {
         {
           name: "1",
           genres: ["genre1"],
-          tags: ["tag1"],
+          tags: [
+            {
+              name: "tag1",
+              rank: 1
+            }
+          ],
           publishers: ["pub1"],
           developers: ["dev1"],
           owners: "5,000 .. 10,000"
@@ -208,7 +227,12 @@ describe("WyeGamesAPI", () => {
         {
           name: "2",
           genres: ["genre1", "genre2"],
-          tags: ["tag1"],
+          tags: [
+            {
+              name: "tag1",
+              rank: 5
+            }
+          ],
           publishers: ["pub2"],
           developers: ["dev2"],
           owners: "5,000 .. 10,000"
@@ -216,7 +240,16 @@ describe("WyeGamesAPI", () => {
         {
           name: "3",
           genres: ["genre3"],
-          tags: ["tag1", "tag2"],
+          tags: [
+            {
+              name: "tag1",
+              rank: 3
+            },
+            {
+              name: "tag2",
+              rank: 23
+            }
+          ],
           publishers: ["pub1"],
           developers: ["dev1"],
           owners: "5,000 .. 10,000"
@@ -228,7 +261,12 @@ describe("WyeGamesAPI", () => {
           genres: ["genre1"],
           name: "1",
           publishers: ["pub1"],
-          tags: ["tag1"],
+          tags: [
+            {
+              name: "tag1",
+              rank: 1
+            }
+          ],
           owners: "5,000 .. 10,000"
         }
       ];

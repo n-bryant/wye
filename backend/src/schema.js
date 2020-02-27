@@ -308,8 +308,8 @@ const typeDefs = gql`
     publishers: [String]!
     # list of the game's genres
     genres: [String]!
-    # list of the game's tags
-    tags: [String]!
+    # list of the game's tags and their tag ranking
+    tags: [Tag]!
     # whether the game is free to play or not
     freeToPlay: Boolean!
     # whether the game is on sale
@@ -352,6 +352,13 @@ const typeDefs = gql`
     libraryCapsule: String!
     # location of the game's library hero image
     libraryHero: String!
+  }
+
+  type Tag {
+    # the tag's description
+    name: String!
+    # a game's tag rank
+    rank: Int!
   }
 
   type Playtime {
