@@ -25,7 +25,12 @@ describe("getFilterOptions", () => {
       publishers: ["a"],
       developers: ["a"],
       genres: ["a"],
-      tags: ["a"],
+      tags: [
+        {
+          name: "a",
+          rank: 1
+        }
+      ],
       userRating: 25,
       discount: 25,
       finalPrice: 250
@@ -34,7 +39,16 @@ describe("getFilterOptions", () => {
       publishers: ["a", "b"],
       developers: ["b", "a"],
       genres: ["a", "b"],
-      tags: ["b", "a"],
+      tags: [
+        {
+          name: "b",
+          rank: 1
+        },
+        {
+          name: "a",
+          rank: 2
+        }
+      ],
       userRating: 75,
       discount: 75,
       finalPrice: 750
@@ -43,7 +57,20 @@ describe("getFilterOptions", () => {
       publishers: ["a", "c", "b"],
       developers: ["a", "c", "b"],
       genres: ["a", "c", "b"],
-      tags: ["a", "c", "b"],
+      tags: [
+        {
+          name: "a",
+          rank: 3
+        },
+        {
+          name: "c",
+          rank: 1
+        },
+        {
+          name: "b",
+          rank: 2
+        }
+      ],
       userRating: 50,
       discount: 50,
       finalPrice: 500

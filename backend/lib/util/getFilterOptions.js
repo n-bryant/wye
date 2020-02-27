@@ -26,7 +26,10 @@ function getFilterOptions(gameList) {
   for (const game of gameList) {
     // compile category items, removing invalid options
     for (const key of ["publishers", "developers", "genres", "tags"]) {
-      let categoryList = game[key].map(value => value.trim());
+      let categoryList =
+        key === "tags"
+          ? game[key].map(value => value.name.trim())
+          : game[key].map(value => value.trim());
       if (key === "publishers" || key === "developers") {
         categoryList = categoryList.filter(
           value =>

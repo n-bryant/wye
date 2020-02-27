@@ -257,11 +257,19 @@ class WyeGamesAPI extends RESTDataSource {
       if (this.STRING_INCLUDES_FILTERS_MAP.hasOwnProperty(filterKeys[i])) {
         const gamePropertyKey = this.STRING_INCLUDES_FILTERS_MAP[filterKeys[i]];
         // filter out games that do not have matches for the filter values
-        games = games.filter(game =>
-          game[gamePropertyKey].some(
-            item => filters[filterKeys[i]].indexOf(item) !== -1
-          )
-        );
+        if (gamePropertyKey === "tags") {
+          games = games.filter(game =>
+            game[gamePropertyKey].some(item => {
+              return filters[filterKeys[i]].indexOf(item.name) !== -1;
+            })
+          );
+        } else {
+          games = games.filter(game =>
+            game[gamePropertyKey].some(
+              item => filters[filterKeys[i]].indexOf(item) !== -1
+            )
+          );
+        }
       }
     }
     return games;

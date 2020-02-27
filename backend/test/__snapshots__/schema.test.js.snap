@@ -2744,7 +2744,7 @@ Object {
                 "kind": "NamedType",
                 "name": Object {
                   "kind": "Name",
-                  "value": "String",
+                  "value": "Tag",
                 },
               },
             },
@@ -3170,6 +3170,58 @@ Object {
       "name": Object {
         "kind": "Name",
         "value": "WyeGame",
+      },
+    },
+    Object {
+      "description": undefined,
+      "directives": Array [],
+      "fields": Array [
+        Object {
+          "arguments": Array [],
+          "description": undefined,
+          "directives": Array [],
+          "kind": "FieldDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "name",
+          },
+          "type": Object {
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
+            },
+          },
+        },
+        Object {
+          "arguments": Array [],
+          "description": undefined,
+          "directives": Array [],
+          "kind": "FieldDefinition",
+          "name": Object {
+            "kind": "Name",
+            "value": "rank",
+          },
+          "type": Object {
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "Int",
+              },
+            },
+          },
+        },
+      ],
+      "interfaces": Array [],
+      "kind": "ObjectTypeDefinition",
+      "name": Object {
+        "kind": "Name",
+        "value": "Tag",
       },
     },
     Object {
@@ -3710,7 +3762,7 @@ Object {
   ],
   "kind": "Document",
   "loc": Object {
-    "end": 10344,
+    "end": 10466,
     "start": 0,
   },
 }

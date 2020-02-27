@@ -121,7 +121,7 @@ const resolvers = {
 
       let filterOptions = null;
       if (uniqueGameDetails.length > 0) {
-        filterOptions = getFilterOptions(uniqueGameDetails);
+        filterOptions = getFilterOptions([uniqueGameDetails[0]]);
       }
 
       // 5. get user profile data
