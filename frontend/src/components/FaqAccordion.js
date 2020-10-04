@@ -11,9 +11,9 @@ import Link from "next/link";
 import Icon from "@mdi/react";
 import { mdiChevronDown } from "@mdi/js";
 
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
@@ -74,12 +74,12 @@ export const FaqAccordion = props => {
         </Button>
       </div>
       <div className={classnames.element("faqContainer")}>
-        <ExpansionPanel
+        <Accordion
           expanded={expanded === `panel1` || expandAll}
           onChange={handleChange(`panel1`)}
           className={classnames.element("panel")}
         >
-          <ExpansionPanelSummary
+          <AccordionSummary
             className={classnames.element("panelSummary", {
               expanded: expanded === `panel1`
             })}
@@ -102,8 +102,8 @@ export const FaqAccordion = props => {
             >
               Attribution
             </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={classnames.element("panelDetails")}>
+          </AccordionSummary>
+          <AccordionDetails className={classnames.element("panelDetails")}>
             <Typography variant="body1" gutterBottom={true}>
               Wye uses popular libraries which include:{" "}
               <Link href="https://reactjs.org/" prefetch={false}>
@@ -176,15 +176,15 @@ export const FaqAccordion = props => {
               </Link>{" "}
               for testing.
             </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+          </AccordionDetails>
+        </Accordion>
 
-        <ExpansionPanel
+        <Accordion
           expanded={expanded === `panel2` || expandAll}
           onChange={handleChange(`panel2`)}
           className={classnames.element("panel")}
         >
-          <ExpansionPanelSummary
+          <AccordionSummary
             className={classnames.element("panelSummary", {
               expanded: expanded === `panel2`
             })}
@@ -207,8 +207,8 @@ export const FaqAccordion = props => {
             >
               How to contact you?
             </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={classnames.element("panelDetails")}>
+          </AccordionSummary>
+          <AccordionDetails className={classnames.element("panelDetails")}>
             <Typography variant="body1" gutterBottom={true}>
               Wye is not affiliated with Valve or Steam! If you want to contact
               Valve{" "}
@@ -231,15 +231,15 @@ export const FaqAccordion = props => {
               </Link>
               .
             </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+          </AccordionDetails>
+        </Accordion>
 
-        <ExpansionPanel
+        <Accordion
           expanded={expanded === `panel3` || expandAll}
           onChange={handleChange(`panel3`)}
           className={classnames.element("panel")}
         >
-          <ExpansionPanelSummary
+          <AccordionSummary
             className={classnames.element("panelSummary", {
               expanded: expanded === `panel3`
             })}
@@ -262,8 +262,8 @@ export const FaqAccordion = props => {
             >
               Why did you decide to make Wye?
             </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={classnames.element("panelDetails")}>
+          </AccordionSummary>
+          <AccordionDetails className={classnames.element("panelDetails")}>
             <Typography variant="body1">
               Wye was created to help friends figure out what to play together
               more easily. Wye allows you and your friends to easily see what
@@ -271,16 +271,16 @@ export const FaqAccordion = props => {
               games, and can recommend new multiplayer games for you to play
               based on what you have played in the past.
             </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+          </AccordionDetails>
+        </Accordion>
 
-        <ExpansionPanel
+        <Accordion
           name="profile"
           expanded={expanded === `panel4` || expandAll}
           onChange={handleChange(`panel4`)}
           className={classnames.element("panel")}
         >
-          <ExpansionPanelSummary
+          <AccordionSummary
             className={classnames.element("panelSummary", {
               expanded: expanded === `panel4`
             })}
@@ -303,8 +303,8 @@ export const FaqAccordion = props => {
             >
               How are you getting this information?
             </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={classnames.element("panelDetails")}>
+          </AccordionSummary>
+          <AccordionDetails className={classnames.element("panelDetails")}>
             <Typography variant="body1">
               Wye makes use of Steam's public{" "}
               <Link
@@ -323,15 +323,15 @@ export const FaqAccordion = props => {
               </Link>{" "}
               for building recommendations.
             </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+          </AccordionDetails>
+        </Accordion>
 
-        <ExpansionPanel
+        <Accordion
           expanded={expanded === `panel5` || expandAll}
           onChange={handleChange(`panel5`)}
           className={classnames.element("panel")}
         >
-          <ExpansionPanelSummary
+          <AccordionSummary
             className={classnames.element("panelSummary", {
               expanded: expanded === `panel5`
             })}
@@ -354,8 +354,8 @@ export const FaqAccordion = props => {
             >
               Why does my Steam profile need to be set to public?
             </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={classnames.element("panelDetails")}>
+          </AccordionSummary>
+          <AccordionDetails className={classnames.element("panelDetails")}>
             <Typography variant="body1" gutterBottom={true}>
               Wye relies on Steam's public API to get information about your
               online status, owned and recently played games, and avatar image.
@@ -378,15 +378,15 @@ export const FaqAccordion = props => {
               </Link>
               .
             </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+          </AccordionDetails>
+        </Accordion>
 
-        <ExpansionPanel
+        <Accordion
           expanded={expanded === `panel6` || expandAll}
           onChange={handleChange(`panel6`)}
           className={classnames.element("panel")}
         >
-          <ExpansionPanelSummary
+          <AccordionSummary
             className={classnames.element("panelSummary", {
               expanded: expanded === `panel6`
             })}
@@ -409,8 +409,8 @@ export const FaqAccordion = props => {
             >
               How do I find my SteamID?
             </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={classnames.element("panelDetails")}>
+          </AccordionSummary>
+          <AccordionDetails className={classnames.element("panelDetails")}>
             <Typography variant="body1">
               You can locate your SteamID by following the steps listed in the
               support article about it{" "}
@@ -428,15 +428,15 @@ export const FaqAccordion = props => {
               </Link>
               .
             </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+          </AccordionDetails>
+        </Accordion>
 
-        <ExpansionPanel
+        <Accordion
           expanded={expanded === `panel7` || expandAll}
           onChange={handleChange(`panel7`)}
           className={classnames.element("panel")}
         >
-          <ExpansionPanelSummary
+          <AccordionSummary
             className={classnames.element("panelSummary", {
               expanded: expanded === `panel7`
             })}
@@ -459,8 +459,8 @@ export const FaqAccordion = props => {
             >
               How do I report a bug?
             </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={classnames.element("panelDetails")}>
+          </AccordionSummary>
+          <AccordionDetails className={classnames.element("panelDetails")}>
             <Typography variant="body1">
               Wye has a{" "}
               <Link
@@ -473,15 +473,15 @@ export const FaqAccordion = props => {
               </Link>{" "}
               where you can report bugs or request features.
             </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+          </AccordionDetails>
+        </Accordion>
 
-        <ExpansionPanel
+        <Accordion
           expanded={expanded === `panel8` || expandAll}
           onChange={handleChange(`panel8`)}
           className={classnames.element("panel")}
         >
-          <ExpansionPanelSummary
+          <AccordionSummary
             className={classnames.element("panelSummary", {
               expanded: expanded === `panel8`
             })}
@@ -505,8 +505,8 @@ export const FaqAccordion = props => {
               Why is a game's information different on Wye than on the Steam
               store page?
             </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={classnames.element("panelDetails")}>
+          </AccordionSummary>
+          <AccordionDetails className={classnames.element("panelDetails")}>
             <Typography variant="body1">
               Wye utilizes user review data from SteamSpy to determine a user
               rating for a game. This rating is a percentage of positive vs
@@ -515,8 +515,8 @@ export const FaqAccordion = props => {
               is aggregated on a daily basis, so it's possible that the game's
               information is slightly behind.
             </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+          </AccordionDetails>
+        </Accordion>
       </div>
     </div>
   );
