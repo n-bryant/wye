@@ -23,7 +23,6 @@ exports[`PriceInfoBlock should render successfully 1`] = `
   >
     <WithStyles(PriceWidget)
       className="wye-PriceInfoBlock__priceWidget priceWidget"
-      classes={Object {}}
       data={
         Object {
           "discountPercentage": 50,
@@ -33,7 +32,6 @@ exports[`PriceInfoBlock should render successfully 1`] = `
           "onSale": true,
         }
       }
-      skinny={false}
     />
     <a
       className="wye-PriceInfoBlock__link link"
@@ -59,7 +57,7 @@ exports[`PriceInfoBlock should render successfully 1`] = `
     >
       <Icon
         className="wye-PriceInfoBlock__icon icon"
-        color={null}
+        color="currentColor"
         horizontal={false}
         path="M11,4V9H6V11H11V16H13V11H18V9H13V4H11M6,18V20H18V18H6Z"
         rotate={0}

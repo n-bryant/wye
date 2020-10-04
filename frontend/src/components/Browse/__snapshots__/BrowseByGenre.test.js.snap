@@ -21,7 +21,6 @@ exports[`BrowseByGenre should render successfully 1`] = `
       xs={6}
     >
       <WithStyles(QuickLink)
-        classes={Object {}}
         fixedDimensions={true}
         label="foo"
         linkAs="/browse/genres/foo"

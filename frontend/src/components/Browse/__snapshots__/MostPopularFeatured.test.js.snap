@@ -3,7 +3,6 @@
 exports[`MostPopularFeatured should render a full width card with pagination widget if the width is xs or sm 1`] = `
 <WithStyles(FeaturedWidget)
   className="wye-MostPopularFeatured"
-  classes={Object {}}
   subTitle="Most popular by recent playtime"
   title="Trending"
 >
@@ -31,7 +30,6 @@ exports[`MostPopularFeatured should render a full width card with pagination wid
   </WithStyles(ForwardRef(Grid))>
   <WithStyles(PaginationWidget)
     className="wye-MostPopularFeatured__paginationWidget paginationWidget"
-    classes={Object {}}
     currentPage={1}
     setCurrentPage={[Function]}
     totalPages={5}
@@ -41,7 +39,6 @@ exports[`MostPopularFeatured should render a full width card with pagination wid
     my={4}
   >
     <WithStyles(QuickLink)
-      classes={Object {}}
       label="Top 100"
       linkHref="/browse/top100"
     />
@@ -52,7 +49,6 @@ exports[`MostPopularFeatured should render a full width card with pagination wid
 exports[`MostPopularFeatured should render a full width card with pagination widget if the width is xs or sm 2`] = `
 <WithStyles(FeaturedWidget)
   className="wye-MostPopularFeatured"
-  classes={Object {}}
   subTitle="Most popular by recent playtime"
   title="Trending"
 >
@@ -80,7 +76,6 @@ exports[`MostPopularFeatured should render a full width card with pagination wid
   </WithStyles(ForwardRef(Grid))>
   <WithStyles(PaginationWidget)
     className="wye-MostPopularFeatured__paginationWidget paginationWidget"
-    classes={Object {}}
     currentPage={1}
     setCurrentPage={[Function]}
     totalPages={5}
@@ -90,7 +85,6 @@ exports[`MostPopularFeatured should render a full width card with pagination wid
     my={4}
   >
     <WithStyles(QuickLink)
-      classes={Object {}}
       label="Top 100"
       linkHref="/browse/top100"
     />
@@ -101,7 +95,6 @@ exports[`MostPopularFeatured should render a full width card with pagination wid
 exports[`MostPopularFeatured should render successfully 1`] = `
 <WithStyles(FeaturedWidget)
   className="wye-MostPopularFeatured"
-  classes={Object {}}
   subTitle="Most popular by recent playtime"
   title="Trending"
 >
@@ -209,7 +202,6 @@ exports[`MostPopularFeatured should render successfully 1`] = `
   </WithStyles(ForwardRef(Grid))>
   <WithStyles(PaginationWidget)
     className="wye-MostPopularFeatured__paginationWidget paginationWidget"
-    classes={Object {}}
     currentPage={1}
     setCurrentPage={[Function]}
     totalPages={2}
@@ -219,7 +211,6 @@ exports[`MostPopularFeatured should render successfully 1`] = `
     my={4}
   >
     <WithStyles(QuickLink)
-      classes={Object {}}
       label="Top 100"
       linkHref="/browse/top100"
     />

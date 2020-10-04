@@ -18,15 +18,11 @@ exports[`index should render successfully 1`] = `
         <div
           className="wye-Index__content content"
         >
-          <WithStyles(WelcomeEmptyState)
-            classes={Object {}}
-          />
+          <WithStyles(WelcomeEmptyState) />
         </div>
       </div>
     </div>
   </WithStyles(ForwardRef(Container))>
-  <WithStyles(IndexPageBackground)
-    classes={Object {}}
-  />
+  <WithStyles(IndexPageBackground) />
 </div>
 `;

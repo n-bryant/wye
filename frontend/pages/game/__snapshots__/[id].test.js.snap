@@ -11,9 +11,7 @@ exports[`Game should render successfully 1`] = `
   <div
     className="wye-Game root"
   >
-    <WithStyles(LoadingState)
-      classes={Object {}}
-    >
+    <WithStyles(LoadingState)>
       <LoadingState
         classes={
           Object {

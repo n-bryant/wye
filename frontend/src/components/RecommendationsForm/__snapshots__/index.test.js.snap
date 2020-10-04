@@ -6,7 +6,7 @@ exports[`RecommendationsForm should render successfully 1`] = `
 >
   <Icon
     className="wye-RecommendationsForm__closeButton closeButton"
-    color={null}
+    color="currentColor"
     horizontal={false}
     onClick={[Function]}
     path="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
@@ -34,16 +34,13 @@ exports[`RecommendationsForm should render successfully 1`] = `
     className="wye-RecommendationsForm__userFieldContainer userFieldContainer"
   >
     <WithStyles(UsersField)
-      classes={Object {}}
       setUsersValue={[Function]}
       usersValue={Array []}
     />
   </div>
   <WithStyles(ActionButton)
     className="wye-RecommendationsForm__submitButton submitButton"
-    classes={Object {}}
     disabled={true}
-    label="Go!"
     onClick={[Function]}
   />
 </div>

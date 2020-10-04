@@ -17,7 +17,6 @@ exports[`GameDetails should render successfully 1`] = `
         xs={12}
       >
         <WithStyles(ButtonWithHoverFill)
-          classes={Object {}}
           displayLabel={true}
           handleClick={[Function]}
           icon="M20,9V15H12V19.84L4.16,12L12,4.16V9H20Z"
@@ -42,7 +41,6 @@ exports[`GameDetails should render successfully 1`] = `
         xs={12}
       >
         <WithStyles(MediaCarousel)
-          classes={Object {}}
           media={
             Array [
               Object {},
@@ -93,7 +91,6 @@ exports[`GameDetails should render successfully 1`] = `
               },
             ]
           }
-          classes={Object {}}
         />
       </div>
     </WithStyles(ForwardRef(Grid))>

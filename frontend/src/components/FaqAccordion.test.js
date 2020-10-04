@@ -1,5 +1,5 @@
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
 import { FaqAccordion, EXPAND_ALL_BUTTON_OPTIONS } from "./FaqAccordion";
 
 jest.mock("next/router", () => ({
@@ -77,7 +77,7 @@ describe("FaqAccordion", () => {
     const wrapperCollapsed = shallow(<FaqAccordion {...props} />);
     expect(
       wrapperCollapsed.findWhere(n => n.prop("expanded") === false).length
-    ).toBe(wrapperCollapsed.find(ExpansionPanel).length);
+    ).toBe(wrapperCollapsed.find(Accordion).length);
   });
 
   it("should toggle a panel's expanded state when that panel experiences a change", () => {
@@ -87,7 +87,7 @@ describe("FaqAccordion", () => {
     useStateSpy.mockImplementation(() => [expanded, setExpanded]);
     const wrapperWithPanelState = shallow(<FaqAccordion {...props} />);
     wrapperWithPanelState
-      .find(ExpansionPanel)
+      .find(Accordion)
       .at(0)
       .prop("onChange")();
     expect(setExpanded).toHaveBeenCalled();
@@ -100,12 +100,12 @@ describe("FaqAccordion", () => {
     useStateSpy.mockImplementation(() => [hovered, setHovered]);
     const wrapperWithHoverState = shallow(<FaqAccordion {...props} />);
     wrapperWithHoverState
-      .find(ExpansionPanelSummary)
+      .find(AccordionSummary)
       .at(0)
       .prop("onMouseEnter")();
     expect(setHovered).toHaveBeenCalledWith("panel1");
     wrapperWithHoverState
-      .find(ExpansionPanelSummary)
+      .find(AccordionSummary)
       .at(0)
       .prop("onMouseLeave")();
     expect(setHovered).toHaveBeenCalledWith(false);

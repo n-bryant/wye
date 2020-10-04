@@ -4,7 +4,7 @@ exports[`WyeApp should render successfully 1`] = `<WyeWithState />`;
 
 exports[`WyeWithState should render successfully 1`] = `
 <Fragment>
-  <CssBaseline />
+  <WithStyles(CssBaseline) />
   <NextNProgress
     color="#fff"
     height={3}
@@ -25,9 +25,7 @@ exports[`WyeWithState should render successfully 1`] = `
         }
       }
     >
-      <WithStyles(Page)
-        classes={Object {}}
-      >
+      <WithStyles(Page)>
         <Component />
       </WithStyles(Page)>
     </ContextProvider>

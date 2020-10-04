@@ -15,7 +15,7 @@ exports[`ButtonWithHoverFill should render successfully 1`] = `
   </WithStyles(ForwardRef(Typography))>
   <Icon
     className="wye-ButtonWithHoverFill__icon wye-ButtonWithHoverFill__icon--hovered wye-ButtonWithHoverFill__icon--withLabel icon iconHovered iconWithLabel"
-    color={null}
+    color="currentColor"
     horizontal={false}
     path="icon"
     rotate={0}

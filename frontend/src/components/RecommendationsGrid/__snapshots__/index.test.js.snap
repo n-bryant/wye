@@ -21,9 +21,7 @@ exports[`RecommendationsGrid should render successfully 1`] = `
     ]
   }
 >
-  <WithStyles(LoadingState)
-    classes={Object {}}
-  >
+  <WithStyles(LoadingState)>
     <LoadingState
       classes={
         Object {

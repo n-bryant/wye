@@ -3,8 +3,6 @@
 exports[`BrowseCard popper content should only render a Popper if an anchorEl is defined 1`] = `
 <WithStyles(Popper)
   anchorEl={Object {}}
-  classes={Object {}}
-  displayArrow={true}
 >
   <WithStyles(ForwardRef(Typography))
     className="wye-BrowseCard__title title"
@@ -151,7 +149,6 @@ exports[`BrowseCard should render a horizontal CardContent if the variant is hor
     className="wye-BrowseCard__usersContainer usersContainer"
   >
     <WithStyles(UserAvatar)
-      classes={Object {}}
       data={
         Object {
           "avatarImageUrl": "img",
@@ -184,7 +181,6 @@ exports[`BrowseCard should render a horizontal CardContent if the variant is hor
       className="wye-BrowseCard__horizontalSubContent horizontalSubContent"
     >
       <WithStyles(PriceWidget)
-        classes={Object {}}
         data={
           Object {
             "discountPercentage": 0,
@@ -194,7 +190,6 @@ exports[`BrowseCard should render a horizontal CardContent if the variant is hor
             "onSale": false,
           }
         }
-        skinny={false}
       />
     </div>
   </div>
@@ -223,7 +218,6 @@ exports[`BrowseCard should render successfully 1`] = `
           <WithStyles(HeroImage)
             altText="foo"
             className="wye-BrowseCard__media media"
-            classes={Object {}}
             imageSrc="header"
             placeholderPath="header"
             squaredBottom={false}
@@ -237,7 +231,6 @@ exports[`BrowseCard should render successfully 1`] = `
     className="wye-BrowseCard__priceWidget priceWidget"
   >
     <WithStyles(PriceWidget)
-      classes={Object {}}
       data={
         Object {
           "discountPercentage": 0,
