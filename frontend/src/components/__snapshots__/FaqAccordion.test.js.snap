@@ -22,18 +22,18 @@ exports[`FaqAccordion should render successfully 1`] = `
   <div
     className="wye-FaqAccordion__faqContainer faqContainer"
   >
-    <WithStyles(ForwardRef(ExpansionPanel))
+    <WithStyles(ForwardRef(Accordion))
       className="wye-FaqAccordion__panel panel"
       expanded={false}
       onChange={[Function]}
     >
-      <WithStyles(ForwardRef(ExpansionPanelSummary))
+      <WithStyles(ForwardRef(AccordionSummary))
         aria-controls="panel1bh-content"
         className="wye-FaqAccordion__panelSummary panelSummary"
         expandIcon={
           <ForwardRef
             className="wye-FaqAccordion__expandIcon expandIcon"
-            color={null}
+            color="currentColor"
             horizontal={false}
             path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
             rotate={0}
@@ -52,8 +52,8 @@ exports[`FaqAccordion should render successfully 1`] = `
         >
           Attribution
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelSummary))>
-      <WithStyles(ForwardRef(ExpansionPanelDetails))
+      </WithStyles(ForwardRef(AccordionSummary))>
+      <WithStyles(ForwardRef(AccordionDetails))
         className="wye-FaqAccordion__panelDetails panelDetails"
       >
         <WithStyles(ForwardRef(Typography))
@@ -214,20 +214,20 @@ exports[`FaqAccordion should render successfully 1`] = `
            
           for testing.
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelDetails))>
-    </WithStyles(ForwardRef(ExpansionPanel))>
-    <WithStyles(ForwardRef(ExpansionPanel))
+      </WithStyles(ForwardRef(AccordionDetails))>
+    </WithStyles(ForwardRef(Accordion))>
+    <WithStyles(ForwardRef(Accordion))
       className="wye-FaqAccordion__panel panel"
       expanded={false}
       onChange={[Function]}
     >
-      <WithStyles(ForwardRef(ExpansionPanelSummary))
+      <WithStyles(ForwardRef(AccordionSummary))
         aria-controls="panel2bh-content"
         className="wye-FaqAccordion__panelSummary panelSummary"
         expandIcon={
           <ForwardRef
             className="wye-FaqAccordion__expandIcon expandIcon"
-            color={null}
+            color="currentColor"
             horizontal={false}
             path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
             rotate={0}
@@ -246,8 +246,8 @@ exports[`FaqAccordion should render successfully 1`] = `
         >
           How to contact you?
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelSummary))>
-      <WithStyles(ForwardRef(ExpansionPanelDetails))
+      </WithStyles(ForwardRef(AccordionSummary))>
+      <WithStyles(ForwardRef(AccordionDetails))
         className="wye-FaqAccordion__panelDetails panelDetails"
       >
         <WithStyles(ForwardRef(Typography))
@@ -285,20 +285,20 @@ exports[`FaqAccordion should render successfully 1`] = `
           </Link>
           .
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelDetails))>
-    </WithStyles(ForwardRef(ExpansionPanel))>
-    <WithStyles(ForwardRef(ExpansionPanel))
+      </WithStyles(ForwardRef(AccordionDetails))>
+    </WithStyles(ForwardRef(Accordion))>
+    <WithStyles(ForwardRef(Accordion))
       className="wye-FaqAccordion__panel panel"
       expanded={false}
       onChange={[Function]}
     >
-      <WithStyles(ForwardRef(ExpansionPanelSummary))
+      <WithStyles(ForwardRef(AccordionSummary))
         aria-controls="panel3bh-content"
         className="wye-FaqAccordion__panelSummary panelSummary"
         expandIcon={
           <ForwardRef
             className="wye-FaqAccordion__expandIcon expandIcon"
-            color={null}
+            color="currentColor"
             horizontal={false}
             path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
             rotate={0}
@@ -317,8 +317,8 @@ exports[`FaqAccordion should render successfully 1`] = `
         >
           Why did you decide to make Wye?
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelSummary))>
-      <WithStyles(ForwardRef(ExpansionPanelDetails))
+      </WithStyles(ForwardRef(AccordionSummary))>
+      <WithStyles(ForwardRef(AccordionDetails))
         className="wye-FaqAccordion__panelDetails panelDetails"
       >
         <WithStyles(ForwardRef(Typography))
@@ -326,21 +326,21 @@ exports[`FaqAccordion should render successfully 1`] = `
         >
           Wye was created to help friends figure out what to play together more easily. Wye allows you and your friends to easily see what multiplayer games you already have, how much you have played those games, and can recommend new multiplayer games for you to play based on what you have played in the past.
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelDetails))>
-    </WithStyles(ForwardRef(ExpansionPanel))>
-    <WithStyles(ForwardRef(ExpansionPanel))
+      </WithStyles(ForwardRef(AccordionDetails))>
+    </WithStyles(ForwardRef(Accordion))>
+    <WithStyles(ForwardRef(Accordion))
       className="wye-FaqAccordion__panel panel"
       expanded={false}
       name="profile"
       onChange={[Function]}
     >
-      <WithStyles(ForwardRef(ExpansionPanelSummary))
+      <WithStyles(ForwardRef(AccordionSummary))
         aria-controls="panel4bh-content"
         className="wye-FaqAccordion__panelSummary panelSummary"
         expandIcon={
           <ForwardRef
             className="wye-FaqAccordion__expandIcon expandIcon"
-            color={null}
+            color="currentColor"
             horizontal={false}
             path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
             rotate={0}
@@ -359,8 +359,8 @@ exports[`FaqAccordion should render successfully 1`] = `
         >
           How are you getting this information?
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelSummary))>
-      <WithStyles(ForwardRef(ExpansionPanelDetails))
+      </WithStyles(ForwardRef(AccordionSummary))>
+      <WithStyles(ForwardRef(AccordionDetails))
         className="wye-FaqAccordion__panelDetails panelDetails"
       >
         <WithStyles(ForwardRef(Typography))
@@ -396,20 +396,20 @@ exports[`FaqAccordion should render successfully 1`] = `
            
           for building recommendations.
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelDetails))>
-    </WithStyles(ForwardRef(ExpansionPanel))>
-    <WithStyles(ForwardRef(ExpansionPanel))
+      </WithStyles(ForwardRef(AccordionDetails))>
+    </WithStyles(ForwardRef(Accordion))>
+    <WithStyles(ForwardRef(Accordion))
       className="wye-FaqAccordion__panel panel"
       expanded={false}
       onChange={[Function]}
     >
-      <WithStyles(ForwardRef(ExpansionPanelSummary))
+      <WithStyles(ForwardRef(AccordionSummary))
         aria-controls="panel5bh-content"
         className="wye-FaqAccordion__panelSummary panelSummary"
         expandIcon={
           <ForwardRef
             className="wye-FaqAccordion__expandIcon expandIcon"
-            color={null}
+            color="currentColor"
             horizontal={false}
             path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
             rotate={0}
@@ -428,8 +428,8 @@ exports[`FaqAccordion should render successfully 1`] = `
         >
           Why does my Steam profile need to be set to public?
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelSummary))>
-      <WithStyles(ForwardRef(ExpansionPanelDetails))
+      </WithStyles(ForwardRef(AccordionSummary))>
+      <WithStyles(ForwardRef(AccordionDetails))
         className="wye-FaqAccordion__panelDetails panelDetails"
       >
         <WithStyles(ForwardRef(Typography))
@@ -457,20 +457,20 @@ exports[`FaqAccordion should render successfully 1`] = `
           </Link>
           .
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelDetails))>
-    </WithStyles(ForwardRef(ExpansionPanel))>
-    <WithStyles(ForwardRef(ExpansionPanel))
+      </WithStyles(ForwardRef(AccordionDetails))>
+    </WithStyles(ForwardRef(Accordion))>
+    <WithStyles(ForwardRef(Accordion))
       className="wye-FaqAccordion__panel panel"
       expanded={false}
       onChange={[Function]}
     >
-      <WithStyles(ForwardRef(ExpansionPanelSummary))
+      <WithStyles(ForwardRef(AccordionSummary))
         aria-controls="panel6bh-content"
         className="wye-FaqAccordion__panelSummary panelSummary"
         expandIcon={
           <ForwardRef
             className="wye-FaqAccordion__expandIcon expandIcon"
-            color={null}
+            color="currentColor"
             horizontal={false}
             path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
             rotate={0}
@@ -489,8 +489,8 @@ exports[`FaqAccordion should render successfully 1`] = `
         >
           How do I find my SteamID?
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelSummary))>
-      <WithStyles(ForwardRef(ExpansionPanelDetails))
+      </WithStyles(ForwardRef(AccordionSummary))>
+      <WithStyles(ForwardRef(AccordionDetails))
         className="wye-FaqAccordion__panelDetails panelDetails"
       >
         <WithStyles(ForwardRef(Typography))
@@ -512,20 +512,20 @@ exports[`FaqAccordion should render successfully 1`] = `
           </Link>
           .
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelDetails))>
-    </WithStyles(ForwardRef(ExpansionPanel))>
-    <WithStyles(ForwardRef(ExpansionPanel))
+      </WithStyles(ForwardRef(AccordionDetails))>
+    </WithStyles(ForwardRef(Accordion))>
+    <WithStyles(ForwardRef(Accordion))
       className="wye-FaqAccordion__panel panel"
       expanded={false}
       onChange={[Function]}
     >
-      <WithStyles(ForwardRef(ExpansionPanelSummary))
+      <WithStyles(ForwardRef(AccordionSummary))
         aria-controls="panel7bh-content"
         className="wye-FaqAccordion__panelSummary panelSummary"
         expandIcon={
           <ForwardRef
             className="wye-FaqAccordion__expandIcon expandIcon"
-            color={null}
+            color="currentColor"
             horizontal={false}
             path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
             rotate={0}
@@ -544,8 +544,8 @@ exports[`FaqAccordion should render successfully 1`] = `
         >
           How do I report a bug?
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelSummary))>
-      <WithStyles(ForwardRef(ExpansionPanelDetails))
+      </WithStyles(ForwardRef(AccordionSummary))>
+      <WithStyles(ForwardRef(AccordionDetails))
         className="wye-FaqAccordion__panelDetails panelDetails"
       >
         <WithStyles(ForwardRef(Typography))
@@ -567,20 +567,20 @@ exports[`FaqAccordion should render successfully 1`] = `
            
           where you can report bugs or request features.
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelDetails))>
-    </WithStyles(ForwardRef(ExpansionPanel))>
-    <WithStyles(ForwardRef(ExpansionPanel))
+      </WithStyles(ForwardRef(AccordionDetails))>
+    </WithStyles(ForwardRef(Accordion))>
+    <WithStyles(ForwardRef(Accordion))
       className="wye-FaqAccordion__panel panel"
       expanded={false}
       onChange={[Function]}
     >
-      <WithStyles(ForwardRef(ExpansionPanelSummary))
+      <WithStyles(ForwardRef(AccordionSummary))
         aria-controls="panel8bh-content"
         className="wye-FaqAccordion__panelSummary panelSummary"
         expandIcon={
           <ForwardRef
             className="wye-FaqAccordion__expandIcon expandIcon"
-            color={null}
+            color="currentColor"
             horizontal={false}
             path="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
             rotate={0}
@@ -599,8 +599,8 @@ exports[`FaqAccordion should render successfully 1`] = `
         >
           Why is a game's information different on Wye than on the Steam store page?
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelSummary))>
-      <WithStyles(ForwardRef(ExpansionPanelDetails))
+      </WithStyles(ForwardRef(AccordionSummary))>
+      <WithStyles(ForwardRef(AccordionDetails))
         className="wye-FaqAccordion__panelDetails panelDetails"
       >
         <WithStyles(ForwardRef(Typography))
@@ -608,8 +608,8 @@ exports[`FaqAccordion should render successfully 1`] = `
         >
           Wye utilizes user review data from SteamSpy to determine a user rating for a game. This rating is a percentage of positive vs negative reviews from SteamSpy's data for the game, and may not match the rating found on Steam. Additionally, price information is aggregated on a daily basis, so it's possible that the game's information is slightly behind.
         </WithStyles(ForwardRef(Typography))>
-      </WithStyles(ForwardRef(ExpansionPanelDetails))>
-    </WithStyles(ForwardRef(ExpansionPanel))>
+      </WithStyles(ForwardRef(AccordionDetails))>
+    </WithStyles(ForwardRef(Accordion))>
   </div>
 </div>
 `;

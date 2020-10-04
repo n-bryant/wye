@@ -3,7 +3,6 @@
 exports[`FeaturedPublishers should adjust the layout of the cards if the width is larger than xs or sm 1`] = `
 <WithStyles(FeaturedWidget)
   className="wye-FeaturedPublishers root"
-  classes={Object {}}
   subTitle="The most played titles by the most prolific publishers"
   title="Publishers"
 >
@@ -168,7 +167,6 @@ exports[`FeaturedPublishers should adjust the layout of the cards if the width i
   </WithStyles(ForwardRef(Grid))>
   <WithStyles(PaginationWidget)
     className="wye-FeaturedPublishers__paginationWidget paginationWidget"
-    classes={Object {}}
     currentPage={1}
     setCurrentPage={[Function]}
     totalPages={1}
@@ -178,7 +176,6 @@ exports[`FeaturedPublishers should adjust the layout of the cards if the width i
     my={4}
   >
     <WithStyles(QuickLink)
-      classes={Object {}}
       label="All Publishers"
       linkHref="/browse/publishers"
     />
@@ -189,7 +186,6 @@ exports[`FeaturedPublishers should adjust the layout of the cards if the width i
 exports[`FeaturedPublishers should render successfully 1`] = `
 <WithStyles(FeaturedWidget)
   className="wye-FeaturedPublishers root"
-  classes={Object {}}
   subTitle="The most played titles by the most prolific publishers"
   title="Publishers"
 >
@@ -354,7 +350,6 @@ exports[`FeaturedPublishers should render successfully 1`] = `
   </WithStyles(ForwardRef(Grid))>
   <WithStyles(PaginationWidget)
     className="wye-FeaturedPublishers__paginationWidget paginationWidget"
-    classes={Object {}}
     currentPage={1}
     setCurrentPage={[Function]}
     totalPages={1}
@@ -364,7 +359,6 @@ exports[`FeaturedPublishers should render successfully 1`] = `
     my={4}
   >
     <WithStyles(QuickLink)
-      classes={Object {}}
       label="All Publishers"
       linkHref="/browse/publishers"
     />

@@ -59,7 +59,7 @@ exports[`BackgroundQuery should render a BackgroundProvider once the query has l
       classes={Object {}}
     >
       <div
-        className="wye-BackgroundProvider wye-BackgroundProvider--loaded makeStyles-root-1 makeStyles-loaded-2 makeStyles-loaded-21"
+        className="wye-BackgroundProvider wye-BackgroundProvider--loaded makeStyles-root-1 makeStyles-loaded-2 makeStyles-loaded-9"
       />
     </BackgroundProvider>
   </Query>
@@ -115,9 +115,7 @@ exports[`BackgroundQuery should render successfully 1`] = `
         }
       }
     >
-      <WithStyles(LoadingState)
-        classes={Object {}}
-      >
+      <WithStyles(LoadingState)>
         <LoadingState
           classes={
             Object {

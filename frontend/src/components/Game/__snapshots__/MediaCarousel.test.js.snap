@@ -51,7 +51,7 @@ exports[`MediaCarousel should render successfully 1`] = `
         >
           <Icon
             className="wye-MediaCarousel__playIcon playIcon"
-            color={null}
+            color="currentColor"
             horizontal={false}
             path="M8,5.14V19.14L19,12.14L8,5.14Z"
             rotate={0}

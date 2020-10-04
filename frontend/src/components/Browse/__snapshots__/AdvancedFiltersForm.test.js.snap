@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AdvancedFiltersForm should render successfully 1`] = `
-<ForwardRef(ClickAwayListener)
+<ClickAwayListener
   onClickAway={[Function]}
 >
   <WithStyles(ForwardRef(Container))
@@ -12,7 +12,6 @@ exports[`AdvancedFiltersForm should render successfully 1`] = `
       className="wye-AdvancedFiltersForm__closeButtonContainer closeButtonContainer"
     >
       <WithStyles(ButtonWithHoverFill)
-        classes={Object {}}
         displayLabel={false}
         handleClick={[Function]}
         icon="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
@@ -162,14 +161,13 @@ exports[`AdvancedFiltersForm should render successfully 1`] = `
       my={4}
     >
       <WithStyles(ActionButton)
-        classes={Object {}}
         disabled={true}
         label="Filter"
         onClick={[Function]}
       />
     </Styled(MuiBox)>
   </WithStyles(ForwardRef(Container))>
-</ForwardRef(ClickAwayListener)>
+</ClickAwayListener>
 `;
 
 exports[`AdvancedFiltersFormWithFormik should render successfully 1`] = `
@@ -232,7 +230,6 @@ exports[`AdvancedFiltersFormWithFormik should render successfully 1`] = `
   }
 >
   <WithStyles(AdvancedFiltersForm)
-    classes={Object {}}
     formik={
       Object {
         "dirty": false,

@@ -72,7 +72,6 @@ exports[`WelcomeEmptyState should render successfully 1`] = `
       </a>
     </Link>
     <WithStyles(ActionButton)
-      classes={Object {}}
       label="Get Started"
       onClick={[Function]}
     />
