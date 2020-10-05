@@ -150,7 +150,7 @@ export const BrowseCard = props => {
           <Typography className={classnames.element("title")} variant="h3">
             {data.name}
           </Typography>
-          {trailerPath.length ? (
+          {trailerPath?.length ? (
             <video
               className={classnames.element("trailer")}
               playsInline={true}
@@ -355,32 +355,34 @@ BrowseCard.defaultProps = {
 // apply styles
 export const StyledBrowseCard = withWidth()(withStyles(styles)(BrowseCard));
 
-/**
- * renders a Query for a game's highlight trailer that returns a StyledBrowseCard
- */
-export const HighlightTrailerQuery = props => {
-  return (
-    <Query
-      query={GET_HIGHLIGHT_TRAILER}
-      variables={{ gameId: props.data.appid }}
-    >
-      {({ loading, error, data }) => {
-        if (loading || error) {
-          return <div style={{ display: "none" }}></div>;
-        }
+// /**
+//  * renders a Query for a game's highlight trailer that returns a StyledBrowseCard
+//  */
+// export const HighlightTrailerQuery = props => {
+//   return (
+//     <Query
+//       query={GET_HIGHLIGHT_TRAILER}
+//       variables={{ gameId: props.data.appid }}
+//     >
+//       {({ loading, error, data }) => {
+//         if (loading || error) {
+//           return <div style={{ display: "none" }}></div>;
+//         }
 
-        const trailerPath = get(data, "getHighlightTrailer");
+//         const trailerPath = get(data, "getHighlightTrailer");
 
-        return <StyledBrowseCard trailerPath={trailerPath} {...props} />;
-      }}
-    </Query>
-  );
-};
-HighlightTrailerQuery.propTypes = {
-  // a data object containing the game ID to run the query for
-  data: PropTypes.shape({
-    appid: PropTypes.String
-  })
-};
+//         return <StyledBrowseCard trailerPath={trailerPath} {...props} />;
+//       }}
+//     </Query>
+//   );
+// };
+// HighlightTrailerQuery.propTypes = {
+//   // a data object containing the game ID to run the query for
+//   data: PropTypes.shape({
+//     appid: PropTypes.String
+//   })
+// };
 
-export default HighlightTrailerQuery;
+// export default HighlightTrailerQuery;
+
+export default StyledBrowseCard;

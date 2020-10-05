@@ -56,7 +56,11 @@ const styles = theme => ({
   metacriticScore: {
     background: theme.palette.common.green5,
     padding: "4px",
-    border: `4px solid ${theme.palette.common.black}`
+    border: `4px solid ${theme.palette.common.black}`,
+    cursor: "pointer",
+    "&:hover": {
+      border: `4px solid ${theme.palette.common.white}`
+    }
   },
   metacriticScoreNegative: {
     background: theme.palette.common.red7

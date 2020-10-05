@@ -18,7 +18,7 @@ exports[`FeaturedPublishers should adjust the layout of the cards if the width i
       key="1"
       xs={3}
     >
-      <HighlightTrailerQuery
+      <WithWidth(WithStyles(BrowseCard))
         cardActionHref="/browse/publishers/[name]"
         cardActionLabel="1"
         cardActionLinkPath="/browse/publishers/1"
@@ -56,7 +56,7 @@ exports[`FeaturedPublishers should adjust the layout of the cards if the width i
       key="2"
       xs={3}
     >
-      <HighlightTrailerQuery
+      <WithWidth(WithStyles(BrowseCard))
         cardActionHref="/browse/publishers/[name]"
         cardActionLabel="2"
         cardActionLinkPath="/browse/publishers/2"
@@ -94,7 +94,7 @@ exports[`FeaturedPublishers should adjust the layout of the cards if the width i
       key="3"
       xs={3}
     >
-      <HighlightTrailerQuery
+      <WithWidth(WithStyles(BrowseCard))
         cardActionHref="/browse/publishers/[name]"
         cardActionLabel="3"
         cardActionLinkPath="/browse/publishers/3"
@@ -132,7 +132,7 @@ exports[`FeaturedPublishers should adjust the layout of the cards if the width i
       key="4"
       xs={3}
     >
-      <HighlightTrailerQuery
+      <WithWidth(WithStyles(BrowseCard))
         cardActionHref="/browse/publishers/[name]"
         cardActionLabel="4"
         cardActionLinkPath="/browse/publishers/4"
@@ -201,7 +201,7 @@ exports[`FeaturedPublishers should render successfully 1`] = `
       key="1"
       xs={6}
     >
-      <HighlightTrailerQuery
+      <WithWidth(WithStyles(BrowseCard))
         cardActionHref="/browse/publishers/[name]"
         cardActionLabel="1"
         cardActionLinkPath="/browse/publishers/1"
@@ -239,7 +239,7 @@ exports[`FeaturedPublishers should render successfully 1`] = `
       key="2"
       xs={6}
     >
-      <HighlightTrailerQuery
+      <WithWidth(WithStyles(BrowseCard))
         cardActionHref="/browse/publishers/[name]"
         cardActionLabel="2"
         cardActionLinkPath="/browse/publishers/2"
@@ -277,7 +277,7 @@ exports[`FeaturedPublishers should render successfully 1`] = `
       key="3"
       xs={6}
     >
-      <HighlightTrailerQuery
+      <WithWidth(WithStyles(BrowseCard))
         cardActionHref="/browse/publishers/[name]"
         cardActionLabel="3"
         cardActionLinkPath="/browse/publishers/3"
@@ -315,7 +315,7 @@ exports[`FeaturedPublishers should render successfully 1`] = `
       key="4"
       xs={6}
     >
-      <HighlightTrailerQuery
+      <WithWidth(WithStyles(BrowseCard))
         cardActionHref="/browse/publishers/[name]"
         cardActionLabel="4"
         cardActionLinkPath="/browse/publishers/4"
