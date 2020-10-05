@@ -7,11 +7,12 @@ import CardActions from "@material-ui/core/CardActions";
 
 import HeroImage from "../Game/HeroImage";
 import Popper from "../Popper";
-import HighlightTrailerQuery, {
-  BrowseCard,
-  VARIANTS_MAP,
-  GET_HIGHLIGHT_TRAILER
-} from "./BrowseCard";
+// import HighlightTrailerQuery, {
+//   BrowseCard,
+//   VARIANTS_MAP,
+//   GET_HIGHLIGHT_TRAILER
+// } from "./BrowseCard";
+import { BrowseCard, VARIANTS_MAP } from "./BrowseCard";
 
 describe("BrowseCard", () => {
   const props = {
@@ -195,37 +196,37 @@ describe("BrowseCard", () => {
   });
 });
 
-describe("HighlightTrailerQuery", () => {
-  const props = {
-    data: {
-      appid: "foo"
-    }
-  };
+// describe("HighlightTrailerQuery", () => {
+//   const props = {
+//     data: {
+//       appid: "foo"
+//     }
+//   };
 
-  it("should render successfully", async () => {
-    const mocks = [
-      {
-        request: {
-          query: GET_HIGHLIGHT_TRAILER,
-          variables: {
-            gameId: "1"
-          }
-        },
-        result: {
-          data: {
-            getHighlightTrailer: props.data.appid
-          }
-        }
-      }
-    ];
-    let wrapper;
-    await act(async () => {
-      wrapper = mount(
-        <MockedProvider mocks={mocks} addTypename={false}>
-          <HighlightTrailerQuery {...props} />
-        </MockedProvider>
-      );
-    });
-    expect(toJson(wrapper.find(HighlightTrailerQuery))).toMatchSnapshot();
-  });
-});
+//   it("should render successfully", async () => {
+//     const mocks = [
+//       {
+//         request: {
+//           query: GET_HIGHLIGHT_TRAILER,
+//           variables: {
+//             gameId: "1"
+//           }
+//         },
+//         result: {
+//           data: {
+//             getHighlightTrailer: props.data.appid
+//           }
+//         }
+//       }
+//     ];
+//     let wrapper;
+//     await act(async () => {
+//       wrapper = mount(
+//         <MockedProvider mocks={mocks} addTypename={false}>
+//           <HighlightTrailerQuery {...props} />
+//         </MockedProvider>
+//       );
+//     });
+//     expect(toJson(wrapper.find(HighlightTrailerQuery))).toMatchSnapshot();
+//   });
+// });

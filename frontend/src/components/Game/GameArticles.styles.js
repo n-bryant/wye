@@ -13,7 +13,11 @@ const styles = theme => ({
     }
   },
   articleTitle: {
-    color: theme.palette.common.blue6
+    color: theme.palette.common.blue6,
+    maxWidth: "100%",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+    overflow: "hidden"
   },
   articleContents: {},
   subTitle: {

@@ -24,7 +24,7 @@ exports[`FeaturedSales should adjust the presentation of the cards if the width 
         key="3"
         xs={6}
       >
-        <HighlightTrailerQuery
+        <WithWidth(WithStyles(BrowseCard))
           data={
             Object {
               "appid": "3",
@@ -59,7 +59,7 @@ exports[`FeaturedSales should adjust the presentation of the cards if the width 
         key="4"
         xs={6}
       >
-        <HighlightTrailerQuery
+        <WithWidth(WithStyles(BrowseCard))
           data={
             Object {
               "appid": "4",
@@ -94,7 +94,7 @@ exports[`FeaturedSales should adjust the presentation of the cards if the width 
         key="5"
         xs={6}
       >
-        <HighlightTrailerQuery
+        <WithWidth(WithStyles(BrowseCard))
           data={
             Object {
               "appid": "5",
@@ -129,7 +129,7 @@ exports[`FeaturedSales should adjust the presentation of the cards if the width 
         key="6"
         xs={6}
       >
-        <HighlightTrailerQuery
+        <WithWidth(WithStyles(BrowseCard))
           data={
             Object {
               "appid": "6",
@@ -171,7 +171,7 @@ exports[`FeaturedSales should adjust the presentation of the cards if the width 
         key="1"
         xs={6}
       >
-        <HighlightTrailerQuery
+        <WithWidth(WithStyles(BrowseCard))
           data={
             Object {
               "appid": "1",
@@ -206,7 +206,7 @@ exports[`FeaturedSales should adjust the presentation of the cards if the width 
         key="2"
         xs={6}
       >
-        <HighlightTrailerQuery
+        <WithWidth(WithStyles(BrowseCard))
           data={
             Object {
               "appid": "2",
@@ -280,7 +280,7 @@ exports[`FeaturedSales should render successfully 1`] = `
       key="1"
       xs={4}
     >
-      <HighlightTrailerQuery
+      <WithWidth(WithStyles(BrowseCard))
         data={
           Object {
             "appid": "1",
@@ -315,7 +315,7 @@ exports[`FeaturedSales should render successfully 1`] = `
       key="2"
       xs={4}
     >
-      <HighlightTrailerQuery
+      <WithWidth(WithStyles(BrowseCard))
         data={
           Object {
             "appid": "2",
@@ -350,7 +350,7 @@ exports[`FeaturedSales should render successfully 1`] = `
       key="3"
       xs={4}
     >
-      <HighlightTrailerQuery
+      <WithWidth(WithStyles(BrowseCard))
         data={
           Object {
             "appid": "3",
